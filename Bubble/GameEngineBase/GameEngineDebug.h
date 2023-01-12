@@ -7,7 +7,8 @@
 class GameEngineDebug
 {
 public:
-	static void LeckCheck();
+	static void LeakCheck();
+	static void LeakFind(int _Value);
 
 	GameEngineDebug(const GameEngineDebug& _Other) = delete;
 	GameEngineDebug(GameEngineDebug&& _Other) noexcept = delete;

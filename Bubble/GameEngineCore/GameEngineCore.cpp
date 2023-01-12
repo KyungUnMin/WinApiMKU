@@ -10,7 +10,7 @@ GameEngineCore* Core;
 
 GameEngineCore::GameEngineCore()
 {
-	GameEngineDebug::LeckCheck();
+	GameEngineDebug::LeakCheck();
 
 	//GameEngineCore는 추상 클래스
 	//때문에 이 this는 GameEngineCore를 상속받은 자식 객체가 된다

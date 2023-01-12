@@ -56,13 +56,13 @@ public:
 		return ImageDC;
 	}
 
-	//X(가로 이미지 갯수), Y(세로 이미지 갯수)로 자른 이미지 정보를 벡터에 저장
-	void Cut(int _X, int _Y);
-
 	float4 GetImageScale() const
 	{
 		return float4{ static_cast<float>(Info.bmWidth), static_cast<float>(Info.bmHeight) };
 	}
+
+	//X(가로 이미지 갯수), Y(세로 이미지 갯수)로 자른 이미지 정보를 벡터에 저장
+	void Cut(int _X, int _Y);
 
 	//잘린 이미지인지 확인
 	bool IsImageCutting() const

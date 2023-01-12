@@ -4,8 +4,8 @@
 
 LRESULT CALLBACK MessageFunction(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam);
 
-HWND                       GameEngineWindow::HWnd                    = nullptr;
-HDC		                     GameEngineWindow::WindowBackBufferHdc               = nullptr;
+HWND                       GameEngineWindow::HWnd = nullptr;
+HDC		                     GameEngineWindow::WindowBackBufferHdc = nullptr;
 GameEngineImage* GameEngineWindow::BackBufferImage = nullptr;
 GameEngineImage* GameEngineWindow::DoubleBufferImage = nullptr;
 

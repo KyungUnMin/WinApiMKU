@@ -34,6 +34,6 @@ protected:
 private:
 	GameEngineImage*			Image					= nullptr;
 	void(GameEngineLevel::* UpdateCallBack)(void)	= nullptr;
-	GameEngineLevel*			CurrentLevel		= nullptr;
+	//GameEngineLevel*			CurrentLevel		= nullptr;
 };
 
