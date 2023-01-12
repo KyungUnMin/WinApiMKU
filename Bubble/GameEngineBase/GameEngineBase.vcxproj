@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{a6e9bfee-96ec-4fc9-9219-12202f5126cc}</ProjectGuid>
+    <ProjectGuid>{db4e3caf-e2f8-4d4e-accb-1cf569ea79b4}</ProjectGuid>
     <RootNamespace>GameEngineBase</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -156,22 +156,12 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="GameEngineFile.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="GameEngineMath.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="GameEngineMath.cpp" />
     <ClCompile Include="GameEnginePath.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="GameEngineString.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="GameEngineString.cpp" />
     <ClCompile Include="GameEngineTime.cpp">
       <SubType>
       </SubType>
@@ -183,22 +173,12 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="GameEngineFile.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="GameEngineMath.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ClInclude Include="GameEngineMath.h" />
     <ClInclude Include="GameEnginePath.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="GameEngineString.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ClInclude Include="GameEngineString.h" />
     <ClInclude Include="GameEngineTime.h">
       <SubType>
       </SubType>

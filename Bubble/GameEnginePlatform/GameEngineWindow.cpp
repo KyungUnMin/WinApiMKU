@@ -1,98 +1,79 @@
 #include "GameEngineWindow.h"
 #include <GameEngineBase/GameEngineDebug.h>
-#include <GameEnginePlatform/GameEngineImage.h>
+#include "GameEngineImage.h"
 
-// LRESULT(CALLBACK* WNDPROC)(HWND, UINT, WPARAM, LPARAM)
+LRESULT CALLBACK MessageFunction(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam);
 
-HWND GameEngineWindow::HWnd = nullptr;
-HDC GameEngineWindow::WindowBackBufferHdc = nullptr;
-float4 GameEngineWindow::WindowSize = {800, 600};
-float4 GameEngineWindow::WindowPos = { 100, 100 };
-float4 GameEngineWindow::ScreenSize = { 800, 600 };
+HWND                       GameEngineWindow::HWnd                    = nullptr;
+HDC		                     GameEngineWindow::WindowBackBufferHdc               = nullptr;
 GameEngineImage* GameEngineWindow::BackBufferImage = nullptr;
 GameEngineImage* GameEngineWindow::DoubleBufferImage = nullptr;
 
+float4	GameEngineWindow::WindowSize   = { 800.f, 600.f };
+float4	GameEngineWindow::ScreenSize     = { 800.f, 600.f };
+float4	GameEngineWindow::WindowPos   = { 100.f, 100.f };
 
+bool     IsWindowUpdate                             = true;
 
-bool IsWindowUpdate = true;
-
-LRESULT CALLBACK MessageFunction(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam)
+GameEngineWindow::GameEngineWindow()
 {
-    switch (_message)
-    {
-    case WM_MOUSEMOVE:
-    {
-        int a = 0;
-        break;
-    }
-        // 내 윈도우가 선택되었다.
-    case WM_SETFOCUS:
-    {
-        int a = 0;
-        break;
-    }
-    case WM_ACTIVATE:
-    {
-        int a = 0;
-        break;
-    }
-    case WM_KILLFOCUS:
-    {
-        int a = 0;
-        break;
-    }
-    case WM_DESTROY:
-    {
-        // Message함수가 0을 리턴하게 만들어라.
-        PostQuitMessage(0);
-        IsWindowUpdate = false;
-        break;
-    }
-    default:
-        return DefWindowProc(_hWnd, _message, _wParam, _lParam);
-    }
 
-    return 0;
 }
 
-GameEngineWindow::GameEngineWindow() 
+GameEngineWindow::~GameEngineWindow()
 {
+
 }
 
-GameEngineWindow::~GameEngineWindow() 
-{
-    
-}
 
-void GameEngineWindow::WindowCreate(HINSTANCE _hInstance, const std::string_view& _TitleName, float4 _Size, float4 _Pos)
+void GameEngineWindow::WindowCreate(
+    HINSTANCE _hInstance, 
+    const std::string_view& _TitleName, 
+    float4 _Size, float4 _Pos)
 {
+    //윈도우 클래스를 만들기 위한 정보 기입
     WNDCLASSEX wcex;
 
     wcex.cbSize = sizeof(WNDCLASSEX);
-
     wcex.style = CS_HREDRAW | CS_VREDRAW;
+
+    //메세지 처리 콜백
     wcex.lpfnWndProc = MessageFunction;
+
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = _hInstance;
-    
+
+    //큰 아이콘 제거
     wcex.hIcon = nullptr;
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
-    wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1); 
+    wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1); // 흰색 
+
+    //툴바(메뉴바) 제거
     wcex.lpszMenuName = nullptr;
     wcex.lpszClassName = "GameEngineWindowDefault";
+
+    //작은 아이콘 제거
     wcex.hIconSm = nullptr;
 
+    //예외처리
     if (0 == RegisterClassEx(&wcex))
     {
         MsgAssert("윈도우 클래스 등록에 실패했습니다.");
         return;
     }
 
-    HWnd = CreateWindow("GameEngineWindowDefault", _TitleName.data(), WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, _hInstance, nullptr);
+    //윈도우 창 만들기
+    HWnd = CreateWindow(
+        "GameEngineWindowDefault",
+        _TitleName.data(),
+        WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT,
+        0, CW_USEDEFAULT, 0,
+        nullptr, nullptr, _hInstance, nullptr);
 
-    if (nullptr == HWnd)
+    //예외처리
+    if (!HWnd)
     {
         MsgAssert("윈도우 클래스 생성에 실패했습니다.");
         return;
@@ -100,44 +81,63 @@ void GameEngineWindow::WindowCreate(HINSTANCE _hInstance, const std::string_view
 
     WindowBackBufferHdc = GetDC(HWnd);
 
-
+    //윈도우 창 띄우기
     ShowWindow(HWnd, SW_SHOW);
     UpdateWindow(HWnd);
 
+    //윈도우 크기 설정(내부에서 더블버퍼용 이미지 생성)
     SettingWindowSize(_Size);
     SettingWindowPos(_Pos);
 
-    BackBufferImage = new GameEngineImage();
+    //윈도우 백버퍼HDC를 Image클래스로 관리
+    BackBufferImage = new GameEngineImage;
     BackBufferImage->ImageCreate(WindowBackBufferHdc);
-
-
-    return;
 }
 
-void GameEngineWindow::DoubleBufferClear()
+
+void GameEngineWindow::SettingWindowSize(float4 _Size)
 {
-    DoubleBufferImage->ImageClear();
+    ScreenSize = _Size;
+
+    RECT Rc = { 0, 0, _Size.ix(), _Size.iy() };
+    AdjustWindowRect(&Rc, WS_OVERLAPPEDWINDOW, FALSE);
+    WindowSize = { static_cast<float>(Rc.right - Rc.left), static_cast<float>(Rc.bottom - Rc.top) };
+
+    SetWindowPos(HWnd, nullptr, WindowPos.ix(), WindowPos.iy(), WindowSize.ix(), WindowSize.iy(), SWP_NOZORDER);
+
+    //이미지를 다시한번 재조정하는 경우
+    if (nullptr != DoubleBufferImage)
+    {
+        delete DoubleBufferImage;
+        DoubleBufferImage = nullptr;
+    }
+
+    //더블 버퍼링 용 이미지 생성
+    DoubleBufferImage = new GameEngineImage;
+    DoubleBufferImage->ImageCreate(ScreenSize);
 }
 
-void GameEngineWindow::DoubleBufferRender()
+void GameEngineWindow::SettingWindowPos(float4 _Pos)
 {
-    BackBufferImage->BitCopy(DoubleBufferImage, WindowSize.half(), WindowSize);
+    WindowPos = _Pos;
+    SetWindowPos(HWnd, nullptr, WindowPos.ix(), WindowPos.iy(), WindowSize.ix(), WindowSize.iy(), SWP_NOZORDER);
 }
 
+
+
+//실제 게임이 동작하는 부분
+//콜백 방식을 이용해서 엔진과 컨텐츠 부분을 분리
 int GameEngineWindow::WindowLoop(void(*_Start)(), void(*_Loop)(), void(*_End)())
 {
-
     if (nullptr != _Start)
     {
         _Start();
     }
-    
 
     MSG msg;
-
     while (IsWindowUpdate)
     {
-        
+        //메세지가 있다면 메세지 처리
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
             TranslateMessage(&msg);
@@ -147,8 +147,9 @@ int GameEngineWindow::WindowLoop(void(*_Start)(), void(*_Loop)(), void(*_End)())
             {
                 _Loop();
             }
+
             continue;
-        } 
+        }
 
         if (nullptr != _Loop)
         {
@@ -161,44 +162,52 @@ int GameEngineWindow::WindowLoop(void(*_Start)(), void(*_Loop)(), void(*_End)())
         _End();
     }
 
+    //윈도우 백버퍼HDC의 Image객체 delete
     if (nullptr != BackBufferImage)
     {
-        delete DoubleBufferImage;
-        DoubleBufferImage = nullptr;
-
         delete BackBufferImage;
         BackBufferImage = nullptr;
     }
 
-    return (int)msg.wParam;
-}
-
-void GameEngineWindow::SettingWindowSize(float4 _Size)
-{
-
-    RECT Rc = { 0, 0, _Size.ix(), _Size.iy() };
-
-    ScreenSize = _Size;
-
-    AdjustWindowRect(&Rc, WS_OVERLAPPEDWINDOW, FALSE);
-
-    WindowSize = { static_cast<float>(Rc.right - Rc.left), static_cast<float>(Rc.bottom - Rc.top)};
-    SetWindowPos(HWnd, nullptr, WindowPos.ix(), WindowPos.iy(), WindowSize.ix(), WindowSize.iy(), SWP_NOZORDER);
-
-
+    //더블버퍼용 이미지 delete
     if (nullptr != DoubleBufferImage)
     {
         delete DoubleBufferImage;
         DoubleBufferImage = nullptr;
     }
 
-    DoubleBufferImage = new GameEngineImage();
-    DoubleBufferImage->ImageCreate(ScreenSize);
-
-
+	return (int)msg.wParam;
 }
-void GameEngineWindow::SettingWindowPos(float4 _Pos)
+
+void GameEngineWindow::DoubleBufferClear()
 {
-    WindowPos = _Pos;
-    SetWindowPos(HWnd, nullptr, WindowPos.ix(), WindowPos.iy(), WindowSize.ix(), WindowSize.iy(), SWP_NOZORDER);
+    DoubleBufferImage->ImageClear();
+}
+
+void GameEngineWindow::DoubleBufferRender()
+{
+    BackBufferImage->BitCopy(DoubleBufferImage, ScreenSize.half(), ScreenSize);
+}
+
+//메세지에 따른 콜백 함수
+LRESULT MessageFunction(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam)
+{
+    switch (_message)
+    {
+        //마우스를 움직였다면
+    case WM_MOUSEMOVE:
+        break;
+
+        //종료버튼을 눌렀다면
+    case WM_DESTROY:
+        //PostQuitMessage(0);
+        IsWindowUpdate = false;
+        break;
+
+        //나머지는 알아서 처리
+    default:
+        return DefWindowProc(_hWnd, _message, _wParam, _lParam);
+    }
+
+    return 0;
 }

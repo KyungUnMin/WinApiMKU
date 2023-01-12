@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="GameEngineImage.h">
-      <Filter>02.Resources\01.Image</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineWindow.h">
-      <Filter>01.Window</Filter>
-    </ClInclude>
+    <Filter Include="01.GameEngineWindow">
+      <UniqueIdentifier>{6cebf79a-26d1-474d-bd14-a93ea70200dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Resources">
+      <UniqueIdentifier>{45c353df-ee87-43a1-86cd-419e9d431782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Resources\01.Image">
+      <UniqueIdentifier>{d40f2f27-5174-46c7-a476-33c79a6ccb8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameEngineWindow.cpp">
+      <Filter>01.GameEngineWindow</Filter>
+    </ClCompile>
     <ClCompile Include="GameEngineImage.cpp">
       <Filter>02.Resources\01.Image</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineWindow.cpp">
-      <Filter>01.Window</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="01.Window">
-      <UniqueIdentifier>{89431a5d-6072-4134-b786-15b42de198b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.Resources">
-      <UniqueIdentifier>{d2314684-f88d-4599-9b84-cea1e0a2b067}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.Resources\01.Image">
-      <UniqueIdentifier>{47c6326d-1a06-495c-8ff6-d720cd850b8d}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="GameEngineWindow.h">
+      <Filter>01.GameEngineWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineImage.h">
+      <Filter>02.Resources\01.Image</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

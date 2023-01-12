@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{eea1bac1-4e98-4350-bc9d-6466b5eb87e7}</ProjectGuid>
+    <ProjectGuid>{95025d17-1660-4737-9ac6-d73bde889298}</ProjectGuid>
     <RootNamespace>APIApp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -155,16 +155,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameEngineBase\GameEngineBase.vcxproj">
-      <Project>{a6e9bfee-96ec-4fc9-9219-12202f5126cc}</Project>
+      <Project>{db4e3caf-e2f8-4d4e-accb-1cf569ea79b4}</Project>
     </ProjectReference>
     <ProjectReference Include="..\GameEngineContents\GameEngineContents.vcxproj">
-      <Project>{dd304768-7ea1-403d-895d-a7a6dcc97275}</Project>
+      <Project>{58b11226-90b9-4476-ab1a-c8462b817b62}</Project>
     </ProjectReference>
     <ProjectReference Include="..\GameEngineCore\GameEngineCore.vcxproj">
-      <Project>{4235d360-1c2a-445e-978e-19835add99a7}</Project>
+      <Project>{d4feeafb-8e3d-43e1-bdd5-36ae0c309b01}</Project>
     </ProjectReference>
     <ProjectReference Include="..\GameEnginePlatform\GameEnginePlatform.vcxproj">
-      <Project>{012509bd-0610-46f2-bcef-076c0828d24f}</Project>
+      <Project>{c061b19c-d269-44cc-812f-9f851e7052ee}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

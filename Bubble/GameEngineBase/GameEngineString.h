@@ -2,6 +2,7 @@
 #include <string>
 #include <string_view>
 
+// Ό³Έν :
 class GameEngineString
 {
 public:
@@ -17,6 +18,5 @@ protected:
 private:
 	GameEngineString();
 	~GameEngineString();
-
 };
 
