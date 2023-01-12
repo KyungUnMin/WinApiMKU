@@ -1,9 +1,11 @@
 #pragma once
-#include <string>
+
 #include <map>
+#include <string>
 #include <GameEnginePlatform/GameEngineImage.h>
 
 class GameEnginePath;
+class GameEngineImage;
 
 class GameEngineResources
 {
@@ -11,7 +13,7 @@ public:
 	GameEngineResources(const GameEngineResources& _Other) = delete;
 	GameEngineResources(GameEngineResources&& _Other) noexcept = delete;
 	GameEngineResources& operator=(const GameEngineResources& _Other) = delete;
-	GameEngineResources& operator=(const GameEngineResources&& _Other) noexcept = delete;
+	GameEngineResources& operator=(GameEngineResources&& _Other) noexcept = delete;
 
 	static GameEngineResources& GetInst()
 	{
@@ -20,7 +22,7 @@ public:
 
 	GameEngineImage* ImageLoad(const GameEnginePath& _Path);
 
-	GameEngineImage* ImageLoad(const std::string_view& _Path, const std::string& _Name);
+	GameEngineImage* ImageLoad(const std::string_view& _Path, const std::string_view& _Name);
 
 	GameEngineImage* ImageFind(const std::string_view& _Name);
 
@@ -28,9 +30,8 @@ public:
 
 protected:
 
-
 private:
-	static GameEngineResources Inst;
+	static GameEngineResources	Inst;
 	std::map<std::string, GameEngineImage*> AllImage;
 
 	GameEngineResources();

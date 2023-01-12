@@ -1,6 +1,6 @@
 #pragma once
-#include <Windows.h>
 #include <string>
+#include <Windows.h>
 #include <GameEngineBase/GameEngineMath.h>
 
 class GameEngineImage;
@@ -13,16 +13,19 @@ public:
 	static void SettingWindowSize(float4 _Size);
 	static void SettingWindowPos(float4 _Pos);
 
-	static int	  WindowLoop(void(*_Start)(), void(*_Loop)(), void(*_End)());
-
-	static HWND GetHWnd() 
+	static float4 GetScreenSize()
 	{
-		return HWnd; 
+		return ScreenSize;
 	}
 
-	static HDC GetWindowBackBufferHdc() 
-	{ 
-		return WindowBackBufferHdc; 
+	static HWND GetHWnd()
+	{
+		return HWnd;
+	}
+
+	static HDC GetWindowBackBufferHdc()
+	{
+		return WindowBackBufferHdc;
 	}
 
 	static GameEngineImage* GetDoubleBufferImage()
@@ -30,13 +33,12 @@ public:
 		return DoubleBufferImage;
 	}
 
-	static float4 GetScreenSize()
-	{
-		return ScreenSize;
-	}
 
 	static void DoubleBufferClear();
 	static void DoubleBufferRender();
+
+	static int WindowLoop(void(*Start)(), void(*Loop)(), void(*End)());
+
 
 	GameEngineWindow();
 	~GameEngineWindow();
@@ -49,13 +51,14 @@ public:
 protected:
 
 private:
-	static HWND						HWnd;
-	static HDC							WindowBackBufferHdc;
-	static GameEngineImage*	BackBufferImage;
-	static GameEngineImage*	DoubleBufferImage;
+	static	float4							WindowSize;
+	static	float4							ScreenSize;
+	static	float4							WindowPos;
 
-	static float4						WindowSize;
-	static float4						ScreenSize;
-	static float4						WindowPos;
+	static	HWND							HWnd;
+	static	HDC								WindowBackBufferHdc;
+
+	static	GameEngineImage*		BackBufferImage;
+	static	GameEngineImage*		DoubleBufferImage;
 };
 

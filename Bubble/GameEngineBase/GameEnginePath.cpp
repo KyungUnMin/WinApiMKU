@@ -1,56 +1,65 @@
 #include "GameEnginePath.h"
-#include "GameEngineDebug.h"
-#include <io.h>
 #include <Windows.h>
+#include <io.h>
+#include <GameEngineBase/GameEngineDebug.h>
 
 GameEnginePath::GameEnginePath()
-	:Path(std::filesystem::current_path())
+	: Path(std::filesystem::current_path())
 {
 }
 
 GameEnginePath::GameEnginePath(std::filesystem::path _Path)
-	:Path(_Path)
+	: Path(_Path)
 {
-
 }
+
+
 
 GameEnginePath::GameEnginePath(const std::string& _Path)
-	:Path(_Path)
+	: Path(_Path)
 {
 
 }
 
-GameEnginePath::GameEnginePath(const GameEnginePath& _Other)
-	:Path(_Other.Path)
+GameEnginePath::GameEnginePath(GameEnginePath&& _Other)
+	: Path(_Other.Path)
 {
 
 }
 
-GameEnginePath::GameEnginePath(GameEnginePath&& _Other) noexcept
-	:Path(_Other.Path)
-{
 
-}
 
 GameEnginePath::~GameEnginePath()
 {
-
 }
 
 
 
+
+
+
+
+
+
+
+GameEnginePath::GameEnginePath(const GameEnginePath& _Other)
+	: Path(_Other.Path)
+{
+
+}
+
+
+//멤버변수 Path의 말단경로만 반환
+std::string GameEnginePath::GetFileName() const
+{
+	return Path.filename().string();
+}
 
 
 //멤버변수 Path를 string으로 변환하는 함수
 std::string GameEnginePath::GetPathToString() const
 {
 	return Path.string();
-}
-
-//멤버변수 Path의 말단경로만 반환
-std::string GameEnginePath::GetFileName() const
-{
-	return Path.filename().string();
 }
 
 
@@ -75,9 +84,31 @@ void GameEnginePath::MoveParentToChildPath(const std::string_view& _String)
 		//없다면 멤버변수 Path를 부모위치로 이동
 		MoveParent();
 	}
-	
+
 	//최상위 경로까지 갔는데로 찾지 못했다면 Assert
-	MsgAssert("이런 경로를 자식으로 가진 부모는 존재하지 않음");
+	MsgAssert("이런 경로를 자식으로 가진 부모는 존재하지 않습니다.");
+}
+
+
+//현재 위치에서 인자로 주어진 자식경로로 이동
+bool GameEnginePath::Move(const std::string_view& _Path)
+{
+	Path += _Path;
+
+	if (false == IsExists())
+	{
+		MsgAssert("존재하지 않는 경로로 이동하려고 했습니다.");
+		return false;
+	}
+
+	return true;
+}
+
+
+//멤버변수 Path가 최상위 폴더인지 확인
+bool GameEnginePath::IsRoot()
+{
+	return Path.root_path() == Path;
 }
 
 
@@ -98,21 +129,8 @@ bool GameEnginePath::IsExistsToPlusString(const std::string_view& _String)
 }
 
 
-//멤버변수 Path가 최상위 폴더인지 확인
-bool GameEnginePath::IsRoot()
+//인자로 받은 string으로 주소를 설정
+void GameEnginePath::SetPath(const std::string_view& _Path)
 {
-	return Path.root_path() == Path;
-}
-
-bool GameEnginePath::Move(const std::string_view& _Path)
-{
-	Path += _Path;
-
-	if (false == IsExists())
-	{
-		MsgAssert("존재하지 않는 경로로 이동하려고 시도");
-		return false;
-	}
-
-	return true;
+	Path = _Path.data();
 }

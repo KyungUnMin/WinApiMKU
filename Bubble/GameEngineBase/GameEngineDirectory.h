@@ -3,7 +3,8 @@
 #include <vector>
 #include "GameEnginePath.h"
 
-class GameEngineFile;
+
+//class GameEngineFile;
 
 //Path를 래핑하는 클래스
 class GameEngineDirectory
@@ -15,9 +16,7 @@ public:
 	GameEngineDirectory(const GameEngineDirectory& _Other) = delete;
 	GameEngineDirectory(GameEngineDirectory&& _Other) noexcept = delete;
 	GameEngineDirectory& operator=(const GameEngineDirectory& _Other) = delete;
-	GameEngineDirectory& operator=(const GameEngineDirectory&& _Other) noexcept = delete;
-
-	//bool IsFile(const std::string_view& _FileName);
+	GameEngineDirectory& operator=(GameEngineDirectory&& _Other) noexcept = delete;
 
 	//디렉토리 상에서 부모 경로로 이동
 	bool MoveParent();
@@ -32,7 +31,6 @@ public:
 	GameEnginePath GetPlusFileName(const std::string_view& _String);
 
 protected:
-
 
 private:
 	GameEnginePath Path;

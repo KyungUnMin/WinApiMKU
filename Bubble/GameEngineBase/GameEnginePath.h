@@ -1,7 +1,5 @@
 #pragma once
 #include <filesystem>
-#include <string>
-#include <string_view>
 
 class GameEnginePath
 {
@@ -12,18 +10,15 @@ public:
 	~GameEnginePath();
 
 	GameEnginePath(const GameEnginePath& _Other);
-	GameEnginePath(GameEnginePath&& _Other) noexcept;
-
+	GameEnginePath(GameEnginePath&& _Other);
 	GameEnginePath& operator=(const GameEnginePath& _Other) = delete;
-	GameEnginePath& operator=(const GameEnginePath&& _Other) noexcept = delete;
-
-
-	//멤버변수 Path를 string으로 변환하는 함수
-	std::string GetPathToString() const;
+	GameEnginePath& operator=(GameEnginePath&& _Other) noexcept = delete;
 
 	//멤버변수 Path의 말단경로만 반환
 	std::string GetFileName() const;
 
+	//멤버변수 Path를 string으로 변환하는 함수
+	std::string GetPathToString() const;
 
 	//상위 경로로 이동
 	void MoveParent();
@@ -37,15 +32,22 @@ public:
 	//인자로 주어진 String과 멤버변수 Path를 더했을때의 경로가 유효한지 체크
 	bool IsExistsToPlusString(const std::string_view& _String);
 
+	// bool MoveParentToChildPath(const std::string_view& _IOName );
+
 	//멤버변수 Path가 최상위 폴더인지 확인
 	bool IsRoot();
 
 	//현재 위치에서 인자로 주어진 자식경로로 이동
 	bool Move(const std::string_view& _Path);
 
+	//인자로 받은 string으로 주소를 설정
+	void SetPath(const std::string_view& _Path);
+
+
 protected:
 
 private:
 	std::filesystem::path Path;
+
 };
 

@@ -1,12 +1,12 @@
 #include "GameEngineImage.h"
-#include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEnginePath.h>
-#include <GameEnginePlatform/GameEngineWindow.h>
+#include <GameEngineBase/GameEngineDebug.h>
+#include "GameEngineWindow.h"
 #pragma comment(lib, "msimg32.lib")
+
 
 GameEngineImage::GameEngineImage()
 {
-
 }
 
 GameEngineImage::~GameEngineImage()
@@ -30,12 +30,13 @@ GameEngineImage::~GameEngineImage()
 	}
 }
 
+
 //인자 HDC와 연결 및 사이즈 정보 초기화
 bool GameEngineImage::ImageCreate(HDC _Hdc)
 {
 	if (nullptr == _Hdc)
 	{
-		MsgAssert("이미지 생성에 실패\nnullptr인 HDC를 넣어줌");
+		MsgAssert("이미지 생성에 실패했습니다 nullptr 인 HDC를 넣어줬습니다.");
 		return false;
 	}
 
@@ -45,26 +46,33 @@ bool GameEngineImage::ImageCreate(HDC _Hdc)
 }
 
 
+//이미지를 흰색으로 칠해버리기
+void GameEngineImage::ImageClear()
+{
+	Rectangle(ImageDC, -1, -1, Info.bmWidth + 1, Info.bmHeight + 1);
+}
+
+
 //크기를 입력받아서 BitMap을 만들고 ImageDC에 연결 및 정보 초기화
-bool GameEngineImage::ImageCreate(const float4 _Scale)
+bool GameEngineImage::ImageCreate(const float4& _Scale)
 {
 	if (true == _Scale.IsZero())
 	{
-		MsgAssert("크기가 0인 이미지를 만들 수는 없음");
+		MsgAssert("크기가 0인 이미지를 만들 수는 없습니다");
 		return false;
 	}
 
 	BitMap = CreateCompatibleBitmap(GameEngineWindow::GetWindowBackBufferHdc(), _Scale.ix(), _Scale.iy());
 	if (nullptr == BitMap)
 	{
-		MsgAssert("이미지 비트맵 생성에 실패");
+		MsgAssert("이미지 생성에 실패했습니다.");
 		return false;
 	}
 
 	ImageDC = CreateCompatibleDC(nullptr);
 	if (nullptr == ImageDC)
 	{
-		MsgAssert("이미지 HDC 생성에 실패");
+		MsgAssert("이미지 HDC 생성에 실패했습니다.");
 		return false;
 	}
 
@@ -81,12 +89,12 @@ bool GameEngineImage::ImageCreate(const float4 _Scale)
 }
 
 
-
 //ImageLoad(const std::string_view& _Path)를 래핑
 bool GameEngineImage::ImageLoad(const GameEnginePath& _Path)
 {
 	return ImageLoad(_Path.GetPathToString().c_str());
 }
+
 
 //string을 이용한 이미지 로드
 bool GameEngineImage::ImageLoad(const std::string_view& _Path)
@@ -95,7 +103,7 @@ bool GameEngineImage::ImageLoad(const std::string_view& _Path)
 	if (nullptr == BitMap)
 	{
 		std::string Path = _Path.data();
-		MsgAssert(Path + " : 이미지 로드에 실패");
+		MsgAssert(Path + " 이미지 로드에 실패했습니다.");
 		return false;
 	}
 
@@ -103,7 +111,7 @@ bool GameEngineImage::ImageLoad(const std::string_view& _Path)
 	if (nullptr == ImageDC)
 	{
 		std::string Path = _Path.data();
-		MsgAssert(Path + " 이미지 HDC 생성에 실패");
+		MsgAssert(Path + " 이미지 HDC 생성에 실패했습니다.");
 		return false;
 	}
 
@@ -113,36 +121,6 @@ bool GameEngineImage::ImageLoad(const std::string_view& _Path)
 }
 
 
-//이미지를 흰색으로 칠해버리기
-void GameEngineImage::ImageClear()
-{
-	Rectangle(ImageDC, -1, -1, Info.bmWidth + 1, Info.bmHeight + 1);
-}
-
-//X(가로 이미지 갯수), Y(세로 이미지 갯수)로 자른 이미지 정보를 벡터에 저장
-void GameEngineImage::Cut(int _X, int _Y)
-{
-	ImageCutDatas.reserve(_X * _Y);
-
-	ImageCutData Data;
-	Data.SizeX = static_cast<float>(GetImageScale().ix() / _X);
-	Data.SizeY = static_cast<float>(GetImageScale().iy() / _Y);
-
-	for (size_t i = 0; i < _Y; ++i)
-	{
-		for (size_t j = 0; j < _X; ++j)
-		{
-			ImageCutDatas.push_back(Data);
-			Data.StartX += Data.SizeX;
-		}
-
-		Data.StartX = 0.0f;
-		Data.StartY+= Data.SizeY;
-	}
-
-	IsCut = true;
-}
-
 //현재 BITMAP의 정보를 Info로 기록하는 함수 
 void GameEngineImage::ImageScaleCheck()
 {
@@ -150,43 +128,38 @@ void GameEngineImage::ImageScaleCheck()
 	GetObject(CurrentBitMap, sizeof(BITMAP), &Info);
 }
 
-//인자로 받은 이미지 전체를 이 객체의 HDC에 복사
-void GameEngineImage::BitCopy(GameEngineImage* _OtherImage, float4 _Pos, float4 _Scale)
+
+//인자로 받은 이미지 전체를 이 객체의 HDC에 bitblt
+void GameEngineImage::BitCopy(const GameEngineImage* _OtherImage, float4 _CenterPos, float4 _Scale)
 {
 	BitBlt(
 		ImageDC,
-		_Pos.ix() - _Scale.hix(),
-		_Pos.iy() - _Scale.hiy(),
+		_CenterPos.ix() - _Scale.hix(),
+		_CenterPos.iy() - _Scale.hiy(),
 		_Scale.ix(),
 		_Scale.iy(),
-		_OtherImage->GetImageDC(), 
+		_OtherImage->GetImageDC(),
 		0,
 		0,
 		SRCCOPY
 	);
 }
 
-void GameEngineImage::TransCopy(
-	const GameEngineImage* _OtherImage, int _CutIndex, 
-	float4 _OtherCenterPos, float4 _OtherCenterSize, 
-	int _Color)
+// 구현쪽에서는 디폴트 인자를 표시할 필요가 없습니다.
+void GameEngineImage::TransCopy(const GameEngineImage* _OtherImage, int _CutIndex, float4 _CopyCenterPos, float4 _CopySize, int _Color/* = RGB(255, 0, 255)*/)
 {
 	if (false == _OtherImage->IsCut)
 	{
-		MsgAssert("잘리지 않은 이미지로 Cut출력 함수 사용");
+		MsgAssert(" 잘리지 않은 이미지로 cut출력 함수를 사용하려고 했습니다.");
 		return;
 	}
 
 	ImageCutData Data = _OtherImage->GetCutData(_CutIndex);
-	TransCopy(_OtherImage, _OtherCenterPos, _OtherCenterSize, Data.GetStartPos(), Data.GetScale(), _Color);
+
+	TransCopy(_OtherImage, _CopyCenterPos, _CopySize, Data.GetStartPos(), Data.GetScale(), _Color);
 }
 
-//인자로 받은 이미지를 현재 객체에 TransParentBlt
-void GameEngineImage::TransCopy(
-	const GameEngineImage* _OtherImage, 
-	float4 _CopyCenterPos, float4 _CopySize, 
-	float4 _OtherImagePos, float4 _OtherImageSize, 
-	int _Color)
+void GameEngineImage::TransCopy(const GameEngineImage* _OtherImage, float4 _CopyCenterPos, float4 _CopySize, float4 _OtherImagePos, float4 _OtherImageSize, int _Color)
 {
 	TransparentBlt(ImageDC,
 		_CopyCenterPos.ix() - _CopySize.hix(),
@@ -199,4 +172,30 @@ void GameEngineImage::TransCopy(
 		_OtherImageSize.ix(),
 		_OtherImageSize.iy(),
 		_Color);
+}
+
+
+//X(가로 이미지 갯수), Y(세로 이미지 갯수)로 자른 이미지 정보를 벡터에 저장
+void GameEngineImage::Cut(int _X, int _Y)
+{
+	ImageCutDatas.reserve(_X * _Y);
+
+	ImageCutData Data;
+
+	Data.SizeX = static_cast<float>(GetImageScale().ix() / _X);
+	Data.SizeY = static_cast<float>(GetImageScale().iy() / _Y);
+
+	for (size_t i = 0; i < _Y; i++)
+	{
+		for (size_t j = 0; j < _X; j++)
+		{
+			ImageCutDatas.push_back(Data);
+			Data.StartX += Data.SizeX;
+		}
+
+		Data.StartX = 0.0f;
+		Data.StartY += Data.SizeY;
+	}
+
+	IsCut = true;
 }

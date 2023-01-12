@@ -22,7 +22,7 @@ void Player::Start()
 
 void Player::Update()
 {
-	//SetMove(float4::Left * 0.01f);
+	SetMove(float4::Left * 0.01f);
 }
 
 void Player::Render()
@@ -31,11 +31,4 @@ void Player::Render()
 
 	GameEngineImage* Image = GameEngineResources::GetInst().ImageFind("aaaaa.bmp");
 	GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, 1,PlayerPos, { 100.f, 150.f });
-	
-
-
-	//GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, PlayerPos, { 300.f, 300.f }, float4::Zero, { 100.f, 100.f });
-	//GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, GameEngineWindow::GetScreenSize().half(), GameEngineWindow::GetScreenSize(), float4::Zero, {100.f, 100.f});
-
-
 }

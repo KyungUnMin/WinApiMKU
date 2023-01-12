@@ -8,13 +8,15 @@ GameEngineTime::GameEngineTime()
 
 GameEngineTime::~GameEngineTime()
 {
-
 }
 
 void GameEngineTime::TimeCheckStart()
 {
+
 	QueryPerformanceCounter(&Prev);
+
 }
+
 
 float GameEngineTime::TimeCheckEnd()
 {

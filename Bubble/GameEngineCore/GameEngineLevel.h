@@ -2,9 +2,9 @@
 #include <list>
 #include <map>
 
+// 설명 :
 class GameEngineCore;
 class GameEngineActor;
-
 class GameEngineLevel
 {
 	friend GameEngineCore;
@@ -19,11 +19,11 @@ public:
 	GameEngineLevel& operator=(GameEngineLevel&& _Other) noexcept = delete;
 
 	//order는 업데이트&렌더링 되는 순서
-	template <typename ActorType>
+	template<typename ActorType>
 	void CreateActor(int _Order = 0)
 	{
-		GameEngineActor* Actor = new ActorType;
-		ActorStart(Actor);
+		GameEngineActor* Actor = new ActorType();
+		ActorStart(Actor, _Order);
 		Actors[_Order].push_back(Actor);
 	}
 
@@ -41,6 +41,6 @@ private:
 	void ActorsRender();
 
 	//엑터가 생성될 때 호출(CreateActor)
-	void ActorStart(GameEngineActor* _Actor);
+	void ActorStart(GameEngineActor* _Actor, int _Order);
 };
 

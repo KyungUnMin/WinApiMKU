@@ -11,12 +11,12 @@ BackGround::~BackGround()
 {
 	if (Image)
 		Image = nullptr;
-	/*
+	
 	if (UpdateCallBack)
 		UpdateCallBack = nullptr;
 
 	if (CurrentLevel)
-		CurrentLevel = nullptr;*/
+		CurrentLevel = nullptr;
 }
 
 void BackGround::Start()
@@ -30,13 +30,13 @@ void BackGround::ImageFind(const std::string_view& _ImageKey)
 	Image = GameEngineResources::GetInst().ImageFind(_ImageKey);
 }
 
-//void BackGround::Update()
-//{
-//	if (nullptr != UpdateCallBack && nullptr != CurrentLevel)
-//	{
-//		(CurrentLevel->*UpdateCallBack)();
-//	}
-//}
+void BackGround::Update()
+{
+	if (nullptr != UpdateCallBack && nullptr != CurrentLevel)
+	{
+		(CurrentLevel->*UpdateCallBack)();
+	}
+}
 
 void BackGround::Render()
 {

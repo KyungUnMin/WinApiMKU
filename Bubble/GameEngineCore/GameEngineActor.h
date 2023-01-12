@@ -3,7 +3,6 @@
 #include <Windows.h>
 
 class GameEngineLevel;
-
 class GameEngineActor
 {
 	friend GameEngineLevel;
@@ -22,9 +21,9 @@ public:
 		return Pos;
 	}
 
-	void SetPos(const float4& _Pos)
+	void SetPos(const float4& _MovePos)
 	{
-		Pos = _Pos;
+		Pos = _MovePos;
 	}
 
 	void SetMove(const float4& _MovePos)
@@ -33,11 +32,17 @@ public:
 	}
 
 protected:
-	virtual void Start(){}
-	virtual void Update(){}
-	virtual void Render(){}
+	virtual void Start() {}
+	virtual void Update() {}
+	virtual void Render() {}
 
 private:
-	float4 Pos = { 0.0f, 0.0f };
+	int		Order;
+	float4	Pos		= { 0.0f, 0.0f };
+
+	void SetOrder(int _Order)
+	{
+		Order = _Order;
+	}
 };
 

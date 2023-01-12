@@ -1,9 +1,10 @@
 #pragma once
 #include <Windows.h>
 #include <string_view>
+#include <vector>
 #include <GameEngineBase/GameEngineMath.h>
 #include <GameEngineBase/GameEngineDebug.h>
-#include <vector>
+
 
 struct ImageCutData
 {
@@ -23,6 +24,7 @@ struct ImageCutData
 	}
 };
 
+
 class GameEnginePath;
 
 class GameEngineImage
@@ -34,13 +36,15 @@ public:
 	GameEngineImage(const GameEngineImage& _Other) = delete;
 	GameEngineImage(GameEngineImage&& _Other) noexcept = delete;
 	GameEngineImage& operator=(const GameEngineImage& _Other) = delete;
-	GameEngineImage& operator=(const GameEngineImage&& _Other) noexcept = delete;
+	GameEngineImage& operator=(GameEngineImage&& _Other) noexcept = delete;
+
+
 
 	//인자 HDC와 연결 및 사이즈 정보 초기화
 	bool ImageCreate(HDC _Hdc);
 
 	//크기를 입력받아서 BitMap을 만들고 ImageDC에 연결 및 정보 초기화
-	bool ImageCreate(const float4 _Scale);
+	bool ImageCreate(const float4& _Scale);
 
 	//ImageLoad(const std::string_view& _Path)를 래핑
 	bool ImageLoad(const GameEnginePath& _Path);
@@ -50,6 +54,8 @@ public:
 
 	//이미지를 흰색으로 칠해버리기
 	void ImageClear();
+
+
 
 	HDC GetImageDC() const
 	{
@@ -61,11 +67,10 @@ public:
 		return float4{ static_cast<float>(Info.bmWidth), static_cast<float>(Info.bmHeight) };
 	}
 
-	//X(가로 이미지 갯수), Y(세로 이미지 갯수)로 자른 이미지 정보를 벡터에 저장
-	void Cut(int _X, int _Y);
+
 
 	//잘린 이미지인지 확인
-	bool IsImageCutting() const
+	bool IsImageCutting()
 	{
 		return IsCut;
 	}
@@ -73,11 +78,15 @@ public:
 	//벡터안에 유효한 범위인지 확인
 	bool IsCutIndexValid(int _Index) const
 	{
-		if (_Index < 0)
+		if (0 > _Index)
+		{
 			return false;
+		}
 
 		if (ImageCutDatas.size() <= _Index)
+		{
 			return false;
+		}
 
 		return true;
 	}
@@ -87,40 +96,41 @@ public:
 	{
 		if (false == IsCutIndexValid(_Index))
 		{
-			MsgAssert("유효하지 않은 컷 인덱스");
-			return ImageCutData();
+			MsgAssert("유효하지 않은 컷 인덱스 입니다.");
 		}
 
 		return ImageCutDatas[_Index];
 	}
 
+
+	//X(가로 이미지 갯수), Y(세로 이미지 갯수)로 자른 이미지 정보를 벡터에 저장
+	void Cut(int _X, int _Y);
+
+
 	//인자로 받은 이미지 전체를 이 객체의 HDC에 bitblt
 	void BitCopy(
-		GameEngineImage* _OtherImage, 
-		float4 _Pos, float4 _Scale);
-
-	//컷팅된 이미지 TransParentBlt
-	void TransCopy(
 		const GameEngineImage* _OtherImage,
-		int _CutIndex,
-		float4 _OtherCenterPos, float4 _OtherCenterSize,
-		int _Color = RGB(147, 187, 236));
+		float4 _CenterPos, float4 _Scale);
+
 
 	//인자로 받은 이미지를 현재 객체에 TransParentBlt
-	void TransCopy(
-		const GameEngineImage* _OtherImage, 
-		float4 _CopyCenterPos, float4 _CopySize, 
-		float4 _OtherImagePos, float4 _OtherImageSize, 
-		int _Color = RGB(147, 187, 236));
+	void TransCopy(const GameEngineImage* _OtherImage,
+		float4 _CopyCenterPos, float4 _CopySize,
+		float4 _OtherImagePos, float4 _OtherImageSize,
+		int _Color = RGB(255, 0, 255));
+
+
+	//컷팅된 이미지 TransParentBlt
+	void TransCopy(const GameEngineImage* _OtherImage, int _CutIndex, float4 _CopyCenterPos, float4 _CopySize, int _Color = RGB(255, 0, 255));
 
 protected:
 
 private:
-	HDC				ImageDC			= nullptr;
-	HBITMAP		BitMap				= nullptr;
-	HBITMAP		OldBitMap		= nullptr;
-	BITMAP		Info					= BITMAP();
-	bool				IsCut				= false;
+	HDC				ImageDC = nullptr;
+	HBITMAP		BitMap = nullptr;
+	HBITMAP		OldBitMap = nullptr;
+	BITMAP		Info = BITMAP();
+	bool				IsCut = false;
 
 	//커팅한 이미지 정보들을 관리
 	std::vector<ImageCutData> ImageCutDatas;
