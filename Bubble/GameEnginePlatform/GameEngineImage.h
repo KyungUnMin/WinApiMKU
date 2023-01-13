@@ -103,6 +103,9 @@ public:
 	}
 
 
+	//이미지를 자를 시작점, 끝점, 자를 갯수(가로 세로)
+	void Cut(float4 _Start, float4 _End, int _X, int _Y);
+
 	//X(가로 이미지 갯수), Y(세로 이미지 갯수)로 자른 이미지 정보를 벡터에 저장
 	void Cut(int _X, int _Y);
 

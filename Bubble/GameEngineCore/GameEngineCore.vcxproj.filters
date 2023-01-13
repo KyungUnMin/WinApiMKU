@@ -2,47 +2,56 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="GameEngineActor.h">
-      <Filter>02.Object\02.GameEngineActor</Filter>
+      <Filter>02.Object\02.Actor</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineLevel.h">
-      <Filter>02.Object\01.GameEngineLevel</Filter>
+      <Filter>02.Object\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineCore.h">
-      <Filter>01.GameEngineCore</Filter>
+      <Filter>01.Core</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineResources.h">
       <Filter>03.Resources</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineRender.h">
+      <Filter>02.Object\03.Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp">
-      <Filter>02.Object\02.GameEngineActor</Filter>
+      <Filter>02.Object\02.Actor</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineLevel.cpp">
-      <Filter>02.Object\01.GameEngineLevel</Filter>
+      <Filter>02.Object\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineCore.cpp">
-      <Filter>01.GameEngineCore</Filter>
+      <Filter>01.Core</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineResources.cpp">
       <Filter>03.Resources</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineRender.cpp">
+      <Filter>02.Object\03.Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="01.GameEngineCore">
-      <UniqueIdentifier>{9451ae11-a610-4e73-a739-75180e3fe934}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.Object">
       <UniqueIdentifier>{fc5dd93d-0f31-4d40-8737-cae343abf4cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Object\01.GameEngineLevel">
-      <UniqueIdentifier>{179fc0f8-4f58-4529-a27e-cc15420e4d82}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.Object\02.GameEngineActor">
-      <UniqueIdentifier>{1b0639a0-f3eb-4093-b104-0c149e470c67}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Resources">
       <UniqueIdentifier>{d01121a1-be94-4bf5-b099-d9e35b8e7c42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Object\03.Rendering">
+      <UniqueIdentifier>{88f54660-7e1f-4770-9fb3-935d3bc83069}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Object\01.Level">
+      <UniqueIdentifier>{179fc0f8-4f58-4529-a27e-cc15420e4d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Object\02.Actor">
+      <UniqueIdentifier>{1b0639a0-f3eb-4093-b104-0c149e470c67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Core">
+      <UniqueIdentifier>{9451ae11-a610-4e73-a739-75180e3fe934}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -151,14 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BackGround.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="BubbleCore.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="Player.h">
       <SubType>
       </SubType>
@@ -173,10 +170,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BackGround.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="BubbleCore.cpp">
       <SubType>
       </SubType>

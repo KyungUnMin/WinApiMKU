@@ -3,6 +3,7 @@
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include "GameEngineLevel.h"
 #include "GameEngineResources.h"
+#include <GameEngineBase/GameEngineTime.h>
 
 
 //GameEngineCore를 상속받는 객체는 싱글톤으로 제작됨
@@ -15,10 +16,16 @@ void GameEngineCore::GlobalStart()
 {
 	//GameEngineCore를 상속받은 자식의 Start가 실행됨
 	Core->Start();
+
+	//시간 측정 시작
+	GameEngineTime::GlobalTime.Reset();
 }
 
 void GameEngineCore::GlobalUpdate()
 {
+	//이전 프레임과 현재 프레임 사이 시간
+	float TimeDeltaTime = GameEngineTime::GlobalTime.TimeCheck();
+
 	//GameEngineCore를 상속받은 자식의 Update가 실행됨
 	//코어에 대한 업데이트(...)
 	Core->Update();
@@ -31,13 +38,13 @@ void GameEngineCore::GlobalUpdate()
 	}
 
 	//레벨에 존재하는 엑터들의 업데이트
-	Core->MainLevel->ActorsUpdate();
+	Core->MainLevel->ActorsUpdate(TimeDeltaTime);
 
 	//더블 버퍼링 용 이미지 지우기
 	GameEngineWindow::DoubleBufferClear();
 
 	//더블버퍼 이미지에 엑터 렌더링
-	Core->MainLevel->ActorsRender();
+	Core->MainLevel->ActorsRender(TimeDeltaTime);
 
 	//더블 버퍼 -> 윈도우 백버퍼
 	GameEngineWindow::DoubleBufferRender();

@@ -5,16 +5,16 @@
       <Filter>01.GameCore</Filter>
     </ClInclude>
     <ClInclude Include="TitleLevel.h">
-      <Filter>02.Level\01.Title</Filter>
+      <Filter>03.Level\01.Title</Filter>
     </ClInclude>
     <ClInclude Include="Stage01.h">
-      <Filter>02.Level\02.Stage01</Filter>
+      <Filter>03.Level\02.Stage01</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>03.Actor\02.Player</Filter>
+      <Filter>04.Actor\02.Player</Filter>
     </ClInclude>
-    <ClInclude Include="BackGround.h">
-      <Filter>03.Actor\01.BackGround</Filter>
+    <ClInclude Include="ContentsEnum.h">
+      <Filter>03.Define</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -22,39 +22,39 @@
       <Filter>01.GameCore</Filter>
     </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
-      <Filter>02.Level\01.Title</Filter>
+      <Filter>03.Level\01.Title</Filter>
     </ClCompile>
     <ClCompile Include="Stage01.cpp">
-      <Filter>02.Level\02.Stage01</Filter>
+      <Filter>03.Level\02.Stage01</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>03.Actor\02.Player</Filter>
-    </ClCompile>
-    <ClCompile Include="BackGround.cpp">
-      <Filter>03.Actor\01.BackGround</Filter>
+      <Filter>04.Actor\02.Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="01.GameCore">
       <UniqueIdentifier>{83f15a84-1fab-4f8b-9f57-1a9295b9c2c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Level">
+    <Filter Include="03.Level">
       <UniqueIdentifier>{816f99e3-605a-44d1-a88a-a3bc8f7ff80e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Level\02.Stage01">
+    <Filter Include="03.Level\02.Stage01">
       <UniqueIdentifier>{9156b127-563b-4de5-bfc8-e6382cc36366}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Level\01.Title">
+    <Filter Include="03.Level\01.Title">
       <UniqueIdentifier>{a75cbdf1-d3ab-4491-8c51-259732730404}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Actor">
+    <Filter Include="04.Actor">
       <UniqueIdentifier>{2a96b8c3-18b5-4f41-a1de-f4205d6be754}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Actor\01.BackGround">
+    <Filter Include="04.Actor\01.BackGround">
       <UniqueIdentifier>{7eca4a62-389b-45ae-9953-5c90fb96b92b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Actor\02.Player">
+    <Filter Include="04.Actor\02.Player">
       <UniqueIdentifier>{45c35635-5f48-4e48-8c7f-b26f419cf21c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Define">
+      <UniqueIdentifier>{f8fa3e57-480a-4eff-9e07-c31f05974e62}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

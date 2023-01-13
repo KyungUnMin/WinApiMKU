@@ -1,6 +1,7 @@
 #include "GameEngineLevel.h"
 #include "GameEngineActor.h"
 #include <GameEngineBase/GameEngineDebug.h>
+#include "GameEngineRender.h"
 
 GameEngineLevel::GameEngineLevel()
 {
@@ -36,13 +37,14 @@ void GameEngineLevel::ActorStart(GameEngineActor* _Actor, int _Order)
 		return;
 	}
 
+	_Actor->Level = this;
 	_Actor->SetOrder(_Order);
 	_Actor->Start();
 }
 
 
 //이 레벨에 존재하는 모든 엑터들을 Order순으로 Update호출
-void GameEngineLevel::ActorsUpdate()
+void GameEngineLevel::ActorsUpdate(float _DeltaTime)
 {
 	std::map<int, std::list<GameEngineActor*>>::iterator GroupStartIter = Actors.begin();
 	std::map<int, std::list<GameEngineActor*>>::iterator GroupEndIter = Actors.end();
@@ -56,7 +58,8 @@ void GameEngineLevel::ActorsUpdate()
 			if (nullptr == Actor)
 				continue;
 
-			Actor->Update();
+			Actor->LiveTime += _DeltaTime;
+			Actor->Update(_DeltaTime);
 		}
 	}
 
@@ -64,22 +67,59 @@ void GameEngineLevel::ActorsUpdate()
 
 
 //이 레벨에 존재하는 모든 엑터들을 Order순으로 Render
-void GameEngineLevel::ActorsRender()
+void GameEngineLevel::ActorsRender(float _DeltaTime)
 {
-	std::map<int, std::list<GameEngineActor*>>::iterator GroupStartIter = Actors.begin();
-	std::map<int, std::list<GameEngineActor*>>::iterator GroupEndIter = Actors.end();
-
-	for (; GroupStartIter != GroupEndIter; ++GroupStartIter)
+	//GameEngineRender의 Render를 호출
 	{
-		std::list<GameEngineActor*>& ActorList = GroupStartIter->second;
+		std::map<int, std::list<GameEngineRender*>>::iterator GroupStartIter = Renders.begin();
+		std::map<int, std::list<GameEngineRender*>>::iterator GroupEndIter = Renders.end();
 
-		for (GameEngineActor* Actor : ActorList)
+		for (; GroupStartIter != GroupEndIter; ++GroupStartIter)
 		{
-			if (nullptr == Actor)
-				continue;
+			std::list<GameEngineRender*>& ActorList = GroupStartIter->second;
 
-			Actor->Render();
+			for (GameEngineRender* Actor : ActorList)
+			{
+				if (nullptr == Actor)
+					continue;
+
+				Actor->Render(_DeltaTime);
+			}
 		}
 	}
 
+
+	//Actor::Render를 호출
+	{
+		std::map<int, std::list<GameEngineActor*>>::iterator GroupStartIter = Actors.begin();
+		std::map<int, std::list<GameEngineActor*>>::iterator GroupEndIter = Actors.end();
+
+		for (; GroupStartIter != GroupEndIter; ++GroupStartIter)
+		{
+			std::list<GameEngineActor*>& ActorList = GroupStartIter->second;
+
+			for (GameEngineActor* Actor : ActorList)
+			{
+				if (nullptr == Actor)
+					continue;
+
+				Actor->Render(_DeltaTime);
+			}
+		}
+	}
+
+
+}
+
+
+//Renders에 GameEngineRender를 등록(GameEngineRender::SetOrder에서 직접 호출)
+void GameEngineLevel::PushRender(GameEngineRender* _Render)
+{
+	if(nullptr == _Render)
+	{
+		MsgAssert("nullptr인 GameEngineRender를 렌더링 그룹 속에 넣으려고 했습니다");
+		return;
+	}
+
+	Renders[_Render->GetOrder()].push_back(_Render);
 }

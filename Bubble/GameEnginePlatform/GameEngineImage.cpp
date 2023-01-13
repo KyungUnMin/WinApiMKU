@@ -199,3 +199,30 @@ void GameEngineImage::Cut(int _X, int _Y)
 
 	IsCut = true;
 }
+
+
+//이미지를 자를 시작점, 끝점, 자를 갯수(가로 세로)
+void GameEngineImage::Cut(float4 _Start, float4 _End, int _X, int _Y)
+{
+	ImageCutData Data;
+
+	Data.SizeX = static_cast<float>((_End.x - _Start.x) / _X);
+	Data.SizeY = static_cast<float>((_End.y - _Start.y) / _Y);
+
+	Data.StartX = _Start.x;
+	Data.StartY = _Start.y;
+
+	for (size_t i = 0; i < _Y; i++)
+	{
+		for (size_t j = 0; j < _X; j++)
+		{
+			ImageCutDatas.push_back(Data);
+			Data.StartX += Data.SizeX;
+		}
+
+		Data.StartX = _Start.x;
+		Data.StartY += Data.SizeY;
+	}
+
+	IsCut = true;
+}

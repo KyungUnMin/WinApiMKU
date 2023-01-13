@@ -2,7 +2,6 @@
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEnginePath.h>
 #include <GameEngineCore/GameEngineResources.h>
-#include "BackGround.h"
 
 TitleLevel::TitleLevel()
 {
@@ -27,7 +26,6 @@ void TitleLevel::Loading()
 
 
 
-	CreateActor<BackGround>();
 }
 
 void TitleLevel::Update()
