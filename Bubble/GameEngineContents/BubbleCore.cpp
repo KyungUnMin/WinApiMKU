@@ -22,7 +22,7 @@ void BubbleCore::Start()
 	CreateLevel<TitleLevel>("TitleLevel");
 	CreateLevel<Stage01>("State01");
 
-	ChangeLevel("State01");
+	ChangeLevel("TitleLevel");
 }
 
 void BubbleCore::Update()

@@ -4,11 +4,19 @@
 #include "GameEngineLevel.h"
 #include "GameEngineResources.h"
 #include <GameEngineBase/GameEngineTime.h>
+#include <GameEnginePlatform/GameEngineInput.h>
 
 
 //GameEngineCore를 상속받는 객체는 싱글톤으로 제작됨
 //때문에 유일하게 GameEngineCore를  상속받은 객체를 가르킴
 GameEngineCore* Core;
+
+
+//이 클래스를 상속받은 Core객체를 리턴
+GameEngineCore* GameEngineCore::GetInst()
+{
+	return Core;
+}
 
 
 
@@ -23,8 +31,34 @@ void GameEngineCore::GlobalStart()
 
 void GameEngineCore::GlobalUpdate()
 {
+	//씬 변경을 요구했다면
+	if (nullptr != Core->NextLevel)
+	{
+		GameEngineLevel* PrevLevel = Core->MainLevel;
+		GameEngineLevel* NextLevel = Core->NextLevel;
+
+		if (nullptr != PrevLevel)
+		{
+			//기존 레벨이 끝났을때 처리할 작업 실행
+			PrevLevel->LevelChangeEnd(NextLevel);
+		}
+
+		//현재 레벨 변경
+		Core->MainLevel = NextLevel;
+		Core->NextLevel = nullptr;
+
+		if (nullptr != NextLevel)
+		{
+			//변경된 레벨이 시작될 때 처리할 작업 실행
+			NextLevel->LevelChangeStart(PrevLevel);
+		}
+	}
+
 	//이전 프레임과 현재 프레임 사이 시간
 	float TimeDeltaTime = GameEngineTime::GlobalTime.TimeCheck();
+
+	//키 입력 처리
+	GameEngineInput::Update(TimeDeltaTime);
 
 	//GameEngineCore를 상속받은 자식의 Update가 실행됨
 	//코어에 대한 업데이트(...)
@@ -36,6 +70,9 @@ void GameEngineCore::GlobalUpdate()
 		MsgAssert("레벨을 지정해주지 않은 상태로 코어를 실행했습니다");
 		return;
 	}
+
+	//레벨의 업데이트 실행 
+	Core->MainLevel->Update(TimeDeltaTime);
 
 	//레벨에 존재하는 엑터들의 업데이트
 	Core->MainLevel->ActorsUpdate(TimeDeltaTime);
@@ -92,7 +129,7 @@ GameEngineCore::~GameEngineCore()
 void GameEngineCore::CoreStart(HINSTANCE _instance)
 {
 	//윈도우 생성
-	GameEngineWindow::WindowCreate(_instance, "MainWindow", { 960, 672 }, { 0, 0 });
+	GameEngineWindow::WindowCreate(_instance, "MainWindow", { 320 * 3, 224 * 3 }, { 0, 0 });
 
 	//이 안에서 무한 루프로 게임이 진행(콜백방식)
 	GameEngineWindow::WindowLoop(GameEngineCore::GlobalStart, GameEngineCore::GlobalUpdate, GameEngineCore::GlobalEnd);
@@ -111,7 +148,7 @@ void GameEngineCore::ChangeLevel(const std::string_view& _Name)
 		return;
 	}
 
-	MainLevel = FindIter->second;
+	NextLevel = FindIter->second;
 }
 
 

@@ -6,17 +6,18 @@
 #include <Windows.h>
 
 #include <GameEngineBase/GameEngineMath.h>
+#include "GameEngineObject.h"
 
 class GameEngineLevel;
 class GameEngineRender;
 
-class GameEngineActor
+class GameEngineActor : public GameEngineObject
 {
 	friend GameEngineLevel;
 
 public:
 	GameEngineActor();
-	~GameEngineActor();
+	virtual ~GameEngineActor();
 
 	GameEngineActor(const GameEngineActor& _Other) = delete;
 	GameEngineActor(GameEngineActor&& _Other) noexcept = delete;

@@ -7,6 +7,6 @@ enum class RenderOrder
 	Monster,
 	Missle,
 	Player,
-	Effect
-
+	Effect,
+	UI
 };

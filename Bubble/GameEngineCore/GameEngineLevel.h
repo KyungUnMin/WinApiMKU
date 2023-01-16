@@ -32,7 +32,14 @@ public:
 
 protected:
 	virtual void Loading() = 0;
-	virtual void Update() = 0;
+	virtual void Update(float _DeltaTime) = 0;
+
+	//레벨이 교체될때 마무리 해야 할 작업
+	virtual void LevelChangeEnd(GameEngineLevel* _NextLevel) = 0;
+
+	//레벨이 교체된 후 처리해야 할 작업
+	virtual void LevelChangeStart(GameEngineLevel* _NextLevel) = 0;
+
 
 private:
 	std::map<int, std::list<GameEngineActor*>>		Actors;

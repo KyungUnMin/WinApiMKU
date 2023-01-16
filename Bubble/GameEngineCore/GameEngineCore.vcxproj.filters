@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="GameEngineActor.h">
-      <Filter>02.Object\02.Actor</Filter>
+      <Filter>02.Object\03.Actor</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineLevel.h">
       <Filter>02.Object\01.Level</Filter>
@@ -14,12 +14,15 @@
       <Filter>03.Resources</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineRender.h">
-      <Filter>02.Object\03.Rendering</Filter>
+      <Filter>02.Object\04.Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineObject.h">
+      <Filter>02.Object\02.Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp">
-      <Filter>02.Object\02.Actor</Filter>
+      <Filter>02.Object\03.Actor</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineLevel.cpp">
       <Filter>02.Object\01.Level</Filter>
@@ -31,7 +34,10 @@
       <Filter>03.Resources</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineRender.cpp">
-      <Filter>02.Object\03.Rendering</Filter>
+      <Filter>02.Object\04.Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineObject.cpp">
+      <Filter>02.Object\02.Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,17 +47,20 @@
     <Filter Include="03.Resources">
       <UniqueIdentifier>{d01121a1-be94-4bf5-b099-d9e35b8e7c42}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Object\03.Rendering">
+    <Filter Include="01.Core">
+      <UniqueIdentifier>{9451ae11-a610-4e73-a739-75180e3fe934}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Object\03.Actor">
+      <UniqueIdentifier>{1b0639a0-f3eb-4093-b104-0c149e470c67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Object\04.Rendering">
       <UniqueIdentifier>{88f54660-7e1f-4770-9fb3-935d3bc83069}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.Object\01.Level">
       <UniqueIdentifier>{179fc0f8-4f58-4529-a27e-cc15420e4d82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Object\02.Actor">
-      <UniqueIdentifier>{1b0639a0-f3eb-4093-b104-0c149e470c67}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01.Core">
-      <UniqueIdentifier>{9451ae11-a610-4e73-a739-75180e3fe934}</UniqueIdentifier>
+    <Filter Include="02.Object\02.Object">
+      <UniqueIdentifier>{cf76912f-146a-44a0-924c-cfe03f2becef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

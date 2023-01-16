@@ -27,6 +27,7 @@ void Stage01::Loading()
 	CreateActor<Player>();
 }
 
-void Stage01::Update()
+void Stage01::Update(float _DeltaTime)
 {
+
 }

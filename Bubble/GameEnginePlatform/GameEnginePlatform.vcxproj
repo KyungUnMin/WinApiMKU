@@ -155,10 +155,18 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineInput.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineImage.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GameEngineInput.h">
       <SubType>
       </SubType>
     </ClInclude>

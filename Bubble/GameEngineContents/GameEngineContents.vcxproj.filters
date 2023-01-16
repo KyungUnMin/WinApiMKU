@@ -4,57 +4,78 @@
     <ClInclude Include="BubbleCore.h">
       <Filter>01.GameCore</Filter>
     </ClInclude>
-    <ClInclude Include="TitleLevel.h">
-      <Filter>03.Level\01.Title</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage01.h">
-      <Filter>03.Level\02.Stage01</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>04.Actor\02.Player</Filter>
+      <Filter>03.Level &amp; Actor\03.Stage01\02.Player</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h">
-      <Filter>03.Define</Filter>
+      <Filter>02.Define</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleBackGround.h">
+      <Filter>03.Level &amp; Actor\02.Title\02.TitleBackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLevel.h">
+      <Filter>03.Level &amp; Actor\02.Title\01.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage01.h">
+      <Filter>03.Level &amp; Actor\03.Stage01\01.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="TextLine.h">
+      <Filter>03.Level &amp; Actor\01.CommonActors\Text</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BubbleCore.cpp">
       <Filter>01.GameCore</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>03.Level &amp; Actor\03.Stage01\02.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBackGround.cpp">
+      <Filter>03.Level &amp; Actor\02.Title\02.TitleBackGround</Filter>
+    </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
-      <Filter>03.Level\01.Title</Filter>
+      <Filter>03.Level &amp; Actor\02.Title\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="Stage01.cpp">
-      <Filter>03.Level\02.Stage01</Filter>
+      <Filter>03.Level &amp; Actor\03.Stage01\01.Level</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>04.Actor\02.Player</Filter>
+    <ClCompile Include="TextLine.cpp">
+      <Filter>03.Level &amp; Actor\01.CommonActors\Text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="01.GameCore">
       <UniqueIdentifier>{83f15a84-1fab-4f8b-9f57-1a9295b9c2c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level">
+    <Filter Include="02.Define">
+      <UniqueIdentifier>{f8fa3e57-480a-4eff-9e07-c31f05974e62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor">
       <UniqueIdentifier>{816f99e3-605a-44d1-a88a-a3bc8f7ff80e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level\02.Stage01">
+    <Filter Include="03.Level &amp; Actor\03.Stage01">
       <UniqueIdentifier>{9156b127-563b-4de5-bfc8-e6382cc36366}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level\01.Title">
-      <UniqueIdentifier>{a75cbdf1-d3ab-4491-8c51-259732730404}</UniqueIdentifier>
+    <Filter Include="03.Level &amp; Actor\03.Stage01\01.Level">
+      <UniqueIdentifier>{7a6ba7b7-f12e-4163-8b2f-3c8f143e9115}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04.Actor">
-      <UniqueIdentifier>{2a96b8c3-18b5-4f41-a1de-f4205d6be754}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Actor\01.BackGround">
-      <UniqueIdentifier>{7eca4a62-389b-45ae-9953-5c90fb96b92b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Actor\02.Player">
+    <Filter Include="03.Level &amp; Actor\03.Stage01\02.Player">
       <UniqueIdentifier>{45c35635-5f48-4e48-8c7f-b26f419cf21c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Define">
-      <UniqueIdentifier>{f8fa3e57-480a-4eff-9e07-c31f05974e62}</UniqueIdentifier>
+    <Filter Include="03.Level &amp; Actor\02.Title">
+      <UniqueIdentifier>{a75cbdf1-d3ab-4491-8c51-259732730404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\01.Level">
+      <UniqueIdentifier>{d8a0f27e-e74f-4971-8405-56685793e499}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\02.TitleBackGround">
+      <UniqueIdentifier>{7eca4a62-389b-45ae-9953-5c90fb96b92b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\01.CommonActors">
+      <UniqueIdentifier>{9dd6153a-e62c-4f3b-84d5-fcc4d89e9951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\01.CommonActors\Text">
+      <UniqueIdentifier>{9dad718b-a627-4176-a49c-ac4fa8c3328d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

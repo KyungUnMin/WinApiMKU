@@ -117,14 +117,18 @@ public:
 
 
 	//인자로 받은 이미지를 현재 객체에 TransParentBlt
-	void TransCopy(const GameEngineImage* _OtherImage,
+	void TransCopy(
+		const GameEngineImage* _OtherImage,
 		float4 _CopyCenterPos, float4 _CopySize,
 		float4 _OtherImagePos, float4 _OtherImageSize,
-		int _Color = RGB(255, 0, 255));
+		int _Color = RGB(147, 187, 236));
 
 
 	//컷팅된 이미지 TransParentBlt
-	void TransCopy(const GameEngineImage* _OtherImage, int _CutIndex, float4 _CopyCenterPos, float4 _CopySize, int _Color = RGB(255, 0, 255));
+	void TransCopy(
+		const GameEngineImage* _OtherImage, int _CutIndex, 
+		float4 _CopyCenterPos, float4 _CopySize, 
+		int _Color = RGB(147, 187, 236));
 
 protected:
 

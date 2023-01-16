@@ -17,12 +17,9 @@ public:
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
-	void Render(float _DeltaTime) override;
 
 private:
-	float AccTime = 0.0f;
-	int NowFrame = 0;
-
-	GameEngineImage* Image = nullptr;
+	GameEngineRender* Render1 = nullptr;
+	GameEngineRender* Render2 = nullptr;
 };
 

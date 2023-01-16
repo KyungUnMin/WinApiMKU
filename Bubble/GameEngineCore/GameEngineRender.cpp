@@ -23,6 +23,7 @@ void GameEngineRender::SetImage(const std::string_view& _ImageName)
 
 
 
+
 //렌더링 되는 순서 결정 및 Level의 Renders에 등록(Actor에서만 호출)
 void GameEngineRender::SetOrder(int _Order)
 {
@@ -31,6 +32,29 @@ void GameEngineRender::SetOrder(int _Order)
 	//GameEngineLevel의 Renders에 등록
 	Owner->GetLevel()->PushRender(this);
 }
+
+
+
+void GameEngineRender::SetFrame(int _Frame)
+{
+	if (nullptr == Image)
+	{
+		MsgAssert("이미지가 존재하지 않는 랜더러에 프레임을 지정하려고 했습니다.");
+	}
+
+	if (false == Image->IsImageCutting())
+	{
+		MsgAssert("잘려있는 이미지만 프레임을 지정해줄 수 있습니다.");
+	}
+
+	if (false == Image->IsCutIndexValid(_Frame))
+	{
+		MsgAssert("유요하지 않은 이미지인덱스 입니다.");
+	}
+
+	Frame = _Frame;
+}
+
 
 
 //Level의 Render를 통해 실제 렌더링되는 함수

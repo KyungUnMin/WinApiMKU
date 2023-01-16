@@ -26,6 +26,12 @@ public:
 	//이 프로그램의 첫 도입부
 	void CoreStart(HINSTANCE _instance);
 
+	//레벨 변경
+	void ChangeLevel(const std::string_view& _Name);
+
+	//이 클래스를 상속받은 Core객체를 리턴
+	static GameEngineCore* GetInst();
+
 protected:
 	//레벨을 생성
 	template<typename LevelType>
@@ -43,9 +49,6 @@ protected:
 		Levels.insert(std::make_pair(_Name.data(), Level));
 	}
 
-	//레벨 변경
-	void ChangeLevel(const std::string_view& _Name);
-
 	//Global~계열 함수에서 실행됨
 	virtual void Start() = 0;
 	virtual void Update() = 0;
@@ -54,6 +57,8 @@ protected:
 private:
 	std::map<std::string, GameEngineLevel*>	Levels;
 	GameEngineLevel*										MainLevel = nullptr;
+	GameEngineLevel*										NextLevel = nullptr;
+
 
 	//레벨의 로딩함수(순수가상함수) 실행
 	void LevelLoading(GameEngineLevel* _Level);

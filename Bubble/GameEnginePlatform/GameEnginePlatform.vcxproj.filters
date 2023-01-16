@@ -10,6 +10,9 @@
     <Filter Include="02.Resources\01.Image">
       <UniqueIdentifier>{d40f2f27-5174-46c7-a476-33c79a6ccb8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Input">
+      <UniqueIdentifier>{5dacbffc-c660-435e-8b5b-7dd46033fcd1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineWindow.cpp">
@@ -18,6 +21,9 @@
     <ClCompile Include="GameEngineImage.cpp">
       <Filter>02.Resources\01.Image</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineInput.cpp">
+      <Filter>03.Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineWindow.h">
@@ -25,6 +31,9 @@
     </ClInclude>
     <ClInclude Include="GameEngineImage.h">
       <Filter>02.Resources\01.Image</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineInput.h">
+      <Filter>03.Input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

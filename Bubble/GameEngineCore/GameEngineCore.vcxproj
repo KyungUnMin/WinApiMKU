@@ -157,6 +157,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEngineLevel.h" />
+    <ClInclude Include="GameEngineObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineRender.h">
       <SubType>
       </SubType>
@@ -170,6 +174,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GameEngineLevel.cpp" />
+    <ClCompile Include="GameEngineObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineRender.cpp">
       <SubType>
       </SubType>

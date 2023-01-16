@@ -55,8 +55,10 @@ void GameEngineLevel::ActorsUpdate(float _DeltaTime)
 
 		for (GameEngineActor* Actor : ActorList)
 		{
-			if (nullptr == Actor)
+			if (nullptr == Actor || false == Actor->IsUpdate())
+			{
 				continue;
+			}
 
 			Actor->LiveTime += _DeltaTime;
 			Actor->Update(_DeltaTime);
@@ -78,12 +80,12 @@ void GameEngineLevel::ActorsRender(float _DeltaTime)
 		{
 			std::list<GameEngineRender*>& ActorList = GroupStartIter->second;
 
-			for (GameEngineRender* Actor : ActorList)
+			for (GameEngineRender* Render : ActorList)
 			{
-				if (nullptr == Actor)
+				if (nullptr == Render || false == Render->IsUpdate())
 					continue;
 
-				Actor->Render(_DeltaTime);
+				Render->Render(_DeltaTime);
 			}
 		}
 	}
@@ -100,7 +102,7 @@ void GameEngineLevel::ActorsRender(float _DeltaTime)
 
 			for (GameEngineActor* Actor : ActorList)
 			{
-				if (nullptr == Actor)
+				if (nullptr == Actor || false == Actor->IsUpdate())
 					continue;
 
 				Actor->Render(_DeltaTime);

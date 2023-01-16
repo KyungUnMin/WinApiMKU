@@ -1,11 +1,12 @@
 #pragma once
 #include <GameEnginePlatform/GameEngineImage.h>
+#include "GameEngineObject.h"
 
 class GameEngineActor;
 class GameEngineLevel;
 
 //주인(Owner)을 기준으로 이미지/애니메이션을 렌더링 해주는 객체, Level에서 관리함
-class GameEngineRender
+class GameEngineRender : public GameEngineObject
 {
 	friend GameEngineActor;
 	friend GameEngineLevel;
@@ -36,11 +37,35 @@ public:
 		Scale = _Scale;
 	}
 
+	//프레임 직접 지정
+	void SetFrame(int _Frame);
+
+	inline GameEngineImage* GetImage()
+	{
+		return Image;
+	}
+
 	//Rendering되는 순서
 	inline int GetOrder()
 	{
 		return Order;
 	}
+
+	inline int GetFrame()
+	{
+		return Frame;
+	}
+
+	inline float4 GetPosition()
+	{
+		return Position;
+	}
+
+	inline float4 GetScale()
+	{
+		return Scale;
+	}
+	
 
 protected:
 
