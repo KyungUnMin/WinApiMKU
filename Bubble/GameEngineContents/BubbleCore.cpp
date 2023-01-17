@@ -1,6 +1,7 @@
 #include "BubbleCore.h"
 #include "TitleLevel.h"
-#include "Stage01.h"
+#include "SelectPlayerLevel.h"
+#include "RoundA_Enter.h"
 
 //ΩÃ±€≈Ê ∞¥√º
 BubbleCore BubbleCore::Core;
@@ -19,10 +20,11 @@ void BubbleCore::Start()
 {
 	int* FOR_DEBUG = new int;
 
-	CreateLevel<TitleLevel>("TitleLevel");
-	CreateLevel<Stage01>("State01");
+	//CreateLevel<TitleLevel>("TitleLevel");
+	CreateLevel<SelectPlayerLevel>("SelectPlayerLevel");
+	CreateLevel<RoundA_Enter>("RoundA_Enter");
 
-	ChangeLevel("TitleLevel");
+	ChangeLevel("SelectPlayerLevel");
 }
 
 void BubbleCore::Update()

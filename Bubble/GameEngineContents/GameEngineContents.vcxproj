@@ -151,16 +151,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BackGround.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BubbleCore.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ContentsEnum.h" />
-    <ClInclude Include="Player.h">
+    <ClInclude Include="BubbleMissle.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Stage01.h">
+    <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="RoundA_Enter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RoundA_Enter_BackGround.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SelectPlayerBackGround.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SelectPlayerLevel.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -178,15 +194,31 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BackGround.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BubbleCore.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="BubbleMissle.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Stage01.cpp">
+    <ClCompile Include="RoundA_Enter.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RoundA_Enter_BackGround.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SelectPlayerBackGround.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SelectPlayerLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>

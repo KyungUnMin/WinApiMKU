@@ -105,6 +105,11 @@ public:
 		return Return;
 	}
 
+	float4 operator -() const
+	{
+		return {-x, -y, -z, 1.0f};
+	}
+
 
 	float4& operator +=(const float4& _Other)
 	{
@@ -114,6 +119,21 @@ public:
 		return *this;
 	}
 
+	float4& operator *=(const float4& _Other)
+	{
+		x *= _Other.x;
+		y *= _Other.y;
+		z *= _Other.z;
+		return *this;
+	}
 
+	float4 operator*(const float4& _Other) const
+	{
+		float4 Return;
+		Return.x = x * _Other.x;
+		Return.y = y * _Other.y;
+		Return.z = z * _Other.z;
+		return Return;
+	}
 	
 };

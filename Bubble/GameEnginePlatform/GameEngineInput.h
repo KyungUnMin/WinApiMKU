@@ -3,8 +3,12 @@
 #include <map>
 #include <string>
 
+class GameEngineWindow;
+
 class GameEngineInput
 {
+	friend GameEngineWindow;
+
 public:
 	class GameEngineKey
 	{
@@ -43,6 +47,10 @@ public:
 
 	static float GetPressTime(const std::string_view& _Name);
 
+	static bool IsAnyKey()
+	{
+		return IsAnyKeyValue;
+	}
 
 protected:
 
@@ -50,6 +58,19 @@ private:
 	GameEngineInput();
 	~GameEngineInput();
 
+	//특정 키에 대한 정보를 빠르게 찾기 위해 map으로 관리
+	//맵 내부에서 값형으로 하는 이유 : 어차피 맵 안에서 동적할당함, delete는 맵에 맡기기 위해
 	static std::map<std::string, GameEngineKey> Keys;
+	static bool IsAnyKeyValue;
+
+	static void IsAnyKeyOn()
+	{
+		IsAnyKeyValue = true;
+	}
+
+	static void IsAnyKeyOff()
+	{
+		IsAnyKeyValue = false;
+	}
 };
 

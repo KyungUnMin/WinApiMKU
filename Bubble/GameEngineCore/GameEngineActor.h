@@ -17,7 +17,7 @@ class GameEngineActor : public GameEngineObject
 
 public:
 	GameEngineActor();
-	virtual ~GameEngineActor();
+	~GameEngineActor();
 
 	GameEngineActor(const GameEngineActor& _Other) = delete;
 	GameEngineActor(GameEngineActor&& _Other) noexcept = delete;

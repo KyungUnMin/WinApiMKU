@@ -145,7 +145,7 @@ void GameEngineImage::BitCopy(const GameEngineImage* _OtherImage, float4 _Center
 	);
 }
 
-// 구현쪽에서는 디폴트 인자를 표시할 필요가 없습니다.
+
 void GameEngineImage::TransCopy(const GameEngineImage* _OtherImage, int _CutIndex, float4 _CopyCenterPos, float4 _CopySize, int _Color/* = RGB(255, 0, 255)*/)
 {
 	if (false == _OtherImage->IsCut)
@@ -158,6 +158,7 @@ void GameEngineImage::TransCopy(const GameEngineImage* _OtherImage, int _CutInde
 
 	TransCopy(_OtherImage, _CopyCenterPos, _CopySize, Data.GetStartPos(), Data.GetScale(), _Color);
 }
+
 
 void GameEngineImage::TransCopy(const GameEngineImage* _OtherImage, float4 _CopyCenterPos, float4 _CopySize, float4 _OtherImagePos, float4 _OtherImageSize, int _Color)
 {
@@ -204,6 +205,8 @@ void GameEngineImage::Cut(int _X, int _Y)
 //이미지를 자를 시작점, 끝점, 자를 갯수(가로 세로)
 void GameEngineImage::Cut(float4 _Start, float4 _End, int _X, int _Y)
 {
+	ImageCutDatas.reserve(_X * _Y);
+
 	ImageCutData Data;
 
 	Data.SizeX = static_cast<float>((_End.x - _Start.x) / _X);

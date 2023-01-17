@@ -7,6 +7,8 @@ class GameEngineImage;
 
 class GameEngineWindow
 {
+	static LRESULT CALLBACK MessageFunction(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam);
+
 public:
 	static void WindowCreate(HINSTANCE _hInstance, const std::string_view& _TitleName, float4 _Size, float4 _Pos);
 
@@ -33,6 +35,10 @@ public:
 		return DoubleBufferImage;
 	}
 
+	static void AppOff()
+	{
+		IsWindowUpdate = false;
+	}
 
 	static void DoubleBufferClear();
 	static void DoubleBufferRender();
@@ -60,5 +66,7 @@ private:
 
 	static	GameEngineImage*		BackBufferImage;
 	static	GameEngineImage*		DoubleBufferImage;
+
+	static	bool								IsWindowUpdate;
 };
 

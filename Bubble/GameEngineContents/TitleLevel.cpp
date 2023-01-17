@@ -2,6 +2,7 @@
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineResources.h>
+#include <GameEnginePlatform/GameEngineWindow.h>
 #include "TitleBackGround.h"
 #include "BubbleCore.h"
 #include "TextLine.h"
@@ -28,31 +29,24 @@ void TitleLevel::Loading()
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("BackCurtain.bmp"));
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("FrontCurtain.bmp"));
 
-	//Dir.MoveParentToDirectory("Common");
-	//Dir.Move("Common");
-	//GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Text.bmp"));
-
-	GameEngineInput::CreateKey("NextLevel", 'P');
-
 	CreateActor<TitleBackGround>();
 	CreateActor<TextLine>();
 	CreateActor<TextLine>();
 
 	TextLine::Reserve(2);
-	TextLine::GetText(0)->SetScale({20.f , 20.f});
-	TextLine::GetText(0)->SetString("Hello World", TextLineColor::White);
-	TextLine::GetText(0)->SetPos({ 200.f, 200.f });
+	TextLine::GetText(0)->SetScale({20.f , 40.f});
+	TextLine::GetText(0)->SetString("[Insetout's blog]", TextLineColor::White);
+	TextLine::GetText(0)->SetPos(GameEngineWindow::GetScreenSize().half() + float4{0.f, -50.f});
 
-	TextLine::GetText(1)->SetScale({ 20.f , 20.f });
-	TextLine::GetText(1)->SetString("Bye World", TextLineColor::Gold);
-	TextLine::GetText(1)->SetPos({ 400.f, 400.f });
+	TextLine::GetText(1)->SetScale({ 20.f , 40.f });
+	TextLine::GetText(1)->SetString("Welcome!", TextLineColor::Gold);
+	TextLine::GetText(1)->SetPos(GameEngineWindow::GetScreenSize().half() + float4{0.f, 50.f});
 }
 
 void TitleLevel::Update(float _DeltaTime)
 {
-	if (false == GameEngineInput::IsDown("NextLevel"))
+	if (false == GameEngineInput::IsAnyKey())
 		return;
-
 
 	BubbleCore::GetInst().ChangeLevel("State01");
 }

@@ -23,16 +23,19 @@ class GameEngineImage;
 class TextLine : public GameEngineActor
 {
 public:
+	//TextLine::Texts.reserve
 	static void Reserve(int _Capacity)
 	{
 		Texts.reserve(_Capacity);
 	}
 
+	//TextLine::Texts.clear
 	static void Release()
 	{
 		Texts.clear();
 	}
 
+	//return TextLine::Texts[_Index]
 	static TextLine* GetText(int _Index);
 
 	TextLine();
@@ -43,22 +46,26 @@ public:
 	TextLine& operator=(const TextLine& _Other) = delete;
 	TextLine& operator=(const TextLine&& _Other) noexcept = delete;
 
+	//Text의 string 설정 및 색상 선택
 	void SetString(const std::string_view& _String, TextLineColor _Color)
 	{
 		SetColor(_Color);
 		StringValue = _String;
 	}
 
+	//Text의 string 설정 
 	void SetString(const std::string_view& _String)
 	{
 		StringValue = _String;
 	}
 
+	//Text의 색상 선택
 	void SetColor(TextLineColor _Color)
 	{
 		Color = _Color;
 	}
 
+	//글씨 크기 결정
 	void SetScale(const float4& _Scale)
 	{
 		Scale = _Scale;

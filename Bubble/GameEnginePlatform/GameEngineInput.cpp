@@ -3,7 +3,7 @@
 #include <GameEngineBase/GameEngineDebug.h>
 
 std::map<std::string, GameEngineInput::GameEngineKey> GameEngineInput::Keys;
-
+bool GameEngineInput::IsAnyKeyValue = false;
 
 void GameEngineInput::GameEngineKey::Update(float _DeltaTime)
 {

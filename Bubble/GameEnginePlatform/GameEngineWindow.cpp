@@ -1,6 +1,7 @@
 #include "GameEngineWindow.h"
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEnginePlatform/GameEngineImage.h>
+#include "GameEngineInput.h"
 
 HWND                       GameEngineWindow::HWnd = nullptr;
 HDC                          GameEngineWindow::WindowBackBufferHdc = nullptr;
@@ -12,28 +13,17 @@ float4                       GameEngineWindow::ScreenSize = { 800, 600 };
 GameEngineImage* GameEngineWindow::BackBufferImage = nullptr;
 GameEngineImage* GameEngineWindow::DoubleBufferImage = nullptr;
 
-bool IsWindowUpdate = true;
+bool                         GameEngineWindow::IsWindowUpdate = true;
 
 
 //메세지에 따른 콜백 함수
-LRESULT CALLBACK MessageFunction(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam)
+LRESULT CALLBACK GameEngineWindow::MessageFunction(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam)
 {
     switch (_message)
     {
-    case WM_MOUSEMOVE:
+    case WM_KEYDOWN:
     {
-        break;
-    }
-    case WM_SETFOCUS:
-    {
-        break;
-    }
-    case WM_ACTIVATE:
-    {
-        break;
-    }
-    case WM_KILLFOCUS:
-    {
+        GameEngineInput::IsAnyKeyOn();
         break;
     }
     case WM_DESTROY:
@@ -165,6 +155,8 @@ int GameEngineWindow::WindowLoop(void(*_Start)(), void(*_Loop)(), void(*_End)())
             {
                 _Loop();
             }
+
+            GameEngineInput::IsAnyKeyOff();
             continue;
         }
 
@@ -172,6 +164,8 @@ int GameEngineWindow::WindowLoop(void(*_Start)(), void(*_Loop)(), void(*_End)())
         {
             _Loop();
         }
+
+        GameEngineInput::IsAnyKeyOff();
     }
 
     if (nullptr != _End)
