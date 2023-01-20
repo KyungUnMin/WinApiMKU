@@ -58,7 +58,7 @@ protected:
 	virtual void LevelChangeEnd(GameEngineLevel* _NextLevel) = 0;
 
 	//레벨이 교체된 후 처리해야 할 작업
-	virtual void LevelChangeStart(GameEngineLevel* _NextLevel) = 0;
+	virtual void LevelChangeStart(GameEngineLevel* _PrevLevel) = 0;
 
 
 private:

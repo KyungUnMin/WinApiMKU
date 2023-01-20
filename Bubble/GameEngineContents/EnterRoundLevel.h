@@ -10,6 +10,7 @@ enum class EnterRoundRenderOrder
 };
 
 class EnterRoundCharater;
+class GameEngineObject;
 
 class EnterRoundLevel : public GameEngineLevel
 {
@@ -28,10 +29,13 @@ protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
-	void LevelChangeStart(GameEngineLevel* _NextLevel) override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 private:
-	EnterRoundCharater*			Player	= nullptr;
+	GameEngineObject*			Bubbles		= nullptr;
+	EnterRoundCharater*			Player			= nullptr;
+	float									AccTime		= 0.f;
+
 	static const std::string		TextString[3];
 	static const float				TextHeight[3];
 

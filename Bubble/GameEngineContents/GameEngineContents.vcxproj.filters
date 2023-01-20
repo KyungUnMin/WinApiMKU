@@ -19,9 +19,6 @@
     <ClInclude Include="RoundA_Enter.h">
       <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\01.Level</Filter>
     </ClInclude>
-    <ClInclude Include="RoundA_Enter_BackGround.h">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\02.Actor</Filter>
-    </ClInclude>
     <ClInclude Include="SelectPlayerLevel.h">
       <Filter>03.Level &amp; Actor\02.Title\02.SelectPlayer\01.Level</Filter>
     </ClInclude>
@@ -62,7 +59,7 @@
       <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\01.Charater</Filter>
     </ClInclude>
     <ClInclude Include="EnterRoundBubble.h">
-      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.CBubbles</Filter>
+      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.Bubbles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -80,9 +77,6 @@
     </ClCompile>
     <ClCompile Include="RoundA_Enter.cpp">
       <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\01.Level</Filter>
-    </ClCompile>
-    <ClCompile Include="RoundA_Enter_BackGround.cpp">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\02.Actor</Filter>
     </ClCompile>
     <ClCompile Include="SelectPlayerLevel.cpp">
       <Filter>03.Level &amp; Actor\02.Title\02.SelectPlayer\01.Level</Filter>
@@ -121,7 +115,7 @@
       <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\01.Charater</Filter>
     </ClCompile>
     <ClCompile Include="EnterRoundBubble.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.CBubbles</Filter>
+      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.Bubbles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -239,7 +233,7 @@
     <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\01.Charater">
       <UniqueIdentifier>{39b68066-e3fa-4fd7-bc37-cedacbbe2d01}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.CBubbles">
+    <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.Bubbles">
       <UniqueIdentifier>{53cf7d5d-12cf-4a12-99f3-f23133c1e3ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

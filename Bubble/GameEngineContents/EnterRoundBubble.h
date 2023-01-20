@@ -21,15 +21,20 @@ protected:
 
 private:
 	std::vector<std::pair<float, GameEngineRender*>> Bubbles;
-	float Dir[6] = { 0.f, };
-	const float MoveSpeed = 100.f;
-	const float RotateSpeed = 0.1f;
-	const float BubbleSpawnTime = 2.f;
 
-	float AccTime = 0.0f;
+	float				Dir[6]						= { 0.f, };
+	const float		RotateSpeed			= 0.1f;
+
+	const float		MoveSpeed				= 100.f;
+	const float		BubbleSpawnTime	= 0.15f;
+	const float		BubbleGrowSpeed	= 50.f;
+	const float4	BubbleMaxScale		= { 200.f, 200.f };
+
+	float				AccTime					= 0.0f;
+	int					SpawnIndex			= 0;
 
 	void BubbleMove(float _DeltaTime);
+	void BubbleScaleUp(float _DeltaTime);
 	void BubbleCreate(float _DirRadian);
-	
 };
 

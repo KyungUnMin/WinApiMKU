@@ -21,26 +21,26 @@ EnterRoundBubble::~EnterRoundBubble()
 void EnterRoundBubble::Start()
 {
 	SetPos(GameEngineWindow::GetScreenSize().half());
-	Bubbles.reserve(10000);
+	Bubbles.reserve(100);
 }
 
 void EnterRoundBubble::Update(float _DeltaTime)
 {
-	AccTime += _DeltaTime;
-	if(BubbleSpawnTime < AccTime)
-	{
-		AccTime = 0.0f;
-		for (size_t i = 0; i < 6; ++i)
-		{
-			BubbleCreate(Dir[i]);
-		}
-	}
+	BubbleMove(_DeltaTime);
+	BubbleScaleUp(_DeltaTime);
 
 	for (size_t i = 0; i < 6; ++i)
 	{
-		BubbleMove(_DeltaTime);
 		Dir[i] += RotateSpeed * _DeltaTime;
 	}
+
+	AccTime += _DeltaTime;
+	if (AccTime < BubbleSpawnTime)
+		return;
+
+	AccTime = 0.0f;
+	BubbleCreate(Dir[SpawnIndex++]);
+	SpawnIndex %= 6;
 }
 
 void EnterRoundBubble::BubbleMove(float _DeltaTime)
@@ -51,11 +51,26 @@ void EnterRoundBubble::BubbleMove(float _DeltaTime)
 		GameEngineRender* Bubble = Bubbles[i].second;
 
 		float4 NextVec;
-		NextVec.x = cos(Radian * GameEngineMath::PIE) * MoveSpeed;
-		NextVec.y = -sin(Radian * GameEngineMath::PIE) * MoveSpeed;
+		NextVec.x = static_cast<float>(cos(Radian * GameEngineMath::PIE) * MoveSpeed);
+		NextVec.y = static_cast<float>(-sin(Radian * GameEngineMath::PIE) * MoveSpeed);
 
 		float4 Pos = Bubble->GetPosition();
 		Bubble->SetPosition(Pos + NextVec * _DeltaTime);
+	}
+}
+
+void EnterRoundBubble::BubbleScaleUp(float _DeltaTime)
+{
+	for (size_t i = 0; i < Bubbles.size(); ++i)
+	{
+		GameEngineRender* Bubble = Bubbles[i].second;
+		float4 Scale = Bubble->GetScale();
+		Scale += float4{ 1.f, 1.f } *BubbleGrowSpeed * _DeltaTime;
+
+		if (BubbleMaxScale < Scale)
+			continue;
+
+		Bubble->SetScale(Scale);
 	}
 }
 
@@ -71,7 +86,7 @@ void EnterRoundBubble::BubbleCreate(float _DirRadian)
 		.InterTimer = 0.15f
 	});
 
-	BubbleRender->SetScale({ 200.f, 200.f });
+	BubbleRender->SetScale(float4::Zero);
 	BubbleRender->ChangeAnimation("Bubble");
 	Bubbles.push_back(std::make_pair(_DirRadian, BubbleRender));
 }

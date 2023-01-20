@@ -193,10 +193,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="RoundA_Enter_BackGround.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="SelectCharacterBackGround.h">
       <SubType>
       </SubType>
@@ -268,10 +264,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="RoundA_Enter.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="RoundA_Enter_BackGround.cpp">
       <SubType>
       </SubType>
     </ClCompile>

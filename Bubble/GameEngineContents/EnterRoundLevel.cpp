@@ -9,6 +9,7 @@
 #include "EnterRoundCharater.h"
 #include "TextLine.h"
 #include "EnterRoundBubble.h"
+#include "BubbleCore.h"
 
 
 const std::string		EnterRoundLevel::TextString[3] =
@@ -60,7 +61,8 @@ void EnterRoundLevel::Loading()
 	Player = CreateActor<EnterRoundCharater>();
 	Player->SetPos({ 100.f, 200.f});
 
-	CreateActor<EnterRoundBubble>();
+	Bubbles = CreateActor<EnterRoundBubble>();
+	Bubbles->Off();
 
 	CreateText();
 }
@@ -86,17 +88,39 @@ void EnterRoundLevel::CreateText()
 
 void EnterRoundLevel::Update(float _DeltaTime)
 {
-	
+	AccTime += _DeltaTime;
+
+	if (10.f < AccTime)
+	{
+		EnterRoundBubble* B = dynamic_cast<EnterRoundBubble*>(Bubbles);
+		BubbleCore::GetInst().ChangeLevel("RoundA_Enter");
+	}
 }
 
 void EnterRoundLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-
+	if (nullptr != Bubbles)
+	{
+		Bubbles->Off();
+	}
 }
 
-void EnterRoundLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
+void EnterRoundLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	int CharacterIndex = dynamic_cast<SelectCharacterLevel*>(_NextLevel)->GetSelectCharacter();
+	if (nullptr != Bubbles)
+	{
+		Bubbles->On();
+	}
+
+	//디버깅용으로 이 레벨부터 시작했을땐 이전레벨이 존재하지 않음
+	//임시로 기본캐릭터 지정
+	if (nullptr == _PrevLevel)
+	{
+		Player->SetCharacter(0);
+		return;
+	}
+
+	int CharacterIndex = dynamic_cast<SelectCharacterLevel*>(_PrevLevel)->GetSelectCharacter();
 	Player->SetCharacter(CharacterIndex);
 }
 
