@@ -89,6 +89,15 @@ public:
 		return Frame;
 	}
 
+	//이 렌더를 소유하고 있는 엑터 반환
+	GameEngineActor* GetActor();
+
+	//TransparentBlt할때 지울 배경색상값 변경
+	inline void SetTransColor(int _Color)
+	{
+		TransColor = _Color;
+	}
+
 	inline float4 GetPosition()
 	{
 		return Position;
@@ -97,6 +106,12 @@ public:
 	inline float4 GetScale()
 	{
 		return Scale;
+	}
+
+	//카메라 영향 끄기
+	inline void EffectCameraOff()
+	{
+		IsEffectCamera = false;
 	}
 	
 	//애니메이션 생성
@@ -108,24 +123,26 @@ public:
 protected:
 
 private:
-	//이 객체를 가지고 있는 주인Actor
-	GameEngineActor*		Owner			= nullptr;
-
 	//렌더링 되는 순서
-	int								Order			= 0;
+	int								Order					= 0;
 
 	//Owner 기준 상대위치(오프셋)
-	float4							Position		= float4::Zero;
+	float4							Position				= float4::Zero;
 
 	//이미지를 그릴 크기
-	float4							Scale			= float4::Zero;
+	float4							Scale					= float4::Zero;
 
 	//이미지 리소스와 연결된 GameEngineImage
-	GameEngineImage*		Image			= nullptr;
+	GameEngineImage*		Image					= nullptr;
 
 	//이미지를 잘랐을때 그릴 이미지 인덱스
-	int								Frame			= 0;
+	int								Frame					= 0;
 
+	//Render함수에서 TransparentBlt할때 지울 배경색상
+	int								TransColor			= RGB(147, 187, 236);
+
+	//렌더링 될 때 카메라에 영향을 받는지 여부
+	bool								IsEffectCamera	= true;
 
 
 	//렌더링 되는 순서 결정 및 Level의 Renders에 등록(Actor에서만 호출)

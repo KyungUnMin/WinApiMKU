@@ -66,6 +66,25 @@ public:
 		Parent = _Parent;
 	}
 
+	//부모설정
+	void SetOwner(GameEngineObject* _Parent)
+	{
+		Parent = _Parent;
+	}
+
+	//부모를 캐스팅하여 포인터 주기
+	template<typename ConvertType>
+	ConvertType* GetOwner()
+	{
+		return dynamic_cast<ConvertType*>(Parent);
+	}
+
+	//부모 포인터 주기
+	GameEngineObject* GetOwner()
+	{
+		return Parent;
+	}
+
 protected:
 
 private:

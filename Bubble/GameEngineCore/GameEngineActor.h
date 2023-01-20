@@ -41,11 +41,7 @@ public:
 		Pos += _MovePos;
 	}
 
-	inline GameEngineLevel* GetLevel()
-	{
-		return Level;
-	}
-
+	GameEngineLevel* GetLevel();
 
 	//내부에서  Enum을 int로 변환
 #pragma region CreateRenderEnumOverLoadings
@@ -84,8 +80,6 @@ protected:
 	}
 
 private:
-	GameEngineLevel*						Level			= nullptr;
-
 	int												Order			= 0;
 	float											LiveTime		= 0.0f;
 	float4											Pos				= { 0.0f, 0.0f };

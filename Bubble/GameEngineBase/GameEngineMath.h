@@ -1,4 +1,5 @@
 #pragma once
+#include <math.h>
 
 class GameEngineMath final
 {
@@ -136,4 +137,15 @@ public:
 		return Return;
 	}
 	
+	bool operator<(const float4& _Other) const
+	{
+		return (x < _Other.x) && (y < _Other.y) /*&& (z < _Other.z)*/;
+	}
+
+	float Length()
+	{
+		return static_cast<float>(sqrt(x * x + y * y));
+	}
+
+	float4 Normalize();
 };

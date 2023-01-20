@@ -23,21 +23,6 @@ class GameEngineImage;
 class TextLine : public GameEngineActor
 {
 public:
-	//TextLine::Texts.reserve
-	static void Reserve(int _Capacity)
-	{
-		Texts.reserve(_Capacity);
-	}
-
-	//TextLine::Texts.clear
-	static void Release()
-	{
-		Texts.clear();
-	}
-
-	//return TextLine::Texts[_Index]
-	static TextLine* GetText(int _Index);
-
 	TextLine();
 	~TextLine() override;
 
@@ -71,17 +56,21 @@ public:
 		Scale = _Scale;
 	}
 
+	void OnLeftAlign()
+	{
+		LeftAlign = true;
+	}
+
 protected:
 	void Start() override;
 	void Render(float _DeltaTime) override;
 
 private:
-	static std::vector<TextLine*> Texts;
-
 	std::string					StringValue	= std::string();
 	TextLineColor				Color			= TextLineColor::White;
 
 	GameEngineImage*		Image			= nullptr;
-	float4							Scale			= float4::Zero;
+	float4							Scale			= float4{20.f, 30.f};
+	bool								LeftAlign		= false;
 };
 

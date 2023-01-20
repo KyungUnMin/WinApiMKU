@@ -130,6 +130,13 @@ public:
 		float4 _CopyCenterPos, float4 _CopySize, 
 		int _Color = RGB(147, 187, 236));
 
+
+	//내가 가지고 있는 이미지에서 해당 좌표의 색상을 받아옴
+	DWORD GetPixelColor(float4 _Pos, DWORD _OutColor);
+
+	//내가 가지고 있는 이미지에서 해당 좌표의 색상을 받아옴
+	DWORD GetPixelColor(int _X, int _Y, DWORD _OutColor);
+
 protected:
 
 private:

@@ -49,15 +49,28 @@ protected:
 		Levels.insert(std::make_pair(_Name.data(), Level));
 	}
 
+
+	void DebugSwitch()
+	{
+		IsDebugValue = !IsDebugValue;
+	}
+
+	bool IsDebug()
+	{
+		return IsDebugValue;
+	}
+
+
 	//Global~계열 함수에서 실행됨
 	virtual void Start() = 0;
 	virtual void Update() = 0;
 	virtual void End() = 0;
 
 private:
+	bool																IsDebugValue	= false;
 	std::map<std::string, GameEngineLevel*>	Levels;
-	GameEngineLevel*										MainLevel = nullptr;
-	GameEngineLevel*										NextLevel = nullptr;
+	GameEngineLevel*										MainLevel		= nullptr;
+	GameEngineLevel*										NextLevel		= nullptr;
 
 
 	//레벨의 로딩함수(순수가상함수) 실행

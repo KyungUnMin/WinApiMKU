@@ -16,6 +16,12 @@ GameEngineRender::~GameEngineRender()
 }
 
 
+//이 렌더를 소유하고 있는 엑터 반환
+GameEngineActor* GameEngineRender::GetActor()
+{
+	return GetOwner<GameEngineActor>();
+}
+
 
 //GameEngineResources에서 이미지 찾아오기
 void GameEngineRender::SetImage(const std::string_view& _ImageName)
@@ -30,7 +36,7 @@ void GameEngineRender::SetOrder(int _Order)
 	Order = _Order;
 
 	//GameEngineLevel의 Renders에 등록
-	Owner->GetLevel()->PushRender(this);
+	GetActor()->GetLevel()->PushRender(this);
 }
 
 
@@ -106,20 +112,32 @@ void GameEngineRender::Render(float _DeltaTime)
 		Image = CurrentAnimation->Image;
 	}
 
+	if (nullptr == Image)
+	{
+		MsgAssert("이미지를 세팅해주지 않았습니다");
+		return;
+	}
+
+	//카메라에 따른 렌더링 위치 변경
+	float4 CameraPos = float4::Zero;
+	if (true == IsEffectCamera)
+	{
+		CameraPos = GetActor()->GetLevel()->GetCameraPos();
+	}
 
 	//오프셋이 적용된 렌더링 될 위치
-	float4 RenderPos = Owner->GetPos() + Position;
+	float4 RenderPos = GetActor()->GetPos() + Position - CameraPos;
 
 	//이미지를 자른 경우
 	if (true == Image->IsImageCutting())
 	{
-		GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, Frame, RenderPos, Scale);
+		GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, Frame, RenderPos, Scale, TransColor);
 	}
 
 	//이미지를 자르지 않은 경우엔 리소스 전체크기를 출력
 	else
 	{
-		GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, RenderPos, Scale, {0.f, 0.f}, Image->GetImageScale());
+		GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, RenderPos, Scale, {0.f, 0.f}, Image->GetImageScale()), TransColor;
 	}
 }
 
@@ -217,5 +235,5 @@ void GameEngineRender::ChangeAnimation(const std::string_view& _AnimationName)
 	//해당 애니메이션 인덱스 설정
 	CurrentAnimation->CurrentIndex = 0;
 	//해당 애니메이션 시간 설정
-	CurrentAnimation->CurrentTime = CurrentAnimation->FrameIndex[CurrentAnimation->CurrentIndex];
+	CurrentAnimation->CurrentTime = CurrentAnimation->FrameTime[CurrentAnimation->CurrentIndex];
 }

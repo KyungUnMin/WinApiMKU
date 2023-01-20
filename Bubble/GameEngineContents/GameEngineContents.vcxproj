@@ -163,7 +163,32 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ContentsDefine.h" />
     <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="EnterRoundBubble.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EnterRoundCharater.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EnterRoundLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="OpeningMonster.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="OpeningPlayer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="OpeningSpotLight.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RoundA_Enter.h">
       <SubType>
       </SubType>
@@ -172,7 +197,23 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="SelectPlayerBackGround.h">
+    <ClInclude Include="SelectCharacterBackGround.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SelectCharacterLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SelectCharacter_Character.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SelectCharacter_SelectIcon.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SelectCharacter_TopText.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -184,11 +225,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TitleBackGround.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TitleLevel.h">
+    <ClInclude Include="OpeningLevel.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -206,6 +243,30 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EnterRoundBubble.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EnterRoundCharater.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EnterRoundLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="OpeningMonster.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="OpeningPlayer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="OpeningSpotLight.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="RoundA_Enter.cpp">
       <SubType>
       </SubType>
@@ -214,7 +275,23 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="SelectPlayerBackGround.cpp">
+    <ClCompile Include="SelectCharacterBackGround.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SelectCharacterLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SelectCharacter_Character.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SelectCharacter_SelectIcon.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SelectCharacter_TopText.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -226,11 +303,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TitleBackGround.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TitleLevel.cpp">
+    <ClCompile Include="OpeningLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -229,3 +229,37 @@ void GameEngineImage::Cut(float4 _Start, float4 _End, int _X, int _Y)
 
 	IsCut = true;
 }
+
+//내가 가지고 있는 이미지에서 해당 좌표의 색상을 받아옴
+DWORD GameEngineImage::GetPixelColor(float4 _Pos, DWORD _OutColor)
+{
+	return GetPixelColor(_Pos.ix(), _Pos.iy(), _OutColor);
+}
+
+//내가 가지고 있는 이미지에서 해당 좌표의 색상을 받아옴
+DWORD GameEngineImage::GetPixelColor(int _X, int _Y, DWORD _OutColor)
+{
+	//비트맵의 영역 밖을 접근한 경운
+	if (_X < 0)
+	{
+		return _OutColor;
+	}
+
+	if (GetImageScale().ix() <= _X)
+	{
+		return _OutColor;
+	}
+
+	if (_Y < 0)
+	{
+		return _OutColor;
+	}
+
+	if (GetImageScale().iy() <= _Y)
+	{
+		return _OutColor;
+	}
+
+	//지정한 위치의 색상값 반환
+	return GetPixel(ImageDC, _X, _Y);
+}

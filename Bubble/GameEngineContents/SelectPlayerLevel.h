@@ -1,6 +1,12 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
 
+enum class SelectPlayerLevelRenderOrder
+{
+	BackGround,
+	UI
+};
+
 class TextLine;
 
 class SelectPlayerLevel : public GameEngineLevel

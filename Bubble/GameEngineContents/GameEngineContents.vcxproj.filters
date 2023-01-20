@@ -7,11 +7,8 @@
     <ClInclude Include="ContentsEnum.h">
       <Filter>02.Define</Filter>
     </ClInclude>
-    <ClInclude Include="TitleBackGround.h">
-      <Filter>03.Level &amp; Actor\02.Title\02.TitleBackGround</Filter>
-    </ClInclude>
-    <ClInclude Include="TitleLevel.h">
-      <Filter>03.Level &amp; Actor\02.Title\01.Level</Filter>
+    <ClInclude Include="OpeningLevel.h">
+      <Filter>03.Level &amp; Actor\02.Title\01.Opening\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="TextLine.h">
       <Filter>03.Level &amp; Actor\01.CommonActors\01.TextLine</Filter>
@@ -20,30 +17,60 @@
       <Filter>03.Level &amp; Actor\01.CommonActors\03.BubbleMissle</Filter>
     </ClInclude>
     <ClInclude Include="RoundA_Enter.h">
-      <Filter>03.Level &amp; Actor\04.RoundRooms\01.RoundA\01.EnterRoom\01.Level</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="RoundA_Enter_BackGround.h">
-      <Filter>03.Level &amp; Actor\04.RoundRooms\01.RoundA\01.EnterRoom\02.Actor</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\02.Actor</Filter>
     </ClInclude>
     <ClInclude Include="SelectPlayerLevel.h">
-      <Filter>03.Level &amp; Actor\03.SelectPlayer\01.Level</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectPlayerBackGround.h">
-      <Filter>03.Level &amp; Actor\03.SelectPlayer\02.Actor</Filter>
+      <Filter>03.Level &amp; Actor\02.Title\02.SelectPlayer\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="BackGround.h">
       <Filter>03.Level &amp; Actor\01.CommonActors\02.BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectCharacterLevel.h">
+      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\01.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="OpeningMonster.h">
+      <Filter>03.Level &amp; Actor\02.Title\01.Opening\02.Actor\02.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="OpeningPlayer.h">
+      <Filter>03.Level &amp; Actor\02.Title\01.Opening\02.Actor\01.Player</Filter>
+    </ClInclude>
+    <ClInclude Include="OpeningSpotLight.h">
+      <Filter>03.Level &amp; Actor\02.Title\01.Opening\02.Actor\03.SpotLight</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectCharacter_Character.h">
+      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\03.Charactors</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectCharacterBackGround.h">
+      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\01.BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectCharacter_TopText.h">
+      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\02.TopText</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectCharacter_SelectIcon.h">
+      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\04.Icon</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsDefine.h">
+      <Filter>02.Define</Filter>
+    </ClInclude>
+    <ClInclude Include="EnterRoundLevel.h">
+      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\01.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="EnterRoundCharater.h">
+      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\01.Charater</Filter>
+    </ClInclude>
+    <ClInclude Include="EnterRoundBubble.h">
+      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.CBubbles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BubbleCore.cpp">
       <Filter>01.GameCore</Filter>
     </ClCompile>
-    <ClCompile Include="TitleBackGround.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\02.TitleBackGround</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleLevel.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\01.Level</Filter>
+    <ClCompile Include="OpeningLevel.cpp">
+      <Filter>03.Level &amp; Actor\02.Title\01.Opening\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="TextLine.cpp">
       <Filter>03.Level &amp; Actor\01.CommonActors\01.TextLine</Filter>
@@ -52,19 +79,49 @@
       <Filter>03.Level &amp; Actor\01.CommonActors\03.BubbleMissle</Filter>
     </ClCompile>
     <ClCompile Include="RoundA_Enter.cpp">
-      <Filter>03.Level &amp; Actor\04.RoundRooms\01.RoundA\01.EnterRoom\01.Level</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="RoundA_Enter_BackGround.cpp">
-      <Filter>03.Level &amp; Actor\04.RoundRooms\01.RoundA\01.EnterRoom\02.Actor</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\02.Actor</Filter>
     </ClCompile>
     <ClCompile Include="SelectPlayerLevel.cpp">
-      <Filter>03.Level &amp; Actor\03.SelectPlayer\01.Level</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectPlayerBackGround.cpp">
-      <Filter>03.Level &amp; Actor\03.SelectPlayer\02.Actor</Filter>
+      <Filter>03.Level &amp; Actor\02.Title\02.SelectPlayer\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="BackGround.cpp">
       <Filter>03.Level &amp; Actor\01.CommonActors\02.BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectCharacterLevel.cpp">
+      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\01.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="OpeningMonster.cpp">
+      <Filter>03.Level &amp; Actor\02.Title\01.Opening\02.Actor\02.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="OpeningPlayer.cpp">
+      <Filter>03.Level &amp; Actor\02.Title\01.Opening\02.Actor\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="OpeningSpotLight.cpp">
+      <Filter>03.Level &amp; Actor\02.Title\01.Opening\02.Actor\03.SpotLight</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectCharacter_Character.cpp">
+      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\03.Charactors</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectCharacterBackGround.cpp">
+      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\01.BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectCharacter_TopText.cpp">
+      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\02.TopText</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectCharacter_SelectIcon.cpp">
+      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\04.Icon</Filter>
+    </ClCompile>
+    <ClCompile Include="EnterRoundLevel.cpp">
+      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\01.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="EnterRoundCharater.cpp">
+      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\01.Charater</Filter>
+    </ClCompile>
+    <ClCompile Include="EnterRoundBubble.cpp">
+      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.CBubbles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,12 +137,6 @@
     <Filter Include="03.Level &amp; Actor\02.Title">
       <UniqueIdentifier>{a75cbdf1-d3ab-4491-8c51-259732730404}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\01.Level">
-      <UniqueIdentifier>{d8a0f27e-e74f-4971-8405-56685793e499}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\02.TitleBackGround">
-      <UniqueIdentifier>{7eca4a62-389b-45ae-9953-5c90fb96b92b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Level &amp; Actor\01.CommonActors">
       <UniqueIdentifier>{9dd6153a-e62c-4f3b-84d5-fcc4d89e9951}</UniqueIdentifier>
     </Filter>
@@ -98,39 +149,6 @@
     <Filter Include="04.State\02.BubbleState">
       <UniqueIdentifier>{b52a0bdb-bfb7-4892-8cef-39041a7959e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\04.RoundRooms">
-      <UniqueIdentifier>{5c821fb1-13a1-40bd-a931-06f862407f7c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\04.RoundRooms\01.RoundA">
-      <UniqueIdentifier>{bdfec7d0-2626-4662-83b7-fca0484fdb93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\04.RoundRooms\01.RoundA\01.EnterRoom">
-      <UniqueIdentifier>{03dbe607-9aa5-4f4a-8a4f-3af6ef2b75bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\04.RoundRooms\01.RoundA\02.RoundA-1">
-      <UniqueIdentifier>{7005c689-d7b0-481d-9761-1b2f58be7019}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\04.RoundRooms\01.RoundA\03.RoundA-2">
-      <UniqueIdentifier>{02c3e57f-bb0c-4321-bdb9-c5cbf7bdd71d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\04.RoundRooms\01.RoundA\04.RoundA-3">
-      <UniqueIdentifier>{3fdb5ad5-fcef-4245-b5c1-e157ae755176}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\04.RoundRooms\01.RoundA\01.EnterRoom\01.Level">
-      <UniqueIdentifier>{9b2a8afc-166e-4da1-aa62-b06b598c5f6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\04.RoundRooms\01.RoundA\01.EnterRoom\02.Actor">
-      <UniqueIdentifier>{4201a697-f1f9-41c0-a152-b25f3b0715ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.SelectPlayer">
-      <UniqueIdentifier>{9156b127-563b-4de5-bfc8-e6382cc36366}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.SelectPlayer\01.Level">
-      <UniqueIdentifier>{7a6ba7b7-f12e-4163-8b2f-3c8f143e9115}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.SelectPlayer\02.Actor">
-      <UniqueIdentifier>{45c35635-5f48-4e48-8c7f-b26f419cf21c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Level &amp; Actor\01.CommonActors\01.TextLine">
       <UniqueIdentifier>{9dad718b-a627-4176-a49c-ac4fa8c3328d}</UniqueIdentifier>
     </Filter>
@@ -139,6 +157,90 @@
     </Filter>
     <Filter Include="03.Level &amp; Actor\01.CommonActors\02.BackGround">
       <UniqueIdentifier>{da3d92fe-3e52-4e63-b069-b0441e4252cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\01.Opening">
+      <UniqueIdentifier>{147292d0-ec7d-40f3-bb8b-9771d293fd35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\01.Opening\01.Level">
+      <UniqueIdentifier>{d8a0f27e-e74f-4971-8405-56685793e499}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms">
+      <UniqueIdentifier>{5c821fb1-13a1-40bd-a931-06f862407f7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA">
+      <UniqueIdentifier>{bdfec7d0-2626-4662-83b7-fca0484fdb93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom">
+      <UniqueIdentifier>{03dbe607-9aa5-4f4a-8a4f-3af6ef2b75bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\01.Level">
+      <UniqueIdentifier>{9b2a8afc-166e-4da1-aa62-b06b598c5f6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\02.Actor">
+      <UniqueIdentifier>{4201a697-f1f9-41c0-a152-b25f3b0715ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\02.RoundA-1">
+      <UniqueIdentifier>{7005c689-d7b0-481d-9761-1b2f58be7019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\03.RoundA-2">
+      <UniqueIdentifier>{02c3e57f-bb0c-4321-bdb9-c5cbf7bdd71d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\04.RoundA-3">
+      <UniqueIdentifier>{3fdb5ad5-fcef-4245-b5c1-e157ae755176}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\02.SelectPlayer">
+      <UniqueIdentifier>{9156b127-563b-4de5-bfc8-e6382cc36366}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\02.SelectPlayer\01.Level">
+      <UniqueIdentifier>{7a6ba7b7-f12e-4163-8b2f-3c8f143e9115}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter">
+      <UniqueIdentifier>{33ee9987-54a7-4f9c-ade4-73fe4c350a65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter\01.Level">
+      <UniqueIdentifier>{dfce2361-8e4a-4c1a-bb57-7799126208ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor">
+      <UniqueIdentifier>{54753890-3d73-4cc0-9632-e2534fab3b23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound">
+      <UniqueIdentifier>{2afc7455-37eb-46cb-95f1-33b58903f644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound\01.Level">
+      <UniqueIdentifier>{f1827d62-02d4-4f55-89bf-91ba26e146bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor">
+      <UniqueIdentifier>{f33cad01-611e-45e1-b4e0-0de876a6825e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\01.Opening\02.Actor">
+      <UniqueIdentifier>{7eca4a62-389b-45ae-9953-5c90fb96b92b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\01.Opening\02.Actor\02.Monster">
+      <UniqueIdentifier>{6c058190-9ec7-4c95-9a0a-181e485217fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\01.Opening\02.Actor\01.Player">
+      <UniqueIdentifier>{c28eaebb-75da-42f5-97ec-2a6926a147fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\01.Opening\02.Actor\03.SpotLight">
+      <UniqueIdentifier>{465a6616-737d-4b36-94bb-3b3cf19b8f89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\01.BackGround">
+      <UniqueIdentifier>{f65585bd-6db8-4ca3-986f-b2cc7fe28c8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\03.Charactors">
+      <UniqueIdentifier>{c7a9b2e9-5571-49d3-8cfc-b8d192c87e04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\02.TopText">
+      <UniqueIdentifier>{00390744-b580-4f1a-add9-2785d6f6b4dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\04.Icon">
+      <UniqueIdentifier>{d8c98ab1-d896-4e19-b9c0-4661b0121a50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\01.Charater">
+      <UniqueIdentifier>{39b68066-e3fa-4fd7-bc37-cedacbbe2d01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.CBubbles">
+      <UniqueIdentifier>{53cf7d5d-12cf-4a12-99f3-f23133c1e3ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

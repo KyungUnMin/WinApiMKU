@@ -1,23 +1,9 @@
 #include "TextLine.h"
-#include <GameEnginePlatform/GameEngineImage.h>
+#include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineDirectory.h>
+#include <GameEnginePlatform/GameEngineImage.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
-#include <GameEngineBase/GameEngineDebug.h>
-
-std::vector<TextLine*> TextLine::Texts;
-
-//return TextLine::Texts[_Index]
-TextLine* TextLine::GetText(int _Index)
-{
-	if (TextLine::Texts.size() <= _Index)
-	{
-		MsgAssert("Texts의 인덱스 범위를 넘어서 접근하였습니다");
-		return nullptr;
-	}
-
-	return Texts[_Index];
-}
 
 TextLine::TextLine()
 {
@@ -54,9 +40,6 @@ void TextLine::Start()
 	{
 		Image->Cut({ 2, 14 }, { 571,114 }, 63, 10);
 	}
-	
-	//외부에서 접근할 수 있게 static 자료구조에 등록
-	Texts.push_back(this);
 }
 
 
@@ -66,7 +49,12 @@ void TextLine::Render(float _DeltaTime)
 	//글씨 크기의 절반만큼 렌더링 시작 위치 이동
 	float4 StartPos = GetPos();
 	StartPos.y -= static_cast<float>(Scale.hiy());
-	StartPos.x -= static_cast<float>(Scale.hix() * StringValue.size());
+
+	//단 왼쪽 정렬일땐 현재위치(GetPos)에서 부터 Text를 출력
+	if (false == LeftAlign)
+	{
+		StartPos.x -= static_cast<float>(Scale.hix() * StringValue.size());
+	}
 
 	//' 또는 " 의 방향을 매칭시키기 위한 bool값
 	bool isVisited[2] = { false, false };

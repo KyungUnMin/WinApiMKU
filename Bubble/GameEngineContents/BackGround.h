@@ -10,10 +10,6 @@ class GameEngineRender;
 class BackGround : public GameEngineActor
 {
 public:
-	static const std::vector<BackGround*>& GetBackGrounds(const std::string_view& _LevelName);
-
-	static BackGround* Find(const std::string_view& _LevelName, size_t _Index);
-
 	BackGround();
 	~BackGround();
 
@@ -22,20 +18,24 @@ public:
 	BackGround& operator=(const BackGround& _Other) = delete;
 	BackGround& operator=(const BackGround&& _Other) noexcept = delete;
 
-	void Reserve(int _Capacity)
+	void RenderReserve(int _Capacity)
 	{
-		Renders.reserve(_Capacity);
+		BackGroundRenders.reserve(_Capacity);
 	}
+
+	template <typename RenderOrderEnum>
+	GameEngineRender* CreateRender(const std::string_view& _Image, RenderOrderEnum _Order)
+	{
+		return CreateRender(_Image, static_cast<int>(_Order));
+	}
+
+	GameEngineRender* CreateRender(const std::string_view& _Image, int _Order = 0);
 
 	GameEngineRender* GetRender(size_t _Index);
 
 protected:
 
 private:
-	static std::map<std::string, std::vector<BackGround*>> BackGrounds;
-	
-	std::vector<GameEngineRender*> Renders;
-
-
+	std::vector<GameEngineRender*> BackGroundRenders;
 };
 

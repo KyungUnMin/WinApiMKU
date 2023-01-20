@@ -19,7 +19,7 @@ void RoundA_Enter_BackGround::Start()
 	BackGrounds.resize(4, nullptr);
 	for (size_t i = 0; i < BackGrounds.size(); ++i)
 	{
-		BackGrounds[i] = CreateRender("Enter.bmp", RenderOrder::BackGround);
+		BackGrounds[i] = CreateRender("Enter.bmp", INT32_MIN);
 		BackGrounds[i]->SetPosition(GameEngineWindow::GetScreenSize().half());
 		BackGrounds[i]->SetScale(GameEngineWindow::GetScreenSize() * 1.04f);
 		BackGrounds[i]->SetFrame(ImageIndex[i]);
