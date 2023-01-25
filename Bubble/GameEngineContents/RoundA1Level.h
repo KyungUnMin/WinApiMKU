@@ -1,7 +1,15 @@
 #pragma once
-#include <GameEngineCore/GameEngineLevel.h>
+#include "RoundLevelBase.h"
 
-class RoundA1Level : public GameEngineLevel
+enum class RoundA1_RenderOrder
+{
+	BackGround,
+	Obstacle,
+};
+
+class BackGround;
+
+class RoundA1Level : public RoundLevelBase
 {
 public:
 	RoundA1Level();
@@ -15,10 +23,11 @@ public:
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
-	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
-	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override{}
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override{}
 
 private:
-
+	void ResourceLoad();
+	void CreateBackGround();
 };
 

@@ -23,6 +23,16 @@ public:
 		BackGroundRenders.reserve(_Capacity);
 	}
 
+	size_t GetRenderSize()
+	{
+		return BackGroundRenders.size();
+	}
+
+	size_t GetRenderCapacity()
+	{
+		return BackGroundRenders.capacity();
+	}
+
 	template <typename RenderOrderEnum>
 	GameEngineRender* CreateRender(const std::string_view& _Image, RenderOrderEnum _Order)
 	{

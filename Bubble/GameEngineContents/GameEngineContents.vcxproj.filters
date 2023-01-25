@@ -17,7 +17,7 @@
       <Filter>03.Level &amp; Actor\01.CommonActors\03.BubbleMissle</Filter>
     </ClInclude>
     <ClInclude Include="RoundAEnterLevel.h">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\01.Level</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="SelectPlayerLevel.h">
       <Filter>03.Level &amp; Actor\02.Title\02.SelectPlayer\01.Level</Filter>
@@ -62,19 +62,22 @@
       <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.Bubbles</Filter>
     </ClInclude>
     <ClInclude Include="RoundA_Enter_Sky.h">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\02.Actor\01.Sky</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\02.Actor\01.Sky</Filter>
     </ClInclude>
     <ClInclude Include="NextDoor.h">
       <Filter>03.Level &amp; Actor\01.CommonActors\04.NextDoor</Filter>
     </ClInclude>
     <ClInclude Include="RoundA1Level.h">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\02.RoundA-1\01.Level</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\02.RoundA-1\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="RoundA2Level.h">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\03.RoundA-2\01.Level</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\03.RoundA-2\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="RoundA3Level.h">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\04.RoundA-3\01.Level</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\04.RoundA-3\01.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundLevelBase.h">
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundLevelBase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -91,7 +94,7 @@
       <Filter>03.Level &amp; Actor\01.CommonActors\03.BubbleMissle</Filter>
     </ClCompile>
     <ClCompile Include="RoundAEnterLevel.cpp">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\01.Level</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="SelectPlayerLevel.cpp">
       <Filter>03.Level &amp; Actor\02.Title\02.SelectPlayer\01.Level</Filter>
@@ -133,19 +136,22 @@
       <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.Bubbles</Filter>
     </ClCompile>
     <ClCompile Include="RoundA_Enter_Sky.cpp">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\02.Actor\01.Sky</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\02.Actor\01.Sky</Filter>
     </ClCompile>
     <ClCompile Include="NextDoor.cpp">
       <Filter>03.Level &amp; Actor\01.CommonActors\04.NextDoor</Filter>
     </ClCompile>
     <ClCompile Include="RoundA1Level.cpp">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\02.RoundA-1\01.Level</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\02.RoundA-1\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="RoundA2Level.cpp">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\03.RoundA-2\01.Level</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\03.RoundA-2\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="RoundA3Level.cpp">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\04.RoundA-3\01.Level</Filter>
+      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\04.RoundA-3\01.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundLevelBase.cpp">
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundLevelBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,27 +196,6 @@
     </Filter>
     <Filter Include="03.Level &amp; Actor\03.RoundRooms">
       <UniqueIdentifier>{5c821fb1-13a1-40bd-a931-06f862407f7c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA">
-      <UniqueIdentifier>{bdfec7d0-2626-4662-83b7-fca0484fdb93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom">
-      <UniqueIdentifier>{03dbe607-9aa5-4f4a-8a4f-3af6ef2b75bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\01.Level">
-      <UniqueIdentifier>{9b2a8afc-166e-4da1-aa62-b06b598c5f6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\02.Actor">
-      <UniqueIdentifier>{4201a697-f1f9-41c0-a152-b25f3b0715ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\02.RoundA-1">
-      <UniqueIdentifier>{7005c689-d7b0-481d-9761-1b2f58be7019}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\03.RoundA-2">
-      <UniqueIdentifier>{02c3e57f-bb0c-4321-bdb9-c5cbf7bdd71d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\04.RoundA-3">
-      <UniqueIdentifier>{3fdb5ad5-fcef-4245-b5c1-e157ae755176}</UniqueIdentifier>
     </Filter>
     <Filter Include="03.Level &amp; Actor\02.Title\02.SelectPlayer">
       <UniqueIdentifier>{9156b127-563b-4de5-bfc8-e6382cc36366}</UniqueIdentifier>
@@ -266,19 +251,43 @@
     <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.Bubbles">
       <UniqueIdentifier>{53cf7d5d-12cf-4a12-99f3-f23133c1e3ca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\02.Actor\01.Sky">
-      <UniqueIdentifier>{46c9d8e4-e379-425c-8710-3450135bbdb0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Level &amp; Actor\01.CommonActors\04.NextDoor">
       <UniqueIdentifier>{6d359e88-a5d0-4c89-9f7f-f0f5031fe69b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\02.RoundA-1\01.Level">
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundLevelBase">
+      <UniqueIdentifier>{9f37735c-64f2-498f-b053-cd47b1109acc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA">
+      <UniqueIdentifier>{bdfec7d0-2626-4662-83b7-fca0484fdb93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom">
+      <UniqueIdentifier>{03dbe607-9aa5-4f4a-8a4f-3af6ef2b75bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\01.Level">
+      <UniqueIdentifier>{9b2a8afc-166e-4da1-aa62-b06b598c5f6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\02.Actor">
+      <UniqueIdentifier>{4201a697-f1f9-41c0-a152-b25f3b0715ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\02.Actor\01.Sky">
+      <UniqueIdentifier>{46c9d8e4-e379-425c-8710-3450135bbdb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\02.RoundA-1">
+      <UniqueIdentifier>{7005c689-d7b0-481d-9761-1b2f58be7019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\02.RoundA-1\01.Level">
       <UniqueIdentifier>{c42e8246-d5a9-4b39-abb3-487aae6c4091}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\03.RoundA-2\01.Level">
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\03.RoundA-2">
+      <UniqueIdentifier>{02c3e57f-bb0c-4321-bdb9-c5cbf7bdd71d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\03.RoundA-2\01.Level">
       <UniqueIdentifier>{6220ee48-d70f-40b0-87ed-ce07377cc0b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\04.RoundA-3\01.Level">
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\04.RoundA-3">
+      <UniqueIdentifier>{3fdb5ad5-fcef-4245-b5c1-e157ae755176}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\04.RoundA-3\01.Level">
       <UniqueIdentifier>{d2aeb647-a466-46c2-9dc7-85d58b961873}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

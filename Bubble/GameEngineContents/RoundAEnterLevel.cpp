@@ -37,7 +37,7 @@ void RoundAEnterLevel::ResourceLoad()
 	Dir.Move("Image");
 	Dir.Move("RoundRooms");
 	Dir.Move("RoundA");
-	Dir.Move("RoundA_Enter");
+	Dir.Move("RoundAEnter");
 
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("RoundA_Enter_Sky.bmp"));
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("RoundA_Enter_BackGround.bmp"));

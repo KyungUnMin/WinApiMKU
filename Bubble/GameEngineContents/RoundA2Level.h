@@ -1,7 +1,7 @@
 #pragma once
-#include <GameEngineCore/GameEngineLevel.h>
+#include "RoundLevelBase.h"
 
-class RoundA2Level : public GameEngineLevel
+class RoundA2Level : public RoundLevelBase
 {
 public:
 	RoundA2Level();

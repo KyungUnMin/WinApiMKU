@@ -12,6 +12,8 @@ RoundA2Level::~RoundA2Level()
 
 void RoundA2Level::Loading()
 {
+	
+
 }
 
 void RoundA2Level::Update(float _DeltaTime)

@@ -136,6 +136,11 @@ public:
 		Return.z = z * _Other.z;
 		return Return;
 	}
+
+	bool operator == (const float4& _Other) const
+	{
+		return (x == _Other.x) && (y == _Other.y) && (z == _Other.z);
+	}
 	
 	bool operator<(const float4& _Other) const
 	{

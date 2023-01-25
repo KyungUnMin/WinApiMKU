@@ -33,11 +33,12 @@ void BubbleCore::Start()
 	CreateLevel<EnterRoundLevel>("EnterRoundLevel");
 
 	CreateLevel<RoundAEnterLevel>("RoundAEnterLevel");
+
 	CreateLevel<RoundA1Level>("RoundA1Level");
 	CreateLevel<RoundA2Level>("RoundA2Level");
 	CreateLevel<RoundA3Level>("RoundA3Level");
 
-	ChangeLevel("OpeningLevel");
+	ChangeLevel("RoundA1Level");
 }
 
 void BubbleCore::Update()
