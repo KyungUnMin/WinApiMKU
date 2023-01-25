@@ -3,6 +3,7 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include "BubbleCore.h"
 #include "BackGround.h"
 
 RoundA2Level::RoundA2Level()
@@ -81,8 +82,7 @@ void RoundA2Level::Update(float _DeltaTime)
 	if (false == RoundLevelBase::IsLastStage())
 		return;
 
-	//다음 씬으로 이동
-	int a = 10;
+	BubbleCore::GetInst().ChangeLevel("EndingLevel");
 }
 
 void RoundA2Level::LevelChangeEnd(GameEngineLevel* _NextLevel)

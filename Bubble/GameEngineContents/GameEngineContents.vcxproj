@@ -165,6 +165,10 @@
     </ClInclude>
     <ClInclude Include="ContentsDefine.h" />
     <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="EndingLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EnterRoundBubble.h">
       <SubType>
       </SubType>
@@ -260,6 +264,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="BubbleMissle.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EndingLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>

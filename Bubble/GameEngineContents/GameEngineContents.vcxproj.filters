@@ -79,6 +79,9 @@
     <ClInclude Include="RoundLevelBase.h">
       <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundLevelBase</Filter>
     </ClInclude>
+    <ClInclude Include="EndingLevel.h">
+      <Filter>03.Level &amp; Actor\04.Ending\01.Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BubbleCore.cpp">
@@ -152,6 +155,9 @@
     </ClCompile>
     <ClCompile Include="RoundLevelBase.cpp">
       <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundLevelBase</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingLevel.cpp">
+      <Filter>03.Level &amp; Actor\04.Ending\01.Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +295,12 @@
     </Filter>
     <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\04.RoundA-3\01.Level">
       <UniqueIdentifier>{d2aeb647-a466-46c2-9dc7-85d58b961873}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\04.Ending">
+      <UniqueIdentifier>{682f3dae-41a6-4d9a-886e-a55c72678834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\04.Ending\01.Level">
+      <UniqueIdentifier>{cdb8c1ae-7cc1-4647-bc98-1f8aa4034fe4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

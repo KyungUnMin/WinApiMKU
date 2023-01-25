@@ -8,6 +8,7 @@
 #include "RoundA1Level.h"
 #include "RoundA2Level.h"
 #include "RoundA3Level.h"
+#include "EndingLevel.h"
 
 //ΩÃ±€≈Ê ∞¥√º
 BubbleCore BubbleCore::Core;
@@ -37,6 +38,8 @@ void BubbleCore::Start()
 	CreateLevel<RoundA1Level>("RoundA1Level");
 	CreateLevel<RoundA2Level>("RoundA2Level");
 	CreateLevel<RoundA3Level>("RoundA3Level");
+
+	CreateLevel<EndingLevel>("EndingLevel");
 
 	ChangeLevel("OpeningLevel");
 }
