@@ -6,6 +6,7 @@ enum class EnterRoundRenderOrder
 {
 	BackGround,
 	Bubble,
+	PlayerBubble,
 	Player,
 };
 
@@ -32,7 +33,6 @@ protected:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 private:
-	GameEngineObject*			Bubbles		= nullptr;
 	EnterRoundCharater*			Player			= nullptr;
 	float									AccTime		= 0.f;
 

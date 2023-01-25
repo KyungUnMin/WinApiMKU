@@ -62,8 +62,8 @@ void OpeningMonster::Start()
 {
 	float4 ScreenSize = GameEngineWindow::GetScreenSize();
 
-	const float4 pivot = { 125.f, 220.f };
-	const float4 nextStep = { 70.f, 95.f };
+	const float4 pivot = { 125.f, 225.f };
+	const float4 nextStep = { 70.f, 100.f };
 
 	float4 MonPos[4][11];
 	for (size_t y = 0; y < 4; ++y)

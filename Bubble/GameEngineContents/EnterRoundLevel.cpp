@@ -61,8 +61,7 @@ void EnterRoundLevel::Loading()
 	Player = CreateActor<EnterRoundCharater>();
 	Player->SetPos({ 100.f, 200.f});
 
-	Bubbles = CreateActor<EnterRoundBubble>();
-	Bubbles->Off();
+	CreateActor<EnterRoundBubble>();
 
 	CreateText();
 }
@@ -92,26 +91,17 @@ void EnterRoundLevel::Update(float _DeltaTime)
 
 	if (10.f < AccTime)
 	{
-		EnterRoundBubble* B = dynamic_cast<EnterRoundBubble*>(Bubbles);
-		BubbleCore::GetInst().ChangeLevel("RoundA_Enter");
+		BubbleCore::GetInst().ChangeLevel("RoundAEnterLevel");
 	}
 }
 
 void EnterRoundLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	if (nullptr != Bubbles)
-	{
-		Bubbles->Off();
-	}
+
 }
 
 void EnterRoundLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	if (nullptr != Bubbles)
-	{
-		Bubbles->On();
-	}
-
 	//디버깅용으로 이 레벨부터 시작했을땐 이전레벨이 존재하지 않음
 	//임시로 기본캐릭터 지정
 	if (nullptr == _PrevLevel)

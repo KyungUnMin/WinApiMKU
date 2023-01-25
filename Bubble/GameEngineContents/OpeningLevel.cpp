@@ -14,7 +14,7 @@
 
 const float	OpeningLevel::CompanyLogoOffTime		= 3.f;
 const float	OpeningLevel::SpotLightOutTime				= 7.f;
-const float	OpeningLevel::SpotLightStopTime			= 8.f;
+const float	OpeningLevel::SpotLightStopTime			= 9.f;
 const float	OpeningLevel::SpotLightOffTime				= 10.f;
 const float	OpeningLevel::BackCurtainUpStartTime	= 12.f;
 const float	OpeningLevel::GameLogoOnTime				= 15.f;

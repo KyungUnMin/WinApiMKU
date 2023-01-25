@@ -16,7 +16,7 @@
     <ClInclude Include="BubbleMissle.h">
       <Filter>03.Level &amp; Actor\01.CommonActors\03.BubbleMissle</Filter>
     </ClInclude>
-    <ClInclude Include="RoundA_Enter.h">
+    <ClInclude Include="RoundAEnterLevel.h">
       <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="SelectPlayerLevel.h">
@@ -61,6 +61,21 @@
     <ClInclude Include="EnterRoundBubble.h">
       <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.Bubbles</Filter>
     </ClInclude>
+    <ClInclude Include="RoundA_Enter_Sky.h">
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\02.Actor\01.Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="NextDoor.h">
+      <Filter>03.Level &amp; Actor\01.CommonActors\04.NextDoor</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundA1Level.h">
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\02.RoundA-1\01.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundA2Level.h">
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\03.RoundA-2\01.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundA3Level.h">
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\04.RoundA-3\01.Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BubbleCore.cpp">
@@ -75,7 +90,7 @@
     <ClCompile Include="BubbleMissle.cpp">
       <Filter>03.Level &amp; Actor\01.CommonActors\03.BubbleMissle</Filter>
     </ClCompile>
-    <ClCompile Include="RoundA_Enter.cpp">
+    <ClCompile Include="RoundAEnterLevel.cpp">
       <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="SelectPlayerLevel.cpp">
@@ -116,6 +131,21 @@
     </ClCompile>
     <ClCompile Include="EnterRoundBubble.cpp">
       <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.Bubbles</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundA_Enter_Sky.cpp">
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\02.Actor\01.Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="NextDoor.cpp">
+      <Filter>03.Level &amp; Actor\01.CommonActors\04.NextDoor</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundA1Level.cpp">
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\02.RoundA-1\01.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundA2Level.cpp">
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\03.RoundA-2\01.Level</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundA3Level.cpp">
+      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundA\04.RoundA-3\01.Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +265,21 @@
     </Filter>
     <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.Bubbles">
       <UniqueIdentifier>{53cf7d5d-12cf-4a12-99f3-f23133c1e3ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\01.EnterRoom\02.Actor\01.Sky">
+      <UniqueIdentifier>{46c9d8e4-e379-425c-8710-3450135bbdb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\01.CommonActors\04.NextDoor">
+      <UniqueIdentifier>{6d359e88-a5d0-4c89-9f7f-f0f5031fe69b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\02.RoundA-1\01.Level">
+      <UniqueIdentifier>{c42e8246-d5a9-4b39-abb3-487aae6c4091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\03.RoundA-2\01.Level">
+      <UniqueIdentifier>{6220ee48-d70f-40b0-87ed-ce07377cc0b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundA\04.RoundA-3\01.Level">
+      <UniqueIdentifier>{d2aeb647-a466-46c2-9dc7-85d58b961873}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

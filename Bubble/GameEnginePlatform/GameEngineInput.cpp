@@ -137,7 +137,7 @@ void GameEngineInput::CreateKey(const std::string_view& _Name, int _Key)
 		MsgAssert("이미 존재하는 이름의 키를 또 만들려고 했습니다.");
 	}
 
-	_Key = toupper(_Key);
+	//_Key = toupper(_Key);
 	Keys[UpperName].Key = _Key;
 }
 

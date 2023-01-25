@@ -129,8 +129,8 @@ GameEngineCore::~GameEngineCore()
 void GameEngineCore::CoreStart(HINSTANCE _instance)
 {
 	//윈도우 생성
-	GameEngineWindow::WindowCreate(_instance, "MainWindow", { 320 * 3, 224 * 3 }, { 0, 0 });
-	//GameEngineWindow::WindowCreate(_instance, "MainWindow", { 256 * 3, 224 * 3 }, { 0, 0 });
+	//GameEngineWindow::WindowCreate(_instance, "MainWindow", { 320 * 3, 224 * 3 }, { 0, 0 });
+	GameEngineWindow::WindowCreate(_instance, "MainWindow", { 320.f * 3.f, 240.f * 3.f }, { 0, 0 });
 
 	//이 안에서 무한 루프로 게임이 진행(콜백방식)
 	GameEngineWindow::WindowLoop(GameEngineCore::GlobalStart, GameEngineCore::GlobalUpdate, GameEngineCore::GlobalEnd);

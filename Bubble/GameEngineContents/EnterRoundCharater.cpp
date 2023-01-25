@@ -18,7 +18,7 @@ EnterRoundCharater::~EnterRoundCharater()
 
 void EnterRoundCharater::Start()
 {
-	BubbleRender = CreateRender("EnterRoundLevel_ClearBubble.bmp", EnterRoundRenderOrder::Bubble);
+	BubbleRender = CreateRender("EnterRoundLevel_ClearBubble.bmp", EnterRoundRenderOrder::PlayerBubble);
 	BubbleRender->CreateAnimation
 	({
 		.AnimationName = "Bubble",
@@ -54,8 +54,8 @@ void EnterRoundCharater::Update(float _DeltaTime)
 	Radian += AddRadian * _DeltaTime;
 
 	float4 Offset;
-	Offset.x = cos(Radian * GameEngineMath::PIE) * Radius;
-	Offset.y = -sin(Radian * GameEngineMath::PIE) * Radius;
+	Offset.x = static_cast<float>(cos(Radian * GameEngineMath::PIE) * Radius);
+	Offset.y = static_cast<float>(-sin(Radian * GameEngineMath::PIE) * Radius);
 
 	PlayerRender->SetPosition(GetPos() + Offset);
 	BubbleRender->SetPosition(PlayerRender->GetPosition() + float4::Up * 50.f);

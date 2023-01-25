@@ -20,10 +20,10 @@ const std::string SelectCharacterLevel::Description[5][4] =
 
 const float4 SelectCharacterLevel::CharPos[4] =
 {
-	{100.f, 400.f},
-	{320.f, 400.f},
-	{570.f, 400.f},
-	{800.f, 400.f},
+	{100.f, 500.f},
+	{320.f, 500.f},
+	{570.f, 500.f},
+	{800.f, 500.f},
 };
 
 bool		SelectCharacterLevel::Selected			= false;
@@ -89,7 +89,7 @@ void SelectCharacterLevel::CreateCharacters()
 
 void SelectCharacterLevel::CreateDescriptionText()
 {
-	float4 StartPos = float4{ 40.f, 450.f };
+	float4 StartPos = float4{ 40.f, 550.f };
 	float4 Gap = float4{ 240.f, 30.f };
 	float4 NowPos = StartPos;
 

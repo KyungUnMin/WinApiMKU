@@ -4,7 +4,10 @@
 #include "SelectPlayerLevel.h"
 #include "SelectCharacterLevel.h"
 #include "EnterRoundLevel.h"
-#include "RoundA_Enter.h"
+#include "RoundAEnterLevel.h"
+#include "RoundA1Level.h"
+#include "RoundA2Level.h"
+#include "RoundA3Level.h"
 
 //ΩÃ±€≈Ê ∞¥√º
 BubbleCore BubbleCore::Core;
@@ -29,7 +32,10 @@ void BubbleCore::Start()
 	CreateLevel<SelectCharacterLevel>("SelectCharacterLevel");
 	CreateLevel<EnterRoundLevel>("EnterRoundLevel");
 
-	CreateLevel<RoundA_Enter>("RoundA_Enter");
+	CreateLevel<RoundAEnterLevel>("RoundAEnterLevel");
+	CreateLevel<RoundA1Level>("RoundA1Level");
+	CreateLevel<RoundA2Level>("RoundA2Level");
+	CreateLevel<RoundA3Level>("RoundA3Level");
 
 	ChangeLevel("OpeningLevel");
 }

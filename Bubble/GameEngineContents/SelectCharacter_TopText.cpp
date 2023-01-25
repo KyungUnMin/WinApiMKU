@@ -22,7 +22,7 @@ SelectCharacter_TopText::~SelectCharacter_TopText()
 void SelectCharacter_TopText::Start()
 {
 	float4 ScreenSize = GameEngineWindow::GetScreenSize();
-	SetPos({ScreenSize.x / 2.f, 60.f});
+	SetPos({ScreenSize.x / 2.f, 140.f});
 
 	int CutIndex = 3;
 	for (size_t i = 0; i < 12; ++i)
