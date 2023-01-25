@@ -1,7 +1,14 @@
 #pragma once
-#include <GameEngineCore/GameEngineLevel.h>
+#include "RoundLevelBase.h"
 
-class RoundA3Level : public GameEngineLevel
+enum class RoundA3_RenderOrder
+{
+	BackGround,
+	Obstacle,
+
+};
+
+class RoundA3Level : public RoundLevelBase
 {
 public:
 	RoundA3Level();
@@ -21,5 +28,8 @@ protected:
 
 private:
 
+
+	void ResourceLoad();
+	void CreateBackGround();
 };
 
