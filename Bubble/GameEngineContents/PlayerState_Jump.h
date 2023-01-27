@@ -1,6 +1,8 @@
 #pragma once
 #include "PlayerStateBase.h"
 
+class RoundLevelBase;
+
 class PlayerState_Jump : public PlayerStateBase
 {
 public:
@@ -15,9 +17,13 @@ public:
 	void Start(PlayerCharacterType _CharacterType) override;
 	void Update(float _DeltaTime) override;
 
+	void EnterState() override;
+
 protected:
 
 private:
-
+	const float					AirMoveSpeed	= 150.f;
+	const float					JumpAcc			= 300.f;
+	RoundLevelBase*		RoundLevel		= nullptr;
 };
 

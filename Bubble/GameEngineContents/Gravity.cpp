@@ -33,28 +33,40 @@ void Gravity::Start()
 
 void Gravity::Update(float _DeltaTime)
 {
+	float NowGravityAcc = MovableOwner->GetGravityAcc();
+
 	float4 NowPos = GetOwner()->GetPos();
-	float4 NextPos = NowPos + float4::Down;
-	if (true == RoundLevel->IsBlockPos(NextPos))
+	float4 DownPos = NowPos + float4::Down;
+
+	//아래로 떨어지는 경우(양수)
+	if (0.f <= NowGravityAcc)
 	{
-		MovableOwner->SetGravityAcc(0.f);
-		return;
+		//내 바로 밑이 바닥이라면
+		if (true == RoundLevel->IsBlockPos(DownPos))
+		{
+			//가속도 0
+			MovableOwner->SetGravityAcc(0.f);
+			return;
+		}
 	}
 
+	//위로 올라가는 경우(음수)
+	else
+	{
+		//내 바로 밑이 바닥이고 내 위치는 바닥이 아닐때만
+		if (true == RoundLevel->IsBlockPos(DownPos) && false == RoundLevel->IsBlockPos(NowPos))
+		{
+			//가속도 0
+			MovableOwner->SetGravityAcc(0.f);
+			return;
+		}
+	}
+
+	//중력 가속도 더하기
 	MovableOwner->SetMoveGravityAcc(GravityCoef * _DeltaTime);
-	GetOwner()->SetMove(float4::Down * MovableOwner->GetGravityAcc() * _DeltaTime);
+
+	//중력가속도에 따른 값만큼 이동(float4::Down을 Up으로 바꾸면 계산이 덜 복잡할 것 같다)
+	GetOwner()->SetMove(float4::Down * NowGravityAcc * _DeltaTime);
+
+	//여기서 땅에 파묻힌 경우 예외처리 해야 할 수 도 있음
 }
-
-//점프가 여기 있으면 안됨
-//따로 PlayerState에서 만들어 줄것
-
-//void Gravity::Jump(float _JumpAcc)
-//{
-//	float4 BelowPos = GetOwner()->GetPos() + float4::Down;
-//
-//	//공중에 있는 경우
-//	if (false == RoundLevel->IsBlockPos(BelowPos))
-//		return;
-//
-//	MovableOwner->SetGravityAcc(_JumpAcc);
-//}

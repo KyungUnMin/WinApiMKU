@@ -44,6 +44,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_포트폴리오", "_포트폴리오", "{B137A83B-B302-4704-9BE7-67874BCC0DD8}"
 	ProjectSection(SolutionItems) = preProject
 		Doc.txt = Doc.txt
+		플레이어 FSM.txt = 플레이어 FSM.txt
 	EndProjectSection
 EndProject
 Global

@@ -24,7 +24,5 @@ private:
 	RoundLevelBase*		RoundLevel		= nullptr;
 
 	const float					MoveSpeed		= 250.f;
-	const float					AirMoveSpeed	= 50.f;
-	const float					ColliderScale	= 30.f;
 };
 

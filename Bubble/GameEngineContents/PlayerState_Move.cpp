@@ -50,7 +50,7 @@ void PlayerState_Move::Start(PlayerCharacterType _CharacterType)
 	});
 
 	const std::string StartDir = GetPlayer()->GetDirStr();
-	GetRender()->ChangeAnimation(StartDir + "Move");
+	GetRender()->ChangeAnimation(StartDir + GetAniName());
 	GetRender()->Off();
 
 
@@ -65,31 +65,36 @@ void PlayerState_Move::Start(PlayerCharacterType _CharacterType)
 
 void PlayerState_Move::Update(float _DeltaTime)
 {
-	if (true == GetPlayer()->IsDirChanged())
+	PlayerStateBase::Update(_DeltaTime);
+
+	float4 NowPos = GetPlayer()->GetPos();
+
+	//공중에 있는 경우
+	if (false == RoundLevel->IsBlockPos(NowPos + float4::Down))
 	{
-		const std::string NowDir = GetPlayer()->GetDirStr();
-		GetRender()->ChangeAnimation(NowDir + "Move");
+		GetOwner()->ChangeState(PlayerStateType::Falling);
+		return;
 	}
 
-	if (GameEngineInput::IsUp(PlayerLeft) || GameEngineInput::IsUp(PlayerRight))
+	//점프하는 경우
+	if (true == GameEngineInput::IsDown(PlayerJump))
+	{
+		GetOwner()->ChangeState(PlayerStateType::Jump);
+		return;
+	}
+
+	//방향키 뗀 경우
+	if (GameEngineInput::IsFree(PlayerLeft) && GameEngineInput::IsFree(PlayerRight))
 	{
 		GetOwner()->ChangeState(PlayerStateType::Idle);
 		return;
 	}
+	
 
-	float4 NowPos = GetPlayer()->GetPos();
 	float4 MoveDir = GetPlayer()->GetDirVec();
-
-	if (true == RoundLevel->IsBlockPos(NowPos + MoveDir * ColliderScale))
+	if (true == RoundLevel->IsBlockPos(NowPos + MoveDir * MovableActor::ColliderRange))
 		return;
 
-	if (true == RoundLevel->IsBlockPos(NowPos + float4::Down))
-	{
-		GetPlayer()->SetMove(MoveDir * MoveSpeed * _DeltaTime);
-	}
-	else
-	{
-		GetPlayer()->SetMove(MoveDir * AirMoveSpeed * _DeltaTime);
-	}
+	GetPlayer()->SetMove(MoveDir * MoveSpeed * _DeltaTime);
 }
 

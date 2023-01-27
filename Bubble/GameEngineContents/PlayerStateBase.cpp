@@ -65,6 +65,15 @@ void PlayerStateBase::EnterState()
 	Render->On();
 }
 
+void PlayerStateBase::Update(float _DeltaTime)
+{
+	if (false == GetPlayer()->IsDirChanged())
+		return;
+
+	const std::string NowDir = GetPlayer()->GetDirStr();
+	GetRender()->ChangeAnimation(NowDir + GetAniName());
+}
+
 void PlayerStateBase::ExitState()
 {
 	Render->Off();

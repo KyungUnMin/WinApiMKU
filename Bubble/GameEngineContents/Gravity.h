@@ -26,6 +26,6 @@ private:
 	RoundLevelBase*		RoundLevel			= nullptr;
 	MovableActor*			MovableOwner	= nullptr;
 
-	const float					GravityCoef		= 200.0f;
+	const float					GravityCoef		= 300.0f;
 };
 

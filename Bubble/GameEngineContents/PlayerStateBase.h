@@ -36,7 +36,7 @@ public:
 
 	virtual void Start(PlayerCharacterType _CharacterType) = 0;
 	virtual void EnterState();
-	virtual void Update(float _DeltaTime) = 0;
+	virtual void Update(float _DeltaTime);
 	virtual void ExitState();
 
 protected:

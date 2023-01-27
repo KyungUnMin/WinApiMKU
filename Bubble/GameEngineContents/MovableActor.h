@@ -8,6 +8,7 @@ class ComponentBase;
 class MovableActor : public GameEngineActor
 {
 public:
+	static const float ColliderRange;
 	static const std::string LeftStr;
 	static const std::string RightStr;
 

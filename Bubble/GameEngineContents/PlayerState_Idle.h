@@ -2,6 +2,7 @@
 #include "PlayerStateBase.h"
 
 class GameEngineRender;
+class RoundLevelBase;
 
 class PlayerState_Idle : public PlayerStateBase
 {
@@ -20,6 +21,6 @@ public:
 protected:
 
 private:
-
+	RoundLevelBase* RoundLevel = nullptr;
 };
 
