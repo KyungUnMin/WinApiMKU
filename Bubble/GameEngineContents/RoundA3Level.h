@@ -1,13 +1,6 @@
 #pragma once
 #include "RoundLevelBase.h"
 
-enum class RoundA3_RenderOrder
-{
-	BackGround,
-	Obstacle,
-
-};
-
 class RoundA3Level : public RoundLevelBase
 {
 public:
@@ -22,7 +15,6 @@ public:
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
-	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 

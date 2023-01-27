@@ -4,6 +4,10 @@
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "BackGround.h"
+#include "Player_Bubblun.h"
+#include "Player_Bobblun.h"
+#include "Player_Kululun.h"
+#include "Player_Cororon.h"
 
 RoundLevelBase::RoundLevelBase()
 {
@@ -99,6 +103,8 @@ bool RoundLevelBase::MoveToNextStage()
 	return true;
 }
 
+
+
 void RoundLevelBase::Update(float _DeltaTime)
 {
 	if (false == IsMoving)
@@ -125,6 +131,9 @@ void RoundLevelBase::Update(float _DeltaTime)
 	IsMoving = false;
 }
 
+
+
+
 bool RoundLevelBase::IsLastStage()
 {
 	return (NowIndex + 1) == Obstacles->GetRenderSize();
@@ -132,7 +141,43 @@ bool RoundLevelBase::IsLastStage()
 
 bool RoundLevelBase::IsBlockPos(const float4& _Pos)
 {
-	float4 Offset = ColliderImage->GetCutData(NowIndex).GetStartPos();
+	float4 Offset = ColliderImage->GetCutData(static_cast<int>(NowIndex)).GetStartPos();
 	DWORD Color = ColliderImage->GetPixelColor(Offset + _Pos, RGB(0, 0, 0));
 	return Color == RGB(0,0,0);
+}
+
+
+void RoundLevelBase::CreatePlayer(PlayerCharacterType _Type)
+{
+	SelectedCharacter = _Type;
+
+	Player = nullptr;
+
+	switch (_Type)
+	{
+	case PlayerCharacterType::BUBBLUN:
+		Player = CreateActor<Player_Bubblun>();
+		break;
+	case PlayerCharacterType::BOBBLUN:
+		Player = CreateActor <Player_Bobblun>();
+		break;
+	case PlayerCharacterType::KULULUN:
+		Player = CreateActor <Player_Kululun>();
+		break;
+	case PlayerCharacterType::CORORON:
+		Player = CreateActor <Player_Cororon>();
+		break;
+	}
+
+}
+
+void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	RoundLevelBase* NextRoundLevel = dynamic_cast<RoundLevelBase*>(_NextLevel);
+
+	//다음레벨이 Round레벨이 아닌경우
+	if (nullptr == NextRoundLevel)
+		return;
+
+	NextRoundLevel->CreatePlayer(SelectedCharacter);
 }

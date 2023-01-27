@@ -17,8 +17,7 @@ public:
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
-	void LevelChangeEnd(GameEngineLevel* _NextLevel) override{}
-	void LevelChangeStart(GameEngineLevel* _PrevLevel) override{}
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 private:
 	void ResourceLoad();

@@ -237,7 +237,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Player_Bobblun.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Player_Bubblun.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Player_Cororon.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Player_Kululun.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -383,7 +395,19 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Player_Bobblun.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Player_Bubblun.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Player_Cororon.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Player_Kululun.cpp">
       <SubType>
       </SubType>
     </ClCompile>

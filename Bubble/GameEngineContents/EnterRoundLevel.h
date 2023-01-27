@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <GameEngineCore/GameEngineLevel.h>
+#include "ContentsEnum.h"
 
 enum class EnterRoundRenderOrder
 {
@@ -33,8 +34,9 @@ protected:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 private:
-	EnterRoundCharater*			Player			= nullptr;
-	float									AccTime		= 0.f;
+	PlayerCharacterType			SelectedCharater	= PlayerCharacterType::BUBBLUN;
+	EnterRoundCharater*			Player						= nullptr;
+	float									AccTime					= 0.f;
 
 	static const std::string		TextString[3];
 	static const float				TextHeight[3];

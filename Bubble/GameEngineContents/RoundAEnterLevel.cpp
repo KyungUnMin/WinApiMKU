@@ -9,8 +9,7 @@
 #include "BackGround.h"
 #include "RoundA_Enter_Sky.h"
 #include "NextDoor.h"
-
-#include "Player_Bubblun.h"
+#include "PlayerBase.h"
 
 RoundAEnterLevel::RoundAEnterLevel()
 {
@@ -33,9 +32,6 @@ void RoundAEnterLevel::Loading()
 
 	CreateActor<RoundA_Enter_Sky>();
 	CreateDoor();
-
-	Player_Bubblun* Player = CreateActor<Player_Bubblun>();
-	Player->SetPos(GameEngineWindow::GetScreenSize().half());
 	
 	CreteaKey();
 }
@@ -119,15 +115,13 @@ void RoundAEnterLevel::Update(float _DeltaTime)
 	}
 }
 
-void RoundAEnterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
+
+void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
 
-
-}
-
-void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
-{
-
+	CreatePlayer(GetSelectCharacter());
+	GetPlayer()->SetPos({ScreenSize.x * 0.2f, ScreenSize.y * 0.8f});
 }
 
 

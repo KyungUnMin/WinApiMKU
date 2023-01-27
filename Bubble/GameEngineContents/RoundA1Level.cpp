@@ -7,8 +7,7 @@
 #include "BubbleCore.h"
 #include "BackGround.h"
 #include "ContentsEnum.h"
-
-#include "Player_Bubblun.h"
+#include "PlayerBase.h"
 
 
 RoundA1Level::RoundA1Level()
@@ -28,9 +27,6 @@ void RoundA1Level::Loading()
 
 	CreateBackGround();
 	RoundLevelBase::CreateObstacle(float4::Down, RoundRenderOrder::Obstacle1);
-
-	Player_Bubblun* Player = CreateActor<Player_Bubblun>();
-	Player->SetPos({100.f, 100.f});
 
 	GameEngineInput::CreateKey("A1_NextStage", VK_F1);
 }
@@ -83,5 +79,13 @@ void RoundA1Level::Update(float _DeltaTime)
 		return;
 
 	BubbleCore::GetInst().ChangeLevel("EndingLevel");
+}
+
+void RoundA1Level::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+
+	PlayerBase* Player = GetPlayer();
+	Player->SetPos({ ScreenSize.x * 0.2f, ScreenSize.y * 0.8f });
 }
 

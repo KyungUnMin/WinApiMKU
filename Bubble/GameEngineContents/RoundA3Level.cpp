@@ -7,6 +7,8 @@
 #include <GameEngineCore/GameEngineRender.h>
 #include "BubbleCore.h"
 #include "BackGround.h"
+#include "ContentsEnum.h"
+#include "PlayerBase.h"
 
 RoundA3Level::RoundA3Level()
 {
@@ -24,14 +26,16 @@ void RoundA3Level::Loading()
 	RoundLevelBase::LoadObstacle("A3", 6, 1);
 
 	CreateBackGround();
-	RoundLevelBase::CreateObstacle(float4::Right, RoundA3_RenderOrder::Obstacle);
+	RoundLevelBase::CreateObstacle(float4::Right, RoundRenderOrder::Obstacle1);
+
+	GameEngineInput::CreateKey("A3_NextStage", VK_F1);
 }
 
 void RoundA3Level::Update(float _DeltaTime)
 {
 	RoundLevelBase::Update(_DeltaTime);
 
-	if (false == GameEngineInput::IsAnyKey())
+	if (false == GameEngineInput::IsDown("A3_NextStage"))
 		return;
 
 	if (true == RoundLevelBase::MoveToNextStage())
@@ -43,13 +47,8 @@ void RoundA3Level::Update(float _DeltaTime)
 	BubbleCore::GetInst().ChangeLevel("EndingLevel");
 }
 
-void RoundA3Level::LevelChangeEnd(GameEngineLevel* _NextLevel)
-{
-}
 
-void RoundA3Level::LevelChangeStart(GameEngineLevel* _PrevLevel)
-{
-}
+
 
 
 void RoundA3Level::ResourceLoad()
@@ -71,7 +70,7 @@ void RoundA3Level::CreateBackGround()
 	BackGround* Back = CreateActor<BackGround>();
 	Back->RenderReserve(2);
 
-	GameEngineRender* Render1 = Back->CreateRender("RoundA3_BackGround1.bmp", RoundA3_RenderOrder::BackGround);
+	GameEngineRender* Render1 = Back->CreateRender("RoundA3_BackGround1.bmp", RoundRenderOrder::BackGround1);
 
 	Render1->CreateAnimation
 	({
@@ -82,7 +81,7 @@ void RoundA3Level::CreateBackGround()
 	});
 	Render1->ChangeAnimation("Idle");
 
-	GameEngineRender* Render2 = Back->CreateRender("RoundA3_BackGround2.bmp", RoundA3_RenderOrder::BackGround);
+	GameEngineRender* Render2 = Back->CreateRender("RoundA3_BackGround2.bmp", RoundRenderOrder::BackGround2);
 	Render2->CreateAnimation
 	({
 		.AnimationName = "Idle",
@@ -91,4 +90,12 @@ void RoundA3Level::CreateBackGround()
 		.FrameIndex = std::vector<int> { 0, 1, 2, 1 }
 	});
 	Render2->ChangeAnimation("Idle");
+}
+
+void RoundA3Level::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+
+	PlayerBase* Player = GetPlayer();
+	Player->SetPos({ ScreenSize.x * 0.2f, ScreenSize.y * 0.8f });
 }

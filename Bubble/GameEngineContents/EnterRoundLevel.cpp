@@ -11,6 +11,8 @@
 #include "EnterRoundBubble.h"
 #include "BubbleCore.h"
 
+#include "RoundLevelBase.h"
+
 
 const std::string		EnterRoundLevel::TextString[3] =
 {
@@ -97,7 +99,14 @@ void EnterRoundLevel::Update(float _DeltaTime)
 
 void EnterRoundLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	RoundLevelBase* RoundLevel = dynamic_cast<RoundLevelBase*>(_NextLevel);
+	if (nullptr == RoundLevel)
+	{
+		MsgAssert("다음레벨은 RoundLevelBase를 상속받지 않았습니다");
+		return;
+	}
 
+	RoundLevel->SetCharacter(SelectedCharater);
 }
 
 void EnterRoundLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
@@ -112,5 +121,6 @@ void EnterRoundLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 	int CharacterIndex = dynamic_cast<SelectCharacterLevel*>(_PrevLevel)->GetSelectCharacter();
 	Player->SetCharacter(CharacterIndex);
+	SelectedCharater = static_cast<PlayerCharacterType>(CharacterIndex);
 }
 
