@@ -52,42 +52,10 @@ void PlayerBase::Start()
 
 void PlayerBase::Update(float _DeltaTime)
 {
-	CheckDirection();
+	MovableActor::Update(_DeltaTime);
 
 	for (auto Pair : Components)
 	{
 		Pair.second->Update(_DeltaTime);
 	}
-}
-
-void PlayerBase::CheckDirection()
-{
-	DirChanged = false;
-
-	if (true == GameEngineInput::IsPress("PlayerLeft"))
-	{
-		DirChanged = (Dir != "Left_");
-		Dir = "Left_";
-	}
-	else if (true == GameEngineInput::IsPress("PlayerRight"))
-	{
-		DirChanged = (Dir != "Right_");
-		Dir = "Right_";
-	}
-}
-
-
-const float4& PlayerBase::GetDirVec()
-{
-	if ("Right_" == Dir)
-	{
-		return float4::Right;
-	}
-	else if ("Left_" == Dir)
-	{
-		return float4::Left;
-	}
-
-	MsgAssert("방향은 왼쪽과 오른쪽으로만 존재합니다\n 현재 방향은 잘못되었습니다");
-	return float4::Zero;
 }

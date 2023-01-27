@@ -132,6 +132,7 @@ bool RoundLevelBase::IsLastStage()
 
 bool RoundLevelBase::IsBlockPos(const float4& _Pos)
 {
-	DWORD Color = ColliderImage->GetPixelColor(_Pos, RGB(0, 0, 0));
+	float4 Offset = ColliderImage->GetCutData(NowIndex).GetStartPos();
+	DWORD Color = ColliderImage->GetPixelColor(Offset + _Pos, RGB(0, 0, 0));
 	return Color == RGB(0,0,0);
 }

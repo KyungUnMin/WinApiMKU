@@ -17,22 +17,21 @@ PlayerState_Move::~PlayerState_Move()
 
 }
 
-void PlayerState_Move::Init(PlayerCharacterType _CharacterType)
+void PlayerState_Move::Start(PlayerCharacterType _CharacterType)
 {
-	static bool IsInit = false;
-	if (false == IsInit)
+	static bool IsLoad = false;
+	if (false == IsLoad)
 	{
 		ResourceLoad("Left_PlayerMove.bmp", 5, 4);
 		ResourceLoad("Right_PlayerMove.bmp", 5, 4);
-		IsInit = true;
+		IsLoad = true;
 	}
 
-	PlayerRender = GetPlayer()->CreateRender(RoundRenderOrder::Player1);
-	PlayerRender->SetScale(PlayerStateBase::PlayerScale);
+	InitState("Move");
 
 	int AniIndex = static_cast<int>(_CharacterType) * 5;
 
-	PlayerRender->CreateAnimation
+	GetRender()->CreateAnimation
 	({
 		.AnimationName = "Left_Move",
 		.ImageName = "Left_PlayerMove.bmp",
@@ -41,7 +40,7 @@ void PlayerState_Move::Init(PlayerCharacterType _CharacterType)
 		.InterTimer = 0.1f,
 	});
 
-	PlayerRender->CreateAnimation
+	GetRender()->CreateAnimation
 	({
 		.AnimationName = "Right_Move",
 		.ImageName = "Right_PlayerMove.bmp",
@@ -51,8 +50,10 @@ void PlayerState_Move::Init(PlayerCharacterType _CharacterType)
 	});
 
 	const std::string StartDir = GetPlayer()->GetDirStr();
-	PlayerRender->ChangeAnimation(StartDir + "Move");
-	PlayerRender->Off();
+	GetRender()->ChangeAnimation(StartDir + "Move");
+	GetRender()->Off();
+
+
 
 	RoundLevel = dynamic_cast<RoundLevelBase*>(GetPlayer()->GetLevel());
 	if (nullptr == RoundLevel)
@@ -61,19 +62,13 @@ void PlayerState_Move::Init(PlayerCharacterType _CharacterType)
 	}
 }
 
-void PlayerState_Move::EnterState()
-{
-	const std::string StartDir = GetPlayer()->GetDirStr();
-	PlayerRender->ChangeAnimation(StartDir + "Move");
-	PlayerRender->On();
-}
 
 void PlayerState_Move::Update(float _DeltaTime)
 {
 	if (true == GetPlayer()->IsDirChanged())
 	{
 		const std::string NowDir = GetPlayer()->GetDirStr();
-		PlayerRender->ChangeAnimation(NowDir + "Move");
+		GetRender()->ChangeAnimation(NowDir + "Move");
 	}
 
 	if (GameEngineInput::IsUp(PlayerLeft) || GameEngineInput::IsUp(PlayerRight))
@@ -98,7 +93,3 @@ void PlayerState_Move::Update(float _DeltaTime)
 	}
 }
 
-void PlayerState_Move::ExitState()
-{
-	PlayerRender->Off();
-}

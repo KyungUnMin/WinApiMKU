@@ -15,14 +15,12 @@ public:
 	PlayerState_Move& operator=(const PlayerState_Move& _Other) = delete;
 	PlayerState_Move& operator=(const PlayerState_Move&& _Other) noexcept = delete;
 
-protected:
-	void Init(PlayerCharacterType _CharacterType) override;
-	void EnterState() override;
+	void Start(PlayerCharacterType _CharacterType) override;
 	void Update(float _DeltaTime) override;
-	void ExitState() override;
+
+protected:
 
 private:
-	GameEngineRender*	PlayerRender	= nullptr;
 	RoundLevelBase*		RoundLevel		= nullptr;
 
 	const float					MoveSpeed		= 250.f;

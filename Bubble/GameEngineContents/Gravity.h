@@ -2,6 +2,7 @@
 #include "ComponentBase.h"
 
 class RoundLevelBase;
+class MovableActor;
 
 class Gravity : public ComponentBase
 {
@@ -14,14 +15,17 @@ public:
 	Gravity& operator=(const Gravity& _Other) = delete;
 	Gravity& operator=(const Gravity&& _Other) noexcept = delete;
 
+	//void Jump(float _JumpAcc);
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 private:
-	RoundLevelBase*		RoundLevel		= nullptr;
-	float							Acceleration	= 0.0f;
-	const float					GravityAcc		= 200.0f;
+	//맵 충돌을 확인하기 위한 포인터
+	RoundLevelBase*		RoundLevel			= nullptr;
+	MovableActor*			MovableOwner	= nullptr;
 
+	const float					GravityCoef		= 200.0f;
 };
 

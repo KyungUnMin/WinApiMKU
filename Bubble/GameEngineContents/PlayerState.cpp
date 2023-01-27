@@ -4,6 +4,8 @@
 #include "PlayerBase.h"
 #include "PlayerState_Idle.h"
 #include "PlayerState_Move.h"
+#include "PlayerState_Falling.h"
+#include "PlayerState_Jump.h"
 
 
 PlayerState::PlayerState()
@@ -31,9 +33,9 @@ void PlayerState::Init(PlayerCharacterType _CharacterType)
 	for (size_t i = 0; i < States.size(); ++i)
 	{
 		CreateState(static_cast<PlayerStateType>(i));
-		States[i]->Owner = this;
-		States[i]->Player = dynamic_cast<PlayerBase*>(GetOwner());
-		States[i]->Init(_CharacterType);
+		States[i]->SetOwner(this);
+		States[i]->SetPlayer(dynamic_cast<PlayerBase*>(GetOwner()));
+		States[i]->Start(_CharacterType);
 	}
 
 	CurState = GetState(PlayerStateType::Idle);
@@ -52,6 +54,16 @@ void PlayerState::CreateState(PlayerStateType _StateType)
 		break;
 	case PlayerStateType::Move:
 		States[Index] = new PlayerState_Move;
+		break;
+	case PlayerStateType::Falling:
+		States[Index] = new PlayerState_Falling;
+		break;
+	case PlayerStateType::Jump:
+		States[Index] = new PlayerState_Jump;
+		break;
+
+	default:
+		MsgAssert("해당 State를 아직 PlayerState와 연결시켜 주지 않았습니다");
 		break;
 	}
 }

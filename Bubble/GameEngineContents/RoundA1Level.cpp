@@ -8,6 +8,8 @@
 #include "BackGround.h"
 #include "ContentsEnum.h"
 
+#include "Player_Bubblun.h"
+
 
 RoundA1Level::RoundA1Level()
 {
@@ -26,7 +28,11 @@ void RoundA1Level::Loading()
 
 	CreateBackGround();
 	RoundLevelBase::CreateObstacle(float4::Down, RoundRenderOrder::Obstacle1);
-	//RoundLevelBase::CreateObstacle(float4::Right, RoundA1_RenderOrder::Obstacle);
+
+	Player_Bubblun* Player = CreateActor<Player_Bubblun>();
+	Player->SetPos({100.f, 100.f});
+
+	GameEngineInput::CreateKey("A1_NextStage", VK_F1);
 }
 
 void RoundA1Level::ResourceLoad()
@@ -66,10 +72,10 @@ void RoundA1Level::CreateBackGround()
 void RoundA1Level::Update(float _DeltaTime)
 {
 	RoundLevelBase::Update(_DeltaTime);
-
-	if (false == GameEngineInput::IsAnyKey())
-		return;
 	
+	if (false == GameEngineInput::IsDown("A1_NextStage"))
+		return;
+
 	if (true == RoundLevelBase::MoveToNextStage())
 		return;
 

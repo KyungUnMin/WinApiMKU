@@ -14,14 +14,12 @@ public:
 	PlayerState_Idle& operator=(const PlayerState_Idle& _Other) = delete;
 	PlayerState_Idle& operator=(const PlayerState_Idle&& _Other) noexcept = delete;
 
+	void Start(PlayerCharacterType _CharacterType) override;
+	void Update(float _DeltaTime) override;
 
 protected:
-	void Init(PlayerCharacterType _CharacterType) override;
-	void EnterState() override;
-	void Update(float _DeltaTime) override;
-	void ExitState() override;
 
 private:
-	GameEngineRender* PlayerRender = nullptr;
+
 };
 

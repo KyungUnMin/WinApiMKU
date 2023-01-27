@@ -1,11 +1,11 @@
 #pragma once
 #include <map>
-#include <GameEngineCore/GameEngineActor.h>
+#include "MovableActor.h"
 #include "ContentsEnum.h"
 
 class ComponentBase;
 
-class PlayerBase : public GameEngineActor
+class PlayerBase : public MovableActor
 {
 public:
 	PlayerBase();
@@ -15,18 +15,6 @@ public:
 	PlayerBase(PlayerBase&& _Other) noexcept = delete;
 	PlayerBase& operator=(const PlayerBase& _Other) = delete;
 	PlayerBase& operator=(const PlayerBase&& _Other) noexcept = delete;
-
-	inline const std::string& GetDirStr()
-	{
-		return Dir;
-	}
-
-	const float4& GetDirVec();
-
-	inline bool IsDirChanged()
-	{
-		return DirChanged;
-	}
 
 	template <typename T>
 	T* GetComponent(ComponentType _Type)
@@ -48,10 +36,5 @@ protected:
 
 private:
 	std::map<ComponentType,ComponentBase*>	Components;
-
-	std::string									Dir					= "Right_";
-	bool												DirChanged		= false;
-
-	void CheckDirection();
 };
 

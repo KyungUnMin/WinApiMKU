@@ -8,6 +8,8 @@ enum class PlayerStateType
 {
 	Idle,
 	Move,
+	Falling,
+	Jump,
 
 	Count,
 };
