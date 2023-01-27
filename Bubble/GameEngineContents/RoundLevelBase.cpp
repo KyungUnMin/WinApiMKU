@@ -151,7 +151,11 @@ void RoundLevelBase::CreatePlayer(PlayerCharacterType _Type)
 {
 	SelectedCharacter = _Type;
 
-	Player = nullptr;
+	if (nullptr != Player)
+	{
+		Player->Death();
+		Player = nullptr;
+	}
 
 	switch (_Type)
 	{

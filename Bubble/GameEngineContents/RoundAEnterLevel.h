@@ -20,7 +20,7 @@ protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
-
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
 	NextDoor*	Door[3]				= { nullptr, nullptr, nullptr };

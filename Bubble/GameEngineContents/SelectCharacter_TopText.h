@@ -14,6 +14,8 @@ public:
 	SelectCharacter_TopText& operator=(const SelectCharacter_TopText& _Other) = delete;
 	SelectCharacter_TopText& operator=(const SelectCharacter_TopText&& _Other) noexcept = delete;
 
+	void Reset();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

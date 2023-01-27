@@ -50,8 +50,9 @@ void SelectCharacterLevel::Loading()
 
 	//대각선으로 움직이는 뒤쪽 배경
 	CreateActor<SelectCharacterBackGround>();
+
 	//상단 글씨
-	CreateActor<SelectCharacter_TopText>();
+	TopText = CreateActor<SelectCharacter_TopText>();
 
 	//선택 아이콘
 	SelectIcon = CreateActor<SelectCharacter_SelectIcon>();
@@ -143,9 +144,23 @@ void SelectCharacterLevel::Update(float _DeltaTime)
 }
 
 
+
+
 //다음 씬에서, 이번 씬에 선택한 캐릭터가 무엇인지 알기위해 사용될 public 함수
 int SelectCharacterLevel::GetSelectCharacter()
 {
 	return SelectIcon->GetCurIndex();
 }
 
+void SelectCharacterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	Selected = false;
+	TopText->Reset();
+
+	for (size_t i = 0; i < 4; ++i)
+	{
+		Characters[i]->Reset();
+	}
+
+	SelectTime = 0.f;
+}

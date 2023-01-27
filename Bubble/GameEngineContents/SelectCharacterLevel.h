@@ -15,6 +15,7 @@ enum class SelectCharacterRenderOrder
 
 class SelectCharacter_Character;
 class SelectCharacter_SelectIcon;
+class SelectCharacter_TopText;
 
 class SelectCharacterLevel : public GameEngineLevel
 {
@@ -36,7 +37,7 @@ public:
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
-	void LevelChangeEnd(GameEngineLevel* _NextLevel) override{}
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 	void LevelChangeStart(GameEngineLevel* _NextLevel) override{}
 
 private:
@@ -47,6 +48,7 @@ private:
 
 	SelectCharacter_Character*	Characters[4]	= { nullptr, nullptr, nullptr, nullptr };
 	SelectCharacter_SelectIcon* SelectIcon		= nullptr;
+	SelectCharacter_TopText*		TopText			= nullptr;
 
 	void ResourceLoad();
 	void CreateCharacters();

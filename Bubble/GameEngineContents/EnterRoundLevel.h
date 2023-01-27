@@ -13,6 +13,7 @@ enum class EnterRoundRenderOrder
 
 class EnterRoundCharater;
 class GameEngineObject;
+class EnterRoundBubble;
 
 class EnterRoundLevel : public GameEngineLevel
 {
@@ -34,6 +35,7 @@ protected:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 private:
+	EnterRoundBubble*			BubbleSpawner		= nullptr;
 	PlayerCharacterType			SelectedCharater	= PlayerCharacterType::BUBBLUN;
 	EnterRoundCharater*			Player						= nullptr;
 	float									AccTime					= 0.f;

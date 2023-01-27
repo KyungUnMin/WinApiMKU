@@ -59,6 +59,8 @@ protected:
 		return Player;
 	}
 
+	void ArrangeStage(float4 _Dir, size_t _CenterIndex);
+
 private:
 	PlayerCharacterType	SelectedCharacter	= PlayerCharacterType::BOBBLUN;
 	PlayerBase*					Player						= nullptr;
@@ -72,6 +74,6 @@ private:
 	float4							MoveDir					= float4::Zero;
 	const float					MoveSpeed				= 500.f;
 
-	void ArrangeStage(float4 _Dir, size_t _CenterIndex);
+	
 };
 

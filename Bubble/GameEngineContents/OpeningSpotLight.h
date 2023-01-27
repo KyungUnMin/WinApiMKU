@@ -26,7 +26,7 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	const float MoveSpeed = 500.f;
+	const float MoveSpeed	= 500.f;
 
 	//현재 스포트 라이트의 방향
 	float4		Dir				= { 1.f, -1.f };

@@ -17,6 +17,7 @@ public:
 
 	void SetCharacterType(PlayerCharacterType _Type);
 	void Select();
+	void Reset();
 
 protected:
 	void Start() override;

@@ -124,14 +124,15 @@ void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	GetPlayer()->SetPos({ScreenSize.x * 0.2f, ScreenSize.y * 0.8f});
 }
 
-
-
-void RoundAEnterLevel::Reset()
+void RoundAEnterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	RoundLevelBase::LevelChangeEnd(_NextLevel);
+
 	for (size_t i = 0; i < 3; ++i)
 	{
 		Door[i]->Reset();
 	}
 
 	SelectedDoor = -1;
+	NextLevelTime = 3.f;
 }

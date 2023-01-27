@@ -15,6 +15,8 @@ public:
 	EnterRoundBubble& operator=(const EnterRoundBubble& _Other) = delete;
 	EnterRoundBubble& operator=(const EnterRoundBubble&& _Other) noexcept = delete;
 
+	void Reset();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

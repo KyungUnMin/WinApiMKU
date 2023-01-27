@@ -63,7 +63,7 @@ void EnterRoundLevel::Loading()
 	Player = CreateActor<EnterRoundCharater>();
 	Player->SetPos({ 100.f, 200.f});
 
-	CreateActor<EnterRoundBubble>();
+	BubbleSpawner = CreateActor<EnterRoundBubble>();
 
 	CreateText();
 }
@@ -99,6 +99,9 @@ void EnterRoundLevel::Update(float _DeltaTime)
 
 void EnterRoundLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	AccTime = 0.f;
+	BubbleSpawner->Reset();
+	
 	RoundLevelBase* RoundLevel = dynamic_cast<RoundLevelBase*>(_NextLevel);
 	if (nullptr == RoundLevel)
 	{

@@ -91,3 +91,12 @@ void SelectCharacter_Character::Select()
 	NameRender->Off();
 	ClearBubble->On();
 }
+
+void SelectCharacter_Character::Reset()
+{
+	CharRender->ChangeAnimation("Idle");
+	NoticeRender->On();
+	NameRender->On();
+	ClearBubble->Off();
+	ClearBubble->SetScale({ 1.f, 1.f });
+}

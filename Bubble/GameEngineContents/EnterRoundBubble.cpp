@@ -18,6 +18,16 @@ EnterRoundBubble::~EnterRoundBubble()
 
 }
 
+void EnterRoundBubble::Reset()
+{
+	for (auto Pair : Bubbles)
+	{
+		Pair.second->Death();
+	}
+
+	Bubbles.clear();
+}
+
 void EnterRoundBubble::Start()
 {
 	SetPos(GameEngineWindow::GetScreenSize().half());

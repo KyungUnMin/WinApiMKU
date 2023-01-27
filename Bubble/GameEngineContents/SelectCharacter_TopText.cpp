@@ -19,6 +19,8 @@ SelectCharacter_TopText::~SelectCharacter_TopText()
 
 }
 
+
+
 void SelectCharacter_TopText::Start()
 {
 	float4 ScreenSize = GameEngineWindow::GetScreenSize();
@@ -72,4 +74,10 @@ void SelectCharacter_TopText::Update(float _DeltaTime)
 	{
 		SelectCharacterLevel::Selected = true;
 	}
+}
+
+void SelectCharacter_TopText::Reset()
+{
+	AccTime = 0.f;
+	NumberFrameIndex = 9;
 }
