@@ -1,12 +1,6 @@
 #pragma once
 #include "RoundLevelBase.h"
 
-enum class RoundA1_RenderOrder
-{
-	BackGround,
-	Obstacle,
-};
-
 class BackGround;
 
 class RoundA1Level : public RoundLevelBase

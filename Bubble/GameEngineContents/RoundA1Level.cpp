@@ -6,6 +6,7 @@
 #include <GameEngineCore/GameEngineRender.h>
 #include "BubbleCore.h"
 #include "BackGround.h"
+#include "ContentsEnum.h"
 
 
 RoundA1Level::RoundA1Level()
@@ -24,7 +25,7 @@ void RoundA1Level::Loading()
 	RoundLevelBase::LoadObstacle("A1", 6, 1);
 
 	CreateBackGround();
-	RoundLevelBase::CreateObstacle(float4::Down, RoundA1_RenderOrder::Obstacle);
+	RoundLevelBase::CreateObstacle(float4::Down, RoundRenderOrder::Obstacle1);
 	//RoundLevelBase::CreateObstacle(float4::Right, RoundA1_RenderOrder::Obstacle);
 }
 
@@ -46,9 +47,9 @@ void RoundA1Level::CreateBackGround()
 {
 	BackGround* Back = CreateActor<BackGround>();
 	Back->RenderReserve(2);
-	Back->CreateRender("RoundA1_BackGround.bmp", RoundA1_RenderOrder::BackGround);
+	Back->CreateRender("RoundA1_BackGround.bmp", RoundRenderOrder::BackGround1);
 
-	GameEngineRender* Effect = Back->CreateRender("RoundA1_BackEffect.bmp", RoundA1_RenderOrder::BackGround);
+	GameEngineRender* Effect = Back->CreateRender("RoundA1_BackEffect.bmp", RoundRenderOrder::BackGround2);
 	Effect->CreateAnimation
 	({
 		.AnimationName = "Idle",
@@ -77,3 +78,4 @@ void RoundA1Level::Update(float _DeltaTime)
 
 	BubbleCore::GetInst().ChangeLevel("EndingLevel");
 }
+

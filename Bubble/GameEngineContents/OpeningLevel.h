@@ -32,7 +32,7 @@ protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
 
-	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override{}
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override {}
 
 private:
@@ -52,5 +52,9 @@ private:
 	static const float		BackCurtainUpStartTime;
 	static const float		GameLogoOnTime;
 	static const float		NextLevelChangeTime;
+
+	void ResourceLoad();
+	void CreateBackGround();
+	void CreateText();
 };
 

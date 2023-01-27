@@ -60,10 +60,10 @@ public:
 
 #pragma endregion
 
-	//CreateRender(int _Order)를 래핑 및 이미지 가져오기
+	//CreateRender(int _Order)를 래핑 및 이미지 가져오기(주로 이미지용)
 	GameEngineRender* CreateRender(const std::string_view& _Image, int _Order = 0);
 
-	//GameEngineRender를 생성 및 연결하고 Level의 RenderList에 등록
+	//GameEngineRender를 생성 및 연결하고 Level의 RenderList에 등록(주로 애니메이션 용)
 	GameEngineRender* CreateRender(int _Order = 0);
 
 

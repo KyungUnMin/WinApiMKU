@@ -1,4 +1,5 @@
 #pragma once
+#include "ContentsEnum.h"
 #include <GameEngineCore/GameEngineActor.h>
 
 class GameEngineRender;
@@ -6,14 +7,6 @@ class GameEngineRender;
 class SelectCharacter_Character : public GameEngineActor
 {
 public:
-	enum class CharacterType
-	{
-		BUBBLUN,
-		BOBBLUN,
-		KULULUN,
-		CORORON,
-	};
-
 	SelectCharacter_Character();
 	~SelectCharacter_Character();
 
@@ -22,7 +15,7 @@ public:
 	SelectCharacter_Character& operator=(const SelectCharacter_Character& _Other) = delete;
 	SelectCharacter_Character& operator=(const SelectCharacter_Character&& _Other) noexcept = delete;
 
-	void SetCharacterType(CharacterType _Type);
+	void SetCharacterType(PlayerCharacterType _Type);
 	void Select();
 
 protected:

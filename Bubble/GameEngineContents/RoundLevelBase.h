@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 
 class BackGround;
+class GameEngineImage;
 
 class RoundLevelBase : public GameEngineLevel
 {
@@ -17,6 +18,8 @@ public:
 	RoundLevelBase& operator=(const RoundLevelBase&& _Other) noexcept = delete;
 
 	bool IsLastStage();
+
+	bool IsBlockPos(const float4& _Pos);
 
 protected:
 	void Loading() override{}
@@ -37,13 +40,14 @@ protected:
 	bool MoveToNextStage();
 
 private:
-	std::string		ImageName	= "Round";
-	BackGround*	Obstacles	= nullptr;
+	std::string					ImageName				= "Round";
+	BackGround*				Obstacles				= nullptr;
+	GameEngineImage*		ColliderImage			= nullptr;
 
-	bool					IsMoving		= false;
-	size_t				NowIndex	= 0;
-	float4				MoveDir		= float4::Zero;
-	const float		MoveSpeed	= 500.f;
+	bool								IsMoving					= false;
+	size_t							NowIndex				= 0;
+	float4							MoveDir					= float4::Zero;
+	const float					MoveSpeed				= 500.f;
 
 	void ArrangeStage(float4 _Dir, size_t _CenterIndex);
 };

@@ -28,6 +28,9 @@ void RoundLevelBase::LoadObstacle(const std::string_view& _RoundName, int _X, in
 	Dir.Move("Obstacle");
 
 	ImageName += _RoundName.data();
+	ColliderImage = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(ImageName + "_Collider.bmp"));
+	ColliderImage->Cut(_X, _Y);
+
 	ImageName += "_Obstacle.bmp";
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(ImageName))->Cut(_X, _Y);
 
@@ -125,4 +128,10 @@ void RoundLevelBase::Update(float _DeltaTime)
 bool RoundLevelBase::IsLastStage()
 {
 	return (NowIndex + 1) == Obstacles->GetRenderSize();
+}
+
+bool RoundLevelBase::IsBlockPos(const float4& _Pos)
+{
+	DWORD Color = ColliderImage->GetPixelColor(_Pos, RGB(0, 0, 0));
+	return Color == RGB(0,0,0);
 }

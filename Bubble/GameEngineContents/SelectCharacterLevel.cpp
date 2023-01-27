@@ -8,7 +8,20 @@
 #include "SelectCharacter_TopText.h"
 #include "SelectCharacter_Character.h"
 #include "SelectCharacter_SelectIcon.h"
+#include "ContentsEnum.h"
 
+
+SelectCharacterLevel::SelectCharacterLevel()
+{
+}
+
+SelectCharacterLevel::~SelectCharacterLevel()
+{
+}
+
+
+
+//TextLine을 통해 설명할 캐릭터 내용
 const std::string SelectCharacterLevel::Description[5][4] =
 {
 	{"THE MOST",		"THE",				"THE ONE",		"THE ONE"},
@@ -18,6 +31,7 @@ const std::string SelectCharacterLevel::Description[5][4] =
 	{"",						"",						"FURTHEST",	"FASTEST"}
 };
 
+//캐릭터의 위치
 const float4 SelectCharacterLevel::CharPos[4] =
 {
 	{100.f, 500.f},
@@ -26,17 +40,24 @@ const float4 SelectCharacterLevel::CharPos[4] =
 	{800.f, 500.f},
 };
 
+//캐릭터 결정 여부
 bool		SelectCharacterLevel::Selected			= false;
 
 
-SelectCharacterLevel::SelectCharacterLevel()
+void SelectCharacterLevel::Loading()
 {
+	ResourceLoad();
 
-}
+	//대각선으로 움직이는 뒤쪽 배경
+	CreateActor<SelectCharacterBackGround>();
+	//상단 글씨
+	CreateActor<SelectCharacter_TopText>();
 
-SelectCharacterLevel::~SelectCharacterLevel()
-{
+	//선택 아이콘
+	SelectIcon = CreateActor<SelectCharacter_SelectIcon>();
 
+	CreateCharacters();
+	CreateDescriptionText();
 }
 
 void SelectCharacterLevel::ResourceLoad()
@@ -64,25 +85,13 @@ void SelectCharacterLevel::ResourceLoad()
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("SelectCharacte_SelectIcon.bmp"));
 }
 
-void SelectCharacterLevel::Loading()
-{
-	ResourceLoad();
-
-
-	CreateActor<SelectCharacterBackGround>();
-	CreateActor<SelectCharacter_TopText>();
-	SelectIcon = CreateActor<SelectCharacter_SelectIcon>();
-
-	CreateCharacters();
-	CreateDescriptionText();
-}
 
 void SelectCharacterLevel::CreateCharacters()
 {
 	for (size_t i = 0; i < 4; ++i)
 	{
 		Characters[i] = CreateActor<SelectCharacter_Character>();
-		Characters[i]->SetCharacterType(static_cast<SelectCharacter_Character::CharacterType>(i));
+		Characters[i]->SetCharacterType(static_cast<PlayerCharacterType>(i));
 		Characters[i]->SetPos(CharPos[i]);
 	}
 }
@@ -119,6 +128,7 @@ void SelectCharacterLevel::CreateDescriptionText()
 
 void SelectCharacterLevel::Update(float _DeltaTime)
 {
+	//캐릭터 선택이 결정되지 않았다면 return
 	if (false == Selected)
 		return;
 
@@ -132,18 +142,10 @@ void SelectCharacterLevel::Update(float _DeltaTime)
 	}
 }
 
-void SelectCharacterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
-{
 
-}
-
-void SelectCharacterLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
-{
-
-}
-
-
+//다음 씬에서, 이번 씬에 선택한 캐릭터가 무엇인지 알기위해 사용될 public 함수
 int SelectCharacterLevel::GetSelectCharacter()
 {
 	return SelectIcon->GetCurIndex();
 }
+

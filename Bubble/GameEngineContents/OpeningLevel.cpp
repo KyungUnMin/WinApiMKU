@@ -12,12 +12,25 @@
 #include "TextLine.h"
 
 
+//처음 회사 로고 Off되는 시간
 const float	OpeningLevel::CompanyLogoOffTime		= 3.f;
+
+//스포트 라이트가 밖으로 나갈수 있는 시간
 const float	OpeningLevel::SpotLightOutTime				= 7.f;
+
+//스포트 라이트가 고정되는 시간
 const float	OpeningLevel::SpotLightStopTime			= 9.f;
+
+//스포트 라이트가 꺼지는 시간
 const float	OpeningLevel::SpotLightOffTime				= 10.f;
+
+//뒤쪽 커튼이 올라가는 시간
 const float	OpeningLevel::BackCurtainUpStartTime	= 12.f;
+
+//게임 로고 켜기는 시간
 const float	OpeningLevel::GameLogoOnTime				= 15.f;
+
+//다음 씬으로 이동하는 시간
 const float	OpeningLevel::NextLevelChangeTime		= 18.f;
 
 
@@ -31,7 +44,25 @@ OpeningLevel::~OpeningLevel()
 
 }
 
+
+
 void OpeningLevel::Loading()
+{
+	ResourceLoad();
+	CreateBackGround();
+
+	GameEngineActor* Player = CreateActor<OpeningPlayer>();
+	CreateActor<OpeningMonster>();
+	
+	OpeningSpotLight* SpotLight = CreateActor<OpeningSpotLight>();
+	SpotLight->SetStopInfo(Player->GetPos(), SpotLightStopTime, SpotLightOutTime);
+	this->SpotLight = SpotLight;
+
+	CreateText();
+}
+
+
+void OpeningLevel::ResourceLoad()
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToDirectory("ContentsResources");
@@ -45,10 +76,15 @@ void OpeningLevel::Loading()
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_BackGround.bmp"));
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_BackCurtain.bmp"));
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_FrontCurtain.bmp"));
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_Monster.bmp")) -> Cut(5, 47);
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_Player.bmp")) -> Cut(7, 1);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_Monster.bmp"))->Cut(5, 47);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_Player.bmp"))->Cut(7, 1);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_GameLogo.bmp"));
+}
 
+
+
+void OpeningLevel::CreateBackGround()
+{
 	BackGround* BackImage = CreateActor<BackGround>();
 	BackImage->RenderReserve(5);
 
@@ -61,14 +97,11 @@ void OpeningLevel::Loading()
 	GameLogo = BackImage->CreateRender("Opening_GameLogo.bmp", OpeningRenderOrder::Logo);
 	GameLogo->Off();
 	GameLogo->SetPosition(GameLogo->GetPosition() + float4::Up * 70.f);
+}
 
-	GameEngineActor* Player = CreateActor<OpeningPlayer>();
-	CreateActor<OpeningMonster>();
-	
-	OpeningSpotLight* SpotLight = CreateActor<OpeningSpotLight>();
-	SpotLight->SetStopInfo(Player->GetPos(), SpotLightStopTime, SpotLightOutTime);
-	this->SpotLight = SpotLight;
 
+void OpeningLevel::CreateText()
+{
 	TextLine* Text = nullptr;
 
 	Text = CreateActor<TextLine>();
@@ -82,6 +115,8 @@ void OpeningLevel::Loading()
 	Text->SetString("ALL RIGHTS RESERVED");
 }
 
+
+
 void OpeningLevel::Update(float _DeltaTime)
 {
 	AccTime += _DeltaTime;
@@ -89,21 +124,24 @@ void OpeningLevel::Update(float _DeltaTime)
 	//if (true == GameEngineInput::IsAnyKey())
 	if (NextLevelChangeTime < AccTime)
 	{
+		//특정 시간이 지나면 다음 씬으로 이동
 		BubbleCore::GetInst().ChangeLevel("SelectPlayerLevel");
 		return;
 	}
 
-
+	//CompanyLogoOffTime 시간이 경과했으면 회사 로고 끄기
 	if (CompanyLogo->IsUpdate() && CompanyLogoOffTime < AccTime)
 	{
 		CompanyLogo->Off();
 	}
 
+	//SpotLightOffTime 시간이 경과했으면 스포트 라이트 끄기
 	if (SpotLight->IsUpdate() && SpotLightOffTime < AccTime)
 	{
 		SpotLight->Off();
 	}
 
+	//BackCurtainUpStartTime 시간이 경과했으면 뒤쪽 커튼 위로 올리기
 	if (BackCurtainUpStartTime < AccTime)
 	{
 		float4 BackCurtainPos = BackCurtain->GetPosition();
@@ -111,13 +149,9 @@ void OpeningLevel::Update(float _DeltaTime)
 		BackCurtain->SetPosition(BackCurtainPos);
 	}
 
+	//GameLogoOnTime 시간이 경과했으면 게임 로고 띄우기
 	if (false == GameLogo->IsUpdate() && GameLogoOnTime < AccTime)
 	{
 		GameLogo->On();
 	}
-}
-
-void OpeningLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
-{
-
 }

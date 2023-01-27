@@ -27,18 +27,19 @@ void BubbleCore::Start()
 {
 	int* FOR_DEBUG = new int;
 
-
+	//타이틀
 	CreateLevel<OpeningLevel>("OpeningLevel");
 	CreateLevel<SelectPlayerLevel>("SelectPlayerLevel");
 	CreateLevel<SelectCharacterLevel>("SelectCharacterLevel");
 	CreateLevel<EnterRoundLevel>("EnterRoundLevel");
 
+	//RoundA
 	CreateLevel<RoundAEnterLevel>("RoundAEnterLevel");
-
 	CreateLevel<RoundA1Level>("RoundA1Level");
 	CreateLevel<RoundA2Level>("RoundA2Level");
 	CreateLevel<RoundA3Level>("RoundA3Level");
 
+	//엔딩화면
 	CreateLevel<EndingLevel>("EndingLevel");
 
 	ChangeLevel("OpeningLevel");

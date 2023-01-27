@@ -15,19 +15,17 @@ public:
 
 protected:
 	void Start() override;
-	void Update(float _DeltaTime) override;
 
 private:
 	class MonInfo
 	{
 	public:
-		std::string				AniName = "";
-		int							AniIndexCount = 0;
-		std::pair<int, int>		PosIndex;
-		float						AniInterval = 1.f;
+		std::string					AniName = "";
+		int								AniIndexCount = 0;
+		std::pair<int, int>			PosIndex;
+		float							AniInterval = 1.f;
 	};
 
-	static const MonInfo								Info[38];
-	float4														MonsterPos[4][11];
+	static const MonInfo		Info[38];
 };
 

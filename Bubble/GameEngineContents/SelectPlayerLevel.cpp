@@ -21,16 +21,7 @@ SelectPlayerLevel::~SelectPlayerLevel()
 
 void SelectPlayerLevel::Loading()
 {
-	GameEngineDirectory Dir;
-	Dir.MoveParentToDirectory("ContentsResources");
-	Dir.Move("ContentsResources");
-	Dir.Move("Image");
-	Dir.Move("TitleLevel");
-	Dir.Move("PlayerSelectLevel");
-
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("PlayerSelect_CheckPattern.bmp"));
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("PlayerSelect_1p.bmp"));
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("PlayerSelect_2p.bmp"));
+	ResourceLoad();
 
 	BackGround* BackGroundImage = CreateActor<BackGround>();
 	BackGroundImage->CreateRender("PlayerSelect_CheckPattern.bmp", SelectPlayerLevelRenderOrder::BackGround);
@@ -50,14 +41,32 @@ void SelectPlayerLevel::Loading()
 	Render2P->SetPosition(float4::Left * 30.f);
 }
 
+void SelectPlayerLevel::ResourceLoad()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Image");
+	Dir.Move("TitleLevel");
+	Dir.Move("PlayerSelectLevel");
+
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("PlayerSelect_CheckPattern.bmp"));
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("PlayerSelect_1p.bmp"));
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("PlayerSelect_2p.bmp"));
+}
+
+
+
 void SelectPlayerLevel::Update(float _DeltaTime)
 {
+	//아무 키라도 누르면 다음 씬으로 이동
 	if (GameEngineInput::IsAnyKey())
 	{
 		BubbleCore::GetInst().ChangeLevel("SelectCharacterLevel");
 		return;
 	}
 
+	//OnOffTime 시간마다 Text가 꺼졌다가 켜진다.
 	accTime += _DeltaTime;
 	if (accTime < 0.5f)
 		return;
@@ -66,14 +75,3 @@ void SelectPlayerLevel::Update(float _DeltaTime)
 	Text->OnOffSwtich();
 }
 
-
-void SelectPlayerLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
-{
-
-}
-
-
-void SelectPlayerLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
-{
-
-}

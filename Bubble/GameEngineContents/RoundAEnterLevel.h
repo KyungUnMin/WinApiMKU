@@ -1,16 +1,9 @@
 #pragma once
-#include <GameEngineCore/GameEngineLevel.h>
-
-enum class RoundAEnter_RenderOrder
-{
-	Sky,
-	BackGround,
-	Door,
-};
+#include "RoundLevelBase.h"
 
 class NextDoor;
 
-class RoundAEnterLevel : public GameEngineLevel
+class RoundAEnterLevel : public RoundLevelBase
 {
 public:
 	RoundAEnterLevel();
@@ -20,6 +13,8 @@ public:
 	RoundAEnterLevel(RoundAEnterLevel&& _Other) noexcept = delete;
 	RoundAEnterLevel& operator=(const RoundAEnterLevel& _Other) = delete;
 	RoundAEnterLevel& operator=(const RoundAEnterLevel&& _Other) noexcept = delete;
+
+	void Reset();
 
 protected:
 	void Loading() override;
@@ -32,6 +27,7 @@ private:
 	NextDoor*	Door[3]				= { nullptr, nullptr, nullptr };
 	int				SelectedDoor		= -1;
 	float			NextLevelTime		= 3.f;
+
 
 	void ResourceLoad();
 	void CreateBackGround();

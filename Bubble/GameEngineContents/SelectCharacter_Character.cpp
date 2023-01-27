@@ -57,7 +57,7 @@ void SelectCharacter_Character::Update(float _DeltaTime)
 }
 
 
-void SelectCharacter_Character::SetCharacterType(CharacterType _Type)
+void SelectCharacter_Character::SetCharacterType(PlayerCharacterType _Type)
 {
 	int CharIndex = static_cast<int>(_Type);
 

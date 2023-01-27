@@ -23,12 +23,16 @@ public:
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
-	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
-	void LevelChangeStart(GameEngineLevel* _NextLevel) override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override{}
+	void LevelChangeStart(GameEngineLevel* _NextLevel) override{}
 
 private:
-	TextLine* Text = nullptr;
+	TextLine*			Text = nullptr;
 
-	float accTime = 0.0f;
+	//OnOffTime 시간마다 Text가 꺼졌다가 켜진다.
+	float				accTime = 0.0f;
+	const float		OnOffTime = 0.5f;
+
+	void ResourceLoad();
 };
 

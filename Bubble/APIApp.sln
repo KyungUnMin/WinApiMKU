@@ -42,6 +42,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngineContents", "GameE
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_포트폴리오", "_포트폴리오", "{B137A83B-B302-4704-9BE7-67874BCC0DD8}"
+	ProjectSection(SolutionItems) = preProject
+		Doc.txt = Doc.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

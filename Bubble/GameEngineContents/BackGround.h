@@ -7,6 +7,7 @@
 
 class GameEngineRender;
 
+//내부에 vector<GameEngineRender*>를 들고있는 클래스
 class BackGround : public GameEngineActor
 {
 public:
@@ -33,14 +34,17 @@ public:
 		return BackGroundRenders.capacity();
 	}
 
+	//GameEngineRender생성(래핑)
 	template <typename RenderOrderEnum>
 	GameEngineRender* CreateRender(const std::string_view& _Image, RenderOrderEnum _Order)
 	{
 		return CreateRender(_Image, static_cast<int>(_Order));
 	}
 
+	//GameEngineRender생성
 	GameEngineRender* CreateRender(const std::string_view& _Image, int _Order = 0);
 
+	//GameEngineRender 인덱스로 받아오기
 	GameEngineRender* GetRender(size_t _Index);
 
 protected:

@@ -5,9 +5,12 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include "BubbleCore.h"
+#include "ContentsEnum.h"
 #include "BackGround.h"
 #include "RoundA_Enter_Sky.h"
 #include "NextDoor.h"
+
+#include "Player_Bubblun.h"
 
 RoundAEnterLevel::RoundAEnterLevel()
 {
@@ -19,12 +22,20 @@ RoundAEnterLevel::~RoundAEnterLevel()
 
 }
 
+
 void RoundAEnterLevel::Loading()
 {
 	ResourceLoad();
+	RoundLevelBase::LoadObstacle("AEnter", 1, 1);
+
 	CreateBackGround();
+	RoundLevelBase::CreateObstacle(float4::Right, RoundRenderOrder::Obstacle1);
+
 	CreateActor<RoundA_Enter_Sky>();
 	CreateDoor();
+
+	Player_Bubblun* Player = CreateActor<Player_Bubblun>();
+	Player->SetPos(GameEngineWindow::GetScreenSize().half());
 	
 	CreteaKey();
 }
@@ -41,15 +52,13 @@ void RoundAEnterLevel::ResourceLoad()
 
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("RoundA_Enter_Sky.bmp"));
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("RoundA_Enter_BackGround.bmp"));
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("RoundA_Enter_Obstacle.bmp"));
 }
 
 void RoundAEnterLevel::CreateBackGround()
 {
 	BackGround* Back = CreateActor<BackGround>();
 	Back->RenderReserve(2);
-	Back->CreateRender("RoundA_Enter_BackGround.bmp", RoundAEnter_RenderOrder::BackGround);
-	Back->CreateRender("RoundA_Enter_Obstacle.bmp", RoundAEnter_RenderOrder::BackGround);
+	Back->CreateRender("RoundA_Enter_BackGround.bmp", RoundRenderOrder::BackGround2);
 }
 
 void RoundAEnterLevel::CreateDoor()
@@ -60,7 +69,7 @@ void RoundAEnterLevel::CreateDoor()
 	for (size_t i = 0; i < 3; ++i)
 	{
 		Door[i] = CreateActor<NextDoor>();
-		Door[i]->SelectDoor(DoorType::Blue, { 200.f, 200.f }, RoundAEnter_RenderOrder::Door);
+		Door[i]->SelectDoor(DoorType::Blue, { 200.f, 200.f }, RoundRenderOrder::Door);
 		Door[i]->SetPos(Pivot + Offset[i]);
 	}
 }
@@ -122,3 +131,13 @@ void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
 }
 
 
+
+void RoundAEnterLevel::Reset()
+{
+	for (size_t i = 0; i < 3; ++i)
+	{
+		Door[i]->Reset();
+	}
+
+	SelectedDoor = -1;
+}

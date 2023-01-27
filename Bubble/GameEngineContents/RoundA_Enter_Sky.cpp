@@ -1,6 +1,7 @@
 #include "RoundA_Enter_Sky.h"
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include "ContentsEnum.h"
 #include "RoundAEnterLevel.h"
 
 RoundA_Enter_Sky::RoundA_Enter_Sky()
@@ -21,7 +22,7 @@ void RoundA_Enter_Sky::Start()
 	PivotX = GetPos().x;
 	Range = ScreenSize.x * 0.25f;
 
-	SkyRender = CreateRender("RoundA_Enter_Sky.bmp", RoundAEnter_RenderOrder::Sky);
+	SkyRender = CreateRender("RoundA_Enter_Sky.bmp", RoundRenderOrder::BackGround1);
 	SkyRender->SetScale({ ScreenSize.x * 1.5f, ScreenSize.y });
 }
 
