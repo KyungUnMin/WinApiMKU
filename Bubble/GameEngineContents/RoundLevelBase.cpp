@@ -180,8 +180,8 @@ void RoundLevelBase::CreatePlayer(PlayerCharacterType _Type)
 
 void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	IsMoving = false;
-
+	IsMoving = false; 
+	
 
 	RoundLevelBase* NextRoundLevel = dynamic_cast<RoundLevelBase*>(_NextLevel);
 

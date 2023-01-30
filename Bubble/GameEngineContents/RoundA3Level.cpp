@@ -103,5 +103,5 @@ void RoundA3Level::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void RoundA3Level::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	RoundLevelBase::LevelChangeEnd(_NextLevel);
-	ArrangeStage(float4::Down, 0);
+	ArrangeStage(float4::Right, 0);
 }

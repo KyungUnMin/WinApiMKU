@@ -26,7 +26,7 @@ void EndingLevel::Loading()
 	Text = CreateActor<TextLine>();
 	Text->SetPos(ScreenSize.half() + float4::Down * 100.f);
 	Text->SetScale({ 20.f, 30.f });
-	Text->SetString("Press \'R\' For Restart", TextLineColor::Red);
+	Text->SetString("Press \'R\' To Restart", TextLineColor::Red);
 
 	GameEngineInput::CreateKey("ReStart", 'R');
 }
