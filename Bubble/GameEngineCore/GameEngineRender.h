@@ -70,6 +70,15 @@ public:
 		Scale = _Scale;
 	}
 
+	//이미지의 상대위치값을 _Position만큼 움직인다
+	inline void SetMove(float4 _Position)
+	{
+		Position += _Position;
+	}
+
+	//렌더링 이미지를 실제 리소스의 이미지 크기로 설정
+	void SetScaleToImage();
+
 	//프레임 직접 지정
 	void SetFrame(int _Frame);
 
@@ -118,7 +127,7 @@ public:
 	void CreateAnimation(const FrameAnimationParameter& _Parameter);
 
 	//애니메이션 변환
-	void ChangeAnimation(const std::string_view& _AnimationName);
+	void ChangeAnimation(const std::string_view& _AnimationName, bool _ForceChange = false);
 
 protected:
 

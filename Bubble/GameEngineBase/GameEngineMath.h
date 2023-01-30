@@ -79,6 +79,29 @@ public:
 		return x == 0.0f && y == 0.0f && z == 0.0f;
 	}
 
+
+	static float4 Lerp(const float4& _Start, const float4& _End, float _Ratio)
+	{
+		//벡터를 삼각형으로 생각해보면 이 식이 왜 성립하는지 알 수 있다,(삼각형의 닮음비)
+		return _Start * (1.0f - _Ratio) + (_End * _Ratio);
+	}
+
+	static float4 LerpClamp(const float4& _Start, const float4& _End, float _Ratio)
+	{
+		if (_Ratio <= 0.f)
+		{
+			_Ratio = 0.f;
+		}
+
+		if (1.f <= _Ratio)
+		{
+			_Ratio = 1.f;
+		}
+
+		return Lerp(_Start, _End, _Ratio);
+	}
+
+
 	float4 operator *(const float _Value) const
 	{
 		float4 Return;
@@ -149,7 +172,7 @@ public:
 
 	float Length()
 	{
-		return static_cast<float>(sqrt(x * x + y * y));
+		return sqrtf(x * x + y * y);
 	}
 
 	float4 Normalize();

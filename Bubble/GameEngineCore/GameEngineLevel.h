@@ -1,6 +1,9 @@
 #pragma once
 #include <list>
 #include <map>
+#include <vector>
+
+#include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineMath.h>
 #include "GameEngineObject.h"
 
@@ -48,6 +51,46 @@ public:
 	float4 GetCameraPos()
 	{
 		return CameraPos;
+	}
+
+
+	//Actors의 특정 그룹에 있는 오브젝트들을 다운캐스팅 하여 배열에 담아 return하는 함수
+	template <typename ConvertType>
+	std::vector<ConvertType*> GetConvertActors(int _GroundIndex)
+	{
+		std::vector<ConvertType*> Result;
+		std::list<GameEngineActor*>& Group = Actors[_GroundIndex];
+		Result.reserve(Group.size());
+
+		for (GameEngineActor* ActorPtr : Group)
+		{
+			ConvertType* ConvertPtr = dynamic_cast<ConvertType*>(ActorPtr);
+
+			if (nullptr == ConvertType)
+			{
+				MsgAssert("컨버트 할 수 없는 변환입니다");
+			}
+
+			Result.push_back(ConvertPtr);
+		}
+
+		return Result;
+	}
+
+
+	//Actors의 특정 그룹에 있는 오브젝트들을 배열에 담아 return하는 함수
+	std::vector<GameEngineActor*> GetActors(int _GroundIndex)
+	{
+		std::vector<GameEngineActor*> Result;
+		std::list<GameEngineActor*>& Group = Actors[_GroundIndex];
+		Result.reserve(Group.size());
+
+		for (GameEngineActor* ActorPtr : Group)
+		{
+			Result.push_back(ActorPtr);
+		}
+
+		return Result;
 	}
 
 protected:

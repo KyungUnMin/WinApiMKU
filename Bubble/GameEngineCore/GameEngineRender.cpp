@@ -30,6 +30,19 @@ void GameEngineRender::SetImage(const std::string_view& _ImageName)
 }
 
 
+//렌더링 이미지를 실제 리소스의 이미지 크기로 설정
+void GameEngineRender::SetScaleToImage()
+{
+	if (nullptr == Image)
+	{
+		MsgAssert("이미지를 세팅하지 않았는데 이미지 크기를 변경하려고 했습니다");
+		return;
+	}
+
+	Scale = Image->GetImageScale();
+}
+
+
 //렌더링 되는 순서 결정 및 Level의 Renders에 등록(Actor에서만 호출)
 void GameEngineRender::SetOrder(int _Order)
 {
@@ -217,7 +230,7 @@ void GameEngineRender::CreateAnimation(const FrameAnimationParameter& _Parameter
 
 
 //애니메이션 변환
-void GameEngineRender::ChangeAnimation(const std::string_view& _AnimationName)
+void GameEngineRender::ChangeAnimation(const std::string_view& _AnimationName, bool _ForceChange)
 {
 	std::string UpperName = GameEngineString::ToUpper(_AnimationName);
 	if (Animation.end() == Animation.find(UpperName))
@@ -226,8 +239,8 @@ void GameEngineRender::ChangeAnimation(const std::string_view& _AnimationName)
 		return;
 	}
 
-	//변경하려는 애니메이션이 현재 애니메이션인 경우
-	if (CurrentAnimation == &Animation[UpperName])
+	//변경하려는 애니메이션이 현재 애니메이션인 경우 강제로 바꾸지 않는 이상 return
+	if (false == _ForceChange && CurrentAnimation == &Animation[UpperName])
 		return;
 
 	//애니메이션 변경
