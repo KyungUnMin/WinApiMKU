@@ -1,7 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
-
+//대각선으로 움직이는 뒤쪽 배경
 class SelectCharacterBackGround : public GameEngineActor
 {
 public:

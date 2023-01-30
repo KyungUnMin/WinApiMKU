@@ -9,6 +9,7 @@ enum class SelectPlayerLevelRenderOrder
 
 class TextLine;
 
+//현재까지는 이미지만 띄우고 아무키라도 누르면 다음 레벨로 넘어감
 class SelectPlayerLevel : public GameEngineLevel
 {
 public:

@@ -35,9 +35,14 @@ protected:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 private:
+	//투명 거품 생성기
 	EnterRoundBubble*			BubbleSpawner		= nullptr;
+
+	//선택한 플레이어 타입
 	PlayerCharacterType			SelectedCharater	= PlayerCharacterType::BUBBLUN;
 	EnterRoundCharater*			Player						= nullptr;
+
+	//이 레벨이 경과한 시간
 	float									AccTime					= 0.f;
 
 	static const std::string		TextString[3];

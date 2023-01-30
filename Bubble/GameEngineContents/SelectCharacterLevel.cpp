@@ -20,7 +20,7 @@ SelectCharacterLevel::~SelectCharacterLevel()
 }
 
 
-
+//(cpp파일에서 데이터를 수정하기 위해 static으로 둠, 그 외의 용도는 없음)
 //TextLine을 통해 설명할 캐릭터 내용
 const std::string SelectCharacterLevel::Description[5][4] =
 {
@@ -46,6 +46,7 @@ bool		SelectCharacterLevel::Selected			= false;
 
 void SelectCharacterLevel::Loading()
 {
+	//리소스를 로드하는 private 함수
 	ResourceLoad();
 
 	//대각선으로 움직이는 뒤쪽 배경
@@ -57,7 +58,10 @@ void SelectCharacterLevel::Loading()
 	//선택 아이콘
 	SelectIcon = CreateActor<SelectCharacter_SelectIcon>();
 
+	//캐릭터 생성
 	CreateCharacters();
+
+	//Text생성
 	CreateDescriptionText();
 }
 
@@ -92,21 +96,26 @@ void SelectCharacterLevel::CreateCharacters()
 	for (size_t i = 0; i < 4; ++i)
 	{
 		Characters[i] = CreateActor<SelectCharacter_Character>();
+
+		//캐릭터타입에 따라 초기화
 		Characters[i]->SetCharacterType(static_cast<PlayerCharacterType>(i));
 		Characters[i]->SetPos(CharPos[i]);
 	}
 }
 
+//캐릭터 밑에 존재하는 캐릭터 설명 문구
 void SelectCharacterLevel::CreateDescriptionText()
 {
 	float4 StartPos = float4{ 40.f, 550.f };
 	float4 Gap = float4{ 240.f, 30.f };
 	float4 NowPos = StartPos;
 
+	//위치 설정
 	for (size_t y = 0; y < 5; ++y)
 	{
 		for (size_t x = 0; x < 4; ++x)
 		{
+			//[4][0] or [4][1]의 경우 글씨를 만들지는 않고 NowPos값만 이동
 			if (Description[y][x].empty())
 			{
 				NowPos.x += Gap.x;
@@ -115,6 +124,8 @@ void SelectCharacterLevel::CreateDescriptionText()
 
 			TextLine* Text = CreateActor<TextLine>();
 			Text->SetString(Description[y][x]);
+
+			//왼쪽 정렬
 			Text->OnLeftAlign();
 			Text->SetScale({ 23.f, 30.f });
 			Text->SetPos(NowPos);
@@ -133,9 +144,12 @@ void SelectCharacterLevel::Update(float _DeltaTime)
 	if (false == Selected)
 		return;
 
+	//SelectIcon에 선택한 값이 존재함(이 부분은 나중에 수정이 필요함)
 	int SelectIndex = SelectIcon->GetCurIndex();
+	//선택한 캐릭터 'Select'애니메이션 재생
 	Characters[SelectIndex]->Select();
 
+	//캐릭터를 선택하고 3초뒤에 레벨 전환
 	SelectTime += _DeltaTime;
 	if (3.f < SelectTime)
 	{
@@ -152,11 +166,16 @@ int SelectCharacterLevel::GetSelectCharacter()
 	return SelectIcon->GetCurIndex();
 }
 
+//이 레벨이 다른 레벨로 전환될 때 정리하고 나가기
 void SelectCharacterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	//선택여부 초기화
 	Selected = false;
+
+	//상단 타이머 초기화
 	TopText->Reset();
 
+	//캐릭터 애니메이션 초기화
 	for (size_t i = 0; i < 4; ++i)
 	{
 		Characters[i]->Reset();

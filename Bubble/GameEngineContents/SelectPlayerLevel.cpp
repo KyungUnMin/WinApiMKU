@@ -21,16 +21,20 @@ SelectPlayerLevel::~SelectPlayerLevel()
 
 void SelectPlayerLevel::Loading()
 {
+	//리소스를 로드하는 private 함수
 	ResourceLoad();
 
+	//BackGround생성
 	BackGround* BackGroundImage = CreateActor<BackGround>();
 	BackGroundImage->CreateRender("PlayerSelect_CheckPattern.bmp", SelectPlayerLevelRenderOrder::BackGround);
 
+	//Text생성
 	Text = CreateActor<TextLine>();
 	Text->SetString("PUSH     OR     SELECT BUTTON", TextLineColor::White);
 	Text->SetPos(GameEngineWindow::GetScreenSize().half());
 	Text->SetScale({ 20.f, 30.f });
 	
+	//1p 2p를 띄우는 Render생성
 	GameEngineRender* Render1P = Text->CreateRender("PlayerSelect_1p.bmp", SelectPlayerLevelRenderOrder::UI);
 	GameEngineRender* Render2P = Text->CreateRender("PlayerSelect_2p.bmp", SelectPlayerLevelRenderOrder::UI);
 
