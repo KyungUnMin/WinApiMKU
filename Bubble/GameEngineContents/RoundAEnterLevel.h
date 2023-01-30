@@ -14,8 +14,6 @@ public:
 	RoundAEnterLevel& operator=(const RoundAEnterLevel& _Other) = delete;
 	RoundAEnterLevel& operator=(const RoundAEnterLevel&& _Other) noexcept = delete;
 
-	void Reset();
-
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;

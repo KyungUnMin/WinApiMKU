@@ -99,3 +99,9 @@ void RoundA3Level::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	PlayerBase* Player = GetPlayer();
 	Player->SetPos({ ScreenSize.x * 0.2f, ScreenSize.y * 0.8f });
 }
+
+void RoundA3Level::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	RoundLevelBase::LevelChangeEnd(_NextLevel);
+	ArrangeStage(float4::Down, 0);
+}

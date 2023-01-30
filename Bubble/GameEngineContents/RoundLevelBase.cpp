@@ -55,7 +55,6 @@ void RoundLevelBase::CreateObstacle(const float4& _ArrangeDir, int _Order)
 		Render->Off();
 	}
 
-	Obstacles->GetRender(NowIndex)->On();
 	ArrangeStage(_ArrangeDir, 0);
 	MoveDir = -(_ArrangeDir);
 }
@@ -83,7 +82,11 @@ void RoundLevelBase::ArrangeStage(float4 _Dir, size_t _CenterIndex)
 		}
 
 		Render->SetPosition(Offset);
+		Render->Off();
 	}
+
+	NowIndex = _CenterIndex;
+	Obstacles->GetRender(NowIndex)->On();
 }
 
 
@@ -118,7 +121,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 		Render->SetPosition(Offset);
 	}
 
-	GameEngineRender* PrevStage = Obstacles->GetRender(NowIndex);
+	//GameEngineRender* PrevStage = Obstacles->GetRender(NowIndex);
 	GameEngineRender* NextStage = Obstacles->GetRender(NowIndex + 1);
 
 	float4 NextOffset = NextStage->GetPosition();
@@ -126,8 +129,8 @@ void RoundLevelBase::Update(float _DeltaTime)
 		return;
 
 	ArrangeStage(-MoveDir, NowIndex + 1);
-	PrevStage->Off();
-	NowIndex = NowIndex + 1;
+	/*PrevStage->Off();
+	NowIndex = NowIndex + 1;*/
 	IsMoving = false;
 }
 
@@ -177,6 +180,9 @@ void RoundLevelBase::CreatePlayer(PlayerCharacterType _Type)
 
 void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	IsMoving = false;
+
+
 	RoundLevelBase* NextRoundLevel = dynamic_cast<RoundLevelBase*>(_NextLevel);
 
 	//다음레벨이 Round레벨이 아닌경우

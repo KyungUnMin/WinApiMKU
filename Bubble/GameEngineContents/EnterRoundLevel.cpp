@@ -60,9 +60,6 @@ void EnterRoundLevel::Loading()
 
 	float4 ScreenSize = GameEngineWindow::GetScreenSize();
 
-	Player = CreateActor<EnterRoundCharater>();
-	Player->SetPos({ 100.f, 200.f});
-
 	BubbleSpawner = CreateActor<EnterRoundBubble>();
 
 	CreateText();
@@ -101,6 +98,7 @@ void EnterRoundLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	AccTime = 0.f;
 	BubbleSpawner->Reset();
+	Player->Death();
 	
 	RoundLevelBase* RoundLevel = dynamic_cast<RoundLevelBase*>(_NextLevel);
 	if (nullptr == RoundLevel)
@@ -114,6 +112,9 @@ void EnterRoundLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 void EnterRoundLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
+	Player = CreateActor<EnterRoundCharater>();
+	Player->SetPos({ 100.f, 200.f });
+	
 	//디버깅용으로 이 레벨부터 시작했을땐 이전레벨이 존재하지 않음
 	//임시로 기본캐릭터 지정
 	if (nullptr == _PrevLevel)
@@ -124,6 +125,7 @@ void EnterRoundLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 	int CharacterIndex = dynamic_cast<SelectCharacterLevel*>(_PrevLevel)->GetSelectCharacter();
 	Player->SetCharacter(CharacterIndex);
+
 	SelectedCharater = static_cast<PlayerCharacterType>(CharacterIndex);
 }
 
