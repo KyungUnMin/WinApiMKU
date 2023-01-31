@@ -124,6 +124,12 @@
     <ClInclude Include="Player_Cororon.h">
       <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\05.Cororon%28분홍%29</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerState_StageMove.h">
+      <Filter>04.Component\02.PlayerState\07.StageMove</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState_Sleep.h">
+      <Filter>04.Component\02.PlayerState\08.Sleep</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BubbleCore.cpp">
@@ -242,6 +248,12 @@
     </ClCompile>
     <ClCompile Include="Player_Cororon.cpp">
       <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\05.Cororon%28분홍%29</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState_StageMove.cpp">
+      <Filter>04.Component\02.PlayerState\07.StageMove</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState_Sleep.cpp">
+      <Filter>04.Component\02.PlayerState\08.Sleep</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -430,6 +442,12 @@
     </Filter>
     <Filter Include="03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\05.Cororon%28분홍%29">
       <UniqueIdentifier>{c445e85a-9318-439e-ada9-f18bf7424eb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Component\02.PlayerState\07.StageMove">
+      <UniqueIdentifier>{852e9de9-e9a7-4048-ae06-84f92eb90ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Component\02.PlayerState\08.Sleep">
+      <UniqueIdentifier>{5c5d1b35-853c-48f2-98c2-9ee46bf92444}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

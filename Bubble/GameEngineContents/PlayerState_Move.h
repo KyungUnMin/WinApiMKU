@@ -2,7 +2,6 @@
 #include "PlayerStateBase.h"
 
 class GameEngineRender;
-class RoundLevelBase;
 
 class PlayerState_Move : public PlayerStateBase
 {
@@ -21,8 +20,6 @@ public:
 protected:
 
 private:
-	RoundLevelBase*		RoundLevel		= nullptr;
-
 	const float					MoveSpeed		= 250.f;
 };
 

@@ -19,6 +19,7 @@ PlayerState_Move::~PlayerState_Move()
 
 void PlayerState_Move::Start(PlayerCharacterType _CharacterType)
 {
+	//딱 한번만 리소스 로드
 	static bool IsLoad = false;
 	if (false == IsLoad)
 	{
@@ -27,10 +28,16 @@ void PlayerState_Move::Start(PlayerCharacterType _CharacterType)
 		IsLoad = true;
 	}
 
-	InitState("Move");
+	//현재 Level과 연결
+	PlayerStateBase::Start(_CharacterType);
 
+	//애니메이션용 Render 생성 및 이름 설정(여기서 Render크기도 설정)
+	SetAniRender("Move");
+
+	//캐릭터 타입
 	int AniIndex = static_cast<int>(_CharacterType) * 5;
 
+	//왼쪽 애니메이션 생성
 	GetRender()->CreateAnimation
 	({
 		.AnimationName = "Left_Move",
@@ -40,6 +47,7 @@ void PlayerState_Move::Start(PlayerCharacterType _CharacterType)
 		.InterTimer = 0.1f,
 	});
 
+	//오른쪽 애니메이션 생성
 	GetRender()->CreateAnimation
 	({
 		.AnimationName = "Right_Move",
@@ -49,28 +57,30 @@ void PlayerState_Move::Start(PlayerCharacterType _CharacterType)
 		.InterTimer = 0.1f,
 	});
 
+	//방향 받아오기
 	const std::string StartDir = GetPlayer()->GetDirStr();
+
+	//현재 방향에 따른 애니메이션 재생 설정
 	GetRender()->ChangeAnimation(StartDir + GetAniName());
+
+	//지금은 이 FSM상태가 아닐수 있기 때문에 렌더러 Off
 	GetRender()->Off();
-
-
-
-	RoundLevel = dynamic_cast<RoundLevelBase*>(GetPlayer()->GetLevel());
-	if (nullptr == RoundLevel)
-	{
-		MsgAssert("RoundLevel이 현재 레벨과 연결되어 있지 않습니다");
-	}
 }
 
 
 void PlayerState_Move::Update(float _DeltaTime)
 {
-	PlayerStateBase::Update(_DeltaTime);
+	//스테이지가 이동할 때
+	if (true == GetRoundLevel()->IsMoving())
+	{
+		GetOwner()->ChangeState(PlayerStateType::StageMove);
+		return;
+	}
 
-	float4 NowPos = GetPlayer()->GetPos();
 
 	//공중에 있는 경우
-	if (false == RoundLevel->IsBlockPos(NowPos + float4::Down))
+	float4 NowPos = GetPlayer()->GetPos();
+	if (false == GetRoundLevel()->IsBlockPos(NowPos + float4::Down))
 	{
 		GetOwner()->ChangeState(PlayerStateType::Falling);
 		return;
@@ -89,12 +99,17 @@ void PlayerState_Move::Update(float _DeltaTime)
 		GetOwner()->ChangeState(PlayerStateType::Idle);
 		return;
 	}
-	
 
+	
+	//플레이어 방향 체크
+	PlayerStateBase::Update(_DeltaTime);
+
+	//다음에 이동할 위치에 벽이 존재하는지 확인
 	float4 MoveDir = GetPlayer()->GetDirVec();
-	if (true == RoundLevel->IsBlockPos(NowPos + MoveDir * MovableActor::ColliderRange))
+	if (true == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * MovableActor::ColliderRange))
 		return;
 
+	//벽이 존재하지 않는다면 이동
 	GetPlayer()->SetMove(MoveDir * MoveSpeed * _DeltaTime);
 }
 

@@ -1,8 +1,6 @@
 #pragma once
 #include "PlayerStateBase.h"
 
-class RoundLevelBase;
-
 class PlayerState_Falling : public PlayerStateBase
 {
 public:
@@ -21,6 +19,5 @@ protected:
 
 private:
 	const float					AirMoveSpeed = 50.f;
-	RoundLevelBase*		RoundLevel		= nullptr;
 };
 

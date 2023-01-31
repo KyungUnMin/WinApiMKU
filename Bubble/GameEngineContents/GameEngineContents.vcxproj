@@ -237,6 +237,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PlayerState_Sleep.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerState_StageMove.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Player_Bobblun.h">
       <SubType>
       </SubType>
@@ -392,6 +400,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="PlayerState_Move.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerState_Sleep.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerState_StageMove.cpp">
       <SubType>
       </SubType>
     </ClCompile>

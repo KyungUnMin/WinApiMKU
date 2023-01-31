@@ -5,7 +5,7 @@
 
 class ComponentBase;
 
-//계산을 통해 움직이는 Actor는 이 클래스를 상속받습니다
+//계산을 통해 움직이는 Actor는 이 클래스를 상속
 class MovableActor : public GameEngineActor
 {
 public:

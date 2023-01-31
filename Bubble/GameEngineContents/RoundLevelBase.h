@@ -40,6 +40,11 @@ public:
 		SelectedCharacter = _Type;
 	}
 
+	inline bool IsMoving()
+	{
+		return IsMoveValue;
+	}
+
 protected:
 	void Loading() override{}
 	void Update(float _DeltaTime) override;
@@ -86,8 +91,8 @@ private:
 	GameEngineImage*		ColliderImage			= nullptr;
 
 
-	//IsMoving이 true일때 Update에서 Stage가 이동함
-	bool								IsMoving					= false;
+	//IsMoveValue이 true일때 Update에서 Stage가 이동함
+	bool								IsMoveValue			= false;
 	size_t							NowIndex				= 0;
 	float4							MoveDir					= float4::Zero;
 	const float					MoveSpeed				= 500.f;

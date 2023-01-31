@@ -4,6 +4,7 @@
 class RoundLevelBase;
 class MovableActor;
 
+//MovableActor이 존재하는 객체의 중력을 담당함
 class Gravity : public ComponentBase
 {
 public:
@@ -14,8 +15,6 @@ public:
 	Gravity(Gravity&& _Other) noexcept = delete;
 	Gravity& operator=(const Gravity& _Other) = delete;
 	Gravity& operator=(const Gravity&& _Other) noexcept = delete;
-
-	//void Jump(float _JumpAcc);
 
 protected:
 	void Start() override;

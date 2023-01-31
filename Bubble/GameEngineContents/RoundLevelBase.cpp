@@ -112,7 +112,7 @@ void RoundLevelBase::ArrangeStage(float4 _Dir, size_t _CenterIndex)
 bool RoundLevelBase::MoveToNextStage()
 {
 	//이미 Stage가 이동중이라면 Return
-	if (true == IsMoving)
+	if (true == IsMoveValue)
 		return false;
 
 	//이번 스테이지가 마지막이였다면 false를 리턴
@@ -121,8 +121,8 @@ bool RoundLevelBase::MoveToNextStage()
 		return false;
 	}
 
-	//IsMoving이 true일때 Update에서 Stage가 이동함
-	IsMoving = true;
+	//IsMoveValue이 true일때 Update에서 Stage가 이동함
+	IsMoveValue = true;
 
 	//다음 Stage의 렌더러 On
 	Obstacles->GetRender(NowIndex + 1)->On();
@@ -134,7 +134,7 @@ bool RoundLevelBase::MoveToNextStage()
 void RoundLevelBase::Update(float _DeltaTime)
 {
 	//IsMoving이 true일때만 Stage가 이동함
-	if (false == IsMoving)
+	if (false == IsMoveValue)
 		return;
 
 	//모든 스테이지들이 이동
@@ -156,7 +156,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 
 	//다음 Stage를 중심으로 Stage를 정렬하고 NowIndex를 1증가시키며 나머지 Render는 Off
 	ArrangeStage(-MoveDir, NowIndex + 1);
-	IsMoving = false;
+	IsMoveValue = false;
 }
 
 
@@ -216,7 +216,7 @@ void RoundLevelBase::CreatePlayer(PlayerCharacterType _Type)
 //레벨이 전환될때 레벨 정리하고 가기
 void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	IsMoving = false; 
+	IsMoveValue = false; 
 
 	RoundLevelBase* NextRoundLevel = dynamic_cast<RoundLevelBase*>(_NextLevel);
 

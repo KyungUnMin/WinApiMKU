@@ -24,6 +24,5 @@ protected:
 private:
 	const float					AirMoveSpeed	= 150.f;
 	const float					JumpAcc			= 300.f;
-	RoundLevelBase*		RoundLevel		= nullptr;
 };
 

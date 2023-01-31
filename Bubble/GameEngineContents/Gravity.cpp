@@ -17,13 +17,15 @@ Gravity::~Gravity()
 
 void Gravity::Start()
 {
+	//MovableActor가 동작하는 레벨인 RoundLevel 과 연결
 	GameEngineLevel* Level = GetOwner()->GetLevel();
 	RoundLevel = dynamic_cast<RoundLevelBase*>(Level);
 	if (nullptr == RoundLevel)
 	{
-		MsgAssert("RoundLevel이 현재 레벨과 연결되어 있지 않습니다");
+		MsgAssert("현재 레벨은 RoundLevelBase를 상속받지 않았습니다");
 	}
 
+	//MovableActor와 연결
 	MovableOwner = dynamic_cast<MovableActor*>(GetOwner());
 	if (nullptr == MovableOwner)
 	{
@@ -33,12 +35,15 @@ void Gravity::Start()
 
 void Gravity::Update(float _DeltaTime)
 {
+	//현재 가속도 값 받아오기
 	float NowGravityAcc = MovableOwner->GetGravityAcc();
 
+	//현재위치
 	float4 NowPos = GetOwner()->GetPos();
+	//바로 아래 위치
 	float4 DownPos = NowPos + float4::Down;
 
-	//아래로 떨어지는 경우(양수)
+	//아래로 떨어지는 경우(가속도 값이 양수)
 	if (0.f <= NowGravityAcc)
 	{
 		//내 바로 밑이 바닥이라면
@@ -50,7 +55,7 @@ void Gravity::Update(float _DeltaTime)
 		}
 	}
 
-	//위로 올라가는 경우(음수)
+	//위로 올라가는 경우, 점프하는 경우(가속도 값이 음수)
 	else
 	{
 		//내 바로 밑이 바닥이고 내 위치는 바닥이 아닐때만
