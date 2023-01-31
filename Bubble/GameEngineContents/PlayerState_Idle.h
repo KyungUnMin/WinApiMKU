@@ -16,9 +16,16 @@ public:
 
 	void Start(PlayerCharacterType _CharacterType) override;
 	void Update(float _DeltaTime) override;
+	void EnterState() override
+	{
+		PlayerStateBase::EnterState();
+		AccTime = 0.f;
+	}
 
 protected:
 
 private:
+	float				AccTime					= 0.0f;
+	const float		SleepChangeTime	= 3.f;
 };
 

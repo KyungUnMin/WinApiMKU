@@ -102,6 +102,14 @@ void PlayerState_Idle::Update(float _DeltaTime)
 		return;
 	}
 
+	//idle 상태가 된지 SleepChangeTime시간만큼 흘렀을때
+	AccTime += _DeltaTime;
+	if (SleepChangeTime < AccTime)
+	{
+		GetOwner()->ChangeState(PlayerStateType::Sleep);
+		return;
+	}
+
 	//방향에 따라 idle 애니메이션 설정
 	PlayerStateBase::Update(_DeltaTime);
 }
