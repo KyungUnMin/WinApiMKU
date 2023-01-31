@@ -10,6 +10,7 @@
 
 class GameEngineLevel;
 class GameEngineRender;
+class GameEngineCollision;
 
 class GameEngineActor : public GameEngineObject
 {
@@ -67,6 +68,13 @@ public:
 	GameEngineRender* CreateRender(int _Order = 0);
 
 
+	template <typename EnumType>
+	GameEngineCollision* CreateCollision(EnumType _GroupIndex)
+	{
+		return CreateCollision(static_cast<int>(_GroupIndex));
+	}
+
+	GameEngineCollision* CreateCollision(int _GroupIndex = 0);
 
 protected:
 	virtual void Start() {}
@@ -80,15 +88,9 @@ protected:
 	}
 
 private:
-	int												Order			= 0;
-	float											LiveTime		= 0.0f;
-	float4											Pos				= { 0.0f, 0.0f };
-	std::list<GameEngineRender*>	RenderList;
-
-	//GameEngineLevel만 호출 가능
-	void SetOrder(int _Order)
-	{
-		Order = _Order;
-	}
+	float												LiveTime			= 0.0f;
+	float4												Pos					= { 0.0f, 0.0f };
+	std::list<GameEngineRender*>		RenderList;
+	std::list<GameEngineCollision*>		CollisionList;
 };
 

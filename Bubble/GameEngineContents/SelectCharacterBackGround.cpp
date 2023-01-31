@@ -42,8 +42,8 @@ void SelectCharacterBackGround::Update(float _DeltaTime)
 {
 	//vector(-해상도.x, -해상도.y) 방향으로 이동
 	float4 Dir = ScreenSize.half() * Offset[0];
-	float4 NormalDir = Dir.Normalize();
-	SetMove(NormalDir * MoveSpeed * _DeltaTime);
+	Dir.Normalize();
+	SetMove(Dir * MoveSpeed * _DeltaTime);
 
 	//이 Actor의 위치가 (0,0)보다 작다면 스크린 크기만큼 이동
 	if (GetPos() < float4::Zero)

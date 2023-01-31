@@ -221,6 +221,18 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PlayerState_AttackBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerState_Damaged.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerState_Enter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayerState_Falling.h">
       <SubType>
       </SubType>
@@ -384,6 +396,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="PlayerStateBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerState_AttackBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerState_Damaged.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerState_Enter.cpp">
       <SubType>
       </SubType>
     </ClCompile>

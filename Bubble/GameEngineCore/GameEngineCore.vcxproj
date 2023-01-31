@@ -152,6 +152,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineActor.h" />
+    <ClInclude Include="GameEngineCollision.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineCore.h">
       <SubType>
       </SubType>
@@ -169,6 +173,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp" />
+    <ClCompile Include="GameEngineCollision.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineCore.cpp">
       <SubType>
       </SubType>

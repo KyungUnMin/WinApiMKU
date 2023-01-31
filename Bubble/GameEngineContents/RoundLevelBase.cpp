@@ -9,6 +9,8 @@
 #include "Player_Kululun.h"
 #include "Player_Cororon.h"
 
+const float StageMoveTime = 3.f;
+
 RoundLevelBase::RoundLevelBase()
 {
 
@@ -161,6 +163,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 
 
 
+
 //NowIndex가 현재 Round에서 마지막 Stage인지 알려주는 함수
 bool RoundLevelBase::IsLastStage()
 {
@@ -213,17 +216,26 @@ void RoundLevelBase::CreatePlayer(PlayerCharacterType _Type)
 }
 
 
+void RoundLevelBase::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	RoundLevelBase* PrevRoundLevel = dynamic_cast<RoundLevelBase*>(_PrevLevel);
+
+	//이전레벨이 Round레벨이 아닌경우
+	if (nullptr == PrevRoundLevel)
+	{
+		//기본 캐릭터(초록색) 생성
+		CreatePlayer(SelectedCharacter);
+	}
+
+	//이전레벨이 Round레벨인 경우 이전의 플레이어 타입에 따라 새 플레이어 생성
+	else
+	{
+		CreatePlayer(PrevRoundLevel->GetSelectCharacter());
+	}
+}
+
 //레벨이 전환될때 레벨 정리하고 가기
 void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	IsMoveValue = false; 
-
-	RoundLevelBase* NextRoundLevel = dynamic_cast<RoundLevelBase*>(_NextLevel);
-
-	//다음레벨이 Round레벨이 아닌경우
-	if (nullptr == NextRoundLevel)
-		return;
-
-	//다음 레벨에 플레이어 생성시키기
-	NextRoundLevel->CreatePlayer(SelectedCharacter);
+	IsMoveValue = false;
 }

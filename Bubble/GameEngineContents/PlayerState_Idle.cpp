@@ -69,11 +69,23 @@ void PlayerState_Idle::Start(PlayerCharacterType _CharacterType)
 
 	//지금은 이 FSM상태가 아닐수 있기 때문에 렌더러 Off
 	GetRender()->Off();
+
+
+	//테스트 코드
+	if (false == GameEngineInput::IsKey("Test_PlayerDamaged"))
+		GameEngineInput::CreateKey("Test_PlayerDamaged", 'K');
 }
 
 
 void PlayerState_Idle::Update(float _DeltaTime)
 {
+	//테스트 코드
+	if (true == GameEngineInput::IsDown("Test_PlayerDamaged"))
+	{
+		GetOwner()->ChangeState(PlayerStateType::Damaged);
+		return;
+	}
+
 	//스테이지가 이동할 때
 	if (true == GetRoundLevel()->IsMoving())
 	{

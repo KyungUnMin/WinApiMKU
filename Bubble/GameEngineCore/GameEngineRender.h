@@ -87,12 +87,6 @@ public:
 		return Image;
 	}
 
-	//Rendering되는 순서
-	inline int GetOrder()
-	{
-		return Order;
-	}
-
 	inline int GetFrame()
 	{
 		return Frame;
@@ -122,6 +116,8 @@ public:
 	{
 		IsEffectCamera = false;
 	}
+
+	bool IsAnimationEnd();
 	
 	//애니메이션 생성
 	void CreateAnimation(const FrameAnimationParameter& _Parameter);
@@ -129,12 +125,13 @@ public:
 	//애니메이션 변환
 	void ChangeAnimation(const std::string_view& _AnimationName, bool _ForceChange = false);
 
+
+	//렌더링 되는 순서 결정 및 Level의 Renders에 등록(Actor에서만 호출)
+	void SetOrder(int _Order) override;
+
 protected:
 
 private:
-	//렌더링 되는 순서
-	int								Order					= 0;
-
 	//Owner 기준 상대위치(오프셋)
 	float4							Position				= float4::Zero;
 
@@ -154,8 +151,7 @@ private:
 	bool								IsEffectCamera	= true;
 
 
-	//렌더링 되는 순서 결정 및 Level의 Renders에 등록(Actor에서만 호출)
-	void SetOrder(int _Order);
+	
 
 	//Level의 Render를 통해 실제 렌더링되는 함수
 	void Render(float _DeltaTime);
@@ -182,6 +178,7 @@ private:
 		//반복 여부
 		bool								Loop					= true;
 
+		bool IsEnd();
 
 		//CurrentTime동안 FrameIndex[CurrentIndex]을 바탕으로 렌더링할 인덱스 결정
 		void Render(float _DeltaTime);

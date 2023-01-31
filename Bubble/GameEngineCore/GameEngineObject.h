@@ -61,10 +61,21 @@ public:
 		ObjectUpdate = !ObjectUpdate;
 	}
 
-	void SetParent(GameEngineObject* _Parent)
+	//virtual인 이유는 이를 상속받는 클래스에 따라 추가 작업을 처리하기 위함
+	virtual void SetOrder(int _Order)
 	{
-		Parent = _Parent;
+		//Actor의 경우 Update되는 순서
+		//Render의 경우 이미지가 그려지는 순서
+		//Collision의 경우 충돌되는 순서(그룹)
+
+		Order = _Order;
 	}
+	
+	int GetOrder()
+	{
+		return Order;
+	}
+
 
 	//부모설정
 	void SetOwner(GameEngineObject* _Parent)
@@ -88,8 +99,10 @@ public:
 protected:
 
 private:
-	GameEngineObject*	Parent				= nullptr;
-	bool								ObjectDeath	= false;
-	bool								ObjectUpdate	= true;
+	int								Order					= 0;
+	GameEngineObject*	Parent					= nullptr;
+
+	bool								ObjectDeath		= false;
+	bool								ObjectUpdate		= true;
 };
 

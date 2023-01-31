@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <string_view>
+#include <GameEngineBase/GameEngineMath.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include "ContentsEnum.h"
 
@@ -13,6 +14,8 @@ class PlayerBase;
 class RoundLevelBase : public GameEngineLevel
 {
 public:
+
+
 	RoundLevelBase();
 	virtual ~RoundLevelBase() = 0;
 
@@ -45,11 +48,21 @@ public:
 		return IsMoveValue;
 	}
 
+	inline const float4& GetPlayerSpawnPos()
+	{
+		return PlayerSpwanPos;
+	}
+
+	inline void SetPlayerSpawnPos(const float4& _Pos)
+	{
+		PlayerSpwanPos = _Pos;
+	}
+
 protected:
 	void Loading() override{}
 	void Update(float _DeltaTime) override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
-	void LevelChangeStart(GameEngineLevel* _PrevLevel) override{}
 
 	//레벨의 지형과 충돌체를 로드하는 함수
 	void LoadObstacle(const std::string_view& _RoundName, int _X, int _Y);
@@ -84,6 +97,7 @@ private:
 	//선택한 캐릭터 타입
 	PlayerCharacterType	SelectedCharacter	= PlayerCharacterType::BOBBLUN;
 	PlayerBase*					Player						= nullptr;
+	float4							PlayerSpwanPos		= float4::Zero;
 
 	//Obstacle을 생성하는데 사용하는 변수
 	std::string					ImageName				= "Round";

@@ -8,6 +8,7 @@
 #include "PlayerState_Jump.h"
 #include "PlayerState_StageMove.h"
 #include "PlayerState_Sleep.h"
+#include "PlayerState_Damaged.h"
 
 PlayerState::PlayerState()
 {
@@ -78,6 +79,9 @@ void PlayerState::CreateState(PlayerStateType _StateType)
 		break;
 	case PlayerStateType::Sleep:
 		States[Index] = new PlayerState_Sleep;
+		break;
+	case PlayerStateType::Damaged:
+		States[Index] = new PlayerState_Damaged;
 		break;
 
 	default:

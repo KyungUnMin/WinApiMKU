@@ -13,6 +13,7 @@ enum class PlayerStateType
 	Jump,
 	StageMove,
 	Sleep,
+	Damaged,
 
 	Count,
 };

@@ -46,7 +46,7 @@ void GameEngineRender::SetScaleToImage()
 //렌더링 되는 순서 결정 및 Level의 Renders에 등록(Actor에서만 호출)
 void GameEngineRender::SetOrder(int _Order)
 {
-	Order = _Order;
+	GameEngineObject::SetOrder(_Order);
 
 	//GameEngineLevel의 Renders에 등록
 	GetActor()->GetLevel()->PushRender(this);
@@ -74,6 +74,12 @@ void GameEngineRender::SetFrame(int _Frame)
 }
 
 
+
+bool GameEngineRender::FrameAnimation::IsEnd()
+{
+	int Value = (static_cast<int>(FrameIndex.size()) - 1);
+	return CurrentIndex == Value;
+}
 
 //CurrentTime동안 FrameIndex[CurrentIndex]을 바탕으로 렌더링할 인덱스 결정
 void GameEngineRender::FrameAnimation::Render(float _DeltaTime)
@@ -156,6 +162,11 @@ void GameEngineRender::Render(float _DeltaTime)
 
 
 
+
+bool GameEngineRender::IsAnimationEnd()
+{
+	return CurrentAnimation->IsEnd();
+}
 
 void GameEngineRender::CreateAnimation(const FrameAnimationParameter& _Parameter)
 {

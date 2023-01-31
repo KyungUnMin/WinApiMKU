@@ -22,6 +22,10 @@ RoundA3Level::~RoundA3Level()
 
 void RoundA3Level::Loading()
 {
+	//플레이어가 생성될 위치 설정
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+	SetPlayerSpawnPos({ ScreenSize.x * 0.2f,  ScreenSize.y * 0.8f });
+
 	//리소스 로드
 	ResourceLoad();
 	RoundLevelBase::LoadObstacle("A3", 6, 1);
@@ -108,16 +112,13 @@ void RoundA3Level::CreateBackGround()
 //이 레벨이 시작되었을때
 void RoundA3Level::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	//이전 레벨에서 만들어준 Player의 위치를 설정
-	PlayerBase* Player = GetPlayer();
-	float4 ScreenSize = GameEngineWindow::GetScreenSize();
-	Player->SetPos({ ScreenSize.x * 0.2f, ScreenSize.y * 0.8f });
+	//플레이어 생성
+	RoundLevelBase::LevelChangeStart(_PrevLevel);
+	GetPlayer()->SetPos(GetPlayerSpawnPos());
 }
 
 void RoundA3Level::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	//다음 레벨이 RoundLevelBase를 상속받았다면
-	//그 레벨에 자신의 RoundLevelBase::SelectedCharacter를 바탕으로 캐릭터 생성
 	RoundLevelBase::LevelChangeEnd(_NextLevel);
 
 	//레벨이 전환되기 전에 화면을 오른쪽방향으로 정렬해두고 전환

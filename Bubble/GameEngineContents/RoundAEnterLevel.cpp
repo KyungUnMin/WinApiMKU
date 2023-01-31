@@ -24,6 +24,10 @@ RoundAEnterLevel::~RoundAEnterLevel()
 
 void RoundAEnterLevel::Loading()
 {
+	//플레이어가 생성될 위치 설정
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+	SetPlayerSpawnPos({ ScreenSize.x * 0.2f,  ScreenSize.y * 0.8f });
+
 	//리소스 로드
 	ResourceLoad();
 	RoundLevelBase::LoadObstacle("AEnter", 1, 1);
@@ -127,21 +131,13 @@ void RoundAEnterLevel::Update(float _DeltaTime)
 
 void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	//이전 레벨(EnterRound)에서 LevelChangeEnd함수를 통해 이 씬의 SelectedCharacter를 설정해두었음
-	//(그런데 안 좋은 방법인 것 같다, 추후에 변경할 것을 고려해보자)
-
-	//캐릭터 생성 RoundLevelBase::SelectedCharacter 를 받아와서 캐릭터 생성
-	CreatePlayer(GetSelectCharacter());
-
-	//캐릭터 위치 설정
-	float4 ScreenSize = GameEngineWindow::GetScreenSize();
-	GetPlayer()->SetPos({ScreenSize.x * 0.2f, ScreenSize.y * 0.8f});
+	//플레이어 생성
+	RoundLevelBase::LevelChangeStart(_PrevLevel);
+	GetPlayer()->SetPos(GetPlayerSpawnPos());
 }
 
 void RoundAEnterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	//다음 레벨이 RoundLevelBase를 상속받았다면
-	//그 레벨에 자신의 RoundLevelBase::SelectedCharacter를 바탕으로 캐릭터 생성
 	RoundLevelBase::LevelChangeEnd(_NextLevel);
 
 	//문의 애니메이션들을 초기화

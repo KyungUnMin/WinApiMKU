@@ -31,6 +31,11 @@ public:
 		return Return;
 	}
 
+	bool DecreaseLife()
+	{
+		--lifeCnt;
+		return 0 < lifeCnt;
+	}
 
 protected:
 	//플레이어가 사용할 컴포넌트를 만들고 초기화
@@ -42,5 +47,7 @@ protected:
 private:
 	//컴포넌트 구조로 동작
 	std::map<ComponentType,ComponentBase*>	Components;
+
+	int lifeCnt = 3;
 };
 

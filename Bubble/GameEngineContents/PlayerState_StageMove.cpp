@@ -85,6 +85,9 @@ void PlayerState_StageMove::CreateBubbleAni()
 
 void PlayerState_StageMove::Update(float _DeltaTime)
 {
+	//GetRender()->
+
+
 	//현재 레벨의 Stage가 전환중이라면 return
 	if (true == GetRoundLevel()->IsMoving())
 		return;

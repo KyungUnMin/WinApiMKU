@@ -19,6 +19,9 @@
     <ClInclude Include="GameEngineObject.h">
       <Filter>02.Object\02.Object</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineCollision.h">
+      <Filter>02.Object\05.Collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp">
@@ -38,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="GameEngineObject.cpp">
       <Filter>02.Object\02.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineCollision.cpp">
+      <Filter>02.Object\05.Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +67,9 @@
     </Filter>
     <Filter Include="02.Object\02.Object">
       <UniqueIdentifier>{cf76912f-146a-44a0-924c-cfe03f2becef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Object\05.Collision">
+      <UniqueIdentifier>{6ca7c15d-53f1-4e69-9b82-c4d32c6b4e72}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

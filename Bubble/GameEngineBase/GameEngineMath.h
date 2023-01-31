@@ -1,5 +1,6 @@
 #pragma once
 #include <math.h>
+#include <cmath>
 
 class GameEngineMath final
 {
@@ -79,6 +80,19 @@ public:
 		return x == 0.0f && y == 0.0f && z == 0.0f;
 	}
 
+	float Size()
+	{
+		return sqrtf(x * x + y * y);
+	}
+
+	void Normalize()
+	{
+		float SizeValue = Size();
+		x /= SizeValue;
+		y /= SizeValue;
+		z /= SizeValue;
+	}
+
 
 	static float4 Lerp(const float4& _Start, const float4& _End, float _Ratio)
 	{
@@ -151,6 +165,15 @@ public:
 		return *this;
 	}
 
+	float4& operator /=(const float4& _Other)
+	{
+		x /= _Other.x;
+		y /= _Other.y;
+		z /= _Other.z;
+		return *this;
+	}
+
+
 	float4 operator*(const float4& _Other) const
 	{
 		float4 Return;
@@ -170,10 +193,5 @@ public:
 		return (x < _Other.x) && (y < _Other.y) /*&& (z < _Other.z)*/;
 	}
 
-	float Length()
-	{
-		return sqrtf(x * x + y * y);
-	}
-
-	float4 Normalize();
+	
 };

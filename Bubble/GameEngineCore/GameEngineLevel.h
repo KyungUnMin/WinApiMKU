@@ -26,6 +26,14 @@ public:
 	GameEngineLevel& operator=(const GameEngineLevel& _Other) = delete;
 	GameEngineLevel& operator=(GameEngineLevel&& _Other) noexcept = delete;
 
+
+
+	template <typename ActorType, typename EnumType>
+	ActorType* CreateActor(EnumType _Order)
+	{
+		return CreateActor<ActorType>(static_cast<int>(_Order));
+	}
+
 	//order는 업데이트&렌더링 되는 순서
 	template<typename ActorType>
 	ActorType* CreateActor(int _Order = 0)
@@ -75,6 +83,13 @@ public:
 		}
 
 		return Result;
+	}
+
+
+	template <typename EnumType>
+	std::vector<GameEngineActor*> GetActors(EnumType _GroundIndex)
+	{
+		return GetActors(static_cast<int>(_GroundIndex));
 	}
 
 

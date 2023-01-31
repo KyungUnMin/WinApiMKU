@@ -8,127 +8,136 @@
       <Filter>02.Define</Filter>
     </ClInclude>
     <ClInclude Include="OpeningLevel.h">
-      <Filter>03.Level &amp; Actor\02.Title\01.Opening\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\01.Opening\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="TextLine.h">
-      <Filter>03.Level &amp; Actor\01.CommonActors\01.TextLine</Filter>
+      <Filter>03.CommonActors\01.TextLine</Filter>
     </ClInclude>
     <ClInclude Include="BubbleMissle.h">
-      <Filter>03.Level &amp; Actor\01.CommonActors\03.BubbleMissle</Filter>
+      <Filter>03.CommonActors\03.BubbleMissle</Filter>
     </ClInclude>
     <ClInclude Include="RoundAEnterLevel.h">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="SelectPlayerLevel.h">
-      <Filter>03.Level &amp; Actor\02.Title\02.SelectPlayer\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\02.SelectPlayer\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="BackGround.h">
-      <Filter>03.Level &amp; Actor\01.CommonActors\02.BackGround</Filter>
+      <Filter>03.CommonActors\02.BackGround</Filter>
     </ClInclude>
     <ClInclude Include="SelectCharacterLevel.h">
-      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\03.SelectCharacter\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="OpeningMonster.h">
-      <Filter>03.Level &amp; Actor\02.Title\01.Opening\02.Actor\02.Monster</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\01.Opening\02.Actor\02.Monster</Filter>
     </ClInclude>
     <ClInclude Include="OpeningPlayer.h">
-      <Filter>03.Level &amp; Actor\02.Title\01.Opening\02.Actor\01.Player</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\01.Opening\02.Actor\01.Player</Filter>
     </ClInclude>
     <ClInclude Include="OpeningSpotLight.h">
-      <Filter>03.Level &amp; Actor\02.Title\01.Opening\02.Actor\03.SpotLight</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\01.Opening\02.Actor\03.SpotLight</Filter>
     </ClInclude>
     <ClInclude Include="SelectCharacter_Character.h">
-      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\03.Characters</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\03.SelectCharacter\02.Actor\03.Characters</Filter>
     </ClInclude>
     <ClInclude Include="SelectCharacterBackGround.h">
-      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\01.BackGround</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\03.SelectCharacter\02.Actor\01.BackGround</Filter>
     </ClInclude>
     <ClInclude Include="SelectCharacter_TopText.h">
-      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\02.TopText</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\03.SelectCharacter\02.Actor\02.TopText</Filter>
     </ClInclude>
     <ClInclude Include="SelectCharacter_SelectIcon.h">
-      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\04.Icon</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\03.SelectCharacter\02.Actor\04.Icon</Filter>
     </ClInclude>
     <ClInclude Include="ContentsDefine.h">
       <Filter>02.Define</Filter>
     </ClInclude>
     <ClInclude Include="EnterRoundLevel.h">
-      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\04.EnterRound\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="EnterRoundCharater.h">
-      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\01.Charater</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\04.EnterRound\02.Actor\01.Charater</Filter>
     </ClInclude>
     <ClInclude Include="EnterRoundBubble.h">
-      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.Bubbles</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\04.EnterRound\02.Actor\02.Bubbles</Filter>
     </ClInclude>
     <ClInclude Include="RoundA_Enter_Sky.h">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\02.Actor\01.Sky</Filter>
+      <Filter>04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom\02.Actor\01.Sky</Filter>
     </ClInclude>
     <ClInclude Include="NextDoor.h">
-      <Filter>03.Level &amp; Actor\01.CommonActors\04.NextDoor</Filter>
+      <Filter>03.CommonActors\04.NextDoor</Filter>
     </ClInclude>
     <ClInclude Include="RoundA1Level.h">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\02.RoundA-1\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\02.RoundRooms\02.RoundA\02.RoundA-1\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="RoundA2Level.h">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\03.RoundA-2\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\02.RoundRooms\02.RoundA\03.RoundA-2\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="RoundA3Level.h">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\04.RoundA-3\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\02.RoundRooms\02.RoundA\04.RoundA-3\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="RoundLevelBase.h">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundLevelBase</Filter>
+      <Filter>04.Level &amp; Actor\02.RoundRooms\01.RoundLevelBase</Filter>
     </ClInclude>
     <ClInclude Include="EndingLevel.h">
-      <Filter>03.Level &amp; Actor\04.Ending\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\03.Ending\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="PlayerStateBase.h">
-      <Filter>04.Component\02.PlayerState\02.Base</Filter>
+      <Filter>05.Component\02.PlayerState\02.Base</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_Idle.h">
-      <Filter>04.Component\02.PlayerState\03.Idle</Filter>
+      <Filter>05.Component\02.PlayerState\02.MovementStates\01.Idle</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_Move.h">
-      <Filter>04.Component\02.PlayerState\04.Move</Filter>
+      <Filter>05.Component\02.PlayerState\02.MovementStates\02.Move</Filter>
     </ClInclude>
     <ClInclude Include="ComponentBase.h">
-      <Filter>04.Component\01.ComponentBase</Filter>
+      <Filter>05.Component\01.ComponentBase</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState.h">
-      <Filter>04.Component\02.PlayerState\01.Component</Filter>
+      <Filter>05.Component\02.PlayerState\01.Component</Filter>
     </ClInclude>
     <ClInclude Include="PlayerBase.h">
-      <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\01.Base</Filter>
+      <Filter>03.CommonActors\05.Movable\02.Player\01.Base</Filter>
     </ClInclude>
     <ClInclude Include="Player_Bubblun.h">
-      <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\02.Bubblun%28초록%29</Filter>
+      <Filter>03.CommonActors\05.Movable\02.Player\02.Bubblun%28초록%29</Filter>
     </ClInclude>
     <ClInclude Include="Gravity.h">
-      <Filter>04.Component\03.Gravity</Filter>
+      <Filter>05.Component\03.Gravity</Filter>
     </ClInclude>
     <ClInclude Include="MovableActor.h">
-      <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\01.Base</Filter>
+      <Filter>03.CommonActors\05.Movable\01.Base</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_Falling.h">
-      <Filter>04.Component\02.PlayerState\05.Falling</Filter>
+      <Filter>05.Component\02.PlayerState\02.MovementStates\03.Falling</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_Jump.h">
-      <Filter>04.Component\02.PlayerState\06.Jump</Filter>
+      <Filter>05.Component\02.PlayerState\02.MovementStates\04.Jump</Filter>
     </ClInclude>
     <ClInclude Include="Player_Bobblun.h">
-      <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\03.Bobblun%28파랑%29</Filter>
+      <Filter>03.CommonActors\05.Movable\02.Player\03.Bobblun%28파랑%29</Filter>
     </ClInclude>
     <ClInclude Include="Player_Kululun.h">
-      <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\04.Kululun%28주황%29</Filter>
+      <Filter>03.CommonActors\05.Movable\02.Player\04.Kululun%28주황%29</Filter>
     </ClInclude>
     <ClInclude Include="Player_Cororon.h">
-      <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\05.Cororon%28분홍%29</Filter>
+      <Filter>03.CommonActors\05.Movable\02.Player\05.Cororon%28분홍%29</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_StageMove.h">
-      <Filter>04.Component\02.PlayerState\07.StageMove</Filter>
+      <Filter>05.Component\02.PlayerState\03.StageMove</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_Sleep.h">
-      <Filter>04.Component\02.PlayerState\08.Sleep</Filter>
+      <Filter>05.Component\02.PlayerState\04.Sleep</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState_AttackBase.h">
+      <Filter>05.Component\02.PlayerState\03.AttackStates\01.AttackBase</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState_Damaged.h">
+      <Filter>05.Component\02.PlayerState\05.Damaged</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState_Enter.h">
+      <Filter>05.Component\02.PlayerState\06.Enter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -136,124 +145,133 @@
       <Filter>01.GameCore</Filter>
     </ClCompile>
     <ClCompile Include="OpeningLevel.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\01.Opening\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\01.Opening\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="TextLine.cpp">
-      <Filter>03.Level &amp; Actor\01.CommonActors\01.TextLine</Filter>
+      <Filter>03.CommonActors\01.TextLine</Filter>
     </ClCompile>
     <ClCompile Include="BubbleMissle.cpp">
-      <Filter>03.Level &amp; Actor\01.CommonActors\03.BubbleMissle</Filter>
+      <Filter>03.CommonActors\03.BubbleMissle</Filter>
     </ClCompile>
     <ClCompile Include="RoundAEnterLevel.cpp">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="SelectPlayerLevel.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\02.SelectPlayer\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\02.SelectPlayer\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="BackGround.cpp">
-      <Filter>03.Level &amp; Actor\01.CommonActors\02.BackGround</Filter>
+      <Filter>03.CommonActors\02.BackGround</Filter>
     </ClCompile>
     <ClCompile Include="SelectCharacterLevel.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\03.SelectCharacter\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="OpeningMonster.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\01.Opening\02.Actor\02.Monster</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\01.Opening\02.Actor\02.Monster</Filter>
     </ClCompile>
     <ClCompile Include="OpeningPlayer.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\01.Opening\02.Actor\01.Player</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\01.Opening\02.Actor\01.Player</Filter>
     </ClCompile>
     <ClCompile Include="OpeningSpotLight.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\01.Opening\02.Actor\03.SpotLight</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\01.Opening\02.Actor\03.SpotLight</Filter>
     </ClCompile>
     <ClCompile Include="SelectCharacter_Character.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\03.Characters</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\03.SelectCharacter\02.Actor\03.Characters</Filter>
     </ClCompile>
     <ClCompile Include="SelectCharacterBackGround.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\01.BackGround</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\03.SelectCharacter\02.Actor\01.BackGround</Filter>
     </ClCompile>
     <ClCompile Include="SelectCharacter_TopText.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\02.TopText</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\03.SelectCharacter\02.Actor\02.TopText</Filter>
     </ClCompile>
     <ClCompile Include="SelectCharacter_SelectIcon.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\04.Icon</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\03.SelectCharacter\02.Actor\04.Icon</Filter>
     </ClCompile>
     <ClCompile Include="EnterRoundLevel.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\04.EnterRound\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="EnterRoundCharater.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\01.Charater</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\04.EnterRound\02.Actor\01.Charater</Filter>
     </ClCompile>
     <ClCompile Include="EnterRoundBubble.cpp">
-      <Filter>03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.Bubbles</Filter>
+      <Filter>04.Level &amp; Actor\01.Title\04.EnterRound\02.Actor\02.Bubbles</Filter>
     </ClCompile>
     <ClCompile Include="RoundA_Enter_Sky.cpp">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\02.Actor\01.Sky</Filter>
+      <Filter>04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom\02.Actor\01.Sky</Filter>
     </ClCompile>
     <ClCompile Include="NextDoor.cpp">
-      <Filter>03.Level &amp; Actor\01.CommonActors\04.NextDoor</Filter>
+      <Filter>03.CommonActors\04.NextDoor</Filter>
     </ClCompile>
     <ClCompile Include="RoundA1Level.cpp">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\02.RoundA-1\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\02.RoundRooms\02.RoundA\02.RoundA-1\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="RoundA2Level.cpp">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\03.RoundA-2\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\02.RoundRooms\02.RoundA\03.RoundA-2\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="RoundA3Level.cpp">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\02.RoundA\04.RoundA-3\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\02.RoundRooms\02.RoundA\04.RoundA-3\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="RoundLevelBase.cpp">
-      <Filter>03.Level &amp; Actor\03.RoundRooms\01.RoundLevelBase</Filter>
+      <Filter>04.Level &amp; Actor\02.RoundRooms\01.RoundLevelBase</Filter>
     </ClCompile>
     <ClCompile Include="EndingLevel.cpp">
-      <Filter>03.Level &amp; Actor\04.Ending\01.Level</Filter>
+      <Filter>04.Level &amp; Actor\03.Ending\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="PlayerStateBase.cpp">
-      <Filter>04.Component\02.PlayerState\02.Base</Filter>
+      <Filter>05.Component\02.PlayerState\02.Base</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_Idle.cpp">
-      <Filter>04.Component\02.PlayerState\03.Idle</Filter>
+      <Filter>05.Component\02.PlayerState\02.MovementStates\01.Idle</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_Move.cpp">
-      <Filter>04.Component\02.PlayerState\04.Move</Filter>
+      <Filter>05.Component\02.PlayerState\02.MovementStates\02.Move</Filter>
     </ClCompile>
     <ClCompile Include="ComponentBase.cpp">
-      <Filter>04.Component\01.ComponentBase</Filter>
+      <Filter>05.Component\01.ComponentBase</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
-      <Filter>04.Component\02.PlayerState\01.Component</Filter>
+      <Filter>05.Component\02.PlayerState\01.Component</Filter>
     </ClCompile>
     <ClCompile Include="PlayerBase.cpp">
-      <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\01.Base</Filter>
+      <Filter>03.CommonActors\05.Movable\02.Player\01.Base</Filter>
     </ClCompile>
     <ClCompile Include="Player_Bubblun.cpp">
-      <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\02.Bubblun%28초록%29</Filter>
+      <Filter>03.CommonActors\05.Movable\02.Player\02.Bubblun%28초록%29</Filter>
     </ClCompile>
     <ClCompile Include="Gravity.cpp">
-      <Filter>04.Component\03.Gravity</Filter>
+      <Filter>05.Component\03.Gravity</Filter>
     </ClCompile>
     <ClCompile Include="MovableActor.cpp">
-      <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\01.Base</Filter>
+      <Filter>03.CommonActors\05.Movable\01.Base</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_Falling.cpp">
-      <Filter>04.Component\02.PlayerState\05.Falling</Filter>
+      <Filter>05.Component\02.PlayerState\02.MovementStates\03.Falling</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_Jump.cpp">
-      <Filter>04.Component\02.PlayerState\06.Jump</Filter>
+      <Filter>05.Component\02.PlayerState\02.MovementStates\04.Jump</Filter>
     </ClCompile>
     <ClCompile Include="Player_Bobblun.cpp">
-      <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\03.Bobblun%28파랑%29</Filter>
+      <Filter>03.CommonActors\05.Movable\02.Player\03.Bobblun%28파랑%29</Filter>
     </ClCompile>
     <ClCompile Include="Player_Kululun.cpp">
-      <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\04.Kululun%28주황%29</Filter>
+      <Filter>03.CommonActors\05.Movable\02.Player\04.Kululun%28주황%29</Filter>
     </ClCompile>
     <ClCompile Include="Player_Cororon.cpp">
-      <Filter>03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\05.Cororon%28분홍%29</Filter>
+      <Filter>03.CommonActors\05.Movable\02.Player\05.Cororon%28분홍%29</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_StageMove.cpp">
-      <Filter>04.Component\02.PlayerState\07.StageMove</Filter>
+      <Filter>05.Component\02.PlayerState\03.StageMove</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_Sleep.cpp">
-      <Filter>04.Component\02.PlayerState\08.Sleep</Filter>
+      <Filter>05.Component\02.PlayerState\04.Sleep</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState_AttackBase.cpp">
+      <Filter>05.Component\02.PlayerState\03.AttackStates\01.AttackBase</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState_Damaged.cpp">
+      <Filter>05.Component\02.PlayerState\05.Damaged</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState_Enter.cpp">
+      <Filter>05.Component\02.PlayerState\06.Enter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -263,191 +281,206 @@
     <Filter Include="02.Define">
       <UniqueIdentifier>{f8fa3e57-480a-4eff-9e07-c31f05974e62}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor">
-      <UniqueIdentifier>{816f99e3-605a-44d1-a88a-a3bc8f7ff80e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title">
-      <UniqueIdentifier>{a75cbdf1-d3ab-4491-8c51-259732730404}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\01.CommonActors">
+    <Filter Include="03.CommonActors">
       <UniqueIdentifier>{9dd6153a-e62c-4f3b-84d5-fcc4d89e9951}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\01.CommonActors\01.TextLine">
+    <Filter Include="03.CommonActors\01.TextLine">
       <UniqueIdentifier>{9dad718b-a627-4176-a49c-ac4fa8c3328d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\01.CommonActors\03.BubbleMissle">
+    <Filter Include="03.CommonActors\03.BubbleMissle">
       <UniqueIdentifier>{e7a2b577-4351-431c-b367-11e823086372}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\01.CommonActors\02.BackGround">
+    <Filter Include="03.CommonActors\02.BackGround">
       <UniqueIdentifier>{da3d92fe-3e52-4e63-b069-b0441e4252cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\01.Opening">
-      <UniqueIdentifier>{147292d0-ec7d-40f3-bb8b-9771d293fd35}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\01.Opening\01.Level">
-      <UniqueIdentifier>{d8a0f27e-e74f-4971-8405-56685793e499}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms">
-      <UniqueIdentifier>{5c821fb1-13a1-40bd-a931-06f862407f7c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\02.SelectPlayer">
-      <UniqueIdentifier>{9156b127-563b-4de5-bfc8-e6382cc36366}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\02.SelectPlayer\01.Level">
-      <UniqueIdentifier>{7a6ba7b7-f12e-4163-8b2f-3c8f143e9115}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter">
-      <UniqueIdentifier>{33ee9987-54a7-4f9c-ade4-73fe4c350a65}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter\01.Level">
-      <UniqueIdentifier>{dfce2361-8e4a-4c1a-bb57-7799126208ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor">
-      <UniqueIdentifier>{54753890-3d73-4cc0-9632-e2534fab3b23}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound">
-      <UniqueIdentifier>{2afc7455-37eb-46cb-95f1-33b58903f644}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound\01.Level">
-      <UniqueIdentifier>{f1827d62-02d4-4f55-89bf-91ba26e146bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor">
-      <UniqueIdentifier>{f33cad01-611e-45e1-b4e0-0de876a6825e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\01.Opening\02.Actor">
-      <UniqueIdentifier>{7eca4a62-389b-45ae-9953-5c90fb96b92b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\01.Opening\02.Actor\02.Monster">
-      <UniqueIdentifier>{6c058190-9ec7-4c95-9a0a-181e485217fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\01.Opening\02.Actor\01.Player">
-      <UniqueIdentifier>{c28eaebb-75da-42f5-97ec-2a6926a147fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\01.Opening\02.Actor\03.SpotLight">
-      <UniqueIdentifier>{465a6616-737d-4b36-94bb-3b3cf19b8f89}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\01.BackGround">
-      <UniqueIdentifier>{f65585bd-6db8-4ca3-986f-b2cc7fe28c8a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\02.TopText">
-      <UniqueIdentifier>{00390744-b580-4f1a-add9-2785d6f6b4dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\04.Icon">
-      <UniqueIdentifier>{d8c98ab1-d896-4e19-b9c0-4661b0121a50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\01.Charater">
-      <UniqueIdentifier>{39b68066-e3fa-4fd7-bc37-cedacbbe2d01}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\04.EnterRound\02.Actor\02.Bubbles">
-      <UniqueIdentifier>{53cf7d5d-12cf-4a12-99f3-f23133c1e3ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\01.CommonActors\04.NextDoor">
+    <Filter Include="03.CommonActors\04.NextDoor">
       <UniqueIdentifier>{6d359e88-a5d0-4c89-9f7f-f0f5031fe69b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\01.RoundLevelBase">
-      <UniqueIdentifier>{9f37735c-64f2-498f-b053-cd47b1109acc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA">
-      <UniqueIdentifier>{bdfec7d0-2626-4662-83b7-fca0484fdb93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom">
-      <UniqueIdentifier>{03dbe607-9aa5-4f4a-8a4f-3af6ef2b75bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\01.Level">
-      <UniqueIdentifier>{9b2a8afc-166e-4da1-aa62-b06b598c5f6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\02.Actor">
-      <UniqueIdentifier>{4201a697-f1f9-41c0-a152-b25f3b0715ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\01.EnterRoom\02.Actor\01.Sky">
-      <UniqueIdentifier>{46c9d8e4-e379-425c-8710-3450135bbdb0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\02.RoundA-1">
-      <UniqueIdentifier>{7005c689-d7b0-481d-9761-1b2f58be7019}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\02.RoundA-1\01.Level">
-      <UniqueIdentifier>{c42e8246-d5a9-4b39-abb3-487aae6c4091}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\03.RoundA-2">
-      <UniqueIdentifier>{02c3e57f-bb0c-4321-bdb9-c5cbf7bdd71d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\03.RoundA-2\01.Level">
-      <UniqueIdentifier>{6220ee48-d70f-40b0-87ed-ce07377cc0b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\04.RoundA-3">
-      <UniqueIdentifier>{3fdb5ad5-fcef-4245-b5c1-e157ae755176}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\03.RoundRooms\02.RoundA\04.RoundA-3\01.Level">
-      <UniqueIdentifier>{d2aeb647-a466-46c2-9dc7-85d58b961873}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\04.Ending">
-      <UniqueIdentifier>{682f3dae-41a6-4d9a-886e-a55c72678834}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\04.Ending\01.Level">
-      <UniqueIdentifier>{cdb8c1ae-7cc1-4647-bc98-1f8aa4034fe4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\02.Title\03.SelectCharacter\02.Actor\03.Characters">
-      <UniqueIdentifier>{c7a9b2e9-5571-49d3-8cfc-b8d192c87e04}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Component">
-      <UniqueIdentifier>{79d06473-1646-4ee7-adf3-a826d0a6ce2d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Component\02.PlayerState">
-      <UniqueIdentifier>{a4e9b13c-5281-49dd-9f47-810dbc433c6b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Component\01.ComponentBase">
-      <UniqueIdentifier>{4e4db9ea-216d-44fa-b651-5a3341eb304e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Component\02.PlayerState\01.Component">
-      <UniqueIdentifier>{665cfe20-5278-459d-bda8-f0e051df0476}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Component\02.PlayerState\02.Base">
-      <UniqueIdentifier>{89f30bb6-a72e-45c4-957b-db3d59039496}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Component\02.PlayerState\03.Idle">
-      <UniqueIdentifier>{a18518ff-6508-43ef-86ef-6f1ee0f0719e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Component\02.PlayerState\04.Move">
-      <UniqueIdentifier>{766871c2-afd6-47a7-a6e1-49eb2f5e5ad9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Component\03.Gravity">
-      <UniqueIdentifier>{095385e8-eb3c-4743-bee7-6ab29f7538d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\01.CommonActors\05.Movable">
+    <Filter Include="03.CommonActors\05.Movable">
       <UniqueIdentifier>{a9086012-0408-4cd5-8d4b-4cecd6cb1183}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player">
+    <Filter Include="03.CommonActors\05.Movable\02.Player">
       <UniqueIdentifier>{9426b8f7-67b4-436d-895e-531ad1cc0f72}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\01.Base">
+    <Filter Include="03.CommonActors\05.Movable\02.Player\01.Base">
       <UniqueIdentifier>{46ef6376-0b00-4b7c-8ce8-1446fec38162}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\02.Bubblun%28초록%29">
+    <Filter Include="03.CommonActors\05.Movable\02.Player\02.Bubblun%28초록%29">
       <UniqueIdentifier>{8a259c18-b469-4132-b484-b8e5eaeeac25}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\03.Bobblun%28파랑%29">
+    <Filter Include="03.CommonActors\05.Movable\02.Player\03.Bobblun%28파랑%29">
       <UniqueIdentifier>{e87e0c13-ea1e-41d5-ac4c-20b16098f89a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\01.CommonActors\05.Movable\01.Base">
-      <UniqueIdentifier>{64bd87e9-04bb-4bb5-8946-a76e73fc3e39}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Component\02.PlayerState\05.Falling">
-      <UniqueIdentifier>{9b8f7abe-b18f-4df1-88e4-9efc6d9649f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Component\02.PlayerState\06.Jump">
-      <UniqueIdentifier>{98dbfde0-ab10-4980-bb82-9f3c0420b1d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\04.Kululun%28주황%29">
+    <Filter Include="03.CommonActors\05.Movable\02.Player\04.Kululun%28주황%29">
       <UniqueIdentifier>{10ac3a33-0bb6-45eb-8ce2-f32984fd3aa6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Level &amp; Actor\01.CommonActors\05.Movable\02.Player\05.Cororon%28분홍%29">
+    <Filter Include="03.CommonActors\05.Movable\02.Player\05.Cororon%28분홍%29">
       <UniqueIdentifier>{c445e85a-9318-439e-ada9-f18bf7424eb6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04.Component\02.PlayerState\07.StageMove">
+    <Filter Include="03.CommonActors\05.Movable\01.Base">
+      <UniqueIdentifier>{64bd87e9-04bb-4bb5-8946-a76e73fc3e39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor">
+      <UniqueIdentifier>{816f99e3-605a-44d1-a88a-a3bc8f7ff80e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title">
+      <UniqueIdentifier>{a75cbdf1-d3ab-4491-8c51-259732730404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\01.Opening">
+      <UniqueIdentifier>{147292d0-ec7d-40f3-bb8b-9771d293fd35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\01.Opening\01.Level">
+      <UniqueIdentifier>{d8a0f27e-e74f-4971-8405-56685793e499}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\01.Opening\02.Actor">
+      <UniqueIdentifier>{7eca4a62-389b-45ae-9953-5c90fb96b92b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\01.Opening\02.Actor\02.Monster">
+      <UniqueIdentifier>{6c058190-9ec7-4c95-9a0a-181e485217fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\01.Opening\02.Actor\01.Player">
+      <UniqueIdentifier>{c28eaebb-75da-42f5-97ec-2a6926a147fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\01.Opening\02.Actor\03.SpotLight">
+      <UniqueIdentifier>{465a6616-737d-4b36-94bb-3b3cf19b8f89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\02.SelectPlayer">
+      <UniqueIdentifier>{9156b127-563b-4de5-bfc8-e6382cc36366}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\02.SelectPlayer\01.Level">
+      <UniqueIdentifier>{7a6ba7b7-f12e-4163-8b2f-3c8f143e9115}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\03.SelectCharacter">
+      <UniqueIdentifier>{33ee9987-54a7-4f9c-ade4-73fe4c350a65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\03.SelectCharacter\01.Level">
+      <UniqueIdentifier>{dfce2361-8e4a-4c1a-bb57-7799126208ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\03.SelectCharacter\02.Actor">
+      <UniqueIdentifier>{54753890-3d73-4cc0-9632-e2534fab3b23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\03.SelectCharacter\02.Actor\01.BackGround">
+      <UniqueIdentifier>{f65585bd-6db8-4ca3-986f-b2cc7fe28c8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\03.SelectCharacter\02.Actor\02.TopText">
+      <UniqueIdentifier>{00390744-b580-4f1a-add9-2785d6f6b4dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\03.SelectCharacter\02.Actor\04.Icon">
+      <UniqueIdentifier>{d8c98ab1-d896-4e19-b9c0-4661b0121a50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\03.SelectCharacter\02.Actor\03.Characters">
+      <UniqueIdentifier>{c7a9b2e9-5571-49d3-8cfc-b8d192c87e04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\04.EnterRound">
+      <UniqueIdentifier>{2afc7455-37eb-46cb-95f1-33b58903f644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\04.EnterRound\01.Level">
+      <UniqueIdentifier>{f1827d62-02d4-4f55-89bf-91ba26e146bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\04.EnterRound\02.Actor">
+      <UniqueIdentifier>{f33cad01-611e-45e1-b4e0-0de876a6825e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\04.EnterRound\02.Actor\01.Charater">
+      <UniqueIdentifier>{39b68066-e3fa-4fd7-bc37-cedacbbe2d01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\01.Title\04.EnterRound\02.Actor\02.Bubbles">
+      <UniqueIdentifier>{53cf7d5d-12cf-4a12-99f3-f23133c1e3ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms">
+      <UniqueIdentifier>{5c821fb1-13a1-40bd-a931-06f862407f7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\01.RoundLevelBase">
+      <UniqueIdentifier>{9f37735c-64f2-498f-b053-cd47b1109acc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA">
+      <UniqueIdentifier>{bdfec7d0-2626-4662-83b7-fca0484fdb93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom">
+      <UniqueIdentifier>{03dbe607-9aa5-4f4a-8a4f-3af6ef2b75bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom\01.Level">
+      <UniqueIdentifier>{9b2a8afc-166e-4da1-aa62-b06b598c5f6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom\02.Actor">
+      <UniqueIdentifier>{4201a697-f1f9-41c0-a152-b25f3b0715ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom\02.Actor\01.Sky">
+      <UniqueIdentifier>{46c9d8e4-e379-425c-8710-3450135bbdb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\02.RoundA-1">
+      <UniqueIdentifier>{7005c689-d7b0-481d-9761-1b2f58be7019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\02.RoundA-1\01.Level">
+      <UniqueIdentifier>{c42e8246-d5a9-4b39-abb3-487aae6c4091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\03.RoundA-2">
+      <UniqueIdentifier>{02c3e57f-bb0c-4321-bdb9-c5cbf7bdd71d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\03.RoundA-2\01.Level">
+      <UniqueIdentifier>{6220ee48-d70f-40b0-87ed-ce07377cc0b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\04.RoundA-3">
+      <UniqueIdentifier>{3fdb5ad5-fcef-4245-b5c1-e157ae755176}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\04.RoundA-3\01.Level">
+      <UniqueIdentifier>{d2aeb647-a466-46c2-9dc7-85d58b961873}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\03.Ending">
+      <UniqueIdentifier>{682f3dae-41a6-4d9a-886e-a55c72678834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\03.Ending\01.Level">
+      <UniqueIdentifier>{cdb8c1ae-7cc1-4647-bc98-1f8aa4034fe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component">
+      <UniqueIdentifier>{79d06473-1646-4ee7-adf3-a826d0a6ce2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.PlayerState">
+      <UniqueIdentifier>{a4e9b13c-5281-49dd-9f47-810dbc433c6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.PlayerState\01.Component">
+      <UniqueIdentifier>{665cfe20-5278-459d-bda8-f0e051df0476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.PlayerState\02.Base">
+      <UniqueIdentifier>{89f30bb6-a72e-45c4-957b-db3d59039496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\01.ComponentBase">
+      <UniqueIdentifier>{4e4db9ea-216d-44fa-b651-5a3341eb304e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\03.Gravity">
+      <UniqueIdentifier>{095385e8-eb3c-4743-bee7-6ab29f7538d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.PlayerState\02.MovementStates">
+      <UniqueIdentifier>{ec55f7e5-45e8-4286-8049-2c884213a573}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.PlayerState\03.AttackStates">
+      <UniqueIdentifier>{5b2b65b2-ba6f-4ca2-b484-cbdde8083c82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.PlayerState\02.MovementStates\01.Idle">
+      <UniqueIdentifier>{a18518ff-6508-43ef-86ef-6f1ee0f0719e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.PlayerState\02.MovementStates\02.Move">
+      <UniqueIdentifier>{766871c2-afd6-47a7-a6e1-49eb2f5e5ad9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.PlayerState\02.MovementStates\03.Falling">
+      <UniqueIdentifier>{9b8f7abe-b18f-4df1-88e4-9efc6d9649f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.PlayerState\02.MovementStates\04.Jump">
+      <UniqueIdentifier>{98dbfde0-ab10-4980-bb82-9f3c0420b1d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.PlayerState\03.AttackStates\01.AttackBase">
+      <UniqueIdentifier>{5b5f6681-1df1-49a0-9779-b82e55fecde2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.PlayerState\03.StageMove">
       <UniqueIdentifier>{852e9de9-e9a7-4048-ae06-84f92eb90ce4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04.Component\02.PlayerState\08.Sleep">
+    <Filter Include="05.Component\02.PlayerState\04.Sleep">
       <UniqueIdentifier>{5c5d1b35-853c-48f2-98c2-9ee46bf92444}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.PlayerState\05.Damaged">
+      <UniqueIdentifier>{72dcb196-4541-4db0-b6b8-0917cb96b4a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.PlayerState\06.Enter">
+      <UniqueIdentifier>{2a353d2e-bdc1-440e-82d3-1c9986c8b7e7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

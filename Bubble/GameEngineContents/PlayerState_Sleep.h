@@ -13,9 +13,10 @@ public:
 	PlayerState_Sleep& operator=(const PlayerState_Sleep& _Other) = delete;
 	PlayerState_Sleep& operator=(const PlayerState_Sleep&& _Other) noexcept = delete;
 
-protected:
 	void Start(PlayerCharacterType _CharacterType) override;
 	void Update(float _DeltaTime) override;
+
+protected:
 
 private:
 	

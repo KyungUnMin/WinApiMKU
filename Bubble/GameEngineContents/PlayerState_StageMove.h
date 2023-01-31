@@ -15,12 +15,13 @@ public:
 	PlayerState_StageMove& operator=(const PlayerState_StageMove& _Other) = delete;
 	PlayerState_StageMove& operator=(const PlayerState_StageMove&& _Other) noexcept = delete;
 
-protected:
 	void Start(PlayerCharacterType _CharacterType) override;
 	void Update(float _DeltaTime) override;
 
 	void EnterState() override;
 	void ExitState() override;
+
+protected:
 
 private:
 	GameEngineRender*		ClearBubble		= nullptr;
