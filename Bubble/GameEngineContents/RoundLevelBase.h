@@ -14,7 +14,7 @@ class PlayerBase;
 class RoundLevelBase : public GameEngineLevel
 {
 public:
-
+	static const float StageMoveDuration;
 
 	RoundLevelBase();
 	virtual ~RoundLevelBase() = 0;
@@ -58,6 +58,14 @@ public:
 		PlayerSpwanPos = _Pos;
 	}
 
+	//현재 Round의 Stage를 강제로 설정하는 함수
+	void SetNowStage(int _StageNum);
+
+	inline float GetStageMoveTime()
+	{
+		return StageMoveTime;
+	}
+
 protected:
 	void Loading() override{}
 	void Update(float _DeltaTime) override;
@@ -90,12 +98,9 @@ protected:
 		return Player;
 	}
 
-	//_CenterIndex를 기준으로 삼고 _Dir 방향으로 Stage들을 정렬
-	void ArrangeStage(float4 _Dir, size_t _CenterIndex);
-
 private:
 	//선택한 캐릭터 타입
-	PlayerCharacterType	SelectedCharacter	= PlayerCharacterType::BOBBLUN;
+	PlayerCharacterType	SelectedCharacter	= PlayerCharacterType::BUBBLUN;
 	PlayerBase*					Player						= nullptr;
 	float4							PlayerSpwanPos		= float4::Zero;
 
@@ -108,7 +113,7 @@ private:
 	//IsMoveValue이 true일때 Update에서 Stage가 이동함
 	bool								IsMoveValue			= false;
 	size_t							NowIndex				= 0;
-	float4							MoveDir					= float4::Zero;
-	const float					MoveSpeed				= 500.f;
+	float4							ArrangeDir				= float4::Zero;
+	float							StageMoveTime		= 0.f;
 };
 

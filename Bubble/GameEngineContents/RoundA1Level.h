@@ -18,9 +18,7 @@ protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
 
-	//이 레벨이 시작되었을때 이전 레벨에서 만들어준 Player의 위치를 설정
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
-	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
 	void ResourceLoad();

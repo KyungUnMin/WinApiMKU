@@ -1,4 +1,5 @@
 #include "PlayerState_StageMove.h"
+#include <GameEngineBase/GameEngineMath.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "RoundLevelBase.h"
 #include "PlayerBase.h"
@@ -85,12 +86,18 @@ void PlayerState_StageMove::CreateBubbleAni()
 
 void PlayerState_StageMove::Update(float _DeltaTime)
 {
-	//GetRender()->
 
-
-	//현재 레벨의 Stage가 전환중이라면 return
+	//현재 레벨의 Stage가 전환중이라면 플레이어를 이동시킨다
 	if (true == GetRoundLevel()->IsMoving())
+	{
+		float StageMoveTime = GetRoundLevel()->GetStageMoveTime();
+		float Ratio = StageMoveTime / RoundLevelBase::StageMoveDuration;
+
+		float4 DestPos = GetRoundLevel()->GetPlayerSpawnPos();
+		float4 NextPos = float4::LerpClamp(PlayerOriginPos, DestPos, Ratio);
+		GetPlayer()->SetPos(NextPos);
 		return;
+	}
 	
 	//현재 레벨의 Stage 전환이 끝났다면 Idle상태로 전환
 	GetOwner()->ChangeState(PlayerStateType::Idle);
@@ -99,6 +106,9 @@ void PlayerState_StageMove::Update(float _DeltaTime)
 //플레이어 애니메이션 켜기 & 뒤쪽 거품 켜기
 void PlayerState_StageMove::EnterState()
 {
+	//Stage가 전환될때 처음 플레이어 위치 기록
+	PlayerOriginPos = GetPlayer()->GetPos();
+
 	GetRender()->On();
 	ClearBubble->On();
 }

@@ -24,7 +24,8 @@ public:
 protected:
 
 private:
-	GameEngineRender*		ClearBubble		= nullptr;
+	GameEngineRender*		ClearBubble			= nullptr;
+	float4								PlayerOriginPos	= float4::Zero;
 
 	void CreatePlayerAni(PlayerCharacterType _CharacterType);
 	void CreateBubbleAni();

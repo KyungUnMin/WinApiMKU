@@ -2,6 +2,7 @@
 #include <string_view>
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
+#include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "SelectCharacterLevel.h"
@@ -114,6 +115,12 @@ void EnterRoundLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void EnterRoundLevel::Update(float _DeltaTime)
 {
+	if (true == GameEngineInput::IsAnyKey())
+	{
+		BubbleCore::GetInst().ChangeLevel("RoundAEnterLevel");
+		return;
+	}
+
 	//10초뒤에 다음 레벨로 전환
 	AccTime += _DeltaTime;
 	if (10.f < AccTime)

@@ -105,11 +105,3 @@ void RoundA1Level::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	GetPlayer()->SetPos(GetPlayerSpawnPos());
 }
 
-void RoundA1Level::LevelChangeEnd(GameEngineLevel* _NextLevel)
-{
-	RoundLevelBase::LevelChangeEnd(_NextLevel);
-
-	//레벨이 전환되기 전에 화면을 아래방향으로 정렬해두고 전환
-	ArrangeStage(float4::Down, 0);
-}
-

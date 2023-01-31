@@ -1,5 +1,6 @@
 #include "RoundLevelBase.h"
 #include <GameEngineBase/GameEngineDirectory.h>
+#include <GameEngineBase/GameEngineMath.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
@@ -9,7 +10,7 @@
 #include "Player_Kululun.h"
 #include "Player_Cororon.h"
 
-const float StageMoveTime = 3.f;
+const float RoundLevelBase::StageMoveDuration = 1.5f;
 
 RoundLevelBase::RoundLevelBase()
 {
@@ -53,8 +54,6 @@ void RoundLevelBase::LoadObstacle(const std::string_view& _RoundName, int _X, in
 //레벨의 지형을 생성하는 함수
 void RoundLevelBase::CreateObstacle(const float4& _ArrangeDir, int _Order)
 {
-	float4 ScreenSize = GameEngineWindow::GetScreenSize();
-
 	//지형 생성후 꺼두기
 	for (size_t i = 0; i < Obstacles->GetRenderCapacity(); ++i)
 	{
@@ -63,51 +62,19 @@ void RoundLevelBase::CreateObstacle(const float4& _ArrangeDir, int _Order)
 		Render->Off();
 	}
 
-	//인자로 받은 _ArrangeDir방향으로 0번 Render가 화면 중앙에 나오게 정렬(0번 Render는 On)
-	ArrangeStage(_ArrangeDir, 0);
-
-	//Stage가 전환될때 Stage이동방향 설정
-	MoveDir = -(_ArrangeDir);
-}
-
-
-//인자로 받은 _Dir방향으로 _CenterIndex번 Render가 화면 중앙에 나오게 정렬(_CenterIndex번 Render는 On)
-void RoundLevelBase::ArrangeStage(float4 _Dir, size_t _CenterIndex)
-{
-	float4 ScreenSize = GameEngineWindow::GetScreenSize();
-
-	for (size_t i = 0; i < Obstacles->GetRenderSize(); ++i)
+	if ((_ArrangeDir != float4::Right) && (_ArrangeDir != float4::Down))
 	{
-		GameEngineRender* Render = Obstacles->GetRender(i);
-		float4 Offset = float4::Zero;
-
-		//정렬 방향이 오른쪽일때
-		if (_Dir == float4::Right)
-		{
-			//_CenterIndex가 화면중앙에 나오게 정렬
-			Offset = _Dir * ScreenSize.x * static_cast<float>(i - _CenterIndex);
-		}
-
-		//정렬 방향이 아래일때
-		else if (_Dir == float4::Down)
-		{
-			//_CenterIndex가 화면중앙에 나오게 정렬
-			Offset = _Dir * ScreenSize.y * static_cast<float>(i - _CenterIndex);
-		}
-		else
-		{
-			MsgAssert("float4::Right 또는 float4::Down 방향으로만 지형을 나열할 수 있습니다.");
-		}
-
-		Render->SetPosition(Offset);
-		Render->Off();
+		MsgAssert("float4::Right 또는 float4::Down 방향으로만 지형을 나열할 수 있습니다.");
+		return;
 	}
 
-	NowIndex = _CenterIndex;
+	ArrangeDir = _ArrangeDir;
 
-	//_CenterIndex번 Render만 On
-	Obstacles->GetRender(NowIndex)->On();
+	//첫번째 스테이지 화면 정 중앙에 설정
+	Obstacles->GetRender(0)->SetPosition(float4::Zero);
+	Obstacles->GetRender(0)->On();
 }
+
 
 
 //다음 Stage로 이동하는 함수
@@ -123,13 +90,20 @@ bool RoundLevelBase::MoveToNextStage()
 		return false;
 	}
 
+
 	//IsMoveValue이 true일때 Update에서 Stage가 이동함
 	IsMoveValue = true;
 
 	//다음 Stage의 렌더러 On
-	Obstacles->GetRender(NowIndex + 1)->On();
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+	GameEngineRender* NextRender = Obstacles->GetRender(NowIndex + 1);
+	NextRender->On();
+	NextRender->SetPosition(-ArrangeDir * ScreenSize);
+
 	return true;
 }
+
+
 
 
 
@@ -139,26 +113,38 @@ void RoundLevelBase::Update(float _DeltaTime)
 	if (false == IsMoveValue)
 		return;
 
-	//모든 스테이지들이 이동
-	for (size_t i = 0; i < Obstacles->GetRenderSize(); ++i)
+	//StageMoveDurationt 시간안에 Stage전환
+	StageMoveTime += _DeltaTime;
+	float Ratio = StageMoveTime / StageMoveDuration;
+
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+
+	//현재 스테이지
 	{
-		GameEngineRender* Render = Obstacles->GetRender(i);
-		float4 Offset = Render->GetPosition();
-		Offset += MoveDir * MoveSpeed * _DeltaTime;
-		Render->SetPosition(Offset);
+		GameEngineRender* StageRender = Obstacles->GetRender(NowIndex);
+		float4 StartPos = float4::Zero;
+		float4 DestPos = -ArrangeDir * ScreenSize;
+		float4 NowPos = float4::LerpClamp(StartPos, DestPos, Ratio);
+		StageRender->SetPosition(NowPos);
 	}
 
-	//다음 스테이지의 Render
-	GameEngineRender* NextStage = Obstacles->GetRender(NowIndex + 1);
+	//다음 스테이지
+	{
+		GameEngineRender* StageRender = Obstacles->GetRender(NowIndex + 1);
+		float4 StartPos = ArrangeDir * ScreenSize;
+		float4 DestPos = float4::Zero;
+		float4 NowPos = float4::LerpClamp(StartPos, DestPos, Ratio);
+		StageRender->SetPosition(NowPos);
+	}
 
-	//다음 스테이지의 Offset이 화면 중심보다도 더 움직였다면 return 아래 코드 동작
-	float4 NextOffset = NextStage->GetPosition();
-	if (0 <= NextOffset.x && 0 <= NextOffset.y)
-		return;
-
-	//다음 Stage를 중심으로 Stage를 정렬하고 NowIndex를 1증가시키며 나머지 Render는 Off
-	ArrangeStage(-MoveDir, NowIndex + 1);
-	IsMoveValue = false;
+	//StageMoveDurationt을 경과했다면
+	if (1.f < Ratio)
+	{
+		//ArrangeStage(ArrangeDir, NowIndex + 1);
+		SetNowStage(NowIndex + 1);
+		IsMoveValue = false;
+		StageMoveTime = 0.f;
+	}
 }
 
 
@@ -238,4 +224,20 @@ void RoundLevelBase::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	IsMoveValue = false;
+	SetNowStage(0);
+}
+
+//현재 Round의 Stage를 강제로 설정하는 함수
+void RoundLevelBase::SetNowStage(int _StageNum)
+{
+	//모든 스테이지 끄기
+	for (size_t i = 0; i < Obstacles->GetRenderSize(); ++i)
+	{
+		Obstacles->GetRender(i)->Off();
+	}
+
+	//인자로 받은_StageNum만 켜기
+	NowIndex = _StageNum;
+	Obstacles->GetRender(NowIndex)->On();
+	Obstacles->GetRender(NowIndex)->SetPosition(float4::Zero);
 }

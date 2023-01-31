@@ -138,8 +138,6 @@ void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void RoundAEnterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	RoundLevelBase::LevelChangeEnd(_NextLevel);
-
 	//문의 애니메이션들을 초기화
 	for (size_t i = 0; i < 3; ++i)
 	{
