@@ -44,7 +44,7 @@ void PlayerState_Move::Start(PlayerCharacterType _CharacterType)
 		.ImageName = "Left_PlayerMove.bmp",
 		.Start = AniIndex,
 		.End = AniIndex + 4,
-		.InterTimer = 0.1f,
+		.InterTimer = AniInterval,
 	});
 
 	//오른쪽 애니메이션 생성
@@ -54,7 +54,7 @@ void PlayerState_Move::Start(PlayerCharacterType _CharacterType)
 		.ImageName = "Right_PlayerMove.bmp",
 		.Start = AniIndex,
 		.End = AniIndex + 4,
-		.InterTimer = 0.1f,
+		.InterTimer = AniInterval,
 	});
 
 	//방향 받아오기

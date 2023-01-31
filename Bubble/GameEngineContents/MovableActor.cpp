@@ -5,7 +5,7 @@
 #include "PlayerState.h"
 #include "Gravity.h"
 
-const float				MovableActor::ColliderRange	= 30.f;
+const float				MovableActor::ColliderRange	= 20.f;
 const std::string		MovableActor::LeftStr				= "Left_";
 const std::string		MovableActor::RightStr				= "Right_";
 

@@ -82,11 +82,16 @@ void PlayerState_Falling::Update(float _DeltaTime)
 	float4 NowPos = GetPlayer()->GetPos();
 	float4 MoveDir = GetPlayer()->GetDirVec();
 
-	//떨어지면서도 이동하는 경우에 이동할 위치에 벽이 있는지 확인, 없다면 이동
-	if (false == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * MovableActor::ColliderRange))
+	//떨어지면서도 이동하는 경우에 
+	if (GameEngineInput::IsPress(PlayerRight) || GameEngineInput::IsPress(PlayerLeft))
 	{
-		GetPlayer()->SetMove(MoveDir * AirMoveSpeed * _DeltaTime);
+		//이동할 위치에 벽이 있는지 확인, 없다면 이동
+		if (false == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * MovableActor::ColliderRange))
+		{
+			GetPlayer()->SetMove(MoveDir * AirMoveSpeed * _DeltaTime);
+		}
 	}
+	
 
 	//공중에 있는 경우엔 return
 	if (false == GetRoundLevel()->IsBlockPos(NowPos + float4::Down))

@@ -22,7 +22,7 @@ public:
 protected:
 
 private:
-	const float					AirMoveSpeed	= 150.f;
-	const float					JumpAcc			= 300.f;
+	const float					AirMoveSpeed	= 250.f;
+	const float					JumpAcc			= 400.f;
 };
 

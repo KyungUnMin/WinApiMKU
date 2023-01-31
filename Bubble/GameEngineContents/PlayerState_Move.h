@@ -20,6 +20,7 @@ public:
 protected:
 
 private:
-	const float					MoveSpeed		= 250.f;
+	const float					MoveSpeed		= 500.f;
+	const float					AniInterval		= 0.08f;
 };
 

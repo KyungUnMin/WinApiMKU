@@ -163,8 +163,8 @@ bool RoundLevelBase::IsBlockPos(const float4& _Pos)
 	//현재 Stage에 맞게 Offset을 조정	(3번 스테이지라면 해상도.x * 3)
 	float4 Offset = ColliderImage->GetCutData(static_cast<int>(NowIndex)).GetStartPos();
 
-	//해당 지점의 색상 추출
-	DWORD Color = ColliderImage->GetPixelColor(Offset + _Pos, RGB(0, 0, 0));
+	//해당 지점의 색상 추출(스크린 밖으로도 나갈수 있는 상태)
+	DWORD Color = ColliderImage->GetPixelColor(Offset + _Pos, RGB(255, 255, 255));
 
 	//검정색이라면 맵의 충돌체에 막혀있는곳
 	return Color == RGB(0,0,0);

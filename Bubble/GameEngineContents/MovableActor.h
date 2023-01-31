@@ -9,7 +9,7 @@ class ComponentBase;
 class MovableActor : public GameEngineActor
 {
 public:
-	//레벨의 Obstacle과 충돌처리를 할 때 자신의 충돌 범위(추후 클래스의 멤버변수로 종속시킬수도 있음)
+	//레벨의 Obstacle과 충돌처리를 할 때 자신의 충돌 범위(추후 클래스의 멤버변수로 종속시킬 예정)
 	static const float ColliderRange;
 
 	static const std::string LeftStr;

@@ -18,6 +18,6 @@ public:
 protected:
 
 private:
-	const float					AirMoveSpeed = 50.f;
+	const float					AirMoveSpeed = 100.f;
 };
 

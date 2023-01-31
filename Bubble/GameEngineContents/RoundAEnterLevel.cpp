@@ -26,7 +26,7 @@ void RoundAEnterLevel::Loading()
 {
 	//플레이어가 생성될 위치 설정
 	float4 ScreenSize = GameEngineWindow::GetScreenSize();
-	SetPlayerSpawnPos({ ScreenSize.x * 0.2f,  ScreenSize.y * 0.8f });
+	SetPlayerSpawnPos(ScreenSize - float4{ ScreenSize.x - 100.f, 50.f});
 
 	//리소스 로드
 	ResourceLoad();

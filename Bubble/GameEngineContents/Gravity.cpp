@@ -11,7 +11,7 @@ Gravity::Gravity()
 
 Gravity::~Gravity()
 {
-
+	
 }
 
 
@@ -46,11 +46,20 @@ void Gravity::Update(float _DeltaTime)
 	//아래로 떨어지는 경우(가속도 값이 양수)
 	if (0.f <= NowGravityAcc)
 	{
-		//내 바로 밑이 바닥이라면
+		//내 바로 밑이 바닥일때만
 		if (true == RoundLevel->IsBlockPos(DownPos))
 		{
 			//가속도 0
 			MovableOwner->SetGravityAcc(0.f);
+
+			//가속도가 너무 빨라서 플레이어가 땅에 쳐박혔을때 위로 꺼내는 작업
+			while (RoundLevel->IsBlockPos(NowPos))
+			{
+				//땅이 아닐때 까지 위로 올린다
+				NowPos += float4::Up;
+			}
+
+			GetOwner()->SetPos(NowPos);
 			return;
 		}
 	}
