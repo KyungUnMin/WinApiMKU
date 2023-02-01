@@ -6,6 +6,8 @@ class BackGround;
 class RoundA1Level : public RoundLevelBase
 {
 public:
+	static const std::vector<float4> PlayerSpanwPos;
+
 	RoundA1Level();
 	~RoundA1Level();
 
@@ -17,8 +19,6 @@ public:
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
-
-	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 private:
 	void ResourceLoad();

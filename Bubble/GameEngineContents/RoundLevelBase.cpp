@@ -1,4 +1,5 @@
 #include "RoundLevelBase.h"
+#include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineMath.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -25,7 +26,7 @@ RoundLevelBase::~RoundLevelBase()
 
 
 //레벨의 지형과 충돌체를 로드하는 함수
-void RoundLevelBase::LoadObstacle(const std::string_view& _RoundName, int _X, int _Y)
+void RoundLevelBase::LoadStage(const std::string_view& _RoundName, int _X, int _Y)
 {
 	//모든 RoundLevel의 Obstacle은 한 폴더에 저장되어 있다
 	GameEngineDirectory Dir;
@@ -33,31 +34,33 @@ void RoundLevelBase::LoadObstacle(const std::string_view& _RoundName, int _X, in
 	Dir.Move("ContentsResources");
 	Dir.Move("Image");
 	Dir.Move("RoundRooms");
-	Dir.Move("Obstacle");
+	Dir.Move("Stage");
 
 	//레벨 충돌체 Load
 	//"Round" + _RoundName + "_Collider.bmp"
 	ImageName += _RoundName.data();
-	ColliderImage = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(ImageName + "_Collider.bmp"));
-	ColliderImage->Cut(_X, _Y);
+
+
+	StageCollision = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(ImageName + "_Collider.bmp"));
+	StageCollision->Cut(_X, _Y);
 
 	//레벨 지형 이미지 로드
 	//"Round" + _RoundName + "_Obstacle.bmp"
-	ImageName += "_Obstacle.bmp";
+	ImageName += "_Stage.bmp";
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(ImageName))->Cut(_X, _Y);
 
-	Obstacles = CreateActor<BackGround>();
-	Obstacles->RenderReserve(_X * _Y);
+	StageImage = CreateActor<BackGround>();
+	StageImage->RenderReserve(_X * _Y);
 }
 
 
 //레벨의 지형을 생성하는 함수
-void RoundLevelBase::CreateObstacle(const float4& _ArrangeDir, int _Order)
+void RoundLevelBase::CreateStage(const float4& _ArrangeDir, int _Order)
 {
 	//지형 생성후 꺼두기
-	for (size_t i = 0; i < Obstacles->GetRenderCapacity(); ++i)
+	for (size_t i = 0; i < StageImage->GetRenderCapacity(); ++i)
 	{
-		GameEngineRender* Render = Obstacles->CreateRender(ImageName, _Order);
+		GameEngineRender* Render = StageImage->CreateRender(ImageName, _Order);
 		Render->SetFrame(static_cast<int>(i));
 		Render->Off();
 	}
@@ -71,8 +74,8 @@ void RoundLevelBase::CreateObstacle(const float4& _ArrangeDir, int _Order)
 	ArrangeDir = _ArrangeDir;
 
 	//첫번째 스테이지 화면 정 중앙에 설정
-	Obstacles->GetRender(0)->SetPosition(float4::Zero);
-	Obstacles->GetRender(0)->On();
+	StageImage->GetRender(0)->SetPosition(float4::Zero);
+	StageImage->GetRender(0)->On();
 }
 
 
@@ -85,7 +88,7 @@ bool RoundLevelBase::MoveToNextStage()
 		return false;
 
 	//이번 스테이지가 마지막이였다면 false를 리턴
-	if (NowIndex + 1 == Obstacles->GetRenderSize())
+	if (NowIndex + 1 == StageImage->GetRenderSize())
 	{
 		return false;
 	}
@@ -96,7 +99,7 @@ bool RoundLevelBase::MoveToNextStage()
 
 	//다음 Stage의 렌더러 On
 	float4 ScreenSize = GameEngineWindow::GetScreenSize();
-	GameEngineRender* NextRender = Obstacles->GetRender(NowIndex + 1);
+	GameEngineRender* NextRender = StageImage->GetRender(NowIndex + 1);
 	NextRender->On();
 	NextRender->SetPosition(-ArrangeDir * ScreenSize);
 
@@ -121,7 +124,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 
 	//현재 스테이지
 	{
-		GameEngineRender* StageRender = Obstacles->GetRender(NowIndex);
+		GameEngineRender* StageRender = StageImage->GetRender(NowIndex);
 		float4 StartPos = float4::Zero;
 		float4 DestPos = -ArrangeDir * ScreenSize;
 		float4 NowPos = float4::LerpClamp(StartPos, DestPos, Ratio);
@@ -130,7 +133,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 
 	//다음 스테이지
 	{
-		GameEngineRender* StageRender = Obstacles->GetRender(NowIndex + 1);
+		GameEngineRender* StageRender = StageImage->GetRender(NowIndex + 1);
 		float4 StartPos = ArrangeDir * ScreenSize;
 		float4 DestPos = float4::Zero;
 		float4 NowPos = float4::LerpClamp(StartPos, DestPos, Ratio);
@@ -153,7 +156,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 //NowIndex가 현재 Round에서 마지막 Stage인지 알려주는 함수
 bool RoundLevelBase::IsLastStage()
 {
-	return (NowIndex + 1) == Obstacles->GetRenderSize();
+	return (NowIndex + 1) == StageImage->GetRenderSize();
 }
 
 
@@ -161,10 +164,10 @@ bool RoundLevelBase::IsLastStage()
 bool RoundLevelBase::IsBlockPos(const float4& _Pos)
 {
 	//현재 Stage에 맞게 Offset을 조정	(3번 스테이지라면 해상도.x * 3)
-	float4 Offset = ColliderImage->GetCutData(static_cast<int>(NowIndex)).GetStartPos();
+	float4 Offset = StageCollision->GetCutData(static_cast<int>(NowIndex)).GetStartPos();
 
 	//해당 지점의 색상 추출(스크린 밖으로도 나갈수 있는 상태)
-	DWORD Color = ColliderImage->GetPixelColor(Offset + _Pos, RGB(255, 255, 255));
+	DWORD Color = StageCollision->GetPixelColor(Offset + _Pos, RGB(255, 255, 255));
 
 	//검정색이라면 맵의 충돌체에 막혀있는곳
 	return Color == RGB(0,0,0);
@@ -218,6 +221,15 @@ void RoundLevelBase::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	{
 		CreatePlayer(PrevRoundLevel->GetSelectCharacter());
 	}
+
+	if (true == PlayerSpwanPos.empty())
+	{
+		size_t Index = ImageName.find('_', 0);
+		MsgAssert(ImageName.substr(0, Index) + " 라운드의 플레이어 생성 위치를 설정해주지 않았습니다");
+	}
+
+	//플레이어 위치 조정
+	Player->SetPos(PlayerSpwanPos[0]);
 }
 
 //레벨이 전환될때 레벨 정리하고 가기
@@ -227,17 +239,28 @@ void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	SetNowStage(0);
 }
 
+const float4& RoundLevelBase::GetPlayerSpawnPos()
+{
+	if (PlayerSpwanPos.size() <= NowIndex)
+	{
+		MsgAssert("해당 Stage에는 플레이어 스폰 위치를 설정해주지 않았습니다");
+		return float4::Zero;
+	}
+
+	return PlayerSpwanPos[NowIndex];
+}
+
 //현재 Round의 Stage를 강제로 설정하는 함수
-void RoundLevelBase::SetNowStage(int _StageNum)
+void RoundLevelBase::SetNowStage(size_t _StageNum)
 {
 	//모든 스테이지 끄기
-	for (size_t i = 0; i < Obstacles->GetRenderSize(); ++i)
+	for (size_t i = 0; i < StageImage->GetRenderSize(); ++i)
 	{
-		Obstacles->GetRender(i)->Off();
+		StageImage->GetRender(i)->Off();
 	}
 
 	//인자로 받은_StageNum만 켜기
 	NowIndex = _StageNum;
-	Obstacles->GetRender(NowIndex)->On();
-	Obstacles->GetRender(NowIndex)->SetPosition(float4::Zero);
+	StageImage->GetRender(NowIndex)->On();
+	StageImage->GetRender(NowIndex)->SetPosition(float4::Zero);
 }

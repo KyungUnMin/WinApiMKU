@@ -6,6 +6,8 @@ class NextDoor;
 class RoundAEnterLevel : public RoundLevelBase
 {
 public:
+	static const std::vector<float4> PlayerSpanwPos;
+
 	RoundAEnterLevel();
 	~RoundAEnterLevel();
 
@@ -17,7 +19,6 @@ public:
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
-	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:

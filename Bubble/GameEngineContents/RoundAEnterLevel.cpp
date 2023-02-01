@@ -11,6 +11,8 @@
 #include "NextDoor.h"
 #include "PlayerBase.h"
 
+const std::vector<float4> RoundAEnterLevel::PlayerSpanwPos = { { 100.f, 700.f } };
+
 RoundAEnterLevel::RoundAEnterLevel()
 {
 
@@ -24,17 +26,16 @@ RoundAEnterLevel::~RoundAEnterLevel()
 
 void RoundAEnterLevel::Loading()
 {
-	//플레이어가 생성될 위치 설정
-	float4 ScreenSize = GameEngineWindow::GetScreenSize();
-	SetPlayerSpawnPos(ScreenSize - float4{ ScreenSize.x - 100.f, 50.f});
-
 	//리소스 로드
 	ResourceLoad();
-	RoundLevelBase::LoadObstacle("AEnter", 1, 1);
+	RoundLevelBase::LoadStage("AEnter", 1, 1);
 
 	//뒤 배경과 레벨의 지형 생성
 	CreateBackGround();
-	RoundLevelBase::CreateObstacle(float4::Right, RoundRenderOrder::Obstacle1);
+	RoundLevelBase::CreateStage(float4::Right, RoundRenderOrder::Obstacle1);
+
+	//플레이어가 생성될 위치 설정
+	SetPlayerSpawnPos(PlayerSpanwPos);
 
 	//뒤쪽 좌우로 움직이는 하늘 생성
 	CreateActor<RoundA_Enter_Sky>();
@@ -128,13 +129,6 @@ void RoundAEnterLevel::Update(float _DeltaTime)
 	}
 }
 
-
-void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
-{
-	//플레이어 생성
-	RoundLevelBase::LevelChangeStart(_PrevLevel);
-	GetPlayer()->SetPos(GetPlayerSpawnPos());
-}
 
 void RoundAEnterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {

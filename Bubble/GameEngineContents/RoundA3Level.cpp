@@ -10,6 +10,16 @@
 #include "ContentsEnum.h"
 #include "PlayerBase.h"
 
+const std::vector<float4> RoundA3Level::PlayerSpanwPos = 
+{
+	{ 100.f, 700.f },
+	{ 100.f, 700.f },
+	{ 100.f, 700.f },
+	{ 100.f, 700.f },
+	{ 100.f, 700.f },
+	{ 100.f, 700.f }
+};
+
 RoundA3Level::RoundA3Level()
 {
 
@@ -22,17 +32,16 @@ RoundA3Level::~RoundA3Level()
 
 void RoundA3Level::Loading()
 {
-	//플레이어가 생성될 위치 설정
-	float4 ScreenSize = GameEngineWindow::GetScreenSize();
-	SetPlayerSpawnPos({ ScreenSize.x * 0.2f,  ScreenSize.y * 0.8f });
-
 	//리소스 로드
 	ResourceLoad();
-	RoundLevelBase::LoadObstacle("A3", 6, 1);
+	RoundLevelBase::LoadStage("A3", 6, 1);
 
 	//뒤 배경과 레벨의 지형을 오른쪽으로 정렬하여 생성
 	CreateBackGround();
-	RoundLevelBase::CreateObstacle(float4::Right, RoundRenderOrder::Obstacle1);
+	RoundLevelBase::CreateStage(float4::Right, RoundRenderOrder::Obstacle1);
+
+	//플레이어가 생성될 위치 설정
+	SetPlayerSpawnPos(PlayerSpanwPos);
 
 	//치트키
 	GameEngineInput::CreateKey("A3_NextStage", VK_F1);
@@ -109,10 +118,3 @@ void RoundA3Level::CreateBackGround()
 	Render2->ChangeAnimation("Idle");
 }
 
-//이 레벨이 시작되었을때
-void RoundA3Level::LevelChangeStart(GameEngineLevel* _PrevLevel)
-{
-	//플레이어 생성
-	RoundLevelBase::LevelChangeStart(_PrevLevel);
-	GetPlayer()->SetPos(GetPlayerSpawnPos());
-}

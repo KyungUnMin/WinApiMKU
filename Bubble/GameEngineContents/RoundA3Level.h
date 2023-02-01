@@ -4,6 +4,8 @@
 class RoundA3Level : public RoundLevelBase
 {
 public:
+	static const std::vector<float4> PlayerSpanwPos;
+
 	RoundA3Level();
 	~RoundA3Level();
 
@@ -15,8 +17,6 @@ public:
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
-
-	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 private:
 

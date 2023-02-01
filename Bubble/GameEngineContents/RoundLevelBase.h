@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <string_view>
+#include <vector>
 #include <GameEngineBase/GameEngineMath.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include "ContentsEnum.h"
@@ -24,11 +25,15 @@ public:
 	RoundLevelBase& operator=(const RoundLevelBase& _Other) = delete;
 	RoundLevelBase& operator=(const RoundLevelBase&& _Other) noexcept = delete;
 
+
+
 	//NowIndex가 현재 Round에서 마지막 Stage인지 알려주는 함수
 	bool IsLastStage();
 
 	//인자로 받는 _Pos가 레벨의 지형에 의해 막힌 곳인지 알려주는 함수
 	bool IsBlockPos(const float4& _Pos);
+
+
 
 	//현재 Round에서 선택된 캐릭터 타입을 반환
 	inline PlayerCharacterType GetSelectCharacter()
@@ -43,23 +48,24 @@ public:
 		SelectedCharacter = _Type;
 	}
 
+
+
 	inline bool IsMoving()
 	{
 		return IsMoveValue;
 	}
 
-	inline const float4& GetPlayerSpawnPos()
+	const float4& GetPlayerSpawnPos();
+
+	void SetPlayerSpawnPos(const std::vector<float4>& _SpawnPos)
 	{
-		return PlayerSpwanPos;
+		PlayerSpwanPos = _SpawnPos;
 	}
 
-	inline void SetPlayerSpawnPos(const float4& _Pos)
-	{
-		PlayerSpwanPos = _Pos;
-	}
+
 
 	//현재 Round의 Stage를 강제로 설정하는 함수
-	void SetNowStage(int _StageNum);
+	void SetNowStage(size_t _StageNum);
 
 	inline float GetStageMoveTime()
 	{
@@ -73,15 +79,15 @@ protected:
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 	//레벨의 지형과 충돌체를 로드하는 함수
-	void LoadObstacle(const std::string_view& _RoundName, int _X, int _Y);
+	void LoadStage(const std::string_view& _RoundName, int _X, int _Y);
 
 	//레벨의 지형을 생성하는 함수
 	template <typename RenderOrder>
-	void CreateObstacle(const float4& _ArrangeDir, RenderOrder _Order)
+	void CreateStage(const float4& _ArrangeDir, RenderOrder _Order)
 	{
-		CreateObstacle(_ArrangeDir, static_cast<int>(_Order));
+		CreateStage(_ArrangeDir, static_cast<int>(_Order));
 	}
-	void CreateObstacle(const float4& _ArrangeDir, int _Order);
+	void CreateStage(const float4& _ArrangeDir, int _Order);
 
 	//다음 Stage로 이동하는 함수
 	bool MoveToNextStage();
@@ -102,12 +108,12 @@ private:
 	//선택한 캐릭터 타입
 	PlayerCharacterType	SelectedCharacter	= PlayerCharacterType::BUBBLUN;
 	PlayerBase*					Player						= nullptr;
-	float4							PlayerSpwanPos		= float4::Zero;
+	std::vector<float4>		PlayerSpwanPos;
 
 	//Obstacle을 생성하는데 사용하는 변수
 	std::string					ImageName				= "Round";
-	BackGround*				Obstacles				= nullptr;
-	GameEngineImage*		ColliderImage			= nullptr;
+	BackGround*				StageImage					= nullptr;
+	GameEngineImage*		StageCollision			= nullptr;
 
 
 	//IsMoveValue이 true일때 Update에서 Stage가 이동함
