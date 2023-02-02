@@ -10,6 +10,8 @@
 #include "NextDoor.h"
 #include "PlayerBase.h"
 
+#include "MonsterBase.h"
+
 const std::vector<float4> RoundAEnterLevel::PlayerSpanwPos = { { 100.f, 700.f } };
 
 RoundAEnterLevel::RoundAEnterLevel()
@@ -40,6 +42,20 @@ void RoundAEnterLevel::Loading()
 	CreateActor<RoundA_Enter_Sky>();
 	//다음 레벨로 넘어가는 문 생성
 	CreateDoor();
+
+
+	const float4 MonsterPos[3] =
+	{
+		{400.f, 430.f},{500.f, 430.f},{600.f, 430.f}
+	};
+
+	Monsters.reserve(3);
+	for (size_t i = 0; i < 3; ++i)
+	{
+		MonsterBase* Monster = CreateActor<MonsterBase>();
+		Monster->SetPos(MonsterPos[i]);
+		Monsters.push_back(Monster);
+	}
 }
 
 void RoundAEnterLevel::ResourceLoad()
@@ -72,11 +88,24 @@ void RoundAEnterLevel::CreateDoor()
 		Door[i] = CreateActor<NextDoor>();
 		Door[i]->SelectDoor(DoorType::Blue, { 200.f, 200.f }, RoundRenderOrder::Door);
 		Door[i]->SetPos(Pivot + Offset[i]);
+		Door[i]->Off();
 	}
 }
 
 void RoundAEnterLevel::Update(float _DeltaTime)
 {
+	for (size_t i = 0; i < Monsters.size(); ++i)
+	{
+		if (Monsters[i]->IsUpdate())
+			return;
+	}
+
+	for (size_t i = 0; i < 3; ++i)
+	{
+		Door[i]->On();
+	}
+
+
 	//문이 선택되었을때를 확인
 	if (SelectedDoor < 0)
 	{
@@ -108,6 +137,21 @@ void RoundAEnterLevel::Update(float _DeltaTime)
 	else
 	{
 		BubbleCore::GetInst().ChangeLevel("RoundA3Level");
+	}
+}
+
+void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	RoundLevelBase::LevelChangeStart(_PrevLevel);
+
+	for (size_t i = 0; i < Monsters.size(); ++i)
+	{
+		Monsters[i]->On();
+	}
+
+	for (size_t i = 0; i < 3; ++i)
+	{
+		Door[i]->Off();
 	}
 }
 

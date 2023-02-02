@@ -64,8 +64,6 @@ public:
 
 
 protected:
-	void Update(float _DeltaTime) override;
-
 	//이번 프레임에 방향이 바뀌였는지 체크
 	virtual void CheckDirection();
 

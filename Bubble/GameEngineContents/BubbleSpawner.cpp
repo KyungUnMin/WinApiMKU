@@ -2,8 +2,10 @@
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "PlayerBase.h"
 #include "ContentsDefine.h"
+#include "ContentsEnum.h"
 #include "BubbleMissle_Normal.h"
 
 std::vector<BubbleMissleBase*>	BubbleSpawner::Bubbles;
@@ -57,6 +59,8 @@ void BubbleSpawner::Update(float _DeltaTime)
 	BubblePtr->SetDir(Player->GetDirVec());
 	BubblePtr->CreateAnimation(Player->GetCharacterType());
 }
+
+
 
 BubbleMissleBase* BubbleSpawner::CreateBubble()
 {

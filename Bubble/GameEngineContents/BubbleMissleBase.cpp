@@ -2,11 +2,13 @@
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "RoundLevelBase.h"
 
 const float		BubbleMissleBase::MoveSpeed		= 400.f;
 const float		BubbleMissleBase::RaiseSpeed		= 50.f;
 const float4	BubbleMissleBase::RenderScale		= float4{ 150.f, 150.f };
+const float4	BubbleMissleBase::CollisionScale	= float4{ 50.f, 50.f };
 
 BubbleMissleBase::BubbleMissleBase()
 {
@@ -17,6 +19,7 @@ BubbleMissleBase::~BubbleMissleBase()
 {
 
 }
+
 
 
 
@@ -33,6 +36,8 @@ void BubbleMissleBase::Start()
 
 	BubbleRender = CreateRender(RoundRenderOrder::AttackBubble);
 	BubbleRender->SetScale(RenderScale);
+	CollisionPtr = CreateCollision(CollisionOrder::Player_Missle);
+	CollisionPtr->SetScale(CollisionScale);
 
 	RoundLevel = dynamic_cast<RoundLevelBase*>(GetLevel());
 	if (nullptr == RoundLevel)
@@ -84,11 +89,12 @@ void BubbleMissleBase::Update(float _DeltaTime)
 		IdleUpdate(_DeltaTime);
 		break;
 	case BubbleState::Pop:
-		BubblePop();
 		GameEngineObject::Off();
 		break;
 	}
 }
+
+
 
 void BubbleMissleBase::ThrowUpdate(float _DeltaTime)
 {
@@ -99,7 +105,19 @@ void BubbleMissleBase::ThrowUpdate(float _DeltaTime)
 		BubbleRender->ChangeAnimation("BubbleIdle");
 		return;
 	}
+	
 
+	std::vector<GameEngineCollision*> Monsters;
+	if (true == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Monster) }, Monsters))
+	{
+		State = BubbleState::Idle;
+		Monsters.front()->GetActor()->Off();
+		BubbleRender->ChangeAnimation("BubbleIdle");
+
+		GameEngineCollision* CollPtr = Monsters.front();
+		GameEngineActor* Ac = CollPtr->GetActor();
+		return;
+	}
 
 	//BubbleThrow의 재생중일땐 맵에 막혀있지만 않다면 해당 방향으로 움직인다
 	float4 NextMove = GetDirVec() * MoveSpeed * _DeltaTime;
@@ -114,3 +132,8 @@ void BubbleMissleBase::IdleUpdate(float _DeltaTime)
 	SetMove(float4::Up * RaiseSpeed * _DeltaTime);
 }
 
+void BubbleMissleBase::BubblePop()
+{
+	State = BubbleState::Pop;
+
+}

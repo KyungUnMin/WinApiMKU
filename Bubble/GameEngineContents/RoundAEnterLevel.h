@@ -2,6 +2,8 @@
 #include "RoundLevelBase.h"
 
 class NextDoor;
+class MonsterBase;
+
 
 class RoundAEnterLevel : public RoundLevelBase
 {
@@ -19,6 +21,7 @@ public:
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
+	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
@@ -26,6 +29,8 @@ private:
 	int				SelectedDoor		= -1;
 	float			NextLevelTime		= 3.f;
 
+
+	std::vector<MonsterBase*> Monsters;
 
 	void ResourceLoad();
 	void CreateBackGround();

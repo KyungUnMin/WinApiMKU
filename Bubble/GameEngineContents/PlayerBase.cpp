@@ -2,6 +2,7 @@
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include <GameEngineCore/GameEngineLevel.h>
 #include "ContentsDefine.h"
 #include "PlayerState.h"
 #include "Gravity.h"
@@ -68,7 +69,7 @@ void PlayerBase::Start()
 void PlayerBase::Update(float _DeltaTime)
 {
 	//이 객체의 방향을 체크
-	MovableActor::Update(_DeltaTime);
+	MovableActor::CheckDirection();
 
 	//컴포넌트의 Update를 작동
 	for (auto Pair : Components)

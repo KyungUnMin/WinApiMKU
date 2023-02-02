@@ -154,6 +154,11 @@ bool GameEngineCollision::Collision(const CollisionCheckParameter& _Parameter)
 
 	for (GameEngineCollision* OtherCollision : _TargetGroup)
 	{
+		if (false == OtherCollision->IsUpdate())
+		{
+			continue;
+		}
+
 		CollisionType Type = _Parameter.ThisColType;
 		CollisionType OtherType = _Parameter.TargetColType;
 
@@ -187,6 +192,11 @@ bool GameEngineCollision::Collision(const CollisionCheckParameter& _Parameter, s
 
 	for (GameEngineCollision* OtherCollision : _TargetGroup)
 	{
+		if (false == OtherCollision->IsUpdate())
+		{
+			continue;
+		}
+
 		CollisionType Type = _Parameter.ThisColType;
 		CollisionType OtherType = _Parameter.TargetColType;
 

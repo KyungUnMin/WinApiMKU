@@ -20,12 +20,6 @@ MovableActor::~MovableActor()
 }
 
 
-void MovableActor::Update(float _DeltaTime)
-{
-	//이번 프레임에 방향이 바뀌였는지 체크
-	CheckDirection();
-}
-
 //이 부분이 지금 상당히 문제다
 //플레이어에만 종속되어 있음
 //이번 프레임에 방향이 바뀌였는지 체크
