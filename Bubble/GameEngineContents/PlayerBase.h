@@ -43,10 +43,6 @@ public:
 
 	PlayerCharacterType GetCharacterType();
 
-	inline GameEngineCollision* GetCollision()
-	{
-		return CollisionPtr;
-	}
 
 protected:
 	//플레이어가 사용할 컴포넌트를 만들고 초기화

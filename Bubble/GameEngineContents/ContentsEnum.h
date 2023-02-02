@@ -24,9 +24,9 @@ enum class RoundRenderOrder
 	ClearBubble,
 	Player1,
 
+	AttackBubble,
 	Monster1,
 	Monster2,
-	AttackBubble,
 
 };
 

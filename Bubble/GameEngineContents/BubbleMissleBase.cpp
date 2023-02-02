@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "RoundLevelBase.h"
+#include "MonsterBase.h"
 
 const float		BubbleMissleBase::MoveSpeed		= 400.f;
 const float		BubbleMissleBase::RaiseSpeed		= 50.f;
@@ -19,6 +20,8 @@ BubbleMissleBase::~BubbleMissleBase()
 {
 
 }
+
+
 
 
 
@@ -111,11 +114,19 @@ void BubbleMissleBase::ThrowUpdate(float _DeltaTime)
 	if (true == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Monster) }, Monsters))
 	{
 		State = BubbleState::Idle;
-		Monsters.front()->GetActor()->Off();
+		//Monsters.front()->GetActor()->Off();
+		Monsters.front()->Off();
 		BubbleRender->ChangeAnimation("BubbleIdle");
 
-		GameEngineCollision* CollPtr = Monsters.front();
-		GameEngineActor* Ac = CollPtr->GetActor();
+		MonsterBase* Monster = dynamic_cast<MonsterBase*>(Monsters.front()->GetActor());
+		if (nullptr == Monster)
+		{
+			MsgAssert("몬스터가 아닌 객체가 몬스터 충돌 그룹에 속해있습니다");
+			return;
+		}
+
+		Monster->BubbleLock(this);
+		LockMonster = Monster;
 		return;
 	}
 
@@ -129,11 +140,20 @@ void BubbleMissleBase::ThrowUpdate(float _DeltaTime)
 
 void BubbleMissleBase::IdleUpdate(float _DeltaTime)
 {
+	if (GetPos().y < 100.f)
+		return;
+
 	SetMove(float4::Up * RaiseSpeed * _DeltaTime);
 }
 
 void BubbleMissleBase::BubblePop()
 {
-	State = BubbleState::Pop;
+	if (nullptr != LockMonster)
+	{
+		LockMonster->Off();
+	}
 
+
+	State = BubbleState::Pop;
+	GameEngineObject::Off();
 }

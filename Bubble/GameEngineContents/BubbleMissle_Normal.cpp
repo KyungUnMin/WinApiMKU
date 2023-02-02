@@ -38,8 +38,3 @@ void BubbleMissle_Normal::CreateAnimation(PlayerCharacterType _CharacterType)
 		.Loop = false
 	});
 }
-
-void BubbleMissle_Normal::BubblePop()
-{
-
-}

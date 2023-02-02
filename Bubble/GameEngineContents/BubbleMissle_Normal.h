@@ -16,7 +16,6 @@ public:
 
 protected:
 	void Start() override;
-	void BubblePop() override;
 
 private:
 

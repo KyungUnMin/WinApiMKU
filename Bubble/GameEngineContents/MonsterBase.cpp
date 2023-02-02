@@ -15,6 +15,8 @@ MonsterBase::~MonsterBase()
 
 }
 
+
+
 void MonsterBase::Start()
 {
 	//이 클래스 통틀어 처음에만 리소스 로드하기
@@ -25,13 +27,22 @@ void MonsterBase::Start()
 		IsLoad = true;
 	}
 
-	GameEngineRender* Render = CreateRender(RoundRenderOrder::Monster1);
+	Render = CreateRender(RoundRenderOrder::Monster1);
 	Render->CreateAnimation
 	({
 		.AnimationName = "Move",
 		.ImageName = "LeftMove.bmp",
 		.Start = 0,
 		.End = 3,
+		.InterTimer = 0.25f,
+	});
+
+	Render->CreateAnimation
+	({
+		.AnimationName = "Locked",
+		.ImageName = "LeftLocked.bmp",
+		.Start = 0,
+		.End = 2,
 		.InterTimer = 0.25f,
 	});
 
@@ -53,12 +64,28 @@ void MonsterBase::ResourceLoad()
 	Dir.Move("Monster");
 	Dir.Move("ZenChan");
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("LeftMove.bmp"))->Cut(4, 1);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("LeftLocked.bmp"))->Cut(3, 1);
 }
 
 void MonsterBase::Update(float _DeltaTime)
 {
-	/*if (false == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Player_Missle) }))
+	if (nullptr == LockBubble)
 		return;
 
-	Off();*/
+	SetPos(LockBubble->GetPos());
+}
+
+
+
+void MonsterBase::BubbleLock(GameEngineActor* _Bubble)
+{
+	LockBubble = _Bubble;
+	Render->ChangeAnimation("Locked");
+}
+
+void MonsterBase::Reset()
+{
+	LockBubble = nullptr;
+	Render->ChangeAnimation("Move");
+	CollisionPtr->On();
 }

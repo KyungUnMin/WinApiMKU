@@ -15,10 +15,12 @@ enum class BubbleState
 class GameEngineRender;
 class RoundLevelBase;
 class GameEngineCollision;
+class MonsterBase;
 
 class BubbleMissleBase : public MovableActor
 {
 public:
+
 	static const float				MoveSpeed;
 	static const float				RaiseSpeed;	
 	static const float4				RenderScale;
@@ -40,11 +42,12 @@ public:
 		return State;
 	}
 
+	virtual void BubblePop();
+
 protected:
 	//Throw 애니메이션만 만든다
 	void Start() override;
 	void Update(float _DeltaTime) final;
-	virtual void BubblePop();
 
 	//Throw애니메이션 로드
 	void ResourceLoad(const std::string_view& _AniImgPath, int _X, int _Y);
@@ -60,6 +63,7 @@ private:
 
 	BubbleState						State				= BubbleState::Throw;
 	RoundLevelBase*			RoundLevel		= nullptr;
+	MonsterBase*					LockMonster	= nullptr;
 
 	void ThrowUpdate(float _DeltaTime);
 	void IdleUpdate(float _DeltaTime);

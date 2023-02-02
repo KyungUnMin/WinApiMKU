@@ -12,7 +12,11 @@
 
 #include "MonsterBase.h"
 
-const std::vector<float4> RoundAEnterLevel::PlayerSpanwPos = { { 100.f, 700.f } };
+const std::vector<float4>	RoundAEnterLevel::PlayerSpanwPos = { { 100.f, 700.f } };
+const float4						RoundAEnterLevel::MonsterSpawnPos[3] =
+{
+	{400.f, 430.f},{500.f, 430.f},{600.f, 430.f}
+};
 
 RoundAEnterLevel::RoundAEnterLevel()
 {
@@ -43,17 +47,11 @@ void RoundAEnterLevel::Loading()
 	//다음 레벨로 넘어가는 문 생성
 	CreateDoor();
 
-
-	const float4 MonsterPos[3] =
-	{
-		{400.f, 430.f},{500.f, 430.f},{600.f, 430.f}
-	};
-
 	Monsters.reserve(3);
 	for (size_t i = 0; i < 3; ++i)
 	{
 		MonsterBase* Monster = CreateActor<MonsterBase>();
-		Monster->SetPos(MonsterPos[i]);
+		Monster->SetPos(MonsterSpawnPos[i]);
 		Monsters.push_back(Monster);
 	}
 }
@@ -144,11 +142,6 @@ void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	RoundLevelBase::LevelChangeStart(_PrevLevel);
 
-	for (size_t i = 0; i < Monsters.size(); ++i)
-	{
-		Monsters[i]->On();
-	}
-
 	for (size_t i = 0; i < 3; ++i)
 	{
 		Door[i]->Off();
@@ -164,6 +157,13 @@ void RoundAEnterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	for (size_t i = 0; i < 3; ++i)
 	{
 		Door[i]->Reset();
+	}
+
+	for (size_t i = 0; i < Monsters.size(); ++i)
+	{
+		Monsters[i]->On();
+		Monsters[i]->Reset();
+		Monsters[i]->SetPos(MonsterSpawnPos[i]);
 	}
 
 	//문의 선택 초기화
