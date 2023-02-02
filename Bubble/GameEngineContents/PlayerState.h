@@ -33,6 +33,10 @@ public:
 	PlayerState& operator=(const PlayerState& _Other) = delete;
 	PlayerState& operator=(const PlayerState&& _Other) noexcept = delete;
 
+
+	//자료구조에 모든 FSM들을 생성하고 관리
+	void Start() override;
+
 	PlayerStateBase* GetState(PlayerStateType _Type);
 
 	//FSM 변경(enum)
@@ -46,7 +50,7 @@ public:
 
 	//(PlayerBase를 상속받은 객체에서 직접 호출)
 	//자료구조에 모든 FSM들을 생성하고 관리
-	void Init(PlayerCharacterType _CharacterType);
+	//void Init(PlayerCharacterType _CharacterType);
 
 	//현재 FSM 동작
 	void Update(float _DeltaTime) override;

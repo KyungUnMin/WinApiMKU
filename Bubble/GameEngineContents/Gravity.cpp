@@ -43,8 +43,8 @@ void Gravity::Update(float _DeltaTime)
 	//현재위치
 	float4 NowPos = GetOwner()->GetPos();
 	
-	//현재 가속도 값 받아오기
-	float NowGravityAcc = MovableOwner->GetGravityAcc();
+	//현재 중력가속도 값 받아오기
+	float NowGravityAcc = MovableOwner->GetAcceleration().y;
 
 	//점프하다가 아래로 내려오는 경우
 	if (0.f < NowGravityAcc && PrevGravityAcc < 0.f)
@@ -75,7 +75,7 @@ void Gravity::Update(float _DeltaTime)
 		if (0.f <= NowGravityAcc && RoundLevel->IsBlockPos(DownPos))
 		{
 			//가속도 0
-			MovableOwner->SetGravityAcc(0.f);
+			MovableOwner->SetGravityAcceleration(0.f);
 
 			//가속도가 너무 빨라서 플레이어가 땅에 쳐박혔을때 위로 꺼내는 작업
 			while (RoundLevel->IsBlockPos(NowPos))
@@ -90,7 +90,7 @@ void Gravity::Update(float _DeltaTime)
 	}
 
 	//중력 가속도 더하기
-	MovableOwner->SetMoveGravityAcc(GravityCoef * _DeltaTime);
+	MovableOwner->SetMoveAcceleration(float4::Down * GravityCoef * _DeltaTime);
 
 	//중력가속도에 따른 값만큼 이동(float4::Down을 Up으로 바꾸면 계산이 덜 복잡할 것 같다)
 	GetOwner()->SetMove(float4::Down * NowGravityAcc * _DeltaTime);

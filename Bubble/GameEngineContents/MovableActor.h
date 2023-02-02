@@ -40,33 +40,42 @@ public:
 	}
 
 
-	inline float GetGravityAcc()
+	inline float4 GetAcceleration()
 	{
-		return GravityAcc;
+		return Acceleration;
 	}
 
-	inline void SetGravityAcc(float _Acc)
+	inline void SetAcceleration(float4 _Acc)
 	{
-		GravityAcc = _Acc;
+		Acceleration = _Acc;
 	}
 
-	inline void SetMoveGravityAcc(float _Acc)
+	inline void SetMoveAcceleration(float4 _Acc)
 	{
-		GravityAcc += _Acc;
+		Acceleration += _Acc;
 	}
+
+	inline void SetGravityAcceleration(float _Y)
+	{
+		Acceleration.y = _Y;
+	}
+
+	void SetDir(const float4& _Dir);
 
 
 protected:
 	void Update(float _DeltaTime) override;
 
+	//이번 프레임에 방향이 바뀌였는지 체크
+	virtual void CheckDirection();
+
 private:
 	std::string	Dir					= MovableActor::RightStr;
 	bool				DirChanged		= false;
 
-	//Y축 가속도(중력과 점프에 이용)
-	float			GravityAcc		= 0.0f;
+	//물체의 가속도
+	float4			Acceleration	= float4::Zero;
 
-	//이번 프레임에 방향이 바뀌였는지 체크
-	void CheckDirection();
+	
 };
 

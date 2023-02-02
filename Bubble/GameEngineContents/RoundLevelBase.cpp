@@ -10,6 +10,7 @@
 #include "Player_Bobblun.h"
 #include "Player_Kululun.h"
 #include "Player_Cororon.h"
+#include "BubbleSpawner.h"
 
 const float RoundLevelBase::StageMoveDuration = 1.5f;
 
@@ -102,6 +103,9 @@ bool RoundLevelBase::MoveToNextStage()
 	GameEngineRender* NextRender = StageImage->GetRender(NowIndex + 1);
 	NextRender->On();
 	NextRender->SetPosition(-ArrangeDir * ScreenSize);
+
+	//여태까지 사용한 버블 삭제
+	BubbleSpawner::AllDeath();
 
 	return true;
 }
@@ -249,6 +253,7 @@ void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	IsMoveValue = false;
 	SetNowStage(0);
 	Player->SetPos(PlayerSpwanPos[0]);
+	BubbleSpawner::AllDeath();
 }
 
 const float4& RoundLevelBase::GetPlayerSpawnPos()

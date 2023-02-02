@@ -12,7 +12,6 @@ class PlayerBase : public MovableActor
 public:
 	static const float4 CollisionOffset;
 	static const float4 CollisionScale;
-	static int TestCnt;
 
 	PlayerBase();
 	virtual ~PlayerBase() = 0;
@@ -42,6 +41,8 @@ public:
 		return 0 < lifeCnt;
 	}
 
+	PlayerCharacterType GetCharacterType();
+
 protected:
 	//플레이어가 사용할 컴포넌트를 만들고 초기화
 	void Start() override;
@@ -49,13 +50,17 @@ protected:
 	//방향을 체크하고 컴포넌트들을 동작
 	void Update(float _DeltaTime) final;
 
+	inline void SetCharacterType(PlayerCharacterType _Type)
+	{
+		CharcterType = _Type;
+	}
+
 private:
 	//컴포넌트 구조로 동작
 	std::map<ComponentType,ComponentBase*>	Components;
 
+	PlayerCharacterType		CharcterType	= PlayerCharacterType::COUNT;
 	GameEngineCollision*		CollisionPtr		= nullptr;
 	int									lifeCnt				= 3;
-
-	int test = TestCnt++;
 };
 

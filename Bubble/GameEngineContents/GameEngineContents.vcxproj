@@ -159,7 +159,15 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="BubbleMissle.h">
+    <ClInclude Include="BubbleMissleBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BubbleMissle_Normal.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BubbleSpawner.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -335,7 +343,15 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="BubbleMissle.cpp">
+    <ClCompile Include="BubbleMissleBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BubbleMissle_Normal.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BubbleSpawner.cpp">
       <SubType>
       </SubType>
     </ClCompile>

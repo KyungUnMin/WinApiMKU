@@ -7,6 +7,7 @@ enum class PlayerCharacterType
 	BOBBLUN,
 	KULULUN,
 	CORORON,
+	COUNT
 };
 
 enum class RoundRenderOrder
@@ -42,6 +43,7 @@ enum class ComponentType
 {
 	PlayerState,
 	Gravity,
+	BubbleSpawner,
 
 	Count
 };

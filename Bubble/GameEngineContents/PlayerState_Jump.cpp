@@ -47,7 +47,7 @@ void PlayerState_Jump::Update(float _DeltaTime)
 	}
 
 	//점프위치가 최고점에 닿았을때
-	if (0.f <= GetPlayer()->GetGravityAcc())
+	if (0.f <= GetPlayer()->GetAcceleration().y)
 	{
 		GetOwner()->ChangeState(PlayerStateType::Falling);
 		return;
@@ -85,5 +85,5 @@ void PlayerState_Jump::EnterState()
 {
 	PlayerStateBase::EnterState();
 	GetPlayer()->SetMove(float4::Up);
-	GetPlayer()->SetGravityAcc(-JumpAcc);
+	GetPlayer()->SetGravityAcceleration(-JumpAcc);
 }
