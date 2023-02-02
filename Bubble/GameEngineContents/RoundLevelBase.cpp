@@ -170,7 +170,7 @@ bool RoundLevelBase::IsBlockPos(const float4& _Pos)
 	DWORD Color = StageCollision->GetPixelColor(Offset + _Pos, RGB(255, 255, 255));
 
 	//검정색이라면 맵의 충돌체에 막혀있는곳
-	return Color == RGB(0,0,0);
+	return Color != RGB(255,255,255);
 }
 
 

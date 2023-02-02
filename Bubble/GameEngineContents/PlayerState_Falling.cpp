@@ -76,6 +76,13 @@ void PlayerState_Falling::Update(float _DeltaTime)
 		return;
 	}
 
+	////착지한 위치가 벽일때 벽 아래로 이동
+	//while (GetRoundLevel()->IsBlockPos(NowPos))
+	//{
+	//	NowPos += float4::Down;
+	//	GetPlayer()->SetPos(NowPos);
+	//}
+
 	//그 외에는 정상적으로 땅에 착지 했으므로 Idle
 	GetOwner()->ChangeState(PlayerStateType::Idle);
 }

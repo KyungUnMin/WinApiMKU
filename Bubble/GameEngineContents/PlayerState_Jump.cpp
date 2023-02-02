@@ -53,6 +53,16 @@ void PlayerState_Jump::Update(float _DeltaTime)
 		return;
 	}
 
+	////플레이어 바로 위가 벽일때
+	//float4 UpPos = GetPlayer()->GetPos() + float4::Up;
+	//if (GetRoundLevel()->IsBlockPos(UpPos))
+	//{
+	//	GetPlayer()->SetGravityAcc(0.f);
+	//	GetOwner()->ChangeState(PlayerStateType::Falling);
+	//	return;
+	//}
+
+
 	//플레이어 방향 체크
 	PlayerStateBase::Update(_DeltaTime);
 

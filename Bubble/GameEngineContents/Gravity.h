@@ -26,5 +26,6 @@ private:
 	MovableActor*			MovableOwner	= nullptr;
 
 	const float					GravityCoef		= 600.0f;
+	const size_t					RaiseUpPixel		= 10;
 };
 

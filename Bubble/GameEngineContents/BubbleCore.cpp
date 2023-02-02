@@ -42,7 +42,7 @@ void BubbleCore::Start()
 	//엔딩화면
 	CreateLevel<EndingLevel>("EndingLevel");
 
-	ChangeLevel("OpeningLevel");
+	ChangeLevel("RoundA3Level");
 }
 
 void BubbleCore::Update()
