@@ -8,6 +8,8 @@ class MovableActor;
 class Gravity : public ComponentBase
 {
 public:
+	static bool GlobalGravityUse;
+
 	Gravity();
 	~Gravity();
 

@@ -4,6 +4,8 @@
 #include "RoundLevelBase.h"
 #include "MovableActor.h"
 
+bool Gravity::GlobalGravityUse = true;
+
 Gravity::Gravity()
 {
 
@@ -35,6 +37,9 @@ void Gravity::Start()
 
 void Gravity::Update(float _DeltaTime)
 {
+	if (false == GlobalGravityUse)
+		return;
+
 	//현재위치
 	float4 NowPos = GetOwner()->GetPos();
 	

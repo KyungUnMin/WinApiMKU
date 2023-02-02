@@ -4,6 +4,7 @@
 #include "RoundLevelBase.h"
 #include "PlayerBase.h"
 #include "PlayerState.h"
+#include "Gravity.h"
 
 PlayerState_StageMove::PlayerState_StageMove()
 {
@@ -75,6 +76,7 @@ void PlayerState_StageMove::EnterState()
 
 	GetRender()->On();
 	ClearBubble->On();
+	Gravity::GlobalGravityUse = false;
 }
 
 void PlayerState_StageMove::Update(float _DeltaTime)
@@ -100,5 +102,6 @@ void PlayerState_StageMove::ExitState()
 {
 	GetRender()->Off();
 	ClearBubble->Off();
+	Gravity::GlobalGravityUse = true;
 }
 
