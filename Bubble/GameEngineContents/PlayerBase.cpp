@@ -45,6 +45,7 @@ void PlayerBase::Start()
 	Components[ComponentType::PlayerState] = new PlayerState;
 	Components[ComponentType::Gravity] = new Gravity;
 
+
 	//플레이어의 컴포넌트를 초기화
 	for (auto Pair : Components)
 	{

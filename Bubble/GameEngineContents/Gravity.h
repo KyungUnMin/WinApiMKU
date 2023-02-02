@@ -26,6 +26,11 @@ private:
 	MovableActor*			MovableOwner	= nullptr;
 
 	const float					GravityCoef		= 600.0f;
-	const size_t					RaiseUpPixel		= 10;
+
+	//이전 프레임의 중력가속도
+	float							PrevGravityAcc	= 0.0f;
+
+	//점프에서 Stage의 Collision에 닿았는지 여부
+	bool								IsTouchCollision	= false;
 };
 
