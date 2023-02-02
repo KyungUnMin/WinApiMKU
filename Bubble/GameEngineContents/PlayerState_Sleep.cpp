@@ -54,14 +54,14 @@ void PlayerState_Sleep::Update(float _DeltaTime)
 	}
 
 	//점프키를 눌렀을때
-	if (true == GameEngineInput::IsDown(PlayerJump))
+	if (true == GameEngineInput::IsDown(PLAYER_JUMP))
 	{
 		GetOwner()->ChangeState(PlayerStateType::Jump);
 		return;
 	}
 
 	//왼쪽 또는 오른쪽으로 이동하려고 했을때
-	if (GameEngineInput::IsPress(PlayerRight) || GameEngineInput::IsPress(PlayerLeft))
+	if (GameEngineInput::IsPress(PLAYER_RIGHT) || GameEngineInput::IsPress(PLAYER_LEFT))
 	{
 		GetOwner()->ChangeState(PlayerStateType::Move);
 		return;

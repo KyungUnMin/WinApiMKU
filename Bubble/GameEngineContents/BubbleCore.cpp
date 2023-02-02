@@ -1,5 +1,6 @@
 #include "BubbleCore.h"
-
+#include <GameEnginePlatform/GameEngineInput.h>
+#include "ContentsDefine.h"
 #include "OpeningLevel.h"
 #include "SelectPlayerLevel.h"
 #include "SelectCharacterLevel.h"
@@ -23,10 +24,18 @@ BubbleCore::~BubbleCore()
 
 }
 
+
+
 void BubbleCore::Start()
 {
 	int* FOR_DEBUG = new int;
 
+	CreateLevels();
+	CreateKeys();
+}
+
+void BubbleCore::CreateLevels()
+{
 	//≈∏¿Ã∆≤
 	CreateLevel<OpeningLevel>("OpeningLevel");
 	CreateLevel<SelectPlayerLevel>("SelectPlayerLevel");
@@ -45,8 +54,25 @@ void BubbleCore::Start()
 	ChangeLevel("OpeningLevel");
 }
 
+
+void BubbleCore::CreateKeys()
+{
+	GameEngineInput::CreateKey(DEBUG_RENDER, VK_F1);
+
+	GameEngineInput::CreateKey(PLAYER_LEFT, KEY_LEFT);
+	GameEngineInput::CreateKey(PLAYER_RIGHT, KEY_RIGHT);
+	GameEngineInput::CreateKey(PLAYER_JUMP, KEY_JUMP);
+	GameEngineInput::CreateKey(PLAYER_ATTACK, KEY_ATTACK);
+}
+
+
+
 void BubbleCore::Update()
 {
+	if (true == GameEngineInput::IsDown(DEBUG_RENDER))
+	{
+		GameEngineLevel::DebugRenderSwitch();
+	}
 
 }
 

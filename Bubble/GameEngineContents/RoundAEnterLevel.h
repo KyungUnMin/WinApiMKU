@@ -30,6 +30,5 @@ private:
 	void ResourceLoad();
 	void CreateBackGround();
 	void CreateDoor();
-	void CreteaKey();
 };
 

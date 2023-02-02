@@ -2,7 +2,6 @@
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEnginePlatform/GameEngineImage.h>
-#include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include "BubbleCore.h"
 #include "ContentsEnum.h"
@@ -41,9 +40,6 @@ void RoundAEnterLevel::Loading()
 	CreateActor<RoundA_Enter_Sky>();
 	//다음 레벨로 넘어가는 문 생성
 	CreateDoor();
-	
-	//이 레벨에서 사용될 키 설정
-	CreteaKey();
 }
 
 void RoundAEnterLevel::ResourceLoad()
@@ -79,37 +75,23 @@ void RoundAEnterLevel::CreateDoor()
 	}
 }
 
-void RoundAEnterLevel::CreteaKey()
-{
-	//추후에 충돌로 처리할 계획
-	GameEngineInput::CreateKey("Door0", '1');
-	GameEngineInput::CreateKey("Door1", '2');
-	GameEngineInput::CreateKey("Door2", '3');
-}
-
 void RoundAEnterLevel::Update(float _DeltaTime)
 {
-	//문이 아직 선택되지 않았을때
+	//문이 선택되었을때를 확인
 	if (SelectedDoor < 0)
 	{
-		if (true == GameEngineInput::IsDown("Door0"))
+		for (size_t i = 0; i < 3; ++i)
 		{
-			SelectedDoor = 0;
+			if (false == Door[i]->IsOpened())
+				continue;
+
+			SelectedDoor = static_cast<int>(i);
 		}
-		else if (true == GameEngineInput::IsDown("Door1"))
-		{
-			SelectedDoor = 1;
-		}
-		else if (true == GameEngineInput::IsDown("Door2"))
-		{
-			SelectedDoor = 2;
-		}
+
 		return;
 	}
-
-	//문이 선택되었을때
+	
 	//해당 문을 여는 애니메이션을 작동시키고 NextLevelTime 시간만큼 대기
-	Door[SelectedDoor]->DoorOpen();
 	NextLevelTime -= _DeltaTime;
 	if (0 < NextLevelTime)
 		return;
@@ -132,6 +114,8 @@ void RoundAEnterLevel::Update(float _DeltaTime)
 
 void RoundAEnterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+	RoundLevelBase::LevelChangeEnd(_NextLevel);
+
 	//문의 애니메이션들을 초기화
 	for (size_t i = 0; i < 3; ++i)
 	{

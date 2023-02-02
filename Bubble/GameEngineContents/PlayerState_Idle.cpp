@@ -72,14 +72,14 @@ void PlayerState_Idle::Update(float _DeltaTime)
 	}
 
 	//점프하는 경우
-	if (true == GameEngineInput::IsDown(PlayerJump))
+	if (true == GameEngineInput::IsDown(PLAYER_JUMP))
 	{
 		GetOwner()->ChangeState(PlayerStateType::Jump);
 		return;
 	}
 
 	//움직인 경우
-	if(GameEngineInput::IsPress(PlayerLeft) || GameEngineInput::IsPress(PlayerRight))
+	if(GameEngineInput::IsPress(PLAYER_LEFT) || GameEngineInput::IsPress(PLAYER_RIGHT))
 	{
 		GetOwner()->ChangeState(PlayerStateType::Move);
 		return;

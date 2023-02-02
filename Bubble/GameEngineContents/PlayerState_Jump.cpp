@@ -67,7 +67,7 @@ void PlayerState_Jump::Update(float _DeltaTime)
 	PlayerStateBase::Update(_DeltaTime);
 
 	//점프중에도 플레이어를 이동키실때
-	if (GameEngineInput::IsPress(PlayerRight) || GameEngineInput::IsPress(PlayerLeft))
+	if (GameEngineInput::IsPress(PLAYER_RIGHT) || GameEngineInput::IsPress(PLAYER_LEFT))
 	{
 		float4 NowPos = GetPlayer()->GetPos();
 		float4 MoveDir = GetPlayer()->GetDirVec();

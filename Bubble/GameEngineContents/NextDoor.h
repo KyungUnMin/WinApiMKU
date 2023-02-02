@@ -9,10 +9,14 @@ enum class DoorType
 };
 
 class GameEngineRender;
+class GameEngineCollision;
 
 class NextDoor : public GameEngineActor
 {
 public:
+	static const float4 CollisionScale;
+	static const float4 CollisionOffset;
+
 	NextDoor();
 	~NextDoor();
 
@@ -37,8 +41,10 @@ public:
 
 	void SetScale(float4 _Scale);
 
-	//문 열기 애니메이션 실행
-	void DoorOpen();
+	bool IsOpened()
+	{
+		return IsOpenedValue;
+	}
 
 	//초기 상태로 되돌리기
 	void Reset();
@@ -48,10 +54,17 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	GameEngineRender*	DoorRender		= nullptr;
+	GameEngineRender*		DoorRender			= nullptr;
+	GameEngineCollision*		CollisionPtr			= nullptr;
 
 	//문이 이미 열렸는지 여부
-	bool								IsOpened			= false;
+	bool									IsOpenedValue	= false;
+
+	//플레이어와 충돌 했는지 여부
+	bool									IsPlayerCollision = false;
+
+	//문 열기 애니메이션 실행
+	void DoorOpen();
 
 
 	//이 클래스 최초로 리소스 받아오기
@@ -59,5 +72,8 @@ private:
 
 	//문의 종류에 따라 애니메이션 지정
 	void CreateDoorAni(DoorType _SelectedDoor);
+
+	void CollisionPlayer();
+	void DoorAnimation();
 };
 

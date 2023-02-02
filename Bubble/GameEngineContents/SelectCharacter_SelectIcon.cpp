@@ -25,10 +25,10 @@ void SelectCharacter_SelectIcon::Start()
 	Render->SetPosition(SelectCharacterLevel::CharPos[CurIndex] + float4::Up * UpOffset);
 
 	//Å°  »ý¼º
-	GameEngineInput::CreateKey("SelectCharacter_Right", RightKey);
-	GameEngineInput::CreateKey("SelectCharacter_Left", LeftKey);
-	GameEngineInput::CreateKey("SelectCharacter_SelectA", JumpKey);
-	GameEngineInput::CreateKey("SelectCharacter_SelectB", AttackKey);
+	GameEngineInput::CreateKey("SelectCharacter_Right", KEY_RIGHT);
+	GameEngineInput::CreateKey("SelectCharacter_Left", KEY_LEFT);
+	GameEngineInput::CreateKey("SelectCharacter_SelectA", KEY_JUMP);
+	GameEngineInput::CreateKey("SelectCharacter_SelectB", KEY_ATTACK);
 }
 
 void SelectCharacter_SelectIcon::Update(float _DeltaTime)

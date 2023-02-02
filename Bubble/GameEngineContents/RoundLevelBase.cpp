@@ -248,6 +248,7 @@ void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	IsMoveValue = false;
 	SetNowStage(0);
+	Player->SetPos(PlayerSpwanPos[0]);
 }
 
 const float4& RoundLevelBase::GetPlayerSpawnPos()

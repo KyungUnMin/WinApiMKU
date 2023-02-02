@@ -55,7 +55,7 @@ void PlayerState_Falling::Update(float _DeltaTime)
 	float4 MoveDir = GetPlayer()->GetDirVec();
 
 	//떨어지면서도 이동하는 경우에 
-	if (GameEngineInput::IsPress(PlayerRight) || GameEngineInput::IsPress(PlayerLeft))
+	if (GameEngineInput::IsPress(PLAYER_RIGHT) || GameEngineInput::IsPress(PLAYER_LEFT))
 	{
 		//이동할 위치에 벽이 있는지 확인, 없다면 이동
 		if (false == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * MovableActor::ColliderRange))
@@ -70,7 +70,7 @@ void PlayerState_Falling::Update(float _DeltaTime)
 		return;
 
 	//땅에 닿은 순간에 점프키가 눌려있는 경우
-	if (true == GameEngineInput::IsPress(PlayerJump))
+	if (true == GameEngineInput::IsPress(PLAYER_JUMP))
 	{
 		GetOwner()->ChangeState(PlayerStateType::Jump);
 		return;

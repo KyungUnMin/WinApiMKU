@@ -26,5 +26,8 @@ private:
 	~BubbleCore();
 	
 	static BubbleCore Core;
+
+	void CreateLevels();
+	void CreateKeys();
 };
 

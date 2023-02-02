@@ -1,7 +1,16 @@
 #include "NextDoor.h"
+#include <vector>
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineCollision.h>
+#include "ContentsEnum.h"
+#include "RoundLevelBase.h"
+#include "PlayerBase.h"
+#include "PlayerState.h"
+
+const float4 NextDoor::CollisionScale = {10.f, 10.f};
+const float4 NextDoor::CollisionOffset = { 0.f, 20.f };
 
 NextDoor::NextDoor()
 {
@@ -23,6 +32,11 @@ void NextDoor::Start()
 		ResourceLoad();
 		IsLoad = true;
 	}
+
+	//충돌체 생성
+	CollisionPtr = CreateCollision(CollisionOrder::Door);
+	CollisionPtr->SetScale(CollisionScale);
+	CollisionPtr->SetPosition(CollisionOffset);
 }
 
 
@@ -98,6 +112,7 @@ void NextDoor::CreateDoorAni(DoorType _DoorType)
 }
 
 
+
 void NextDoor::Update(float _DeltaTime)
 {
 	//예외처리
@@ -107,12 +122,44 @@ void NextDoor::Update(float _DeltaTime)
 		return;
 	}
 
+	//플레이어와 충돌처리
+	CollisionPlayer();
+
+	//애니메이션 처리
+	DoorAnimation();
+}
+
+
+void NextDoor::CollisionPlayer()
+{
+	//이미 플레이어와 만났다면
+	if (true == IsPlayerCollision)
+		return;
+
+	//플레이어와 이 문이 원 vs 원 충돌했을때만
+	std::vector<GameEngineCollision*> Players;
+	if (false == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Player) }, Players))
+		return;
+
+	for (size_t i = 0; i < Players.size(); ++i)
+	{
+		PlayerBase* Player = dynamic_cast<PlayerBase*>(Players[i]->GetActor());
+		PlayerState* PlayerFSM = Player->GetComponent<PlayerState>(ComponentType::PlayerState);
+		//PlayerFSM->ChangeState(Player)
+	}
+
+	DoorOpen();
+	IsPlayerCollision = true;
+}
+
+void NextDoor::DoorAnimation()
+{
 	//문이 이미 다 열린 상태라면 return
-	if (true == IsOpened)
+	if (true == IsOpenedValue)
 		return;
 
 	//여기까지 왔다면 문이 닫혀있거나 열리는 중
-	
+
 	//문이 다 열렸을때만 진행  (10, 24, 38 프레임일때만 return 아래 코드를 진행)
 	//문이 닫힌 상태는 Frame이 10, 24, 38에 도달할 일이 없기 때문에 자동으로 return된다
 	int Frame = DoorRender->GetFrame();
@@ -122,13 +169,13 @@ void NextDoor::Update(float _DeltaTime)
 	//문이 다 열린 상태
 
 	//다음 애니메이션(문이 전부 열려서 기다리고 있는 애니메이션)으로 이동
-	IsOpened = true;
+	IsOpenedValue = true;
 	DoorRender->ChangeAnimation("Wait");
 }
 
 void NextDoor::DoorOpen()
 {
-	if (true == IsOpened)
+	if (true == IsOpenedValue)
 		return;
 
 	/*
@@ -141,7 +188,8 @@ void NextDoor::DoorOpen()
 //초기 상태로 되돌리기
 void NextDoor::Reset()
 {
-	DoorRender->ChangeAnimation("Create");
-	IsOpened = false;
+	DoorRender->ChangeAnimation("Create", true);
+	IsOpenedValue = false;
+	IsPlayerCollision = false;
 }
 

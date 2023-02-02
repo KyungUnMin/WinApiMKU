@@ -59,14 +59,14 @@ void PlayerState_Move::Update(float _DeltaTime)
 	}
 
 	//점프하는 경우
-	if (true == GameEngineInput::IsDown(PlayerJump))
+	if (true == GameEngineInput::IsDown(PLAYER_JUMP))
 	{
 		GetOwner()->ChangeState(PlayerStateType::Jump);
 		return;
 	}
 
 	//방향키 뗀 경우
-	if (GameEngineInput::IsFree(PlayerLeft) && GameEngineInput::IsFree(PlayerRight))
+	if (GameEngineInput::IsFree(PLAYER_LEFT) && GameEngineInput::IsFree(PLAYER_RIGHT))
 	{
 		GetOwner()->ChangeState(PlayerStateType::Idle);
 		return;

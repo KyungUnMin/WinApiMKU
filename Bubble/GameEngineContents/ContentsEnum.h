@@ -22,12 +22,20 @@ enum class RoundRenderOrder
 
 	ClearBubble,
 	Player1,
-	Player2,
 
 	Monster1,
 	Monster2,
 	AttackBubble,
 
+};
+
+enum class CollisionOrder
+{
+	Player,
+	Door,
+	Monster,
+	Player_Missle,
+	Monster_Missle
 };
 
 enum class ComponentType
@@ -37,3 +45,4 @@ enum class ComponentType
 
 	Count
 };
+

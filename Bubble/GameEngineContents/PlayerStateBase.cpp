@@ -169,7 +169,7 @@ RoundLevelBase* PlayerStateBase::GetRoundLevel()
 void PlayerStateBase::EnterState()
 {
 	const std::string StartDir = Player->GetDirStr();
-	Render->ChangeAnimation(StartDir + AniName);
+	Render->ChangeAnimation(StartDir + AniName, true);
 	Render->On();
 }
 

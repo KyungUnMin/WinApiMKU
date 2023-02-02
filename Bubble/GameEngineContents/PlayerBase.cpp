@@ -1,9 +1,14 @@
 #include "PlayerBase.h"
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEnginePlatform/GameEngineInput.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "ContentsDefine.h"
 #include "PlayerState.h"
 #include "Gravity.h"
+
+const float4 PlayerBase::CollisionScale = float4{ 50.f, 50.f };
+const float4 PlayerBase::CollisionOffset = float4{0.f, -30.f};
+int PlayerBase::TestCnt = 0;
 
 PlayerBase::PlayerBase()
 {
@@ -29,17 +34,9 @@ PlayerBase::~PlayerBase()
 
 void PlayerBase::Start()
 {
-	//딱 한번 플레이어가 사용할 키 생성
-	static bool IsCreatedKey = false;
-	if (false == IsCreatedKey)
-	{
-		IsCreatedKey = true;
-
-		GameEngineInput::CreateKey(PlayerLeft, LeftKey);
-		GameEngineInput::CreateKey(PlayerRight, RightKey);
-		GameEngineInput::CreateKey(PlayerJump, JumpKey);
-		GameEngineInput::CreateKey(PlayerAttack, AttackKey);
-	}
+	CollisionPtr = CreateCollision(CollisionOrder::Player);
+	CollisionPtr->SetScale(CollisionScale);
+	CollisionPtr->SetPosition(CollisionOffset);
 
 	//플레이어가 사용할 컴포넌트 생성
 	Components[ComponentType::PlayerState] = new PlayerState;

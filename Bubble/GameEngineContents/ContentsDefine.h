@@ -1,12 +1,14 @@
 #pragma once
 
-#define RightKey			VK_RIGHT
-#define LeftKey				VK_LEFT
+#define KEY_RIGHT			VK_RIGHT
+#define KEY_LEFT				VK_LEFT
 
-#define JumpKey			VK_SPACE
-#define AttackKey			VK_LSHIFT
+#define KEY_JUMP				VK_SPACE
+#define KEY_ATTACK			VK_LSHIFT
 
-#define PlayerLeft			"PlayerLeft"
-#define PlayerRight		"PlayerRight"
-#define PlayerJump		"PlayerJump"
-#define PlayerAttack		"PlayerAttack"
+#define PLAYER_LEFT			"PlayerLeft"
+#define PLAYER_RIGHT		"PlayerRight"
+#define PLAYER_JUMP		"PlayerJump"
+#define PLAYER_ATTACK	"PlayerAttack"
+
+#define DEBUG_RENDER "DebugRenderSwitch"

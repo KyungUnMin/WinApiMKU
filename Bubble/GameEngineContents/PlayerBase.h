@@ -4,11 +4,16 @@
 #include "ContentsEnum.h"
 
 class ComponentBase;
+class GameEngineCollision;
 
 //모든 플레이어 클래스의 부모가 되는 추상 클래스
 class PlayerBase : public MovableActor
 {
 public:
+	static const float4 CollisionOffset;
+	static const float4 CollisionScale;
+	static int TestCnt;
+
 	PlayerBase();
 	virtual ~PlayerBase() = 0;
 
@@ -48,6 +53,9 @@ private:
 	//컴포넌트 구조로 동작
 	std::map<ComponentType,ComponentBase*>	Components;
 
-	int lifeCnt = 3;
+	GameEngineCollision*		CollisionPtr		= nullptr;
+	int									lifeCnt				= 3;
+
+	int test = TestCnt++;
 };
 
