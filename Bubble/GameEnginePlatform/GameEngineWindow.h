@@ -45,6 +45,7 @@ public:
 
 	static int WindowLoop(void(*Start)(), void(*Loop)(), void(*End)());
 
+	static float4 GetMousePosition();
 
 	GameEngineWindow();
 	~GameEngineWindow();

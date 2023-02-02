@@ -28,7 +28,14 @@ public:
 	GameEngineLevel& operator=(const GameEngineLevel& _Other) = delete;
 	GameEngineLevel& operator=(GameEngineLevel&& _Other) noexcept = delete;
 
+	//디버그 모드 On/Off
+	static void DebugRenderSwitch()
+	{
+		IsDebugRender = !IsDebugRender;
+	}
 
+	float4 GetMousePos();
+	float4 GetMousePosToCamera();
 
 	template <typename ActorType, typename EnumType>
 	ActorType* CreateActor(EnumType _Order)
@@ -110,6 +117,12 @@ public:
 		return Result;
 	}
 
+	//화면 좌측 상단에 출력할 디버그용 텍스트를 모아놓기
+	static void DebugTextPush(const std::string& _DebugText)
+	{
+		DeBugTexts.push_back(_DebugText);
+	}
+
 protected:
 	virtual void Loading() = 0;
 	virtual void Update(float _DeltaTime) = 0;
@@ -122,6 +135,10 @@ protected:
 
 
 private:
+	static	bool									IsDebugRender;
+	static	float4								TextOutStart;
+	static	std::vector<std::string>	DeBugTexts;
+
 	//카메라 위치
 	float4 CameraPos = float4::Zero;
 

@@ -27,6 +27,23 @@ class CollisionData
 public:
 	float4 Position;
 	float4 Scale;
+
+	float Left() const
+	{
+		return Position.x - Scale.hx();
+	}
+	float Right() const
+	{
+		return Position.x + Scale.hx();
+	}
+	float Top() const
+	{
+		return Position.y - Scale.hy();
+	}
+	float Bot() const
+	{
+		return Position.y + Scale.hy();
+	}
 };
 
 
@@ -35,6 +52,12 @@ class GameEngineCollision : public GameEngineComponent
 public:
 	//원과 원 충돌
 	static bool CollisionCircleToCircle(const CollisionData& _Left, const CollisionData& _Right);
+	static bool CollisionCircleToPoint(const CollisionData& _Left, const CollisionData& _Right);
+
+	static bool CollisionRectToRect(const CollisionData& _Left, const CollisionData& _Right);
+	static bool CollisionRectToPoint(const CollisionData& _Left, const CollisionData& _Right);
+
+
 
 	GameEngineCollision();
 	~GameEngineCollision();
@@ -58,9 +81,17 @@ public:
 	//Posiion과 Scale 반환
 	CollisionData GetCollisionData();
 
+	void SetDebugRenderType(CollisionType _DebugRenderType)
+	{
+		DebugRenderType = _DebugRenderType;
+	}
+
+	//디버그 상태일때 충돌체의 영역을 그리는 함수
+	void DebugRender();
+
 protected:
 
 private:
-
+	CollisionType DebugRenderType = CollisionType::CT_Circle;
 };
 

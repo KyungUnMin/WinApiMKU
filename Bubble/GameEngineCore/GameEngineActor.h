@@ -92,5 +92,8 @@ private:
 	float4												Pos					= { 0.0f, 0.0f };
 	std::list<GameEngineRender*>		RenderList;
 	std::list<GameEngineCollision*>		CollisionList;
+
+	//Actor의 컴포넌트가 Death상태라면 Delete하기
+	void Release();
 };
 

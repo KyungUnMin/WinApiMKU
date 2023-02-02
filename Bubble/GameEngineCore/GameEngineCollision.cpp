@@ -1,6 +1,8 @@
 #include "GameEngineCollision.h"
 #include <list>
 #include <GameEngineBase/GameEngineMath.h>
+#include <GameEnginePlatform/GameEngineWindow.h>
+#include <GameEnginePlatform/GameEngineImage.h>
 #include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineCore/GameEngineLevel.h>
 
@@ -15,6 +17,9 @@ public:
 	CollisionFunctionInit()
 	{
 		ColFunctionPtr[CT_Circle][CT_Circle] = GameEngineCollision::CollisionCircleToCircle;
+		ColFunctionPtr[CT_Circle][CT_Point] = GameEngineCollision::CollisionCircleToPoint;
+		ColFunctionPtr[CT_Rect][CT_Rect] = GameEngineCollision::CollisionRectToRect;
+		ColFunctionPtr[CT_Rect][CT_Point] = GameEngineCollision::CollisionRectToPoint;
 	}
 
 	~CollisionFunctionInit()
@@ -38,6 +43,8 @@ GameEngineCollision::~GameEngineCollision()
 
 }
 
+
+
 //원과 원 충돌
 bool GameEngineCollision::CollisionCircleToCircle(const CollisionData& _Left, const CollisionData& _Right)
 {
@@ -51,6 +58,77 @@ bool GameEngineCollision::CollisionCircleToCircle(const CollisionData& _Left, co
 	//두 물체의 거리가 반지름의 합 보다 작다면 충돌했다
 	return Size < RadiusSum;
 }
+
+
+//원과 점 충돌
+bool GameEngineCollision::CollisionCircleToPoint(const CollisionData& _Left, const CollisionData& _Right)
+{
+	//두 물체 사이의 거리
+	float4 Len = _Left.Position - _Right.Position;
+	float Size = Len.Size();
+
+	//원의 반지름(Scale의 x를 지름으로 본다)
+	float RadiusSum = _Left.Scale.hx();
+
+	//두 물체의 거리가 반지름보다 작다면 충돌했다
+	return Size < RadiusSum;
+}
+
+
+//사각형과 사각형 충돌
+bool GameEngineCollision::CollisionRectToRect(const CollisionData& _Left, const CollisionData& _Right)
+{
+	if (_Left.Bot() <= _Right.Top())
+	{
+		return false;
+	}
+
+	if (_Left.Top() >= _Right.Bot())
+	{
+		return false;
+	}
+
+	if (_Left.Left() >= _Right.Right())
+	{
+		return false;
+	}
+
+	if (_Left.Right() <= _Right.Left())
+	{
+		return false;
+	}
+
+	return true;
+}
+
+
+//사각형과 점 충돌
+bool GameEngineCollision::CollisionRectToPoint(const CollisionData& _Left, const CollisionData& _Right)
+{
+	if (_Left.Bot() <= _Right.Position.y)
+	{
+		return false;
+	}
+
+	if (_Left.Top() >= _Right.Position.y)
+	{
+		return false;
+	}
+
+	if (_Left.Left() >= _Right.Position.x)
+	{
+		return false;
+	}
+
+	if (_Left.Right() <= _Right.Position.x)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+
 
 
 
@@ -72,10 +150,14 @@ bool GameEngineCollision::Collision(const CollisionCheckParameter& _Parameter)
 	//충돌확인할 상대방그룹을 가져온다
 	std::list<GameEngineCollision*>& _TargetGroup = GetActor()->GetLevel()->Collisions[_Parameter.TargetGroup];
 
+	SetDebugRenderType(_Parameter.ThisColType);
+
 	for (GameEngineCollision* OtherCollision : _TargetGroup)
 	{
 		CollisionType Type = _Parameter.ThisColType;
 		CollisionType OtherType = _Parameter.TargetColType;
+
+		OtherCollision->SetDebugRenderType(OtherType);
 
 		if (nullptr == ColFunctionPtr[Type][OtherType])
 		{
@@ -96,13 +178,19 @@ bool GameEngineCollision::Collision(const CollisionCheckParameter& _Parameter)
 //자신이 상대 그룹과 충돌했다면 vector에 충돌한 Collision을 담아서 돌려주는 함수
 bool GameEngineCollision::Collision(const CollisionCheckParameter& _Parameter, std::vector<GameEngineCollision*>& _Collision)
 {
+	_Collision.clear();
+
 	//충돌확인할 상대방그룹을 가져온다
 	std::list<GameEngineCollision*>& _TargetGroup = GetActor()->GetLevel()->Collisions[_Parameter.TargetGroup];
+
+	SetDebugRenderType(_Parameter.ThisColType);
 
 	for (GameEngineCollision* OtherCollision : _TargetGroup)
 	{
 		CollisionType Type = _Parameter.ThisColType;
 		CollisionType OtherType = _Parameter.TargetColType;
+
+		OtherCollision->SetDebugRenderType(OtherType);
 
 		if (nullptr == ColFunctionPtr[Type][OtherType])
 		{
@@ -126,5 +214,40 @@ bool GameEngineCollision::Collision(const CollisionCheckParameter& _Parameter, s
 CollisionData GameEngineCollision::GetCollisionData()
 {
 	return { GetActorPlusPos(), GetScale() };
+}
+
+void GameEngineCollision::DebugRender()
+{
+	HDC BackBufferDc = GameEngineWindow::GetDoubleBufferImage()->GetImageDC();
+
+	//이 컴포넌트의 오프셋 + 레벨의 카메라 위치
+	float4 DebugRenderPos = GetActorPlusPos() + GetActor()->GetLevel()->GetCameraPos();
+
+	switch (DebugRenderType)
+	{
+	case CT_Point:
+		break;
+	case CT_Circle:
+	{
+		int Radius = GetScale().hix();
+		Ellipse(BackBufferDc, 
+			DebugRenderPos.ix() - Radius,
+			DebugRenderPos.iy() - Radius,
+			DebugRenderPos.ix() + Radius,
+			DebugRenderPos.iy() + Radius);
+		break;
+	}
+	case CT_Rect:
+		Rectangle(BackBufferDc,
+			DebugRenderPos.ix() - GetScale().hix(),
+			DebugRenderPos.iy() - GetScale().hiy(),
+			DebugRenderPos.ix() + GetScale().hix(),
+			DebugRenderPos.iy() + GetScale().hiy());
+		break;
+	case CT_Max:
+		break;
+	default:
+		break;
+	}
 }
 

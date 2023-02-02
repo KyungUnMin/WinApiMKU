@@ -188,6 +188,8 @@ int GameEngineWindow::WindowLoop(void(*_Start)(), void(*_Loop)(), void(*_End)())
     return (int)msg.wParam;
 }
 
+
+
 void GameEngineWindow::SettingWindowSize(float4 _Size)
 {
     RECT Rc = { 0, 0, _Size.ix(), _Size.iy() };
@@ -215,4 +217,19 @@ void GameEngineWindow::SettingWindowPos(float4 _Pos)
 {
     WindowPos = _Pos;
     SetWindowPos(HWnd, nullptr, WindowPos.ix(), WindowPos.iy(), WindowSize.ix(), WindowSize.iy(), SWP_NOZORDER);
+}
+
+float4 GameEngineWindow::GetMousePosition()
+{
+    POINT MoniterPoint;
+    LPPOINT PointPtr = &MoniterPoint;
+
+    //모니터 기준 마우스 좌표
+    GetCursorPos(PointPtr);
+
+    //모니터 기준 좌표 -> 윈도우 창 기준 좌표
+    ScreenToClient(HWnd, PointPtr);
+
+    //float4로 변경해서 return
+    return { static_cast<float>(MoniterPoint.x),static_cast<float>(MoniterPoint.y) };
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <math.h>
 #include <cmath>
+#include <string>
 
 class GameEngineMath final
 {
@@ -213,5 +214,11 @@ public:
 		return (x < _Other.x) && (y < _Other.y) /*&& (z < _Other.z)*/;
 	}
 
-	
+	//현재 값을 string으로 변환하여 return
+	std::string ToString()
+	{
+		char ArrReturn[256];
+		sprintf_s(ArrReturn, "x: %f, y: %f, z: %f, w: %f", x, y, z, w);
+		return std::string(ArrReturn);
+	}
 };

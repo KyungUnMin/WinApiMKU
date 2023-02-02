@@ -1,8 +1,14 @@
 #include "GameEngineLevel.h"
 #include "GameEngineActor.h"
 #include <GameEngineBase/GameEngineDebug.h>
+#include <GameEnginePlatform/GameEngineWindow.h>
 #include "GameEngineRender.h"
 #include "GameEngineCollision.h"
+
+bool									GameEngineLevel::IsDebugRender		= false;
+float4								GameEngineLevel::TextOutStart		= float4::Zero;
+std::vector<std::string>	GameEngineLevel::DeBugTexts;
+
 
 GameEngineLevel::GameEngineLevel()
 {
@@ -26,6 +32,16 @@ GameEngineLevel::~GameEngineLevel()
 	}
 
 	Actors.clear();
+}
+
+float4 GameEngineLevel::GetMousePos()
+{
+	return GameEngineWindow::GetMousePosition();
+}
+
+float4 GameEngineLevel::GetMousePosToCamera()
+{
+	return GameEngineWindow::GetMousePosition() + CameraPos;
 }
 
 
@@ -145,6 +161,8 @@ void GameEngineLevel::Release()
 
 				if (nullptr != ReleaseActor && false == ReleaseActor->IsDeath())
 				{
+					//Actor의 컴포넌트가 Death상태라면 Delete하기
+					ReleaseActor->Release();
 					++ActorStartIter;
 					continue;
 				}
@@ -202,6 +220,46 @@ void GameEngineLevel::ActorsRender(float _DeltaTime)
 		}
 	}
 
+	// 디버그 렌더모드일때 충돌체 크기 보이게 하기
+	{
+		if (true == IsDebugRender)
+		{
+			std::map<int, std::list<GameEngineCollision*>>::iterator GroupStartIter = Collisions.begin();
+			std::map<int, std::list<GameEngineCollision*>>::iterator GroupEndIter = Collisions.end();
+
+			for (; GroupStartIter != GroupEndIter; ++GroupStartIter)
+			{
+				std::list<GameEngineCollision*>& CollisionList = GroupStartIter->second;
+				std::list<GameEngineCollision*>::iterator CollisionIterStart = CollisionList.begin();
+				std::list<GameEngineCollision*>::iterator CollisionIterEnd = CollisionList.end();
+
+				for (; CollisionIterStart != CollisionIterEnd; ++CollisionIterStart)
+				{
+					GameEngineCollision* DebugCollision = *CollisionIterStart;
+					if (nullptr == DebugCollision || false == DebugCollision->IsUpdate())
+					{
+						continue;
+					}
+
+					DebugCollision->DebugRender();
+				}
+			}
+		}
+	}
+
+	//디버그용 텍스트 화면 좌측 상단에 출력
+	{
+		TextOutStart = float4::Zero;
+		
+		for (size_t i = 0; i < DeBugTexts.size(); ++i)
+		{
+			HDC ImageDc = GameEngineWindow::GetDoubleBufferImage()->GetImageDC();
+			TextOutA(ImageDc, TextOutStart.ix(), TextOutStart.iy(), DeBugTexts[i].c_str(), static_cast<int>(DeBugTexts[i].size()));
+			TextOutStart.y += 20.0f;
+		}
+
+		DeBugTexts.clear();
+	}
 
 }
 
