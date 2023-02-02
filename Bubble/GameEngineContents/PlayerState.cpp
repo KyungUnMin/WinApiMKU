@@ -9,6 +9,7 @@
 #include "PlayerState_StageMove.h"
 #include "PlayerState_Sleep.h"
 #include "PlayerState_Damaged.h"
+#include "PlayerState_Enter.h"
 
 PlayerState::PlayerState()
 {
@@ -82,6 +83,9 @@ void PlayerState::CreateState(PlayerStateType _StateType)
 		break;
 	case PlayerStateType::Damaged:
 		States[Index] = new PlayerState_Damaged;
+		break;
+	case PlayerStateType::EnterDoor:
+		States[Index] = new PlayerState_Enter;
 		break;
 
 	default:

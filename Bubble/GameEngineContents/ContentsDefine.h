@@ -12,3 +12,4 @@
 #define PLAYER_ATTACK	"PlayerAttack"
 
 #define DEBUG_RENDER "DebugRenderSwitch"
+#define CHEET_STAGE_CLEAR "Cheet_Stage_Clear"

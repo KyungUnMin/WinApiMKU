@@ -14,6 +14,7 @@ enum class PlayerStateType
 	StageMove,
 	Sleep,
 	Damaged,
+	EnterDoor,
 
 	Count,
 };

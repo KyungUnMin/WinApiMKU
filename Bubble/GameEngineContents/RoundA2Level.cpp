@@ -7,6 +7,7 @@
 #include "BubbleCore.h"
 #include "BackGround.h"
 #include "ContentsEnum.h"
+#include "ContentsDefine.h"
 #include "PlayerBase.h"
 
 
@@ -44,9 +45,6 @@ void RoundA2Level::Loading()
 
 	//플레이어가 생성될 위치 설정
 	SetPlayerSpawnPos(PlayerSpanwPos);
-
-	//치트키
-	GameEngineInput::CreateKey("A2_NextStage", VK_F1);
 }
 
 
@@ -99,7 +97,7 @@ void RoundA2Level::Update(float _DeltaTime)
 	RoundLevelBase::Update(_DeltaTime);
 
 	//치트키를 눌렀는가?
-	if (false == GameEngineInput::IsDown("A2_NextStage"))
+	if (false == GameEngineInput::IsDown(CHEET_STAGE_CLEAR))
 		return;
 
 	//다음으로 이동중인가?

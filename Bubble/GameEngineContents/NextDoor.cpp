@@ -9,7 +9,7 @@
 #include "PlayerBase.h"
 #include "PlayerState.h"
 
-const float4 NextDoor::CollisionScale = {10.f, 10.f};
+const float4 NextDoor::CollisionScale = {8.f, 8.f};
 const float4 NextDoor::CollisionOffset = { 0.f, 20.f };
 
 NextDoor::NextDoor()
@@ -145,7 +145,7 @@ void NextDoor::CollisionPlayer()
 	{
 		PlayerBase* Player = dynamic_cast<PlayerBase*>(Players[i]->GetActor());
 		PlayerState* PlayerFSM = Player->GetComponent<PlayerState>(ComponentType::PlayerState);
-		//PlayerFSM->ChangeState(Player)
+		PlayerFSM->ChangeState(PlayerStateType::EnterDoor);
 	}
 
 	DoorOpen();

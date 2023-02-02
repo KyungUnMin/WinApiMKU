@@ -8,6 +8,7 @@
 #include "BubbleCore.h"
 #include "BackGround.h"
 #include "ContentsEnum.h"
+#include "ContentsDefine.h"
 #include "PlayerBase.h"
 
 const std::vector<float4> RoundA3Level::PlayerSpanwPos = 
@@ -42,9 +43,6 @@ void RoundA3Level::Loading()
 
 	//플레이어가 생성될 위치 설정
 	SetPlayerSpawnPos(PlayerSpanwPos);
-
-	//치트키
-	GameEngineInput::CreateKey("A3_NextStage", VK_F1);
 }
 
 
@@ -55,8 +53,8 @@ void RoundA3Level::Update(float _DeltaTime)
 	//만약 호출되지 않았다면 그때는 동작하지 않는다
 	RoundLevelBase::Update(_DeltaTime);
 
-	//치트키 눌렀는가?
-	if (false == GameEngineInput::IsDown("A3_NextStage"))
+	//치트키를 눌렀는가?
+	if (false == GameEngineInput::IsDown(CHEET_STAGE_CLEAR))
 		return;
 
 	//다음으로 이동중인가?

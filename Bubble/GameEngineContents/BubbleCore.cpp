@@ -58,6 +58,7 @@ void BubbleCore::CreateLevels()
 void BubbleCore::CreateKeys()
 {
 	GameEngineInput::CreateKey(DEBUG_RENDER, VK_F1);
+	GameEngineInput::CreateKey(CHEET_STAGE_CLEAR, VK_F2);
 
 	GameEngineInput::CreateKey(PLAYER_LEFT, KEY_LEFT);
 	GameEngineInput::CreateKey(PLAYER_RIGHT, KEY_RIGHT);
