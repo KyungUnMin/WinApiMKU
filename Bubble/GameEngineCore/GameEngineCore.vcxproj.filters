@@ -14,13 +14,16 @@
       <Filter>03.Resources</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineRender.h">
-      <Filter>02.Object\04.Rendering</Filter>
+      <Filter>02.Object\05.Rendering</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineObject.h">
       <Filter>02.Object\02.Object</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineCollision.h">
-      <Filter>02.Object\05.Collision</Filter>
+      <Filter>02.Object\06.Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineComponent.h">
+      <Filter>02.Object\04.Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -37,13 +40,16 @@
       <Filter>03.Resources</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineRender.cpp">
-      <Filter>02.Object\04.Rendering</Filter>
+      <Filter>02.Object\05.Rendering</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineObject.cpp">
       <Filter>02.Object\02.Object</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineCollision.cpp">
-      <Filter>02.Object\05.Collision</Filter>
+      <Filter>02.Object\06.Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineComponent.cpp">
+      <Filter>02.Object\04.Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,16 +65,19 @@
     <Filter Include="02.Object\03.Actor">
       <UniqueIdentifier>{1b0639a0-f3eb-4093-b104-0c149e470c67}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Object\04.Rendering">
-      <UniqueIdentifier>{88f54660-7e1f-4770-9fb3-935d3bc83069}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.Object\01.Level">
       <UniqueIdentifier>{179fc0f8-4f58-4529-a27e-cc15420e4d82}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.Object\02.Object">
       <UniqueIdentifier>{cf76912f-146a-44a0-924c-cfe03f2becef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Object\05.Collision">
+    <Filter Include="02.Object\04.Component">
+      <UniqueIdentifier>{bb93726a-1935-46d2-b93b-6f3b89be131e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Object\05.Rendering">
+      <UniqueIdentifier>{88f54660-7e1f-4770-9fb3-935d3bc83069}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Object\06.Collision">
       <UniqueIdentifier>{6ca7c15d-53f1-4e69-9b82-c4d32c6b4e72}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

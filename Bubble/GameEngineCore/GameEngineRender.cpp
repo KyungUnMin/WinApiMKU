@@ -16,13 +16,6 @@ GameEngineRender::~GameEngineRender()
 }
 
 
-//이 렌더를 소유하고 있는 엑터 반환
-GameEngineActor* GameEngineRender::GetActor()
-{
-	return GetOwner<GameEngineActor>();
-}
-
-
 //GameEngineResources에서 이미지 찾아오기
 void GameEngineRender::SetImage(const std::string_view& _ImageName)
 {
@@ -39,7 +32,7 @@ void GameEngineRender::SetScaleToImage()
 		return;
 	}
 
-	Scale = Image->GetImageScale();
+	SetScale(Image->GetImageScale());
 }
 
 
@@ -48,6 +41,8 @@ void GameEngineRender::SetOrder(int _Order)
 {
 	GameEngineObject::SetOrder(_Order);
 
+	//(Render객체를 Level와 Actor의 자료구조, 두 곳에서 관리한다)
+	// 생성 및 소멸은 Actor, Update는 Level
 	//GameEngineLevel의 Renders에 등록
 	GetActor()->GetLevel()->PushRender(this);
 }
@@ -145,18 +140,18 @@ void GameEngineRender::Render(float _DeltaTime)
 	}
 
 	//오프셋이 적용된 렌더링 될 위치
-	float4 RenderPos = GetActor()->GetPos() + Position - CameraPos;
+	float4 RenderPos = GetActorPlusPos() - CameraPos;
 
 	//이미지를 자른 경우
 	if (true == Image->IsImageCutting())
 	{
-		GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, Frame, RenderPos, Scale, TransColor);
+		GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, Frame, RenderPos, GetScale(), TransColor);
 	}
 
 	//이미지를 자르지 않은 경우엔 리소스 전체크기를 출력
 	else
 	{
-		GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, RenderPos, Scale, {0.f, 0.f}, Image->GetImageScale()), TransColor;
+		GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, RenderPos, GetScale(), {0.f, 0.f}, Image->GetImageScale()), TransColor;
 	}
 }
 

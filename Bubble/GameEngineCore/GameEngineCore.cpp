@@ -85,6 +85,9 @@ void GameEngineCore::GlobalUpdate()
 
 	//더블 버퍼 -> 윈도우 백버퍼
 	GameEngineWindow::DoubleBufferRender();
+
+	//이번 프레임에 삭제를 요청한 Object들을 삭제
+	Core->MainLevel->Release();
 }
 
 void GameEngineCore::GlobalEnd()

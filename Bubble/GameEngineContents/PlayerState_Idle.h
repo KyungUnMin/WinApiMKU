@@ -25,7 +25,7 @@ public:
 protected:
 
 private:
-	float				AccTime					= 0.0f;
-	const float		SleepChangeTime	= 3.f;
+	float								AccTime					= 0.0f;
+	const float						SleepChangeTime	= 3.f;
 };
 

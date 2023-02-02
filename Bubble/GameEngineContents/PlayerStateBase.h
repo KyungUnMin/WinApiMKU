@@ -21,8 +21,11 @@ public:
 	PlayerStateBase& operator=(const PlayerStateBase& _Other) = delete;
 	PlayerStateBase& operator=(const PlayerStateBase&& _Other) noexcept = delete;
 
+
+
 	//Player FSM을 관리하는 객체 반환
 	PlayerState* GetOwner();
+
 	//Player FSM을 관리하는 객체 설정
 	inline void SetOwner(PlayerState* _Owner)
 	{
@@ -38,8 +41,9 @@ public:
 		Player = _Player;
 	}
 
-	//(주로 자식의 Start에서 따로 호출됨)
-	//플레이어가 사용되는 Level인 RoundLevel과 연결
+
+
+	//애니메이션 생성 및 RoundLevel과 연결
 	virtual void Start(PlayerCharacterType _CharacterType);
 
 	//플레이어의 방향이 바뀌였다면 그 방향에 따라 애니메이션 전환
@@ -52,16 +56,30 @@ public:
 	virtual void ExitState();
 
 protected:
-	//단지 EnterState와 ExitState를 override하지 않고 ChangeAnimation을 하기 위한 초기화값
-	void SetAniRender(const std::string_view& _AniName);
+	void Init(
+		const std::string_view& _LeftAniPath,
+		const std::string_view& _RightAniPath,
+		const std::string_view& _AniName,
+		const std::pair<int, int>& _CutInfo,
+		float _AniInterval = 0.1f,
+		bool _AniLoop = true)
+	{
+		LeftAniPath = _LeftAniPath;
+		RightAniPath = _RightAniPath;
+		AniName = _AniName;
+		CutInfo = _CutInfo;
+		AniInterval = _AniInterval;
+		AniLoop = _AniLoop;
+	}
+
+
 
 	//자식들의 리소스를 로드하는데 도와주는 함수
-	void ResourceLoad(const std::string_view& _ImageName, int _CutX, int _CutY);
+	void ResourceLoad();
 
-	inline const std::string& GetAniName()
-	{
-		return AniName;
-	}
+	//Init을 사용하지 않고 특정 이미지를 직접 로드
+	void ResourceLoad(const std::string_view& _ImagePath, const std::pair<int,int>& _CutInfo);
+
 
 	inline GameEngineRender* GetRender()
 	{
@@ -71,13 +89,30 @@ protected:
 	RoundLevelBase* GetRoundLevel();
 
 private:
+	//Init에 사용되는 정보
+	std::string					LeftAniPath		= "";
+	std::string					RightAniPath	= "";
+	std::string					AniName			= "";
+	std::pair<int, int> 		CutInfo;
+	float							AniInterval		= 0.1f;
+	bool								AniLoop			= true;
+
+	RoundLevelBase*		RoundLevel		= nullptr;
+	const float4				PlayerScale		= float4{ 200.f, 200.f };
+
+
+
 	PlayerState*				Owner				= nullptr;
 	PlayerBase*					Player				= nullptr;
-
-	std::string					AniName			= "";
 	GameEngineRender*	Render				= nullptr;
 
-	const float4				PlayerScale		= float4{ 200.f, 200.f };
-	RoundLevelBase*		RoundLevel		= nullptr;
+
+	//애니메이션 만들기
+	void CreateAnimation(PlayerCharacterType _CharacterType);
+
+	//플레이어가 사용되는 Level인 RoundLevel과 연결
+	void ConnectRoundLevel();
 };
+
+
 

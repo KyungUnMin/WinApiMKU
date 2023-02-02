@@ -3,7 +3,7 @@
 #include <string.h>
 #include <string_view>
 #include <GameEnginePlatform/GameEngineImage.h>
-#include "GameEngineObject.h"
+#include "GameEngineComponent.h"
 
 //CreateAnimation 함수의 인자가 될 구조체
 class FrameAnimationParameter
@@ -39,7 +39,7 @@ class GameEngineActor;
 class GameEngineLevel;
 
 //주인(Owner)을 기준으로 이미지/애니메이션을 렌더링 해주는 객체, Level에서 관리함
-class GameEngineRender : public GameEngineObject
+class GameEngineRender : public GameEngineComponent
 {
 	friend GameEngineActor;
 	friend GameEngineLevel;
@@ -53,34 +53,17 @@ public:
 	GameEngineRender& operator=(const GameEngineRender& _Other) = delete;
 	GameEngineRender& operator=(const GameEngineRender&& _Other) noexcept = delete;
 
-
 	//GameEngineResources에서 이미지 찾아오기
 	void SetImage(const std::string_view& _ImageName);
 
 
-	//Offset 적용
-	inline void SetPosition(const float4& _Position)
-	{
-		Position = _Position;
-	}
-
-	//크기 설정
-	inline void SetScale(const float4& _Scale)
-	{
-		Scale = _Scale;
-	}
-
-	//이미지의 상대위치값을 _Position만큼 움직인다
-	inline void SetMove(float4 _Position)
-	{
-		Position += _Position;
-	}
-
 	//렌더링 이미지를 실제 리소스의 이미지 크기로 설정
 	void SetScaleToImage();
 
+
 	//프레임 직접 지정
 	void SetFrame(int _Frame);
+
 
 	inline GameEngineImage* GetImage()
 	{
@@ -92,8 +75,6 @@ public:
 		return Frame;
 	}
 
-	//이 렌더를 소유하고 있는 엑터 반환
-	GameEngineActor* GetActor();
 
 	//TransparentBlt할때 지울 배경색상값 변경
 	inline void SetTransColor(int _Color)
@@ -101,15 +82,6 @@ public:
 		TransColor = _Color;
 	}
 
-	inline float4 GetPosition()
-	{
-		return Position;
-	}
-
-	inline float4 GetScale()
-	{
-		return Scale;
-	}
 
 	//카메라 영향 끄기
 	inline void EffectCameraOff()
@@ -126,18 +98,13 @@ public:
 	void ChangeAnimation(const std::string_view& _AnimationName, bool _ForceChange = false);
 
 
-	//렌더링 되는 순서 결정 및 Level의 Renders에 등록(Actor에서만 호출)
+	//(Actor의 CreateRender에서 호출)
+	//렌더링 되는 순서 결정 및 Level의 Renders에 등록
 	void SetOrder(int _Order) override;
 
 protected:
 
 private:
-	//Owner 기준 상대위치(오프셋)
-	float4							Position				= float4::Zero;
-
-	//이미지를 그릴 크기
-	float4							Scale					= float4::Zero;
-
 	//이미지 리소스와 연결된 GameEngineImage
 	GameEngineImage*		Image					= nullptr;
 

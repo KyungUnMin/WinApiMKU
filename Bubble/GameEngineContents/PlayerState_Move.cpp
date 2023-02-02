@@ -19,52 +19,24 @@ PlayerState_Move::~PlayerState_Move()
 
 void PlayerState_Move::Start(PlayerCharacterType _CharacterType)
 {
+	//이 State의 정보 초기화
+	PlayerStateBase::Init(
+		"Left_PlayerMove.bmp",
+		"Right_PlayerMove.bmp",
+		"Move",
+		std::make_pair(5,4),
+		0.08f);
+
 	//딱 한번만 리소스 로드
 	static bool IsLoad = false;
 	if (false == IsLoad)
 	{
-		ResourceLoad("Left_PlayerMove.bmp", 5, 4);
-		ResourceLoad("Right_PlayerMove.bmp", 5, 4);
+		PlayerStateBase::ResourceLoad();
 		IsLoad = true;
 	}
 
-	//현재 Level과 연결
+	//애니메이션 생성 및 RoundLevel과 연결
 	PlayerStateBase::Start(_CharacterType);
-
-	//애니메이션용 Render 생성 및 이름 설정(여기서 Render크기도 설정)
-	SetAniRender("Move");
-
-	//캐릭터 타입
-	int AniIndex = static_cast<int>(_CharacterType) * 5;
-
-	//왼쪽 애니메이션 생성
-	GetRender()->CreateAnimation
-	({
-		.AnimationName = "Left_Move",
-		.ImageName = "Left_PlayerMove.bmp",
-		.Start = AniIndex,
-		.End = AniIndex + 4,
-		.InterTimer = AniInterval,
-	});
-
-	//오른쪽 애니메이션 생성
-	GetRender()->CreateAnimation
-	({
-		.AnimationName = "Right_Move",
-		.ImageName = "Right_PlayerMove.bmp",
-		.Start = AniIndex,
-		.End = AniIndex + 4,
-		.InterTimer = AniInterval,
-	});
-
-	//방향 받아오기
-	const std::string StartDir = GetPlayer()->GetDirStr();
-
-	//현재 방향에 따른 애니메이션 재생 설정
-	GetRender()->ChangeAnimation(StartDir + GetAniName());
-
-	//지금은 이 FSM상태가 아닐수 있기 때문에 렌더러 Off
-	GetRender()->Off();
 }
 
 

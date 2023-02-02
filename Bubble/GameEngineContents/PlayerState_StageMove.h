@@ -27,7 +27,7 @@ private:
 	GameEngineRender*		ClearBubble			= nullptr;
 	float4								PlayerOriginPos	= float4::Zero;
 
-	void CreatePlayerAni(PlayerCharacterType _CharacterType);
+	//第率 捧疙 芭前 局聪皋捞记 积己
 	void CreateBubbleAni();
 };
 

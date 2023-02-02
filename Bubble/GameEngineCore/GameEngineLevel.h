@@ -11,11 +11,13 @@
 class GameEngineCore;
 class GameEngineActor;
 class GameEngineRender;
+class GameEngineCollision;
 
 class GameEngineLevel : public GameEngineObject
 {
 	friend GameEngineCore;
 	friend GameEngineRender;
+	friend GameEngineCollision;
 
 public:
 	GameEngineLevel();
@@ -125,6 +127,15 @@ private:
 
 	std::map<int, std::list<GameEngineActor*>>		Actors;
 	std::map<int, std::list<GameEngineRender*>>	Renders;
+	std::map<int, std::list<GameEngineCollision*>>	Collisions;
+
+	//엑터가 생성될 때 호출(CreateActor)
+	void ActorStart(GameEngineActor* _Actor, int _Order);
+
+	//Renders에 GameEngineRender를 등록(GameEngineRender::SetOrder에서 직접 등록)
+	void PushRender(GameEngineRender* _Render);
+
+	void PushCollision(GameEngineCollision* _Collision);
 
 	//이 레벨에 존재하는 모든 엑터들의 Update호출(Core의 GlobalUpdate에서 호출)
 	void ActorsUpdate(float _DeltaTime);
@@ -132,10 +143,7 @@ private:
 	//이 레벨에 존재하는 모든 엑터들의 Render호출(Core의 GlobalUpdate에서 호출)
 	void ActorsRender(float _DeltaTime);
 
-	//엑터가 생성될 때 호출(CreateActor)
-	void ActorStart(GameEngineActor* _Actor, int _Order);
-
-	//Renders에 GameEngineRender를 등록(GameEngineRender::SetOrder에서 직접 호출)
-	void PushRender(GameEngineRender* _Render);
+	//이번 프레임에 Death처리한 Object들을 delete처리하는 기능
+	void Release();
 };
 

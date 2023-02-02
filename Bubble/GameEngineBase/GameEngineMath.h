@@ -70,6 +70,26 @@ public:
 		return static_cast<int>(w * 0.5f);
 	}
 
+	float hx() const
+	{
+		return x * 0.5f;
+	}
+
+	float hy() const
+	{
+		return y * 0.5f;
+	}
+
+	float hz() const
+	{
+		return z * 0.5f;
+	}
+
+	float hw() const
+	{
+		return w * 0.5f;
+	}
+
 	float4 half() const
 	{
 		return { x * 0.5f,y * 0.5f,z * 0.5f,w };

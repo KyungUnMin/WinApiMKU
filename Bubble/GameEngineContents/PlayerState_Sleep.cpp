@@ -18,62 +18,30 @@ PlayerState_Sleep::~PlayerState_Sleep()
 
 void PlayerState_Sleep::Start(PlayerCharacterType _CharacterType)
 {
+	bool AniLoop = true;
+	if (_CharacterType == PlayerCharacterType::CORORON || _CharacterType == PlayerCharacterType::KULULUN)
+	{
+		AniLoop = false;
+	}
+
+	//이 State의 정보 초기화
+	PlayerStateBase::Init(
+		"Left_PlayerSleep.bmp",
+		"Right_PlayerSleep.bmp",
+		"Sleep",
+		std::make_pair(3, 4),
+		0.25f, AniLoop);
+
 	//딱 한번만 리소스 로드
 	static bool IsLoad = false;
 	if (false == IsLoad)
 	{
-		ResourceLoad("Left_PlayerSleep.bmp", 3, 4);
-		ResourceLoad("Right_PlayerSleep.bmp", 3, 4);
+		PlayerStateBase::ResourceLoad();
 		IsLoad = true;
 	}
 
-	//현재 Level과 연결
+	//애니메이션 생성 및 RoundLevel과 연결
 	PlayerStateBase::Start(_CharacterType);
-
-	//애니메이션용 Render 생성 및 Render크기 설정
-	SetAniRender("Sleep");
-
-	//캐릭터 타입
-	int AniIndex = static_cast<int>(_CharacterType) * 3;
-
-	//캐릭터가 CORORON 이거나 KULULUN인 경우엔 애니메이션을 반복재생하지 않음
-	bool Repeat = true;
-	if (_CharacterType == PlayerCharacterType::CORORON || 
-		_CharacterType == PlayerCharacterType::KULULUN)
-	{
-		Repeat = false;
-	}
-
-	//왼쪽 애니메이션 생성
-	GetRender()->CreateAnimation
-	({
-		.AnimationName = "Left_Sleep",
-		.ImageName = "Left_PlayerSleep.bmp",
-		.Start = AniIndex,
-		.End = AniIndex + 2,
-		.InterTimer = 0.25f,
-		.Loop = Repeat
-	});
-
-	//오른쪽 애니메이션 생성
-	GetRender()->CreateAnimation
-	({
-		.AnimationName = "Right_Sleep",
-		.ImageName = "Right_PlayerSleep.bmp",
-		.Start = AniIndex,
-		.End = AniIndex + 2,
-		.InterTimer = 0.25f,
-		.Loop = Repeat
-	});
-
-	//방향 받아오기
-	const std::string StartDir = GetPlayer()->GetDirStr();
-
-	//현재 방향에 따른 애니메이션 재생 설정
-	GetRender()->ChangeAnimation(StartDir + GetAniName());
-
-	//지금은 이 FSM상태가 아닐수 있기 때문에 렌더러 Off
-	GetRender()->Off();
 }
 
 void PlayerState_Sleep::Update(float _DeltaTime)
