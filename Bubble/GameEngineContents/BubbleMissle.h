@@ -17,7 +17,7 @@ public:
 	static const float4 CollisionScale;
 
 	BubbleMissle();
-	~BubbleMissle();
+	virtual ~BubbleMissle() override;
 
 	BubbleMissle(const BubbleMissle& _Other) = delete;
 	BubbleMissle(BubbleMissle&& _Other) noexcept = delete;
@@ -32,6 +32,16 @@ public:
 	inline RoundLevelBase* GetRoundLevel()
 	{
 		return RoundLevel;
+	}
+
+	inline GameEngineCollision* GetCollisionPtr()
+	{
+		return CollisionPtr;
+	}
+
+	inline BubbleMissleFSM* GetFSM()
+	{
+		return FSM;
 	}
 
 protected:

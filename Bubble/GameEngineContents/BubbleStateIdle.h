@@ -20,6 +20,9 @@ protected:
 
 private:
 
+
 	void ResourceLoad();
+	bool CollisionWithPlayer();
+	void RaiseBubble(float _DeltaTime);
 };
 

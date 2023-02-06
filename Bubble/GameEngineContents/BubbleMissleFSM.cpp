@@ -5,6 +5,7 @@
 
 #include "BubbleStateThrow.h"
 #include "BubbleStateIdle.h"
+#include "BubbleStatePop.h"
 
 BubbleMissleFSM::BubbleMissleFSM()
 {
@@ -63,9 +64,9 @@ void BubbleMissleFSM::CreateState(BubbleStateType _StateType)
 	case BubbleStateType::Idle:
 		States[Index] = new BubbleStateIdle;
 		break;
-	//case BubbleStateType::Pop:
-	//	//States[Index] = new 
-	//	break;
+	case BubbleStateType::Pop:
+		States[Index] = new BubbleStatePop;
+		break;
 	//case BubbleStateType::Imminent:
 	//	//States[Index] = new 
 	//	break;
@@ -90,16 +91,18 @@ BubbleMissleStateBase* BubbleMissleFSM::GetState(BubbleStateType _Type)
 
 
 //FSM 변경
-void BubbleMissleFSM::ChangeState(BubbleMissleStateBase* _NextState)
+void BubbleMissleFSM::ChangeState(BubbleStateType _NextStateType)
 {
 	//이전 FSM이 다른 FSM으로 바뀔때 처리
 	CurState->ExitState();
 
 	//전환되는 FSM으로 들어올때
-	_NextState->EnterState();
+	BubbleMissleStateBase* NextState = GetState(_NextStateType);
+	NextState->EnterState();
 
 	//FSM변경
-	CurState = _NextState;
+	CurState = NextState;
+	CurType = _NextStateType;
 }
 
 

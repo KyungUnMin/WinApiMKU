@@ -18,7 +18,7 @@ class GameEngineActor : public GameEngineObject
 
 public:
 	GameEngineActor();
-	~GameEngineActor();
+	~GameEngineActor() override;
 
 	GameEngineActor(const GameEngineActor& _Other) = delete;
 	GameEngineActor(GameEngineActor&& _Other) noexcept = delete;

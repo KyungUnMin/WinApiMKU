@@ -154,6 +154,9 @@
     <ClInclude Include="BubbleStateIdle.h">
       <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\04.Idle</Filter>
     </ClInclude>
+    <ClInclude Include="BubbleStatePop.h">
+      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\05.Pop</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BubbleCore.cpp">
@@ -302,6 +305,9 @@
     </ClCompile>
     <ClCompile Include="BubbleStateIdle.cpp">
       <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\04.Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleStatePop.cpp">
+      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\05.Pop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

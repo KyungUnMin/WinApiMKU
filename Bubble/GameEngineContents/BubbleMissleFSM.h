@@ -6,9 +6,8 @@ enum class BubbleStateType
 {
 	Throw,
 	Idle,
-	/*Idle,
 	Pop,
-	Imminent,*/
+	//Imminent,
 
 	Count,
 };
@@ -29,19 +28,19 @@ public:
 	BubbleMissleFSM& operator=(const BubbleMissleFSM& _Other) = delete;
 	BubbleMissleFSM& operator=(const BubbleMissleFSM&& _Other) noexcept = delete;
 
-	
+	inline BubbleStateType GetCurStateType()
+	{
+		return CurType;
+	}
 
 	BubbleMissleStateBase* GetState(BubbleStateType _Type);
 
-	void ChangeState(BubbleStateType _NextStateType)
-	{
-		ChangeState(GetState(_NextStateType));
-	}
-	void ChangeState(BubbleMissleStateBase* _NextState);
+	void ChangeState(BubbleStateType _NextStateType);
 
 protected:
 
 private:
+	BubbleStateType									CurType	= BubbleStateType::Throw;
 	BubbleMissleStateBase*							CurState = nullptr;
 	std::vector<BubbleMissleStateBase*>	States;
 	BubbleMissle*											Bubble		= nullptr;

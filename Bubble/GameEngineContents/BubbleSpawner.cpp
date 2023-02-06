@@ -1,6 +1,7 @@
 #include "BubbleSpawner.h"
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEnginePlatform/GameEngineInput.h>
+#include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include "PlayerBase.h"
 #include "ContentsDefine.h"
@@ -12,7 +13,7 @@ const float4 BubbleSpawner::SpawnOffset = float4{ 0.f, -30.f };
 
 BubbleSpawner::BubbleSpawner()
 {
-
+	
 }
 
 BubbleSpawner::~BubbleSpawner()

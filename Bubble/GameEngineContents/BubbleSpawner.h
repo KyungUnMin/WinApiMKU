@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include <GameEngineBase/GameEngineMath.h>
 #include "ComponentBase.h"
 #include "ContentsEnum.h"
@@ -11,6 +12,7 @@ class BubbleSpawner : public ComponentBase
 {
 public:
 	static const float4 SpawnOffset;
+
 
 	BubbleSpawner();
 	~BubbleSpawner();
@@ -30,6 +32,7 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
+
 	RoundLevelBase*		RoundLevel		= nullptr;
 	PlayerBase*					Player				= nullptr;
 	BubbleMissleType		Type				= BubbleMissleType::Normal;

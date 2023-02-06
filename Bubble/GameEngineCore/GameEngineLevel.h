@@ -72,11 +72,12 @@ public:
 
 
 	//Actors의 특정 그룹에 있는 오브젝트들을 다운캐스팅 하여 배열에 담아 return하는 함수
-	template <typename ConvertType>
-	std::vector<ConvertType*> GetConvertActors(int _GroundIndex)
+	template<typename ConvertType>
+	std::vector<ConvertType*> GetConvertActors(int _GroupIndex)
 	{
 		std::vector<ConvertType*> Result;
-		std::list<GameEngineActor*>& Group = Actors[_GroundIndex];
+
+		std::list<GameEngineActor*>& Group = Actors[_GroupIndex];
 		Result.reserve(Group.size());
 
 		for (GameEngineActor* ActorPtr : Group)
@@ -85,7 +86,7 @@ public:
 
 			if (nullptr == ConvertType)
 			{
-				MsgAssert("컨버트 할 수 없는 변환입니다");
+				MsgAssert("컨버트 할수 없는 변환입니다.");
 			}
 
 			Result.push_back(ConvertPtr);

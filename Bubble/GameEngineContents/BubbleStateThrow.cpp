@@ -64,9 +64,11 @@ void BubbleStateThrow::Update(float _DeltaTime)
 	}
 
 	float4 NowPos = Bubble->GetPos();
-	float4 NextPos = NowPos + Bubble->GetDirVec() * MoveSpeed * _DeltaTime;
-	
-	if (Bubble->GetRoundLevel()->IsBlockPos(NextPos))
+	float4 MoveDir = Bubble->GetDirVec();
+	float4 NextPos = NowPos + (MoveDir * MoveSpeed * _DeltaTime);
+	float4 Offset = MoveDir * BubbleMissle::CollisionScale.hx();
+
+	if (Bubble->GetRoundLevel()->IsBlockPos(NextPos + Offset))
 	{
 		GetFSM()->ChangeState(BubbleStateType::Idle);
 		return;
