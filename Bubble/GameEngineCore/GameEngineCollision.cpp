@@ -147,6 +147,11 @@ void GameEngineCollision::SetOrder(int _Order)
 //자신이 상대 그룹과 충돌했는지 여부를 알려주는 함수
 bool GameEngineCollision::Collision(const CollisionCheckParameter& _Parameter)
 {
+	if (false == IsUpdate())
+	{
+		return false;
+	}
+
 	//충돌확인할 상대방그룹을 가져온다
 	std::list<GameEngineCollision*>& _TargetGroup = GetActor()->GetLevel()->Collisions[_Parameter.TargetGroup];
 
@@ -183,6 +188,11 @@ bool GameEngineCollision::Collision(const CollisionCheckParameter& _Parameter)
 //자신이 상대 그룹과 충돌했다면 vector에 충돌한 Collision을 담아서 돌려주는 함수
 bool GameEngineCollision::Collision(const CollisionCheckParameter& _Parameter, std::vector<GameEngineCollision*>& _Collision)
 {
+	if (false == IsUpdate())
+	{
+		return false;
+	}
+	
 	_Collision.clear();
 
 	//충돌확인할 상대방그룹을 가져온다
@@ -231,7 +241,7 @@ void GameEngineCollision::DebugRender()
 	HDC BackBufferDc = GameEngineWindow::GetDoubleBufferImage()->GetImageDC();
 
 	//이 컴포넌트의 오프셋 + 레벨의 카메라 위치
-	float4 DebugRenderPos = GetActorPlusPos() + GetActor()->GetLevel()->GetCameraPos();
+	float4 DebugRenderPos = GetActorPlusPos() - GetActor()->GetLevel()->GetCameraPos();
 
 	switch (DebugRenderType)
 	{

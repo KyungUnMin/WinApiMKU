@@ -41,6 +41,7 @@ void GameEngineCore::GlobalUpdate()
 		{
 			//기존 레벨이 끝났을때 처리할 작업 실행
 			PrevLevel->LevelChangeEnd(NextLevel);
+			PrevLevel->ActorLevelChangeStart(NextLevel);
 		}
 
 		//현재 레벨 변경
@@ -51,6 +52,7 @@ void GameEngineCore::GlobalUpdate()
 		{
 			//변경된 레벨이 시작될 때 처리할 작업 실행
 			NextLevel->LevelChangeStart(PrevLevel);
+			NextLevel->ActorLevelChangeStart(PrevLevel);
 		}
 	}
 

@@ -162,5 +162,11 @@ private:
 
 	//이번 프레임에 Death처리한 Object들을 delete처리하는 기능
 	void Release();
+
+	//레벨이 바뀔때 Actor의 LevelChangeEnd를 호출
+	void ActorLevelChangeEnd(GameEngineLevel* _NextLevel);
+
+	//레벨이 바뀔때 Actor의 LevelChangeStart를 호출
+	void ActorLevelChangeStart(GameEngineLevel* _PrevLevel);
 };
 

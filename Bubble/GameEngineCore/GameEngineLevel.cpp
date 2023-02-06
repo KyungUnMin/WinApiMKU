@@ -264,6 +264,44 @@ void GameEngineLevel::ActorsRender(float _DeltaTime)
 }
 
 
+
+//레벨이 바뀔때 Actor의 LevelChangeEnd를 호출
+void GameEngineLevel::ActorLevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	std::map<int, std::list<GameEngineActor*>>::iterator GroupStartIter = Actors.begin();
+	std::map<int, std::list<GameEngineActor*>>::iterator GroupEndIter = Actors.end();
+
+	for (; GroupStartIter != GroupEndIter; ++GroupStartIter)
+	{
+		std::list<GameEngineActor*>& ActorList = GroupStartIter->second;
+
+		for (GameEngineActor* Actor : ActorList)
+		{
+			Actor->LevelChangeEnd(_NextLevel);
+		}
+	}
+}
+
+
+//레벨이 바뀔때 Actor의 LevelChangeStart를 호출
+void GameEngineLevel::ActorLevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	std::map<int, std::list<GameEngineActor*>>::iterator GroupStartIter = Actors.begin();
+	std::map<int, std::list<GameEngineActor*>>::iterator GroupEndIter = Actors.end();
+
+	for (; GroupStartIter != GroupEndIter; ++GroupStartIter)
+	{
+		std::list<GameEngineActor*>& ActorList = GroupStartIter->second;
+
+		for (GameEngineActor* Actor : ActorList)
+		{
+			Actor->LevelChangeStart(_PrevLevel);
+		}
+	}
+}
+
+
+
 //Renders에 GameEngineRender를 등록(GameEngineRender::SetOrder에서 직접 호출)
 void GameEngineLevel::PushRender(GameEngineRender* _Render)
 {
