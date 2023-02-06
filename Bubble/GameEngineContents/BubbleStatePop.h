@@ -18,6 +18,7 @@ protected:
 	void EnterState() override;
 
 private:
+	BubbleMissleType BubbleType = BubbleMissleType::Normal;
 
 	void ResourceLoad();
 };

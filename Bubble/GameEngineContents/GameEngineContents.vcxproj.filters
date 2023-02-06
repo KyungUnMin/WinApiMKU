@@ -536,5 +536,11 @@
     <Filter Include="03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\05.Pop">
       <UniqueIdentifier>{209d64b6-7e82-4bbd-9615-7fe422f3a449}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.ContentsComponent">
+      <UniqueIdentifier>{05742b4a-c282-4f71-925f-089005b2ecd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.FSM">
+      <UniqueIdentifier>{8f622beb-f763-44e1-aa30-fd84b1ea9c17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

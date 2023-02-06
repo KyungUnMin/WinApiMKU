@@ -2,6 +2,7 @@
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "BubbleMissle.h"
 
 BubbleStatePop::BubbleStatePop()
@@ -35,13 +36,34 @@ void BubbleStatePop::Init(PlayerCharacterType _CharType, BubbleMissleType _Bubbl
 		.InterTimer = 0.1f,
 		.Loop = false
 	});
+
+	BubbleType = _BubbleType;
 }
 
 void BubbleStatePop::EnterState()
 {
 	BubbleMissleStateBase::EnterState();
 
-	//TODO
+	GetBubble()->GetCollisionPtr()->Off();
+	switch (BubbleType)
+	{
+	case BubbleMissleType::Normal:
+		break;
+	case BubbleMissleType::Fire:
+		break;
+	case BubbleMissleType::Water:
+		break;
+	case BubbleMissleType::Electronic:
+		break;
+	case BubbleMissleType::Rainbow:
+		break;
+	case BubbleMissleType::Windy:
+		break;
+	case BubbleMissleType::Melody:
+		break;
+	default:
+		break;
+	}
 }
 
 void BubbleStatePop::Update(float _DeltaTime)
@@ -49,6 +71,7 @@ void BubbleStatePop::Update(float _DeltaTime)
 	if (false == GetBubble()->GetRender()->IsAnimationEnd())
 		return;
 
+	
 	//일단 임시적으로 Death처리하자
 	// 나중에 풀링 처리할꺼면 그때 바꾸자
 	//GetBubble()->Off();
