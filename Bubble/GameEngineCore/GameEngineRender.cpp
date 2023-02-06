@@ -109,8 +109,42 @@ void GameEngineRender::FrameAnimation::Render(float _DeltaTime)
 }
 
 
+//이 함수를 통해 값을 설정하면 TextRender모드가 된다
+void GameEngineRender::SetText(const std::string_view& _Text)
+{
+	RenderText = _Text;
+}
+
+
 //Level의 Render를 통해 실제 렌더링되는 함수
 void GameEngineRender::Render(float _DeltaTime)
+{
+	if (RenderText != "")
+	{
+		TextRender(_DeltaTime);
+	}
+	else
+	{
+		ImageRender(_DeltaTime);
+	}
+}
+
+
+void GameEngineRender::TextRender(float _DeltaTime)
+{
+	//카메라 계산
+	float4 CameraPos = float4::Zero;
+	if (true == IsEffectCamera)
+	{
+		CameraPos = GetActor()->GetLevel()->GetCameraPos();
+	}
+
+	//렌더링 위치 계산해서 텍스트 출력
+	float4 RenderPos = GetActorPlusPos() - CameraPos;
+	TextOutA(GameEngineWindow::GetDoubleBufferImage()->GetImageDC(), RenderPos.ix(), RenderPos.iy(), RenderText.c_str(), static_cast<int>(RenderText.size()));
+}
+
+void GameEngineRender::ImageRender(float _DeltaTime)
 {
 	//애니메이션 모드라면
 	if (nullptr != CurrentAnimation)
@@ -152,11 +186,9 @@ void GameEngineRender::Render(float _DeltaTime)
 	//이미지를 자르지 않은 경우엔 리소스 전체크기를 출력
 	else
 	{
-		GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, RenderPos, GetScale(), {0.f, 0.f}, Image->GetImageScale()), TransColor;
+		GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, RenderPos, GetScale(), { 0.f, 0.f }, Image->GetImageScale()), TransColor;
 	}
 }
-
-
 
 
 bool GameEngineRender::IsAnimationEnd()

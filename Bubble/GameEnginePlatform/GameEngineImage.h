@@ -75,6 +75,11 @@ public:
 		return IsCut;
 	}
 
+	int GetImageCuttingCount()
+	{
+		return static_cast<int>(ImageCutDatas.size());
+	}
+
 	//벡터안에 유효한 범위인지 확인
 	bool IsCutIndexValid(int _Index) const
 	{

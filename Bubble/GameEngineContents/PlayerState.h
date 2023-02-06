@@ -37,6 +37,9 @@ public:
 	//자료구조에 모든 FSM들을 생성하고 관리
 	void Start() override;
 
+	//현재 FSM 동작
+	void Update(float _DeltaTime) override;
+
 	PlayerStateBase* GetState(PlayerStateType _Type);
 
 	//FSM 변경(enum)
@@ -48,12 +51,6 @@ public:
 	//FSM 변경(PlayerStateBase 포인터)
 	void ChangeState(PlayerStateBase* _NextState);
 
-	//(PlayerBase를 상속받은 객체에서 직접 호출)
-	//자료구조에 모든 FSM들을 생성하고 관리
-	//void Init(PlayerCharacterType _CharacterType);
-
-	//현재 FSM 동작
-	void Update(float _DeltaTime) override;
 
 protected:
 

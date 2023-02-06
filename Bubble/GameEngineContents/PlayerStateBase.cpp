@@ -60,7 +60,7 @@ void PlayerStateBase::Start(PlayerCharacterType _CharacterType)
 void PlayerStateBase::CreateAnimation(PlayerCharacterType _CharacterType)
 {
 	//렌더링 생성 및 크기 설정
-	Render = Player->CreateRender(RoundRenderOrder::Player1);
+	Render = Player->CreateRender(RenderOrder::Player1);
 	Render->SetScale(PlayerScale);
 
 	//캐릭터 타입

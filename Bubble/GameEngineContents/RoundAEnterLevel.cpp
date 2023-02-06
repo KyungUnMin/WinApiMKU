@@ -37,7 +37,7 @@ void RoundAEnterLevel::Loading()
 
 	//뒤 배경과 레벨의 지형 생성
 	CreateBackGround();
-	RoundLevelBase::CreateStage(float4::Right, RoundRenderOrder::Obstacle1);
+	RoundLevelBase::CreateStage(float4::Right, RenderOrder::Obstacle1);
 
 	//플레이어가 생성될 위치 설정
 	SetPlayerSpawnPos(PlayerSpanwPos);
@@ -73,7 +73,7 @@ void RoundAEnterLevel::ResourceLoad()
 void RoundAEnterLevel::CreateBackGround()
 {
 	BackGround* Back = CreateActor<BackGround>();
-	Back->CreateRender("RoundA_Enter_BackGround.bmp", RoundRenderOrder::BackGround2);
+	Back->CreateRender("RoundA_Enter_BackGround.bmp", RenderOrder::BackGround2);
 }
 
 void RoundAEnterLevel::CreateDoor()
@@ -84,7 +84,7 @@ void RoundAEnterLevel::CreateDoor()
 	for (size_t i = 0; i < 3; ++i)
 	{
 		Door[i] = CreateActor<NextDoor>();
-		Door[i]->SelectDoor(DoorType::Blue, { 200.f, 200.f }, RoundRenderOrder::Door);
+		Door[i]->SelectDoor(DoorType::Blue, { 200.f, 200.f }, RenderOrder::Door);
 		Door[i]->SetPos(Pivot + Offset[i]);
 		Door[i]->Off();
 	}

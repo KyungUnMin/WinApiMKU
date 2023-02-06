@@ -7,10 +7,9 @@
 #include "PlayerState.h"
 #include "Gravity.h"
 #include "BubbleSpawner.h"
-#include "BubbleMissleBase.h"
 
-const float4 PlayerBase::CollisionScale = float4{ 50.f, 50.f };
 const float4 PlayerBase::CollisionOffset = float4{0.f, -30.f};
+const float4 PlayerBase::CollisionScale = float4{ 50.f, 50.f };
 
 PlayerBase::PlayerBase()
 {
@@ -78,22 +77,4 @@ void PlayerBase::Update(float _DeltaTime)
 		Pair.second->Update(_DeltaTime);
 	}
 
-	std::vector<GameEngineCollision*> Bubbles;
-	if (false == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Player_Missle) }, Bubbles))
-		return;
-
-	for (size_t i = 0; i < Bubbles.size(); ++i)
-	{
-		BubbleMissleBase* Bubble = dynamic_cast<BubbleMissleBase*>(Bubbles[i]->GetActor());
-		if (nullptr == Bubble)
-		{
-			MsgAssert("버블이 아닌 객체가 버블 충돌 그룹에 속해있습니다");
-			return;
-		}
-
-		if (BubbleState::Idle != Bubble->GetState())
-			continue;
-
-		Bubble->BubblePop();
-	}
 }

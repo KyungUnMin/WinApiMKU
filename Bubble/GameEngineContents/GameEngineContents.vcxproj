@@ -159,15 +159,27 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="BubbleMissleBase.h">
+    <ClInclude Include="BubbleMissle.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="BubbleMissle_Normal.h">
+    <ClInclude Include="BubbleMissleFSM.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="BubbleSpawner.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BubbleMissleStateBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BubbleStateIdle.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BubbleStateThrow.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -347,15 +359,27 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="BubbleMissleBase.cpp">
+    <ClCompile Include="BubbleMissle.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="BubbleMissle_Normal.cpp">
+    <ClCompile Include="BubbleMissleFSM.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="BubbleSpawner.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BubbleMissleStateBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BubbleStateIdle.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BubbleStateThrow.cpp">
       <SubType>
       </SubType>
     </ClCompile>

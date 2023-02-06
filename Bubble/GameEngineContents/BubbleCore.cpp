@@ -51,7 +51,7 @@ void BubbleCore::CreateLevels()
 	//엔딩화면
 	CreateLevel<EndingLevel>("EndingLevel");
 
-	ChangeLevel("OpeningLevel");
+	ChangeLevel("RoundAEnterLevel");
 }
 
 

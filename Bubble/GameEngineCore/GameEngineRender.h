@@ -102,6 +102,9 @@ public:
 	//렌더링 되는 순서 결정 및 Level의 Renders에 등록
 	void SetOrder(int _Order) override;
 
+	//이 함수를 통해 값을 설정하면 TextRender모드가 된다
+	void SetText(const std::string_view& _Text);
+
 protected:
 
 private:
@@ -118,10 +121,16 @@ private:
 	bool								IsEffectCamera	= true;
 
 
-	
+	//이 값에 내용이 존재하면 TextRender를 실행
+	std::string RenderText;
 
 	//Level의 Render를 통해 실제 렌더링되는 함수
 	void Render(float _DeltaTime);
+
+	//렌더링 종류중 텍스트 렌더링
+	void TextRender(float _DeltaTime);
+	//렌더링 종류중 이미지 렌더링
+	void ImageRender(float _DeltaTime);
 
 
 	//애니메이션에 대한 정보는 밖에서는 필요하지 않다. 때문에 private

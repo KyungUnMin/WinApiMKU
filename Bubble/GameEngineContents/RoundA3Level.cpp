@@ -39,7 +39,7 @@ void RoundA3Level::Loading()
 
 	//뒤 배경과 레벨의 지형을 오른쪽으로 정렬하여 생성
 	CreateBackGround();
-	RoundLevelBase::CreateStage(float4::Right, RoundRenderOrder::Obstacle1);
+	RoundLevelBase::CreateStage(float4::Right, RenderOrder::Obstacle1);
 
 	//플레이어가 생성될 위치 설정
 	SetPlayerSpawnPos(PlayerSpanwPos);
@@ -94,7 +94,7 @@ void RoundA3Level::CreateBackGround()
 	BackGround* Back = CreateActor<BackGround>();
 	Back->RenderReserve(2);
 
-	GameEngineRender* Render1 = Back->CreateRender("RoundA3_BackGround1.bmp", RoundRenderOrder::BackGround1);
+	GameEngineRender* Render1 = Back->CreateRender("RoundA3_BackGround1.bmp", RenderOrder::BackGround1);
 
 	Render1->CreateAnimation
 	({
@@ -105,7 +105,7 @@ void RoundA3Level::CreateBackGround()
 	});
 	Render1->ChangeAnimation("Idle");
 
-	GameEngineRender* Render2 = Back->CreateRender("RoundA3_BackGround2.bmp", RoundRenderOrder::BackGround2);
+	GameEngineRender* Render2 = Back->CreateRender("RoundA3_BackGround2.bmp", RenderOrder::BackGround2);
 	Render2->CreateAnimation
 	({
 		.AnimationName = "Idle",

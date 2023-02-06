@@ -58,7 +58,7 @@ void PlayerState_Falling::Update(float _DeltaTime)
 	if (GameEngineInput::IsPress(PLAYER_RIGHT) || GameEngineInput::IsPress(PLAYER_LEFT))
 	{
 		//이동할 위치에 벽이 있는지 확인, 없다면 이동
-		if (false == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * MovableActor::ColliderRange))
+		if (false == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * PlayerBase::CollisionScale * 0.5f))
 		{
 			GetPlayer()->SetMove(MoveDir * AirMoveSpeed * _DeltaTime);
 		}

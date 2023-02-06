@@ -2,10 +2,14 @@
 #include <math.h>
 #include <cmath>
 #include <string>
+#include <vector>
 
 class GameEngineMath final
 {
 public:
+	static std::vector<unsigned int> GetDigits(int _Value);
+	static unsigned int GetLenth(int _Value);
+
 	static const float PIE;
 	static const float PIE2;
 

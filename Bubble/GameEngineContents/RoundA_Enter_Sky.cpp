@@ -23,7 +23,7 @@ void RoundA_Enter_Sky::Start()
 	PivotX = GetPos().x;
 	Range = ScreenSize.x * 0.25f;
 
-	SkyRender = CreateRender("RoundA_Enter_Sky.bmp", RoundRenderOrder::BackGround1);
+	SkyRender = CreateRender("RoundA_Enter_Sky.bmp", RenderOrder::BackGround1);
 	SkyRender->SetScale({ ScreenSize.x * 1.5f, ScreenSize.y });
 }
 

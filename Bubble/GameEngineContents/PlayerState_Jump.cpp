@@ -73,7 +73,7 @@ void PlayerState_Jump::Update(float _DeltaTime)
 		float4 MoveDir = GetPlayer()->GetDirVec();
 
 		//이동시키는 위치가 벽이 아니라면 이동
-		if (false == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * MovableActor::ColliderRange))
+		if (false == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * PlayerBase::CollisionScale * 0.5f))
 		{
 			GetPlayer()->SetMove(MoveDir * AirMoveSpeed * _DeltaTime);
 		}

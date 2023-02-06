@@ -104,9 +104,6 @@ bool RoundLevelBase::MoveToNextStage()
 	NextRender->On();
 	NextRender->SetPosition(-ArrangeDir * ScreenSize);
 
-	//여태까지 사용한 버블 삭제
-	BubbleSpawner::AllDeath();
-
 	return true;
 }
 
@@ -253,7 +250,6 @@ void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	IsMoveValue = false;
 	SetNowStage(0);
 	Player->SetPos(PlayerSpwanPos[0]);
-	BubbleSpawner::AllDeath();
 }
 
 const float4& RoundLevelBase::GetPlayerSpawnPos()

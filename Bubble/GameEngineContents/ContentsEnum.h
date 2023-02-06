@@ -7,10 +7,17 @@ enum class PlayerCharacterType
 	BOBBLUN,
 	KULULUN,
 	CORORON,
+
 	COUNT
 };
 
-enum class RoundRenderOrder
+enum class UpdateOrder
+{
+	Defalut,
+	Player_Missle
+};
+
+enum class RenderOrder
 {
 	BackGround1,
 	BackGround2,
@@ -48,3 +55,13 @@ enum class ComponentType
 	Count
 };
 
+enum class BubbleMissleType
+{
+	Normal,
+	Fire,
+	Water,
+	Electronic,
+	Rainbow,
+	Windy,
+	Melody
+};

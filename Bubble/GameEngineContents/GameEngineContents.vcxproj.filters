@@ -133,17 +133,26 @@
     <ClInclude Include="PlayerState_Enter.h">
       <Filter>05.Component%28컨텐츠%29\02.PlayerState\10.Enter</Filter>
     </ClInclude>
-    <ClInclude Include="BubbleMissleBase.h">
-      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\02.Base</Filter>
-    </ClInclude>
-    <ClInclude Include="BubbleMissle_Normal.h">
-      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.Nomal</Filter>
-    </ClInclude>
     <ClInclude Include="BubbleSpawner.h">
       <Filter>03.CommonActors\04.Movable\03.BubbleMissle\01.BubbleSpanwer</Filter>
     </ClInclude>
     <ClInclude Include="MonsterBase.h">
       <Filter>03.CommonActors\04.Movable\04.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleMissleFSM.h">
+      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\01.FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleMissleStateBase.h">
+      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\02.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleMissle.h">
+      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\02.Bubble</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleStateThrow.h">
+      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\03.Throw</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleStateIdle.h">
+      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\04.Idle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -273,17 +282,26 @@
     <ClCompile Include="PlayerState_Enter.cpp">
       <Filter>05.Component%28컨텐츠%29\02.PlayerState\10.Enter</Filter>
     </ClCompile>
-    <ClCompile Include="BubbleMissleBase.cpp">
-      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\02.Base</Filter>
-    </ClCompile>
-    <ClCompile Include="BubbleMissle_Normal.cpp">
-      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.Nomal</Filter>
-    </ClCompile>
     <ClCompile Include="BubbleSpawner.cpp">
       <Filter>03.CommonActors\04.Movable\03.BubbleMissle\01.BubbleSpanwer</Filter>
     </ClCompile>
     <ClCompile Include="MonsterBase.cpp">
       <Filter>03.CommonActors\04.Movable\04.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleMissleFSM.cpp">
+      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\01.FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleMissleStateBase.cpp">
+      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\02.Base</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleMissle.cpp">
+      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\02.Bubble</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleStateThrow.cpp">
+      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\03.Throw</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleStateIdle.cpp">
+      <Filter>03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\04.Idle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -485,17 +503,32 @@
     <Filter Include="03.CommonActors\04.Movable\03.BubbleMissle">
       <UniqueIdentifier>{e7a2b577-4351-431c-b367-11e823086372}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.CommonActors\04.Movable\03.BubbleMissle\02.Base">
-      <UniqueIdentifier>{11958d7b-ca5b-4f43-b6bf-9462191c5e72}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.CommonActors\04.Movable\03.BubbleMissle\03.Nomal">
-      <UniqueIdentifier>{be03d594-2e1d-48cc-9222-298fc3b67d81}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.CommonActors\04.Movable\03.BubbleMissle\01.BubbleSpanwer">
       <UniqueIdentifier>{628e1e65-6e37-4fd5-bb90-b7e957407ffe}</UniqueIdentifier>
     </Filter>
     <Filter Include="03.CommonActors\04.Movable\04.Monster">
       <UniqueIdentifier>{8d86dd1a-9308-4a5a-a1fb-9b315b892c92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\04.Movable\03.BubbleMissle\03.FSM">
+      <UniqueIdentifier>{e68db3e3-5d03-4fc5-b879-313a1fe45151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\01.FSM">
+      <UniqueIdentifier>{a226ed1a-2dce-4ab6-bb4f-82c70feadbff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\04.Movable\03.BubbleMissle\02.Bubble">
+      <UniqueIdentifier>{11958d7b-ca5b-4f43-b6bf-9462191c5e72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\02.Base">
+      <UniqueIdentifier>{5ab7f902-bad0-45fd-adae-db7a192eed84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\03.Throw">
+      <UniqueIdentifier>{7bd526ee-ecca-4420-8098-3b39e2015f85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\04.Idle">
+      <UniqueIdentifier>{3bead157-e4c2-48dc-aa94-b317483d45a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\04.Movable\03.BubbleMissle\03.FSM\05.Pop">
+      <UniqueIdentifier>{209d64b6-7e82-4bbd-9615-7fe422f3a449}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

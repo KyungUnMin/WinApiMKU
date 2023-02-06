@@ -1,27 +1,16 @@
 #pragma once
+#include <GameEngineBase/GameEngineMath.h>
 #include "ComponentBase.h"
-#include <vector>
+#include "ContentsEnum.h"
 
-enum class BubbleMissleType
-{
-	Normal,
-	Fire,
-	Water,
-	Electronic,
-	Rainbow,
-	Windy,
-	Melody
-};
 
 class PlayerBase;
-class BubbleMissleBase;
+class RoundLevelBase;
 
 class BubbleSpawner : public ComponentBase
 {
 public:
-	static std::vector<BubbleMissleBase*>	Bubbles;
-	static void AllDeath();
-
+	static const float4 SpawnOffset;
 
 	BubbleSpawner();
 	~BubbleSpawner();
@@ -41,10 +30,10 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	PlayerBase*					Player		= nullptr;
-	BubbleMissleType		Type		= BubbleMissleType::Normal;
+	RoundLevelBase*		RoundLevel		= nullptr;
+	PlayerBase*					Player				= nullptr;
+	BubbleMissleType		Type				= BubbleMissleType::Normal;
 
-
-	BubbleMissleBase* CreateBubble();
+	void CreateBubble();
 };
 

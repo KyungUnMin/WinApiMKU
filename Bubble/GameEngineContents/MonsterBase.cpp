@@ -27,7 +27,7 @@ void MonsterBase::Start()
 		IsLoad = true;
 	}
 
-	Render = CreateRender(RoundRenderOrder::Monster1);
+	Render = CreateRender(RenderOrder::Monster1);
 	Render->CreateAnimation
 	({
 		.AnimationName = "Move",

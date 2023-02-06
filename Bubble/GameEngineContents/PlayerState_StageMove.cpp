@@ -44,7 +44,7 @@ void PlayerState_StageMove::Start(PlayerCharacterType _CharacterType)
 void PlayerState_StageMove::CreateBubbleAni()
 {
 	//플레이어에 Render객체 생성한 후 받아오기
-	ClearBubble = GetPlayer()->CreateRender(RoundRenderOrder::ClearBubble);
+	ClearBubble = GetPlayer()->CreateRender(RenderOrder::ClearBubble);
 
 	//애니메이션 생성
 	ClearBubble->CreateAnimation

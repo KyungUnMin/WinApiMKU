@@ -78,7 +78,7 @@ void PlayerState_Move::Update(float _DeltaTime)
 
 	//다음에 이동할 위치에 벽이 존재하는지 확인
 	float4 MoveDir = GetPlayer()->GetDirVec();
-	if (true == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * MovableActor::ColliderRange))
+	if (true == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * PlayerBase::CollisionScale * 0.5f))
 		return;
 
 	//벽이 존재하지 않는다면 이동
