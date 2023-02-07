@@ -14,7 +14,8 @@ enum class PlayerCharacterType
 enum class UpdateOrder
 {
 	Defalut,
-	Player_Missle
+	Player_Missle,
+	BubbleDest
 };
 
 enum class RenderOrder
@@ -43,7 +44,8 @@ enum class CollisionOrder
 	Door,
 	Monster,
 	Player_Missle,
-	Monster_Missle
+	Monster_Missle,
+	BubbleDest
 };
 
 enum class ComponentType

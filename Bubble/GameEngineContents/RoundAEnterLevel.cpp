@@ -10,13 +10,21 @@
 #include "NextDoor.h"
 #include "PlayerBase.h"
 
+#include "BubbleDestination.h"
+
 #include "MonsterBase.h"
 
-const std::vector<float4>	RoundAEnterLevel::PlayerSpanwPos = { { 100.f, 700.f } };
-const float4						RoundAEnterLevel::MonsterSpawnPos[3] =
+const std::vector<float4>						RoundAEnterLevel::PlayerSpanwPos = { { 100.f, 700.f } };
+const float4											RoundAEnterLevel::MonsterSpawnPos[3] =
 {
 	{400.f, 430.f},{500.f, 430.f},{600.f, 430.f}
 };
+
+const std::vector<std::vector<float4>>	RoundAEnterLevel::BubbleDestPos =
+{
+	{{100.f, 600.f},{100.f, 100.f},{480.f, 100.f}, {860.f, 100.f},{860.f, 600.f}}
+};
+
 
 RoundAEnterLevel::RoundAEnterLevel()
 {
@@ -54,6 +62,8 @@ void RoundAEnterLevel::Loading()
 		Monster->SetPos(MonsterSpawnPos[i]);
 		Monsters.push_back(Monster);
 	}
+
+	CreateBubbleDest();
 }
 
 void RoundAEnterLevel::ResourceLoad()
@@ -88,6 +98,29 @@ void RoundAEnterLevel::CreateDoor()
 		Door[i]->SetPos(Pivot + Offset[i]);
 		Door[i]->Off();
 	}
+}
+
+void RoundAEnterLevel::CreateBubbleDest()
+{
+	std::vector<std::vector<BubbleDestination*>> BubbleDests(BubbleDestPos.size());
+
+	for (size_t Stage = 0; Stage < BubbleDestPos.size(); ++Stage)
+	{
+		BubbleDests[Stage].reserve(BubbleDestPos[Stage].size());
+		for (size_t i = 0; i < BubbleDestPos[Stage].size(); ++i)
+		{
+			BubbleDestination* Dest = CreateActor<BubbleDestination>(UpdateOrder::BubbleDest);
+			Dest->SetStageIndex(Stage);
+			Dest->SetPos(BubbleDestPos[Stage][i]);
+			BubbleDests[Stage].push_back(Dest);
+		}
+	}
+
+	size_t Stage = 0;
+	BubbleDests[Stage][0]->SetNextDest(BubbleDests[Stage][1]);
+	BubbleDests[Stage][1]->SetNextDest(BubbleDests[Stage][2]);
+	BubbleDests[Stage][4]->SetNextDest(BubbleDests[Stage][3]);
+	BubbleDests[Stage][3]->SetNextDest(BubbleDests[Stage][2]);
 }
 
 void RoundAEnterLevel::Update(float _DeltaTime)

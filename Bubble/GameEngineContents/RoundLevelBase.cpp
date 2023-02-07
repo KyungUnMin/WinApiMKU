@@ -11,6 +11,7 @@
 #include "Player_Kululun.h"
 #include "Player_Cororon.h"
 #include "BubbleSpawner.h"
+#include "BubbleDestination.h"
 
 const float RoundLevelBase::StageMoveDuration = 1.5f;
 
@@ -89,7 +90,7 @@ bool RoundLevelBase::MoveToNextStage()
 		return false;
 
 	//이번 스테이지가 마지막이였다면 false를 리턴
-	if (NowIndex + 1 == StageImage->GetRenderSize())
+	if (NowStageIndex + 1 == StageImage->GetRenderSize())
 	{
 		return false;
 	}
@@ -100,7 +101,7 @@ bool RoundLevelBase::MoveToNextStage()
 
 	//다음 Stage의 렌더러 On
 	float4 ScreenSize = GameEngineWindow::GetScreenSize();
-	GameEngineRender* NextRender = StageImage->GetRender(NowIndex + 1);
+	GameEngineRender* NextRender = StageImage->GetRender(NowStageIndex + 1);
 	NextRender->On();
 	NextRender->SetPosition(-ArrangeDir * ScreenSize);
 
@@ -136,7 +137,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 
 	//현재 스테이지
 	{
-		GameEngineRender* StageRender = StageImage->GetRender(NowIndex);
+		GameEngineRender* StageRender = StageImage->GetRender(NowStageIndex);
 		float4 StartPos = float4::Zero;
 		float4 DestPos = -ArrangeDir * ScreenSize;
 		float4 NowPos = float4::LerpClamp(StartPos, DestPos, Ratio);
@@ -145,7 +146,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 
 	//다음 스테이지
 	{
-		GameEngineRender* StageRender = StageImage->GetRender(NowIndex + 1);
+		GameEngineRender* StageRender = StageImage->GetRender(NowStageIndex + 1);
 		float4 StartPos = ArrangeDir * ScreenSize;
 		float4 DestPos = float4::Zero;
 		float4 NowPos = float4::LerpClamp(StartPos, DestPos, Ratio);
@@ -156,7 +157,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 	if (1.f < Ratio)
 	{
 		//ArrangeStage(ArrangeDir, NowIndex + 1);
-		SetNowStage(NowIndex + 1);
+		SetNowStage(NowStageIndex + 1);
 		IsMoveValue = false;
 		StageMoveTime = 0.f;
 	}
@@ -168,7 +169,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 //NowIndex가 현재 Round에서 마지막 Stage인지 알려주는 함수
 bool RoundLevelBase::IsLastStage()
 {
-	return (NowIndex + 1) == StageImage->GetRenderSize();
+	return (NowStageIndex + 1) == StageImage->GetRenderSize();
 }
 
 
@@ -176,7 +177,7 @@ bool RoundLevelBase::IsLastStage()
 bool RoundLevelBase::IsBlockPos(const float4& _Pos)
 {
 	//현재 Stage에 맞게 Offset을 조정	(3번 스테이지라면 해상도.x * 3)
-	float4 Offset = StageCollision->GetCutData(static_cast<int>(NowIndex)).GetStartPos();
+	float4 Offset = StageCollision->GetCutData(static_cast<int>(NowStageIndex)).GetStartPos();
 
 	//해당 지점의 색상 추출(스크린 밖으로도 나갈수 있는 상태)
 	DWORD Color = StageCollision->GetPixelColor(Offset + _Pos, RGB(255, 255, 255));
@@ -254,14 +255,18 @@ void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 const float4& RoundLevelBase::GetPlayerSpawnPos()
 {
-	if (PlayerSpwanPos.size() <= NowIndex)
+	if (PlayerSpwanPos.size() <= NowStageIndex)
 	{
 		MsgAssert("해당 Stage에는 플레이어 스폰 위치를 설정해주지 않았습니다");
 		return float4::Zero;
 	}
 
-	return PlayerSpwanPos[NowIndex];
+	return PlayerSpwanPos[NowStageIndex];
 }
+
+
+
+
 
 //현재 Round의 Stage를 강제로 설정하는 함수
 void RoundLevelBase::SetNowStage(size_t _StageNum)
@@ -273,7 +278,7 @@ void RoundLevelBase::SetNowStage(size_t _StageNum)
 	}
 
 	//인자로 받은_StageNum만 켜기
-	NowIndex = _StageNum;
-	StageImage->GetRender(NowIndex)->On();
-	StageImage->GetRender(NowIndex)->SetPosition(float4::Zero);
+	NowStageIndex = _StageNum;
+	StageImage->GetRender(NowStageIndex)->On();
+	StageImage->GetRender(NowStageIndex)->SetPosition(float4::Zero);
 }

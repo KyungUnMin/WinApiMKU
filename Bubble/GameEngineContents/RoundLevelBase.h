@@ -9,6 +9,7 @@
 class BackGround;
 class GameEngineImage;
 class PlayerBase;
+class BubbleDestination;
 
 //실제 게임이 동작하는 레벨은 이 클래스를 상속받는다
 //RoundLevel은 일렬로 정렬된 Render를 갖고 있는다.(이 Render는 Stage를 의미, ex : RoundA_Stage01)
@@ -25,7 +26,10 @@ public:
 	RoundLevelBase& operator=(const RoundLevelBase& _Other) = delete;
 	RoundLevelBase& operator=(const RoundLevelBase&& _Other) noexcept = delete;
 
-
+	inline size_t GetNowStage()
+	{
+		return NowStageIndex;
+	}
 
 	//NowIndex가 현재 Round에서 마지막 Stage인지 알려주는 함수
 	bool IsLastStage();
@@ -61,7 +65,6 @@ public:
 	{
 		PlayerSpwanPos = _SpawnPos;
 	}
-
 
 
 	//현재 Round의 Stage를 강제로 설정하는 함수
@@ -118,7 +121,7 @@ private:
 
 	//IsMoveValue이 true일때 Update에서 Stage가 이동함
 	bool								IsMoveValue			= false;
-	size_t							NowIndex				= 0;
+	size_t							NowStageIndex		= 0;
 	float4							ArrangeDir				= float4::Zero;
 	float							StageMoveTime		= 0.f;
 };
