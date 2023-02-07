@@ -7,17 +7,22 @@
 #include "BubbleMissle.h"
 #include "RoundLevelBase.h"
 #include "BubbleMissleFSM.h"
+#include "RigidBody.h"
 
 const float BubbleStateIdle::MoveSpeed = 100.f;
 
 BubbleStateIdle::BubbleStateIdle()
 {
-
+	RigidPtr = new RigidBody;
 }
 
 BubbleStateIdle::~BubbleStateIdle()
 {
-
+	if (nullptr != RigidPtr)
+	{
+		delete RigidPtr;
+		RigidPtr = nullptr;
+	}
 }
 
 void BubbleStateIdle::Init(PlayerCharacterType _CharType, BubbleMissleType _BubbleType)
@@ -54,6 +59,9 @@ void BubbleStateIdle::Init(PlayerCharacterType _CharType, BubbleMissleType _Bubb
 		.End = End,
 		.InterTimer = 0.1f,
 	});
+
+	//RigidBody와 버블을 연결
+	RigidPtr->SetOwner(GetBubble());
 }
 
 void BubbleStateIdle::ResourceLoad()
@@ -77,6 +85,12 @@ void BubbleStateIdle::Update(float _DeltaTime)
 
 	//위로 올라가기
 	RaiseBubble(_DeltaTime);
+
+	//충돌체 업데이트(버블의 실질적인 이동)
+	RigidPtr->Update(_DeltaTime);
+
+	//이동후 버블들간의 충돌이 발생했는지 확인
+	CollisionEachOther();
 }
 
 //플레이어와 충돌
@@ -110,7 +124,7 @@ bool BubbleStateIdle::CollisionWithPlayer()
 
 			float4 NowPos = NowBubble->GetPos();
 			float4 NextPos = NextBubble->GetPos();
-			float4 BubbleColScale = BubbleMissle::CollisionScale;
+			float4 BubbleColScale = BubbleMissle::CollisionScale * 1.2f;
 
 			if (false == GameEngineCollision::CollisionCircleToCircle({ NowPos, BubbleColScale }, { NextPos, BubbleColScale }))
 				continue;
@@ -127,11 +141,45 @@ void BubbleStateIdle::RaiseBubble(float _DeltaTime)
 {
 	BubbleMissle* Bubble = GetBubble();
 	float4 NowPos = Bubble->GetPos();
-	float4 NextPos = NowPos + float4::Up * MoveSpeed * _DeltaTime;
+	float4 NextVelocity = float4::Up * MoveSpeed;
+	float4 NextPos = NowPos + NextVelocity * _DeltaTime;
 
 	//임시
 	if (NextPos.y < 100.f)
 		return;
 
-	Bubble->SetPos(NextPos);
+	float4 NowVelocity = RigidPtr->GetVelocity();
+	RigidPtr->SetVelocity({NowVelocity.x, NextVelocity.y});
+}
+
+void BubbleStateIdle::CollisionEachOther()
+{
+	//버블들끼리 충돌할때만
+	GameEngineCollision* CollisionPtr = GetBubble()->GetCollisionPtr();
+	std::vector<GameEngineCollision*> Collisions;
+	if (false == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Player_Missle) }, Collisions))
+		return;
+
+	GameEngineActor* BubbleActor = GetBubble();
+	float4 Pos = GetBubble()->GetPos();
+	float4 Velocity = RigidPtr->GetVelocity();
+	float4 ReactionDir = float4::Zero;
+
+	for (size_t i = 0; i < Collisions.size(); ++i)
+	{
+		GameEngineActor* OtherActor = Collisions[i]->GetActor();
+		if (OtherActor == BubbleActor)
+			continue;
+
+		//반작용방향 += (상대방->자신 방향의 벡터)
+		ReactionDir += Pos - OtherActor->GetPos();
+	}
+
+	if (true == ReactionDir.IsZero())
+		return;
+
+	
+	ReactionDir.Normalize();
+	float4 ColSize = BubbleMissle::CollisionScale;
+	RigidPtr->SetVelocity(ReactionDir * ColSize.Size());
 }

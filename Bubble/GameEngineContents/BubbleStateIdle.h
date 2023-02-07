@@ -1,6 +1,8 @@
 #pragma once
 #include "BubbleMissleStateBase.h"
 
+class RigidBody;
+
 class BubbleStateIdle : public BubbleMissleStateBase
 {
 public:
@@ -19,10 +21,11 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-
+	RigidBody* RigidPtr = nullptr;
 
 	void ResourceLoad();
 	bool CollisionWithPlayer();
 	void RaiseBubble(float _DeltaTime);
+	void CollisionEachOther();
 };
 
