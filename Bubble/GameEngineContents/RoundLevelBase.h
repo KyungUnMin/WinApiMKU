@@ -75,6 +75,8 @@ public:
 		return StageMoveTime;
 	}
 
+	const std::vector<BubbleDestination*>& GetBubbleDest(size_t _Stage);
+
 protected:
 	void Loading() override{}
 	void Update(float _DeltaTime) override;
@@ -107,6 +109,10 @@ protected:
 		return Player;
 	}
 
+	void SetBubbleDest(const std::vector<std::vector<float4>>& _LevelBubbleDests);
+
+	void ConnectDestToDest(size_t _Stage, size_t _Start, size_t _End);
+
 private:
 	//선택한 캐릭터 타입
 	PlayerCharacterType	SelectedCharacter	= PlayerCharacterType::BUBBLUN;
@@ -115,7 +121,7 @@ private:
 
 	//Obstacle을 생성하는데 사용하는 변수
 	std::string					ImageName				= "Round";
-	BackGround*				StageImage					= nullptr;
+	BackGround*				StageImage				= nullptr;
 	GameEngineImage*		StageCollision			= nullptr;
 
 
@@ -124,5 +130,9 @@ private:
 	size_t							NowStageIndex		= 0;
 	float4							ArrangeDir				= float4::Zero;
 	float							StageMoveTime		= 0.f;
+
+	std::vector<std::vector<BubbleDestination*>> BubbleDests;
+	
+	void TurnOnBubbleDestOnlyNowStage();
 };
 

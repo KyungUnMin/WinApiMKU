@@ -75,9 +75,9 @@ public:
 		return IsCut;
 	}
 
-	int GetImageCuttingCount()
+	size_t GetImageCuttingCount()
 	{
-		return static_cast<int>(ImageCutDatas.size());
+		return ImageCutDatas.size();
 	}
 
 	//벡터안에 유효한 범위인지 확인

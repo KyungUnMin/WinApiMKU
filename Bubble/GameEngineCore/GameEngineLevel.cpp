@@ -303,8 +303,11 @@ void GameEngineLevel::ActorLevelChangeStart(GameEngineLevel* _PrevLevel)
 
 
 //Renders에 GameEngineRender를 등록(GameEngineRender::SetOrder에서 직접 호출)
-void GameEngineLevel::PushRender(GameEngineRender* _Render)
+void GameEngineLevel::PushRender(GameEngineRender* _Render, int _ChangeOrder)
 {
+	Renders[_Render->GetOrder()].remove(_Render);
+	_Render->GameEngineObject::SetOrder(_ChangeOrder);
+
 	if(nullptr == _Render)
 	{
 		MsgAssert("nullptr인 GameEngineRender를 렌더링 그룹 속에 넣으려고 했습니다");

@@ -40,12 +40,10 @@ void GameEngineRender::SetScaleToImage()
 //렌더링 되는 순서 결정 및 Level의 Renders에 등록(Actor에서만 호출)
 void GameEngineRender::SetOrder(int _Order)
 {
-	GameEngineObject::SetOrder(_Order);
-
 	//(Render객체를 Level와 Actor의 자료구조, 두 곳에서 관리한다)
 	// 생성 및 소멸은 Actor, Update는 Level
 	//GameEngineLevel의 Renders에 등록
-	GetActor()->GetLevel()->PushRender(this);
+	GetActor()->GetLevel()->PushRender(this, _Order);
 }
 
 

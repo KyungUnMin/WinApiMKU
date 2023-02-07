@@ -32,6 +32,21 @@ public:
 	//이 클래스를 상속받은 Core객체를 리턴
 	static GameEngineCore* GetInst();
 
+	void DebugSwitch()
+	{
+		IsDebugValue = !IsDebugValue;
+	}
+
+	void SetDebugMove(bool _IsDebug)
+	{
+		IsDebugValue = _IsDebug;
+	}
+
+	bool IsDebug()
+	{
+		return IsDebugValue;
+	}
+
 protected:
 	//레벨을 생성
 	template<typename LevelType>
@@ -47,17 +62,6 @@ protected:
 		GameEngineLevel* Level = new LevelType();
 		LevelLoading(Level);
 		Levels.insert(std::make_pair(_Name.data(), Level));
-	}
-
-
-	void DebugSwitch()
-	{
-		IsDebugValue = !IsDebugValue;
-	}
-
-	bool IsDebug()
-	{
-		return IsDebugValue;
 	}
 
 

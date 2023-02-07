@@ -22,7 +22,7 @@ const float4											RoundAEnterLevel::MonsterSpawnPos[3] =
 
 const std::vector<std::vector<float4>>	RoundAEnterLevel::BubbleDestPos =
 {
-	{{100.f, 600.f},{100.f, 100.f},{480.f, 100.f}, {860.f, 100.f},{860.f, 600.f}}
+	{{100.f, 100.f},{250.f, 100.f}, {480.f, 100.f}, {710.f, 100.f} ,{860.f, 100.f}}
 };
 
 
@@ -102,25 +102,13 @@ void RoundAEnterLevel::CreateDoor()
 
 void RoundAEnterLevel::CreateBubbleDest()
 {
-	std::vector<std::vector<BubbleDestination*>> BubbleDests(BubbleDestPos.size());
-
-	for (size_t Stage = 0; Stage < BubbleDestPos.size(); ++Stage)
-	{
-		BubbleDests[Stage].reserve(BubbleDestPos[Stage].size());
-		for (size_t i = 0; i < BubbleDestPos[Stage].size(); ++i)
-		{
-			BubbleDestination* Dest = CreateActor<BubbleDestination>(UpdateOrder::BubbleDest);
-			Dest->SetStageIndex(Stage);
-			Dest->SetPos(BubbleDestPos[Stage][i]);
-			BubbleDests[Stage].push_back(Dest);
-		}
-	}
+	SetBubbleDest(BubbleDestPos);
 
 	size_t Stage = 0;
-	BubbleDests[Stage][0]->SetNextDest(BubbleDests[Stage][1]);
-	BubbleDests[Stage][1]->SetNextDest(BubbleDests[Stage][2]);
-	BubbleDests[Stage][4]->SetNextDest(BubbleDests[Stage][3]);
-	BubbleDests[Stage][3]->SetNextDest(BubbleDests[Stage][2]);
+	ConnectDestToDest(Stage, 0, 2);
+	ConnectDestToDest(Stage, 1, 2);
+	ConnectDestToDest(Stage, 3, 2);
+	ConnectDestToDest(Stage, 4, 2);
 }
 
 void RoundAEnterLevel::Update(float _DeltaTime)

@@ -1,5 +1,9 @@
 #include "BubbleCore.h"
 #include <GameEnginePlatform/GameEngineInput.h>
+#include <GameEnginePlatform/GameEngineWindow.h>
+#include <GameEnginePlatform/GameEngineImage.h>
+
+
 #include "ContentsDefine.h"
 #include "OpeningLevel.h"
 #include "SelectPlayerLevel.h"
@@ -16,22 +20,32 @@ BubbleCore BubbleCore::Core;
 
 BubbleCore::BubbleCore()
 {
-
+	
 }
 
 BubbleCore::~BubbleCore()
 {
-
+	
 }
-
-
 
 void BubbleCore::Start()
 {
 	int* FOR_DEBUG = new int;
 
+	CreateDebugPenBrush();
 	CreateLevels();
 	CreateKeys();
+}
+
+void BubbleCore::CreateDebugPenBrush()
+{
+	HDC Hdc = GameEngineWindow::GetDoubleBufferImage()->GetImageDC();
+
+	DebugPen = static_cast<HPEN>(CreatePen(PS_SOLID, 3, RGB(0, 255, 0)));
+	DebugBrush = static_cast<HBRUSH>(GetStockObject(HOLLOW_BRUSH));
+
+	DebugPen = static_cast<HPEN>(SelectObject(Hdc, DebugPen));
+	DebugBrush = static_cast<HBRUSH>(SelectObject(Hdc, DebugBrush));
 }
 
 void BubbleCore::CreateLevels()
@@ -51,7 +65,7 @@ void BubbleCore::CreateLevels()
 	//엔딩화면
 	CreateLevel<EndingLevel>("EndingLevel");
 
-	ChangeLevel("RoundAEnterLevel");
+	ChangeLevel("RoundA1Level");
 }
 
 
@@ -73,13 +87,19 @@ void BubbleCore::Update()
 	if (true == GameEngineInput::IsDown(DEBUG_RENDER))
 	{
 		GameEngineLevel::DebugRenderSwitch();
+		DebugSwitch();
 	}
 
 }
 
 void BubbleCore::End()
 {
-	
+	HDC Hdc = GameEngineWindow::GetDoubleBufferImage()->GetImageDC();
+	DebugPen = static_cast<HPEN>(SelectObject(Hdc, DebugPen));
+	DebugBrush = static_cast<HBRUSH>(SelectObject(Hdc, DebugBrush));
+
+	DeleteObject(DebugPen);
+	DeleteObject(DebugBrush);
 }
 
 

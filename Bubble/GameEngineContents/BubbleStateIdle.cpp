@@ -10,7 +10,6 @@
 #include "RigidBody.h"
 #include "BubbleDestination.h"
 
-//const float BubbleStateIdle::MoveSpeed = 100.f;
 const float		BubbleStateIdle::MoveSpeed = 10.f;
 const float4	BubbleStateIdle::MaxVelocity = float4{ 100.f, 100.f };
 
@@ -42,9 +41,6 @@ void BubbleStateIdle::Init(PlayerCharacterType _CharType, BubbleMissleType _Bubb
 
 	//RigidBody와 버블을 연결
 	RigidPtr->SetOwner(GetBubble());
-
-	//이 레벨에 존재하는 BubbleDestination을 BubbleDests에 보관
-	PutDest();
 }
 
 void BubbleStateIdle::ResourceLoad()
@@ -87,29 +83,15 @@ void BubbleStateIdle::CreateAnimation(PlayerCharacterType _CharType, BubbleMissl
 	});
 }
 
-void BubbleStateIdle::PutDest()
-{
-	std::vector<GameEngineActor*> Actors = GetBubble()->GetLevel()->GetActors(UpdateOrder::BubbleDest);
-	BubbleDests.reserve(Actors.size());
-
-	for (GameEngineActor* Actor : Actors)
-	{
-		BubbleDestination* Dest = dynamic_cast<BubbleDestination*>(Actor);
-		if (nullptr == Dest)
-		{
-			MsgAssert("UpdateOrder::BubbleDest 그룹에 BubbleDest가 아닌 Actor가 포함되어 있습니다");
-			return;
-		}
-
-		BubbleDests.push_back(Dest);
-	}
-}
 
 
 
 void BubbleStateIdle::EnterState()
 {
 	BubbleMissleStateBase::EnterState();
+
+	RoundLevelBase* RoundLevel = GetBubble()->GetRoundLevel();
+	const std::vector<BubbleDestination*>& BubbleDests = RoundLevel->GetBubbleDest(RoundLevel->GetNowStage());
 
 	//가장 가까운 BubbleDest의 위치로 목적지 설정
 	float MinDistance = FLT_MAX;
@@ -181,7 +163,7 @@ bool BubbleStateIdle::CollisionWithPlayer()
 
 			float4 NowPos = NowBubble->GetPos();
 			float4 NextPos = NextBubble->GetPos();
-			float4 BubbleColScale = BubbleMissle::CollisionScale * 1.2f;
+			float4 BubbleColScale = BubbleMissle::CollisionScale * 1.5f;
 
 			if (false == GameEngineCollision::CollisionCircleToCircle({ NowPos, BubbleColScale }, { NextPos, BubbleColScale }))
 				continue;
@@ -209,7 +191,10 @@ void BubbleStateIdle::MoveBubble(float _DeltaTime)
 
 void BubbleStateIdle::CheckDest()
 {
-	size_t NowStage = GetBubble()->GetRoundLevel()->GetNowStage();
+	RoundLevelBase* RoundLevel = GetBubble()->GetRoundLevel();
+	size_t NowStage = RoundLevel->GetNowStage();
+	const std::vector<BubbleDestination*>& BubbleDests = RoundLevel->GetBubbleDest(NowStage);
+
 	float4 BubblePos = GetBubble()->GetPos();
 	float4 BubbleScale = BubbleMissle::CollisionScale;
 
@@ -262,6 +247,9 @@ void BubbleStateIdle::CollisionEachOther()
 
 	
 	ReactionDir.Normalize();
+	/*float4 ColSize = BubbleMissle::CollisionScale;
+	RigidPtr->SetVelocity(ReactionDir * ColSize.Size());*/
+
 	float4 ColSize = BubbleMissle::CollisionScale;
-	RigidPtr->SetVelocity(ReactionDir * ColSize.Size());
+	RigidPtr->AddVelocity(ReactionDir * ColSize.Size());
 }

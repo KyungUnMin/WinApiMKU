@@ -31,13 +31,11 @@ protected:
 	void EnterState() override;
 
 private:
-	RigidBody*										RigidPtr			= nullptr;
-	BubbleDestination*							NowDest			= nullptr;
-	std::vector<BubbleDestination*>	BubbleDests;
+	RigidBody*														RigidPtr			= nullptr;
+	BubbleDestination*											NowDest			= nullptr;
 
 	void ResourceLoad();
 	void CreateAnimation(PlayerCharacterType _CharType, BubbleMissleType _BubbleType);
-	void PutDest();
 
 	bool CollisionWithPlayer();
 	void MoveBubble(float _DeltaTime);

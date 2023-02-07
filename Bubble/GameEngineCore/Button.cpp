@@ -3,16 +3,13 @@
 
 Button::Button()
 {
+	State = ButtonState::Release;
 }
 
 Button::~Button()
 {
 }
 
-void Button::SetImage()
-{
-
-}
 
 void Button::SetTargetCollisionGroup(int _PointTargetGroup)
 {
@@ -26,15 +23,21 @@ void Button::SetTargetCollisionGroup(int _PointTargetGroup)
 
 void Button::Start()
 {
-
 	Render = CreateRender();
 }
 
-void Button::SetScale()
+void Button::SetRenderOrder(int _Value)
 {
-	//int TargetGroup = -342367842;
-	//CollisionType TargetColType = CollisionType::CT_CirCle;
-	//CollisionType ThisColType = CollisionType::CT_CirCle;
+	Render->SetOrder(_Value);
+}
+
+void Button::SetScale(float4 _Scale)
+{
+	Render->SetScale(_Scale);
+}
+
+void Button::Update(float _DeltaTime)
+{
 
 	if (true == ButtonCollision->Collision({ .TargetGroup = PointTargetGroup, .TargetColType = CollisionType::CT_Point, .ThisColType = ButtonCollisionType }))
 	{
@@ -42,5 +45,23 @@ void Button::SetScale()
 		{
 			ClickPtr();
 		}
+	}
+
+	switch (State)
+	{
+	case ButtonState::Release:
+		CurImageName = ReleaseImageName;
+		Render->SetImage(ReleaseImageName);
+		break;
+	case ButtonState::Press:
+		CurImageName = PressImageName;
+		Render->SetImage(PressImageName);
+		break;
+	case ButtonState::Hover:
+		CurImageName = HoverImageName;
+		Render->SetImage(HoverImageName);
+		break;
+	default:
+		break;
 	}
 }

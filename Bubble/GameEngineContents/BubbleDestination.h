@@ -42,5 +42,8 @@ private:
 	size_t								StageIndex		= 0;
 	GameEngineCollision*		CollisionPtr		= nullptr;
 	BubbleDestination*			NextDest			= nullptr;
+	RoundLevelBase*			RoundLevel		= nullptr;
+
+	HPEN								PathLinePen;
 };
 

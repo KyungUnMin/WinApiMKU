@@ -22,11 +22,15 @@ protected:
 	virtual void End() override;
 
 private:
+	static BubbleCore	Core;
+	HPEN						DebugPen		= HPEN();
+	HBRUSH					DebugBrush		= HBRUSH();
+
+
 	BubbleCore();
 	~BubbleCore();
-	
-	static BubbleCore Core;
 
+	void CreateDebugPenBrush();
 	void CreateLevels();
 	void CreateKeys();
 };

@@ -151,7 +151,7 @@ private:
 	void ActorStart(GameEngineActor* _Actor, int _Order);
 
 	//Renders에 GameEngineRender를 등록(GameEngineRender::SetOrder에서 직접 등록)
-	void PushRender(GameEngineRender* _Render);
+	void PushRender(GameEngineRender* _Render, int _ChangeOrder);
 
 	void PushCollision(GameEngineCollision* _Collision);
 

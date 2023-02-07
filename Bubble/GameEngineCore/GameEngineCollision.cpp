@@ -159,6 +159,11 @@ bool GameEngineCollision::Collision(const CollisionCheckParameter& _Parameter)
 
 	for (GameEngineCollision* OtherCollision : _TargetGroup)
 	{
+		if (this == OtherCollision)
+		{
+			continue;
+		}
+
 		if (false == OtherCollision->IsUpdate())
 		{
 			continue;
@@ -202,6 +207,11 @@ bool GameEngineCollision::Collision(const CollisionCheckParameter& _Parameter, s
 
 	for (GameEngineCollision* OtherCollision : _TargetGroup)
 	{
+		if (this == OtherCollision)
+		{
+			continue;
+		}
+
 		if (false == OtherCollision->IsUpdate())
 		{
 			continue;
