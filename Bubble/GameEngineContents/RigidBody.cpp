@@ -1,4 +1,5 @@
 #include "RigidBody.h"
+#include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineCore/GameEngineActor.h>
 
 RigidBody::RigidBody()
@@ -13,6 +14,13 @@ RigidBody::~RigidBody()
 
 void RigidBody::Update(float _DeltaTime)
 {
+	if (nullptr == Owner)
+	{
+		MsgAssert("RigidBody 클래스의 Owner를 설정해주지 않았습니다");
+		return;
+	}
+
+
 	//힘을 가속도로 연산
 	CalcForce();
 

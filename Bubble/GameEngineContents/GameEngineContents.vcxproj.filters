@@ -158,7 +158,7 @@
       <Filter>06.FSM\02.BubbleFSM\05.Pop</Filter>
     </ClInclude>
     <ClInclude Include="RigidBody.h">
-      <Filter>05.Component%28컨텐츠%29\01.RigidBody</Filter>
+      <Filter>05.ContentsComponent\01.RigidBody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -313,7 +313,7 @@
       <Filter>06.FSM\02.BubbleFSM\05.Pop</Filter>
     </ClCompile>
     <ClCompile Include="RigidBody.cpp">
-      <Filter>05.Component%28컨텐츠%29\01.RigidBody</Filter>
+      <Filter>05.ContentsComponent\01.RigidBody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -548,7 +548,7 @@
     <Filter Include="06.FSM\01.PlayerFSM\06.Jump">
       <UniqueIdentifier>{98dbfde0-ab10-4980-bb82-9f3c0420b1d7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05.Component%28컨텐츠%29\01.RigidBody">
+    <Filter Include="05.ContentsComponent\01.RigidBody">
       <UniqueIdentifier>{63d7bd75-d208-43f9-9071-2178c670e1d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
