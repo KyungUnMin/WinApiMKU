@@ -7,7 +7,7 @@
 #include "BubbleCore.h"
 #include "RoundLevelBase.h"
 
-const float4 BubbleDestination::CollisionScale = float4{ 100.f, 100.f };
+const float4 BubbleDestination::CollisionScale = float4{ 10.f, 10.f };
 
 BubbleDestination::BubbleDestination()
 {

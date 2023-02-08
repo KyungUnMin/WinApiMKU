@@ -63,5 +63,7 @@ private:
 	PlayerCharacterType		CharcterType	= PlayerCharacterType::COUNT;
 	GameEngineCollision*		CollisionPtr		= nullptr;
 	int									lifeCnt				= 3;
+
+	void BubbleCollisionCheck();
 };
 

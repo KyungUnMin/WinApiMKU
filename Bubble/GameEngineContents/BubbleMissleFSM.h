@@ -5,6 +5,7 @@
 enum class BubbleStateType
 {
 	Throw,
+	Move,
 	Idle,
 	Pop,
 	//Imminent,

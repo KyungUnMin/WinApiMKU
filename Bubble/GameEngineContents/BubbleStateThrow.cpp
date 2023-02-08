@@ -2,6 +2,7 @@
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "BubbleMissle.h"
 #include "BubbleMissleFSM.h"
 #include "RoundLevelBase.h"
@@ -59,7 +60,7 @@ void BubbleStateThrow::Update(float _DeltaTime)
 	BubbleMissle* Bubble = GetBubble();
 	if (true == Bubble->GetRender()->IsAnimationEnd())
 	{
-		GetFSM()->ChangeState(BubbleStateType::Idle);
+		GetFSM()->ChangeState(BubbleStateType::Move);
 		return;
 	}
 
@@ -70,11 +71,17 @@ void BubbleStateThrow::Update(float _DeltaTime)
 
 	if (Bubble->GetRoundLevel()->IsBlockPos(NextPos + Offset))
 	{
-		GetFSM()->ChangeState(BubbleStateType::Idle);
+		GetFSM()->ChangeState(BubbleStateType::Move);
 		return;
 	}
 
 	Bubble->SetPos(NextPos);
+}
+
+void BubbleStateThrow::EnterState()
+{
+	BubbleMissleStateBase::EnterState();
+	GetBubble()->GetCollisionPtr()->Off();
 }
 
 

@@ -4,6 +4,7 @@
 #include "BubbleMissleStateBase.h"
 
 #include "BubbleStateThrow.h"
+#include "BubbleStateMove.h"
 #include "BubbleStateIdle.h"
 #include "BubbleStatePop.h"
 
@@ -60,6 +61,9 @@ void BubbleMissleFSM::CreateState(BubbleStateType _StateType)
 	{
 	case BubbleStateType::Throw:
 		States[Index] = new BubbleStateThrow;
+		break;
+	case BubbleStateType::Move:
+		States[Index] = new BubbleStateMove;
 		break;
 	case BubbleStateType::Idle:
 		States[Index] = new BubbleStateIdle;

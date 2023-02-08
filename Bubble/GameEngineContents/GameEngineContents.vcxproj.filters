@@ -151,17 +151,20 @@
     <ClInclude Include="BubbleStateThrow.h">
       <Filter>06.FSM\02.BubbleFSM\03.Throw</Filter>
     </ClInclude>
-    <ClInclude Include="BubbleStateIdle.h">
-      <Filter>06.FSM\02.BubbleFSM\04.Idle</Filter>
+    <ClInclude Include="BubbleStateMove.h">
+      <Filter>06.FSM\02.BubbleFSM\04.Move</Filter>
     </ClInclude>
     <ClInclude Include="BubbleStatePop.h">
-      <Filter>06.FSM\02.BubbleFSM\05.Pop</Filter>
+      <Filter>06.FSM\02.BubbleFSM\06.Pop</Filter>
     </ClInclude>
     <ClInclude Include="RigidBody.h">
       <Filter>05.ContentsComponent\02.RigidBody</Filter>
     </ClInclude>
     <ClInclude Include="BubbleDestination.h">
       <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleStateIdle.h">
+      <Filter>06.FSM\02.BubbleFSM\05.Idle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -309,17 +312,20 @@
     <ClCompile Include="BubbleStateThrow.cpp">
       <Filter>06.FSM\02.BubbleFSM\03.Throw</Filter>
     </ClCompile>
-    <ClCompile Include="BubbleStateIdle.cpp">
-      <Filter>06.FSM\02.BubbleFSM\04.Idle</Filter>
+    <ClCompile Include="BubbleStateMove.cpp">
+      <Filter>06.FSM\02.BubbleFSM\04.Move</Filter>
     </ClCompile>
     <ClCompile Include="BubbleStatePop.cpp">
-      <Filter>06.FSM\02.BubbleFSM\05.Pop</Filter>
+      <Filter>06.FSM\02.BubbleFSM\06.Pop</Filter>
     </ClCompile>
     <ClCompile Include="RigidBody.cpp">
       <Filter>05.ContentsComponent\02.RigidBody</Filter>
     </ClCompile>
     <ClCompile Include="BubbleDestination.cpp">
       <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleStateIdle.cpp">
+      <Filter>06.FSM\02.BubbleFSM\05.Idle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -461,12 +467,6 @@
     <Filter Include="06.FSM\02.BubbleFSM\03.Throw">
       <UniqueIdentifier>{7bd526ee-ecca-4420-8098-3b39e2015f85}</UniqueIdentifier>
     </Filter>
-    <Filter Include="06.FSM\02.BubbleFSM\04.Idle">
-      <UniqueIdentifier>{3bead157-e4c2-48dc-aa94-b317483d45a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\02.BubbleFSM\05.Pop">
-      <UniqueIdentifier>{209d64b6-7e82-4bbd-9615-7fe422f3a449}</UniqueIdentifier>
-    </Filter>
     <Filter Include="06.FSM\01.PlayerFSM">
       <UniqueIdentifier>{a4e9b13c-5281-49dd-9f47-810dbc433c6b}</UniqueIdentifier>
     </Filter>
@@ -559,6 +559,15 @@
     </Filter>
     <Filter Include="03.CommonActors\01.StaticObject\04.BubbleDestination">
       <UniqueIdentifier>{8026af5e-2bdf-48d4-a7a9-056bd05040dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.FSM\02.BubbleFSM\04.Move">
+      <UniqueIdentifier>{3bead157-e4c2-48dc-aa94-b317483d45a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.FSM\02.BubbleFSM\06.Pop">
+      <UniqueIdentifier>{209d64b6-7e82-4bbd-9615-7fe422f3a449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.FSM\02.BubbleFSM\05.Idle">
+      <UniqueIdentifier>{5198de69-df09-43d1-99b3-a851fdd309e4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
