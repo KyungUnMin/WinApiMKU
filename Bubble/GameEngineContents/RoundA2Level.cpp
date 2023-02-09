@@ -9,7 +9,7 @@
 #include "ContentsEnum.h"
 #include "ContentsDefine.h"
 #include "PlayerBase.h"
-
+#include "BubbleDestHelper.h"
 
 const std::vector<float4> RoundA2Level::PlayerSpanwPos = 
 {
@@ -35,6 +35,8 @@ RoundA2Level::~RoundA2Level()
 
 void RoundA2Level::Loading()
 {
+	RoundLevelBase::Loading();
+
 	//리소스 로드
 	ResourceLoad();
 	RoundLevelBase::LoadStage("A2", 6, 1);
@@ -45,6 +47,8 @@ void RoundA2Level::Loading()
 
 	//플레이어가 생성될 위치 설정
 	SetPlayerSpawnPos(PlayerSpanwPos);
+
+	CreateBubbleDest();
 }
 
 
@@ -87,6 +91,120 @@ void RoundA2Level::CreateBackGround()
 		.InterTimer = 0.25f,
 	});
 	Render2->ChangeAnimation("Idle");
+}
+
+void RoundA2Level::CreateBubbleDest()
+{
+	GetBubbleDestHelper()->SetBubbleDest(HelpLevelType::RoundA2);
+
+	{
+		size_t Stage = 0;
+		for (size_t i = 0; i < 2; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+		
+		for (size_t i = 3; i < 5; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+	}
+
+	{
+		size_t Stage = 1;
+		for (size_t i = 0; i < 5; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+
+		for (size_t i = 6; i < 11; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+
+		for (size_t i = 12; i < 15; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+
+	}
+
+	{
+		size_t Stage = 2;
+		for (size_t i = 0; i < 7; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+
+		for (size_t i = 8; i < 15; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+
+	}
+
+	{
+		size_t Stage = 3;
+		for (size_t i = 0; i < 4; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+
+		for (size_t i = 5; i < 9; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+
+		GetBubbleDestHelper()->ConnectDestToDest(Stage, 10, 1);
+		GetBubbleDestHelper()->ConnectDestToDest(Stage, 11, 6);
+		GetBubbleDestHelper()->ConnectDestToDest(Stage, 12, 3);
+		GetBubbleDestHelper()->ConnectDestToDest(Stage, 13, 8);
+	}
+
+	{
+		size_t Stage = 4;
+		for (size_t i = 0; i < 5; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+
+		for (size_t i = 6; i < 11; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+
+		for (size_t i = 12; i < 15; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+	}
+
+	{
+		size_t Stage = 5;
+		for (size_t i = 0; i < 11; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+
+		for (size_t i = 12; i < 14; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+		GetBubbleDestHelper()->ConnectDestToDest(Stage, 14, 4);
+
+		for (size_t i = 15; i < 17; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+		GetBubbleDestHelper()->ConnectDestToDest(Stage, 17, 5);
+
+		for (size_t i = 18; i < 20; ++i)
+		{
+			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+		}
+		GetBubbleDestHelper()->ConnectDestToDest(Stage, 20, 6);
+	}
+
 }
 
 
