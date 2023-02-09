@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="BubbleCore.h">
-      <Filter>01.GameCore</Filter>
-    </ClInclude>
     <ClInclude Include="ContentsEnum.h">
       <Filter>02.Define</Filter>
     </ClInclude>
@@ -160,17 +157,20 @@
     <ClInclude Include="RigidBody.h">
       <Filter>05.ContentsComponent\02.RigidBody</Filter>
     </ClInclude>
-    <ClInclude Include="BubbleDestination.h">
-      <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination</Filter>
-    </ClInclude>
     <ClInclude Include="BubbleStateIdle.h">
       <Filter>06.FSM\02.BubbleFSM\05.Idle</Filter>
     </ClInclude>
+    <ClInclude Include="BubbleCore.h">
+      <Filter>01.GameCore</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleDestHelper.h">
+      <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination\02.Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleDestination.h">
+      <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination\01.Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BubbleCore.cpp">
-      <Filter>01.GameCore</Filter>
-    </ClCompile>
     <ClCompile Include="OpeningLevel.cpp">
       <Filter>04.Level &amp; Actor\01.Title\01.Opening\01.Level</Filter>
     </ClCompile>
@@ -321,11 +321,20 @@
     <ClCompile Include="RigidBody.cpp">
       <Filter>05.ContentsComponent\02.RigidBody</Filter>
     </ClCompile>
-    <ClCompile Include="BubbleDestination.cpp">
-      <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination</Filter>
-    </ClCompile>
     <ClCompile Include="BubbleStateIdle.cpp">
       <Filter>06.FSM\02.BubbleFSM\05.Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleCore.cpp">
+      <Filter>01.GameCore</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleDestHelper.cpp">
+      <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination\02.Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleDestPositions.cpp">
+      <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination\02.Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleDestination.cpp">
+      <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination\01.Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -409,39 +418,6 @@
     </Filter>
     <Filter Include="04.Level &amp; Actor\02.RoundRooms\01.RoundLevelBase">
       <UniqueIdentifier>{9f37735c-64f2-498f-b053-cd47b1109acc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA">
-      <UniqueIdentifier>{bdfec7d0-2626-4662-83b7-fca0484fdb93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom">
-      <UniqueIdentifier>{03dbe607-9aa5-4f4a-8a4f-3af6ef2b75bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom\01.Level">
-      <UniqueIdentifier>{9b2a8afc-166e-4da1-aa62-b06b598c5f6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom\02.Actor">
-      <UniqueIdentifier>{4201a697-f1f9-41c0-a152-b25f3b0715ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom\02.Actor\01.Sky">
-      <UniqueIdentifier>{46c9d8e4-e379-425c-8710-3450135bbdb0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\02.RoundA-1">
-      <UniqueIdentifier>{7005c689-d7b0-481d-9761-1b2f58be7019}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\02.RoundA-1\01.Level">
-      <UniqueIdentifier>{c42e8246-d5a9-4b39-abb3-487aae6c4091}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\03.RoundA-2">
-      <UniqueIdentifier>{02c3e57f-bb0c-4321-bdb9-c5cbf7bdd71d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\03.RoundA-2\01.Level">
-      <UniqueIdentifier>{6220ee48-d70f-40b0-87ed-ce07377cc0b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\04.RoundA-3">
-      <UniqueIdentifier>{3fdb5ad5-fcef-4245-b5c1-e157ae755176}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\04.RoundA-3\01.Level">
-      <UniqueIdentifier>{d2aeb647-a466-46c2-9dc7-85d58b961873}</UniqueIdentifier>
     </Filter>
     <Filter Include="04.Level &amp; Actor\03.Ending">
       <UniqueIdentifier>{682f3dae-41a6-4d9a-886e-a55c72678834}</UniqueIdentifier>
@@ -568,6 +544,45 @@
     </Filter>
     <Filter Include="06.FSM\02.BubbleFSM\05.Idle">
       <UniqueIdentifier>{5198de69-df09-43d1-99b3-a851fdd309e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\01.StaticObject\04.BubbleDestination\01.Actor">
+      <UniqueIdentifier>{1e259033-3976-41a2-b994-3220cd0c7a2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\01.StaticObject\04.BubbleDestination\02.Helper">
+      <UniqueIdentifier>{18b22b20-fd8e-4300-b751-42961ec45085}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA">
+      <UniqueIdentifier>{bdfec7d0-2626-4662-83b7-fca0484fdb93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom">
+      <UniqueIdentifier>{03dbe607-9aa5-4f4a-8a4f-3af6ef2b75bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom\01.Level">
+      <UniqueIdentifier>{9b2a8afc-166e-4da1-aa62-b06b598c5f6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom\02.Actor">
+      <UniqueIdentifier>{4201a697-f1f9-41c0-a152-b25f3b0715ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\01.EnterRoom\02.Actor\01.Sky">
+      <UniqueIdentifier>{46c9d8e4-e379-425c-8710-3450135bbdb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\02.RoundA-1">
+      <UniqueIdentifier>{7005c689-d7b0-481d-9761-1b2f58be7019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\02.RoundA-1\01.Level">
+      <UniqueIdentifier>{c42e8246-d5a9-4b39-abb3-487aae6c4091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\03.RoundA-2">
+      <UniqueIdentifier>{02c3e57f-bb0c-4321-bdb9-c5cbf7bdd71d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\03.RoundA-2\01.Level">
+      <UniqueIdentifier>{6220ee48-d70f-40b0-87ed-ce07377cc0b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\04.RoundA-3">
+      <UniqueIdentifier>{3fdb5ad5-fcef-4245-b5c1-e157ae755176}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\04.RoundA-3\01.Level">
+      <UniqueIdentifier>{d2aeb647-a466-46c2-9dc7-85d58b961873}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -9,7 +9,6 @@ class RoundAEnterLevel : public RoundLevelBase
 public:
 	static const std::vector<float4>								PlayerSpanwPos;
 	static const float4													MonsterSpawnPos[3];
-	static const std::vector<std::vector<float4>>		BubbleDestPos;
 
 	RoundAEnterLevel();
 	~RoundAEnterLevel();

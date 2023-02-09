@@ -56,6 +56,8 @@ public:
 	//GameEngineResources에서 이미지 찾아오기
 	void SetImage(const std::string_view& _ImageName);
 
+	//이미지 설정하고 크기도 리소스의 이미지크기로 설정
+	void SetImageToScaleToImage(const std::string_view& _ImageName);
 
 	//렌더링 이미지를 실제 리소스의 이미지 크기로 설정
 	void SetScaleToImage();
@@ -82,12 +84,25 @@ public:
 		TransColor = _Color;
 	}
 
+	//카메라 영향 받는지 여부 설정
+	inline void SetEffectCamera(bool _Effect)
+	{
+		IsEffectCamera = _Effect;
+	}
 
+	
 	//카메라 영향 끄기
 	inline void EffectCameraOff()
 	{
-		IsEffectCamera = false;
+		SetEffectCamera(false);
 	}
+
+	//카메라 영향 켜기
+	inline void EffectCameraOn()
+	{
+		SetEffectCamera(true);
+	}
+
 
 	bool IsAnimationEnd();
 	

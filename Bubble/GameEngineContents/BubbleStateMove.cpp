@@ -7,6 +7,7 @@
 #include "BubbleMissle.h"
 #include "RoundLevelBase.h"
 #include "BubbleMissleFSM.h"
+#include "BubbleDestHelper.h"
 #include "BubbleDestination.h"
 
 const float		BubbleStateMove::MoveSpeed = 100.f;
@@ -83,7 +84,8 @@ void BubbleStateMove::EnterState()
 
 	//가장 가까운 BubbleDest의 위치로 목적지 설정
 	RoundLevelBase* RoundLevel = GetBubble()->GetRoundLevel();
-	const std::vector<BubbleDestination*>& BubbleDests = RoundLevel->GetBubbleDest(RoundLevel->GetNowStage());
+	BubbleDestHelper* BDHelper = RoundLevel->GetBubbleDestHelper();
+	const std::vector<BubbleDestination*>& BubbleDests = BDHelper->GetBubbleDest(RoundLevel->GetNowStage());
 
 	float MinDistance = FLT_MAX;
 	float4 NowPos = GetBubble()->GetPos();
@@ -130,7 +132,8 @@ void BubbleStateMove::CheckDest()
 	//현재 스테이지에 활성화되어있는 BubbleDest들을 가져온다
 	RoundLevelBase* RoundLevel = GetBubble()->GetRoundLevel();
 	size_t NowStage = RoundLevel->GetNowStage();
-	const std::vector<BubbleDestination*>& BubbleDests = RoundLevel->GetBubbleDest(NowStage);
+	BubbleDestHelper* BDHelper = RoundLevel->GetBubbleDestHelper();
+	const std::vector<BubbleDestination*>& BubbleDests = BDHelper->GetBubbleDest(NowStage);
 
 	float4 BubblePos = GetBubble()->GetPos();
 	float4 BubbleScale = BubbleMissle::CollisionScale;

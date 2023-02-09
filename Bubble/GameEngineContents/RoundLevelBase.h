@@ -9,7 +9,7 @@
 class BackGround;
 class GameEngineImage;
 class PlayerBase;
-class BubbleDestination;
+class BubbleDestHelper;
 
 //실제 게임이 동작하는 레벨은 이 클래스를 상속받는다
 //RoundLevel은 일렬로 정렬된 Render를 갖고 있는다.(이 Render는 Stage를 의미, ex : RoundA_Stage01)
@@ -75,10 +75,13 @@ public:
 		return StageMoveTime;
 	}
 
-	const std::vector<BubbleDestination*>& GetBubbleDest(size_t _Stage);
+	inline BubbleDestHelper* GetBubbleDestHelper()
+	{
+		return DestHelperPtr;
+	}
 
 protected:
-	void Loading() override{}
+	void Loading() override;
 	void Update(float _DeltaTime) override;
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
@@ -109,9 +112,6 @@ protected:
 		return Player;
 	}
 
-	void SetBubbleDest(const std::vector<std::vector<float4>>& _LevelBubbleDests);
-
-	void ConnectDestToDest(size_t _Stage, size_t _Start, size_t _End);
 
 private:
 	//선택한 캐릭터 타입
@@ -131,8 +131,7 @@ private:
 	float4							ArrangeDir				= float4::Zero;
 	float							StageMoveTime		= 0.f;
 
-	std::vector<std::vector<BubbleDestination*>> BubbleDests;
-	
-	void TurnOnBubbleDestOnlyNowStage();
+	//BubbleDestination에 관련된 헬퍼클래스
+	BubbleDestHelper*		DestHelperPtr			= nullptr;
 };
 

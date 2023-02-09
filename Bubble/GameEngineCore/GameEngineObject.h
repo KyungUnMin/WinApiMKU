@@ -1,5 +1,6 @@
 #pragma once
-
+#include <string>
+#include <string_view>
 
 class GameEngineObject
 {
@@ -96,6 +97,21 @@ public:
 		return Parent;
 	}
 
+	inline void SetName(const std::string_view& _View)
+	{
+		Name = _View;
+	}
+
+	inline const std::string& GetName()
+	{
+		return Name;
+	}
+
+	inline std::string GetNameCopy()
+	{
+		return Name;
+	}
+
 protected:
 
 private:
@@ -104,5 +120,6 @@ private:
 
 	bool								ObjectDeath		= false;
 	bool								ObjectUpdate		= true;
+	std::string					Name;
 };
 

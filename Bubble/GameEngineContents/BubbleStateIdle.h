@@ -23,7 +23,8 @@ protected:
 	void EnterState() override;
 
 private:
-	RigidBody* RigidPtr = nullptr;
+	RigidBody*	RigidPtr	= nullptr;
+	float4			FinalDest	= float4::Zero;
 
 	void CollisionEachOther();
 };

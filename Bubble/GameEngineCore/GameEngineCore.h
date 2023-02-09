@@ -60,6 +60,7 @@ protected:
 		}
 
 		GameEngineLevel* Level = new LevelType();
+		//Level->SetName(_Name);
 		LevelLoading(Level);
 		Levels.insert(std::make_pair(_Name.data(), Level));
 	}

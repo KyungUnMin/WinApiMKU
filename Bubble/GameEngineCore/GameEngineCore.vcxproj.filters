@@ -26,7 +26,7 @@
       <Filter>02.Object\04.Component</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
-      <Filter>02.Object\07.BasicContents\01. Actor</Filter>
+      <Filter>02.Object\07.BasicContents\01.Actor</Filter>
     </ClInclude>
     <ClInclude Include="NumberRenderObject.h">
       <Filter>02.Object\07.BasicContents\02.SubClass</Filter>
@@ -58,7 +58,7 @@
       <Filter>02.Object\04.Component</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
-      <Filter>02.Object\07.BasicContents\01. Actor</Filter>
+      <Filter>02.Object\07.BasicContents\01.Actor</Filter>
     </ClCompile>
     <ClCompile Include="NumberRenderObject.cpp">
       <Filter>02.Object\07.BasicContents\02.SubClass</Filter>
@@ -95,11 +95,11 @@
     <Filter Include="02.Object\07.BasicContents">
       <UniqueIdentifier>{c2717dd8-6326-4739-850d-19354554b765}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Object\07.BasicContents\01. Actor">
-      <UniqueIdentifier>{76cd2500-1940-4cfc-8976-75e1c3c91cdf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.Object\07.BasicContents\02.SubClass">
       <UniqueIdentifier>{be22752f-b356-4651-8bb8-3108209254e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Object\07.BasicContents\01.Actor">
+      <UniqueIdentifier>{76cd2500-1940-4cfc-8976-75e1c3c91cdf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

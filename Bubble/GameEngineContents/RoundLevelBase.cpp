@@ -14,6 +14,7 @@
 #include "BubbleDestination.h"
 #include "BubbleMissle.h"
 #include "BubbleMissleFSM.h"
+#include "BubbleDestHelper.h"
 
 const float RoundLevelBase::StageMoveDuration = 1.5f;
 
@@ -27,6 +28,12 @@ RoundLevelBase::~RoundLevelBase()
 
 }
 
+
+
+void RoundLevelBase::Loading()
+{
+	DestHelperPtr = CreateActor<BubbleDestHelper>();
+}
 
 
 //레벨의 지형과 충돌체를 로드하는 함수
@@ -123,6 +130,7 @@ bool RoundLevelBase::MoveToNextStage()
 
 
 
+
 void RoundLevelBase::Update(float _DeltaTime)
 {
 	if (nullptr != Player)
@@ -168,7 +176,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 	if (1.f < Ratio)
 	{
 		SetNowStage(NowStageIndex + 1);
-		TurnOnBubbleDestOnlyNowStage();
+		DestHelperPtr->TurnOnBubbleDest(NowStageIndex);
 		IsMoveValue = false;
 		StageMoveTime = 0.f;
 	}
@@ -255,7 +263,7 @@ void RoundLevelBase::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 	//플레이어 위치 조정
 	Player->SetPos(PlayerSpwanPos[0]);
-	TurnOnBubbleDestOnlyNowStage();
+	DestHelperPtr->TurnOnBubbleDest(NowStageIndex);
 }
 
 //레벨이 전환될때 레벨 정리하고 가기
@@ -264,7 +272,7 @@ void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	IsMoveValue = false;
 	SetNowStage(0);
 	Player->SetPos(PlayerSpwanPos[0]);
-	TurnOnBubbleDestOnlyNowStage();
+	DestHelperPtr->TurnOnBubbleDest(NowStageIndex);
 }
 
 const float4& RoundLevelBase::GetPlayerSpawnPos()
@@ -297,69 +305,3 @@ void RoundLevelBase::SetNowStage(size_t _StageNum)
 	StageImage->GetRender(NowStageIndex)->SetPosition(float4::Zero);
 }
 
-void RoundLevelBase::SetBubbleDest(const std::vector<std::vector<float4>>& _LevelBubbleDests)
-{
-	BubbleDests.resize(_LevelBubbleDests.size());
-
-	for (size_t Stage = 0; Stage < _LevelBubbleDests.size(); ++Stage)
-	{
-		BubbleDests[Stage].reserve(_LevelBubbleDests[Stage].size());
-		for (size_t i = 0; i < _LevelBubbleDests[Stage].size(); ++i)
-		{
-			BubbleDestination* Dest = CreateActor<BubbleDestination>(UpdateOrder::BubbleDest);
-			Dest->SetStageIndex(Stage);
-			Dest->SetPos(_LevelBubbleDests[Stage][i]);
-			BubbleDests[Stage].push_back(Dest);
-		}
-	}
-}
-
-void RoundLevelBase::ConnectDestToDest(size_t _Stage, size_t _Start, size_t _End)
-{
-	if (BubbleDests.size() <= _Stage)
-	{
-		MsgAssert("해당 스테이지는 버블의 Dest를 설정해주지 않았습니다");
-		return;
-	}
-
-	if (BubbleDests[_Stage].size() <= _Start || BubbleDests[_Stage].size() <= _End)
-	{
-		MsgAssert("BubbleDest들 끼리 연결해줄때 해당 스테이지의 인덱스를 초과하였습니다");
-		return;
-	}
-
-	BubbleDests[_Stage][_Start]->SetNextDest(BubbleDests[_Stage][_End]);
-}
-
-
-
-const std::vector<BubbleDestination*>& RoundLevelBase::GetBubbleDest(size_t _Stage)
-{
-	if (BubbleDests.size() <= _Stage)
-	{
-		MsgAssert("해당 스테이지는 버블의 Dest를 설정해주지 않았습니다");
-	}
-
-	return BubbleDests[_Stage];
-}
-
-
-void RoundLevelBase::TurnOnBubbleDestOnlyNowStage()
-{
-	for (size_t Stage = 0; Stage < BubbleDests.size(); ++Stage)
-	{
-		for (size_t i = 0; i < BubbleDests[Stage].size(); ++i)
-		{
-			if (NowStageIndex == BubbleDests[Stage][i]->GetStageIndex())
-			{
-				BubbleDests[Stage][i]->On();
-			}
-			else
-			{
-				BubbleDests[Stage][i]->Off();
-			}
-
-		}
-	}
-
-}

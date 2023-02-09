@@ -7,7 +7,6 @@ class RoundA1Level : public RoundLevelBase
 {
 public:
 	static const std::vector<float4>								PlayerSpanwPos;
-	static const std::vector<std::vector<float4>>		BubbleDestPos;
 
 	RoundA1Level();
 	~RoundA1Level();

@@ -9,8 +9,7 @@
 #include "RoundA_Enter_Sky.h"
 #include "NextDoor.h"
 #include "PlayerBase.h"
-
-#include "BubbleDestination.h"
+#include "BubbleDestHelper.h"
 
 #include "MonsterBase.h"
 
@@ -18,11 +17,6 @@ const std::vector<float4>						RoundAEnterLevel::PlayerSpanwPos = { { 100.f, 700
 const float4											RoundAEnterLevel::MonsterSpawnPos[3] =
 {
 	{400.f, 430.f},{500.f, 430.f},{600.f, 430.f}
-};
-
-const std::vector<std::vector<float4>>	RoundAEnterLevel::BubbleDestPos =
-{
-	{{100.f, 100.f},{250.f, 100.f}, {480.f, 100.f}, {710.f, 100.f} ,{860.f, 100.f}}
 };
 
 
@@ -39,6 +33,8 @@ RoundAEnterLevel::~RoundAEnterLevel()
 
 void RoundAEnterLevel::Loading()
 {
+	RoundLevelBase::Loading();
+
 	//리소스 로드
 	ResourceLoad();
 	RoundLevelBase::LoadStage("AEnter", 1, 1);
@@ -102,13 +98,13 @@ void RoundAEnterLevel::CreateDoor()
 
 void RoundAEnterLevel::CreateBubbleDest()
 {
-	SetBubbleDest(BubbleDestPos);
+	GetBubbleDestHelper()->SetBubbleDest(HelpLevelType::RoundAEnter);
 
 	size_t Stage = 0;
-	ConnectDestToDest(Stage, 0, 2);
-	ConnectDestToDest(Stage, 1, 2);
-	ConnectDestToDest(Stage, 3, 2);
-	ConnectDestToDest(Stage, 4, 2);
+	GetBubbleDestHelper()->ConnectDestToDest(Stage, 0, 1);
+	GetBubbleDestHelper()->ConnectDestToDest(Stage, 1, 2);
+	GetBubbleDestHelper()->ConnectDestToDest(Stage, 3, 2);
+	GetBubbleDestHelper()->ConnectDestToDest(Stage, 4, 3);
 }
 
 void RoundAEnterLevel::Update(float _DeltaTime)

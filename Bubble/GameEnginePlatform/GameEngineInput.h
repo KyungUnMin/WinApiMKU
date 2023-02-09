@@ -47,6 +47,8 @@ public:
 
 	static float GetPressTime(const std::string_view& _Name);
 
+	static void MouseCursorOff();
+
 	static bool IsAnyKey()
 	{
 		return IsAnyKeyValue;

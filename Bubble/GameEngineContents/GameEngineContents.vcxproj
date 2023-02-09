@@ -159,6 +159,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BubbleDestHelper.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BubbleDestination.h">
       <SubType>
       </SubType>
@@ -375,10 +379,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BubbleDestHelper.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BubbleDestination.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BubbleDestPositions.cpp" />
     <ClCompile Include="BubbleMissle.cpp">
       <SubType>
       </SubType>

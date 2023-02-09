@@ -35,10 +35,20 @@ void BubbleStateIdle::EnterState()
 {
 	BubbleMissleStateBase::EnterState();
 	GetBubble()->GetCollisionPtr()->On();
+	FinalDest = GetBubble()->GetPos();
 }
 
 void BubbleStateIdle::Update(float _DeltaTime)
 {
+	float4 NowPos = GetBubble()->GetPos();
+	float4 Dir = FinalDest - NowPos;
+	if (false == Dir.IsZero())
+	{
+		Dir.Normalize();
+		GetBubble()->SetMove(Dir * MoveSpeed * _DeltaTime);
+	}
+
+
 	//버블 서로간의 충돌처리
 	CollisionEachOther();
 

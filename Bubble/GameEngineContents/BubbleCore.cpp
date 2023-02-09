@@ -2,7 +2,7 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEnginePlatform/GameEngineImage.h>
-
+#include "BubbleDestHelper.h"
 
 #include "ContentsDefine.h"
 #include "OpeningLevel.h"
@@ -73,6 +73,7 @@ void BubbleCore::CreateKeys()
 {
 	GameEngineInput::CreateKey(DEBUG_RENDER, VK_F1);
 	GameEngineInput::CreateKey(CHEET_STAGE_CLEAR, VK_F2);
+	GameEngineInput::CreateKey("GridSwitch", VK_F3);
 
 	GameEngineInput::CreateKey(PLAYER_LEFT, KEY_LEFT);
 	GameEngineInput::CreateKey(PLAYER_RIGHT, KEY_RIGHT);
@@ -90,6 +91,10 @@ void BubbleCore::Update()
 		DebugSwitch();
 	}
 
+	if (true == GameEngineInput::IsDown("GridSwitch"))
+	{
+		BubbleDestHelper::RenderOnOffSwitch();
+	}
 }
 
 void BubbleCore::End()

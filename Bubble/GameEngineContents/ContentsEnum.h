@@ -15,7 +15,9 @@ enum class UpdateOrder
 {
 	Defalut,
 	Player_Missle,
-	BubbleDest
+	BubbleDest,
+
+	DEBUG_GRID
 };
 
 enum class RenderOrder

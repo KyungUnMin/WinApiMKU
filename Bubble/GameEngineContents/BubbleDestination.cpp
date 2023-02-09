@@ -68,44 +68,48 @@ void BubbleDestination::Render(float _DeltaTime)
 	float4 NowPos = GetPos();
 	float4 NextPos = NextDest->GetPos();
 
+	float4 Dir = NextPos - NowPos;
+	float Size = Dir.Size();
+	Dir.Normalize();
+	NextPos = NowPos + (Dir * (Size * 0.9f));
+
 	MoveToEx(Hdc, NowPos.ix(), NowPos.iy(), nullptr);
 	LineTo(Hdc, NextPos.ix(), NextPos.iy());
 
-	//화살표 그리기는 나중에 시간 남으면 하자
 
-	//if (NowPos == NextPos)
-	//{
-	//	MsgAssert("두 벡터가 동일한 위치에 있어 해당 방향벡터의 정규화를 할 수 없습니다");
-	//	return;
-	//}
-
-	//float4 Dir = NowPos - NextPos;
-	//Dir.Normalize();
-
-	////위에서 그린 직선의 벡터와 float4::Right 벡터의 내적 / 두 벡터의 크기
-	//float NowRadian = Dir.x / Dir.Size();
-
-	//const float RotateRadian = GameEngineMath::PIE * 0.5f;
-	//float RightAngle = NowRadian + RotateRadian;
-	//float LeftAngle = NowRadian - RotateRadian;
+	if (NowPos == NextPos)
+	{
+		MsgAssert("두 벡터가 동일한 위치에 있어 해당 방향벡터의 정규화를 할 수 없습니다");
+		return;
+	}
 
 
-	//const float Length = 20.f;
+	//NextPos를 중심으로 회전 45도 회전
+	const float Radian = GameEngineMath::PIE / 4;
+	const float ArrowLength = 30.f;
+	Dir = -Dir;
 
-	//float4 RightArrow = NextPos;
-	//RightArrow.x -= Length * cos(RightAngle);
-	//RightArrow.y -= Length * sin(RightAngle);
+	{
+		float4 LeftArrow;
 
-	//float4 LeftArrow = NextPos;
-	//LeftArrow.x += Length * static_cast<float>(cos(LeftAngle));
-	//LeftArrow.y -= Length * static_cast<float>(sin(LeftAngle));
+		LeftArrow.x = (Dir.x * cos(Radian)) - (Dir.y * sin(Radian));
+		LeftArrow.y = (Dir.x * sin(Radian)) + (Dir.y * cos(Radian));
+		float4 Dest = NextPos + LeftArrow * ArrowLength;
 
+		MoveToEx(Hdc, NextPos.ix(), NextPos.iy(), nullptr);
+		LineTo(Hdc, Dest.ix(), Dest.iy());
+	}
 
-	//MoveToEx(Hdc, NextPos.ix(), NextPos.iy(), nullptr);
-	//LineTo(Hdc, RightArrow.ix(), RightArrow.iy());
-	//MoveToEx(Hdc, NextPos.ix(), NextPos.iy(), nullptr);
-	//LineTo(Hdc, LeftArrow.ix(), LeftArrow.iy());
+	{
+		float4 RightArrow;
 
+		RightArrow.x = (Dir.x * cos(-Radian)) - (Dir.y * sin(-Radian));
+		RightArrow.y = (Dir.x * sin(-Radian)) + (Dir.y * cos(-Radian));
+		float4 Dest = NextPos + RightArrow * ArrowLength;
+
+		MoveToEx(Hdc, NextPos.ix(), NextPos.iy(), nullptr);
+		LineTo(Hdc, Dest.ix(), Dest.iy());
+	}
 
 	PathLinePen = static_cast<HPEN>(SelectObject(Hdc, PathLinePen));
 }
