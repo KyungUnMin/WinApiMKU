@@ -62,6 +62,7 @@ void PlayerState_Falling::Update(float _DeltaTime)
 		{
 			GetPlayer()->SetMove(MoveDir * AirMoveSpeed * _DeltaTime);
 		}
+		
 	}
 	
 

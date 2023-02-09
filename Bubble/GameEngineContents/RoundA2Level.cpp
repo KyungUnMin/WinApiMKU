@@ -35,6 +35,19 @@ RoundA2Level::~RoundA2Level()
 
 void RoundA2Level::Loading()
 {
+	//test code
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToDirectory("ContentsResources");
+		Dir.Move("ContentsResources");
+		Dir.Move("Sound");
+		GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("cappuccino.mp3"));
+
+		GameEngineSoundPlayer SoundCtr = GameEngineResources::GetInst().SoundPlayerToControl("cappuccino.mp3");
+		SoundCtr.Volume(0.5f);
+	}
+
+
 	RoundLevelBase::Loading();
 
 	//리소스 로드

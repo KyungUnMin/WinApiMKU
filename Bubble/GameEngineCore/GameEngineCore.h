@@ -60,8 +60,7 @@ protected:
 		}
 
 		GameEngineLevel* Level = new LevelType();
-		//Level->SetName(_Name);
-		LevelLoading(Level);
+		LevelLoading(Level, _Name);
 		Levels.insert(std::make_pair(_Name.data(), Level));
 	}
 
@@ -79,6 +78,6 @@ private:
 
 
 	//레벨의 로딩함수(순수가상함수) 실행
-	void LevelLoading(GameEngineLevel* _Level);
+	void LevelLoading(GameEngineLevel* _Level, const std::string_view& _Name);
 };
 

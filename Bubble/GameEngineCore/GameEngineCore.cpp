@@ -56,6 +56,9 @@ void GameEngineCore::GlobalUpdate()
 		}
 	}
 
+	//시스템 사운드 업데이트
+	GameEngineSound::SoundUpdate();
+
 	//이전 프레임과 현재 프레임 사이 시간
 	float TimeDeltaTime = GameEngineTime::GlobalTime.TimeCheck();
 
@@ -159,7 +162,7 @@ void GameEngineCore::ChangeLevel(const std::string_view& _Name)
 
 
 //레벨의 로딩함수(순수가상함수) 실행
-void GameEngineCore::LevelLoading(GameEngineLevel* _Level)
+void GameEngineCore::LevelLoading(GameEngineLevel* _Level, const std::string_view& _Name)
 {
 	if (nullptr == _Level)
 	{
@@ -167,5 +170,6 @@ void GameEngineCore::LevelLoading(GameEngineLevel* _Level)
 		return;
 	}
 
+	_Level->SetName(_Name);
 	_Level->Loading();
 }

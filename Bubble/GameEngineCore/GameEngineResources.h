@@ -3,6 +3,21 @@
 #include <map>
 #include <string>
 #include <GameEnginePlatform/GameEngineImage.h>
+#include <GameEnginePlatform/GameEngineSound.h>
+
+class GameEngineSoundPlayer
+{
+public:
+	GameEngineSoundPlayer(){}
+	GameEngineSoundPlayer(FMOD::Channel* _Channel);
+
+	void LoopCount(int _Count);
+	void Volume(float _Volume);
+	void Stop();
+
+private:
+	FMOD::Channel* ControlChannel = nullptr;
+};
 
 class GameEnginePath;
 class GameEngineImage;
@@ -20,11 +35,24 @@ public:
 		return Inst;
 	}
 
+
 	GameEngineImage* ImageLoad(const GameEnginePath& _Path);
 
 	GameEngineImage* ImageLoad(const std::string_view& _Path, const std::string_view& _Name);
 
 	GameEngineImage* ImageFind(const std::string_view& _Name);
+
+
+	GameEngineSound* SoundLoad(const GameEnginePath& _Path);
+
+	GameEngineSound* SoundLoad(const std::string_view& _Path, const std::string_view& _Name);
+
+	GameEngineSound* SoundFind(const std::string_view& _Name);
+
+	void SoundPlay(const std::string_view& _Name);
+
+	GameEngineSoundPlayer SoundPlayerToControl(const std::string_view& _Name);
+
 
 	void Release();
 
@@ -33,6 +61,7 @@ protected:
 private:
 	static GameEngineResources	Inst;
 	std::map<std::string, GameEngineImage*> AllImage;
+	std::map<std::string, GameEngineSound*> AllSound;
 
 	GameEngineResources();
 	~GameEngineResources();
