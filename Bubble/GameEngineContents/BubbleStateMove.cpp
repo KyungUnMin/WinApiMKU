@@ -87,6 +87,9 @@ void BubbleStateMove::EnterState()
 	BubbleDestHelper* BDHelper = RoundLevel->GetBubbleDestHelper();
 	const std::vector<BubbleDestination*>& BubbleDests = BDHelper->GetBubbleDest(RoundLevel->GetNowStage());
 
+	if (true == BubbleDests.empty())
+		return;
+
 	float MinDistance = FLT_MAX;
 	float4 NowPos = GetBubble()->GetPos();
 
@@ -119,6 +122,13 @@ void BubbleStateMove::MoveBubble(float _DeltaTime)
 {
 	BubbleMissle* Bubble = GetBubble();
 	float4 NowPos = Bubble->GetPos();
+
+	if (nullptr == NowDest)
+	{
+		GetBubble()->SetMove(float4::Up * MoveSpeed * _DeltaTime);
+		return;
+	}
+
 	float4 DestPos = NowDest->GetPos();
 
 	float4 Dir = DestPos - NowPos;
@@ -129,6 +139,9 @@ void BubbleStateMove::MoveBubble(float _DeltaTime)
 
 void BubbleStateMove::CheckDest()
 {
+	if (nullptr == NowDest)
+		return;
+
 	//현재 스테이지에 활성화되어있는 BubbleDest들을 가져온다
 	RoundLevelBase* RoundLevel = GetBubble()->GetRoundLevel();
 	size_t NowStage = RoundLevel->GetNowStage();
