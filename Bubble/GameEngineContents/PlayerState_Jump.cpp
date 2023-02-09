@@ -5,6 +5,7 @@
 #include "PlayerBase.h"
 #include "RoundLevelBase.h"
 #include "ContentsDefine.h"
+#include "Gravity.h"
 
 PlayerState_Jump::PlayerState_Jump()
 {
@@ -47,7 +48,7 @@ void PlayerState_Jump::Update(float _DeltaTime)
 	}
 
 	//점프위치가 최고점에 닿았을때
-	if (0.f <= GetPlayer()->GetAcceleration().y)
+	if (0.f <= GetPlayer()->GetGravity()->GetAcc())
 	{
 		GetOwner()->ChangeState(PlayerStateType::Falling);
 		return;
@@ -85,5 +86,5 @@ void PlayerState_Jump::EnterState()
 {
 	PlayerStateBase::EnterState();
 	GetPlayer()->SetMove(float4::Up);
-	GetPlayer()->SetGravityAcceleration(-JumpAcc);
+	GetPlayer()->GetGravity()->SetAcc(-JumpAcc);
 }

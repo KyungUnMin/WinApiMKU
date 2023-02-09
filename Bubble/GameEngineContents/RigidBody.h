@@ -21,8 +21,6 @@ public:
 		Owner = _Actor;
 	}
 
-
-
 	inline void AddForce(const float4& _Force)
 	{
 		ForceVec += _Force;

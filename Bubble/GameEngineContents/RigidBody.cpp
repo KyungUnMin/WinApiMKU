@@ -39,7 +39,7 @@ void RigidBody::Update(float _DeltaTime)
 	//속도에 따른 이동처리
 	Move(_DeltaTime);
 
-	//왜 가속도도 초기화시키지?
+	
 	ForceVec = float4::Zero;
 	Acceleration = float4::Zero;
 	AccelAlpha = float4::Zero;

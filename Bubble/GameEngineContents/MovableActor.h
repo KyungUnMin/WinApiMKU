@@ -36,8 +36,9 @@ public:
 		return DirChanged;
 	}
 
+	void SetDir(const float4& _Dir);
 
-	inline float4 GetAcceleration()
+	/*inline float4 GetAcceleration()
 	{
 		return Acceleration;
 	}
@@ -55,9 +56,9 @@ public:
 	inline void SetGravityAcceleration(float _Y)
 	{
 		Acceleration.y = _Y;
-	}
+	}*/
 
-	void SetDir(const float4& _Dir);
+	
 
 
 protected:
@@ -69,7 +70,7 @@ private:
 	bool				DirChanged		= false;
 
 	//물체의 가속도
-	float4			Acceleration	= float4::Zero;
+	//float4			Acceleration	= float4::Zero;
 
 	
 };

@@ -17,6 +17,7 @@ const float4 PlayerBase::CollisionScale = float4{ 50.f, 50.f };
 PlayerBase::PlayerBase()
 {
 	FsmPtr = new PlayerFSM;
+	GravityPtr = new Gravity;
 }
 
 //플레이어가 들고 있던 컴포넌트들을 delete
@@ -28,17 +29,11 @@ PlayerBase::~PlayerBase()
 		FsmPtr = nullptr;
 	}
 
-
-	for (auto Pair : Components)
+	if (nullptr != GravityPtr)
 	{
-		if (nullptr != Pair.second)
-		{
-			delete Pair.second;
-			Pair.second = nullptr;
-		}
+		delete GravityPtr;
+		GravityPtr = nullptr;
 	}
-
-	Components.clear();
 }
 
 
@@ -63,21 +58,11 @@ void PlayerBase::Start()
 	FsmPtr->Player = this;
 	FsmPtr->Start();
 
+	GravityPtr->Start(this);
+
+
 	BBSpawner = GetLevel()->CreateActor<BubbleSpawner>();
 	BBSpawner->SetPlayer(this);
-
-	//플레이어가 사용할 컴포넌트 생성
-	//Components[ComponentType::PlayerState] = new PlayerFSM;
-	Components[ComponentType::Gravity] = new Gravity;
-
-
-	//플레이어의 컴포넌트를 초기화
-	for (auto Pair : Components)
-	{
-		//컴포넌트의 소유자는 this
-		Pair.second->SetOwner(this);
-		Pair.second->Start();
-	}
 }
 
 /*
@@ -93,12 +78,10 @@ void PlayerBase::Update(float _DeltaTime)
 	MovableActor::CheckDirection();
 
 	FsmPtr->Update(_DeltaTime);
+	GravityPtr->Update(_DeltaTime);
 
-	//컴포넌트의 Update를 작동
-	for (auto Pair : Components)
-	{
-		Pair.second->Update(_DeltaTime);
-	}
+	if (GameEngineInput::IsDown(PLAYER_ATTACK))
+		BBSpawner->CreateBubble(GetDirVec());
 
 	//플레이어와 버블의 충돌 처리및 버블 연쇄적으로 터뜨리기
 	BubbleCollisionCheck();

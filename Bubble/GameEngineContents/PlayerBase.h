@@ -3,10 +3,10 @@
 #include "MovableActor.h"
 #include "ContentsEnum.h"
 
-class ComponentBase;
 class GameEngineCollision;
 class PlayerFSM;
 class BubbleSpawner;
+class Gravity;
 
 //모든 플레이어 클래스의 부모가 되는 추상 클래스
 class PlayerBase : public MovableActor
@@ -23,20 +23,6 @@ public:
 	PlayerBase& operator=(const PlayerBase& _Other) = delete;
 	PlayerBase& operator=(const PlayerBase&& _Other) noexcept = delete;
 
-	//컴포넌트를 담고있는 자료구조에서 해당 컴포넌트를 찾아 반환
-	template <typename T>
-	T* GetComponent(ComponentType _Type)
-	{
-		auto Iter = Components.find(_Type);
-		if (Components.end() == Iter)
-		{
-			return nullptr;
-		}
-
-		T* Return = dynamic_cast<T*>(Iter->second);
-		return Return;
-	}
-
 	bool DecreaseLife()
 	{
 		--lifeCnt;
@@ -48,6 +34,11 @@ public:
 	inline  PlayerFSM* GetFSM()
 	{
 		return FsmPtr;
+	}
+
+	inline Gravity* GetGravity()
+	{
+		return GravityPtr;
 	}
 
 protected:
@@ -63,10 +54,9 @@ protected:
 	}
 
 private:
-	//컴포넌트 구조로 동작
-	std::map<ComponentType,ComponentBase*>	Components;
 	PlayerFSM*						FsmPtr				= nullptr;
 	BubbleSpawner*				BBSpawner		= nullptr;
+	Gravity*							GravityPtr		= nullptr;
 
 	PlayerCharacterType		CharcterType	= PlayerCharacterType::COUNT;
 	GameEngineCollision*		CollisionPtr		= nullptr;

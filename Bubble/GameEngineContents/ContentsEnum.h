@@ -50,14 +50,6 @@ enum class CollisionOrder
 	BubbleDest
 };
 
-enum class ComponentType
-{
-	//PlayerState,
-	Gravity,
-
-	Count
-};
-
 enum class BubbleMissleType
 {
 	Normal,

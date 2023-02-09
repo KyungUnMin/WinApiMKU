@@ -2,10 +2,9 @@
 #include "ComponentBase.h"
 
 class RoundLevelBase;
-class MovableActor;
+class GameEngineActor;
 
-//MovableActor이 존재하는 객체의 중력을 담당함
-class Gravity : public ComponentBase
+class Gravity
 {
 public:
 	static bool GlobalGravityUse;
@@ -18,16 +17,31 @@ public:
 	Gravity& operator=(const Gravity& _Other) = delete;
 	Gravity& operator=(const Gravity&& _Other) noexcept = delete;
 
+	void Start(GameEngineActor* _Owner);
+	void Update(float _DeltaTime);
+
+	inline float GetAcc()
+	{
+		return NowGravityAcc;
+	}
+
+	inline void SetAcc(float _Acc)
+	{
+		NowGravityAcc = _Acc;
+	}
+
+
 protected:
-	void Start() override;
-	void Update(float _DeltaTime) override;
 
 private:
 	//맵 충돌을 확인하기 위한 포인터
 	RoundLevelBase*		RoundLevel			= nullptr;
-	MovableActor*			MovableOwner	= nullptr;
+	GameEngineActor*		Owner					= nullptr;
 
 	const float					GravityCoef		= 600.0f;
+
+	//현재 프레임의 중력가속도
+	float							NowGravityAcc = 0.f;
 
 	//이전 프레임의 중력가속도
 	float							PrevGravityAcc	= 0.0f;
