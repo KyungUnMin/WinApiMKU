@@ -2,7 +2,6 @@
 #include <vector>
 #include <GameEngineBase/GameEngineMath.h>
 #include <GameEngineCore/GameEngineActor.h>
-#include "ComponentBase.h"
 #include "ContentsEnum.h"
 
 

@@ -1,5 +1,4 @@
 #pragma once
-#include "ComponentBase.h"
 
 class RoundLevelBase;
 class GameEngineActor;

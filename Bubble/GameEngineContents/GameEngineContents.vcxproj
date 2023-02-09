@@ -203,10 +203,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ComponentBase.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="ContentsDefine.h" />
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="EndingLevel.h">
@@ -421,10 +417,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="BubbleStateThrow.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="ComponentBase.cpp">
       <SubType>
       </SubType>
     </ClCompile>

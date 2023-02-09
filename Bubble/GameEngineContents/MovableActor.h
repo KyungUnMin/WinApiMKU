@@ -38,27 +38,6 @@ public:
 
 	void SetDir(const float4& _Dir);
 
-	/*inline float4 GetAcceleration()
-	{
-		return Acceleration;
-	}
-
-	inline void SetAcceleration(float4 _Acc)
-	{
-		Acceleration = _Acc;
-	}
-
-	inline void SetMoveAcceleration(float4 _Acc)
-	{
-		Acceleration += _Acc;
-	}
-
-	inline void SetGravityAcceleration(float _Y)
-	{
-		Acceleration.y = _Y;
-	}*/
-
-	
 
 
 protected:
@@ -68,10 +47,5 @@ protected:
 private:
 	std::string	Dir					= MovableActor::RightStr;
 	bool				DirChanged		= false;
-
-	//물체의 가속도
-	//float4			Acceleration	= float4::Zero;
-
-	
 };
 

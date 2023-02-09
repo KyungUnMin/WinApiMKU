@@ -2,7 +2,6 @@
 #include <vector>
 #include <string>
 #include "ContentsEnum.h"
-#include "ComponentBase.h"
 
 //플레이어 상태의 종류
 enum class PlayerStateType

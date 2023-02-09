@@ -85,9 +85,6 @@
     <ClInclude Include="PlayerState_Move.h">
       <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\04.Move</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentBase.h">
-      <Filter>05.ContentsComponent\01.ComponentBase</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerBase.h">
       <Filter>03.CommonActors\02.MovableObject\02.Player\01.Base</Filter>
     </ClInclude>
@@ -95,7 +92,7 @@
       <Filter>03.CommonActors\02.MovableObject\02.Player\02.Bubblun%28초록%29</Filter>
     </ClInclude>
     <ClInclude Include="Gravity.h">
-      <Filter>05.ContentsComponent\03.Gravity</Filter>
+      <Filter>05.ContentsModule\02.Gravity</Filter>
     </ClInclude>
     <ClInclude Include="MovableActor.h">
       <Filter>03.CommonActors\02.MovableObject\01.Base</Filter>
@@ -152,7 +149,7 @@
       <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\06.Pop</Filter>
     </ClInclude>
     <ClInclude Include="RigidBody.h">
-      <Filter>05.ContentsComponent\02.RigidBody</Filter>
+      <Filter>05.ContentsModule\01.RigidBody</Filter>
     </ClInclude>
     <ClInclude Include="BubbleStateIdle.h">
       <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\05.Idle</Filter>
@@ -249,9 +246,6 @@
     <ClCompile Include="PlayerState_Move.cpp">
       <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\04.Move</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentBase.cpp">
-      <Filter>05.ContentsComponent\01.ComponentBase</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerBase.cpp">
       <Filter>03.CommonActors\02.MovableObject\02.Player\01.Base</Filter>
     </ClCompile>
@@ -259,7 +253,7 @@
       <Filter>03.CommonActors\02.MovableObject\02.Player\02.Bubblun%28초록%29</Filter>
     </ClCompile>
     <ClCompile Include="Gravity.cpp">
-      <Filter>05.ContentsComponent\03.Gravity</Filter>
+      <Filter>05.ContentsModule\02.Gravity</Filter>
     </ClCompile>
     <ClCompile Include="MovableActor.cpp">
       <Filter>03.CommonActors\02.MovableObject\01.Base</Filter>
@@ -316,7 +310,7 @@
       <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\06.Pop</Filter>
     </ClCompile>
     <ClCompile Include="RigidBody.cpp">
-      <Filter>05.ContentsComponent\02.RigidBody</Filter>
+      <Filter>05.ContentsModule\01.RigidBody</Filter>
     </ClCompile>
     <ClCompile Include="BubbleStateIdle.cpp">
       <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\05.Idle</Filter>
@@ -424,18 +418,6 @@
     </Filter>
     <Filter Include="04.Level &amp; Actor\03.Ending\01.Level">
       <UniqueIdentifier>{cdb8c1ae-7cc1-4647-bc98-1f8aa4034fe4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="05.ContentsComponent">
-      <UniqueIdentifier>{05742b4a-c282-4f71-925f-089005b2ecd8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="05.ContentsComponent\02.RigidBody">
-      <UniqueIdentifier>{63d7bd75-d208-43f9-9071-2178c670e1d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="05.ContentsComponent\01.ComponentBase">
-      <UniqueIdentifier>{4e4db9ea-216d-44fa-b651-5a3341eb304e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="05.ContentsComponent\03.Gravity">
-      <UniqueIdentifier>{095385e8-eb3c-4743-bee7-6ab29f7538d3}</UniqueIdentifier>
     </Filter>
     <Filter Include="03.CommonActors\01.StaticObject">
       <UniqueIdentifier>{0551aaa4-0312-4134-aa09-9d685a466f05}</UniqueIdentifier>
@@ -580,6 +562,15 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\02.StateBase">
       <UniqueIdentifier>{89f30bb6-a72e-45c4-957b-db3d59039496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.ContentsModule">
+      <UniqueIdentifier>{05742b4a-c282-4f71-925f-089005b2ecd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.ContentsModule\01.RigidBody">
+      <UniqueIdentifier>{63d7bd75-d208-43f9-9071-2178c670e1d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.ContentsModule\02.Gravity">
+      <UniqueIdentifier>{095385e8-eb3c-4743-bee7-6ab29f7538d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
