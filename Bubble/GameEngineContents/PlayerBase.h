@@ -6,6 +6,7 @@
 class ComponentBase;
 class GameEngineCollision;
 class PlayerFSM;
+class BubbleSpawner;
 
 //모든 플레이어 클래스의 부모가 되는 추상 클래스
 class PlayerBase : public MovableActor
@@ -65,6 +66,7 @@ private:
 	//컴포넌트 구조로 동작
 	std::map<ComponentType,ComponentBase*>	Components;
 	PlayerFSM*						FsmPtr				= nullptr;
+	BubbleSpawner*				BBSpawner		= nullptr;
 
 	PlayerCharacterType		CharcterType	= PlayerCharacterType::COUNT;
 	GameEngineCollision*		CollisionPtr		= nullptr;

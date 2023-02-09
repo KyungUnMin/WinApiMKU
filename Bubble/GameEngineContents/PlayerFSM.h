@@ -28,16 +28,10 @@ class PlayerFSM
 	friend PlayerBase;
 
 public:
-	PlayerFSM();
-	~PlayerFSM();
-
 	PlayerFSM(const PlayerFSM& _Other) = delete;
 	PlayerFSM(PlayerFSM&& _Other) noexcept = delete;
 	PlayerFSM& operator=(const PlayerFSM& _Other) = delete;
 	PlayerFSM& operator=(const PlayerFSM&& _Other) noexcept = delete;
-
-
-
 
 	PlayerStateBase* GetState(PlayerStateType _Type);
 
@@ -54,9 +48,12 @@ public:
 protected:
 
 private:
-	PlayerBase* Player = nullptr;
-	PlayerStateBase* CurState = nullptr;
 	std::vector<PlayerStateBase*>	States;
+	PlayerBase*									Player			= nullptr;
+	PlayerStateBase*						CurState		= nullptr;
+
+	PlayerFSM();
+	~PlayerFSM();
 
 	//자료구조에 모든 FSM들을 생성하고 관리
 	void Start();

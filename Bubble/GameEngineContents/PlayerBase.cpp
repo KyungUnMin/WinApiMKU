@@ -63,10 +63,12 @@ void PlayerBase::Start()
 	FsmPtr->Player = this;
 	FsmPtr->Start();
 
+	BBSpawner = GetLevel()->CreateActor<BubbleSpawner>();
+	BBSpawner->SetPlayer(this);
+
 	//플레이어가 사용할 컴포넌트 생성
 	//Components[ComponentType::PlayerState] = new PlayerFSM;
 	Components[ComponentType::Gravity] = new Gravity;
-	Components[ComponentType::BubbleSpawner] = new BubbleSpawner;
 
 
 	//플레이어의 컴포넌트를 초기화
@@ -77,6 +79,12 @@ void PlayerBase::Start()
 		Pair.second->Start();
 	}
 }
+
+/*
+지금 당장은 버블 생성 못함
+나중에 FSM에서 버블을 생성할 수 있게끔 할 예정
+아니면 FSM안에 버블이 존재하고 있어도 될 듯하다
+*/
 
 
 void PlayerBase::Update(float _DeltaTime)

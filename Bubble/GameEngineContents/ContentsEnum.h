@@ -54,7 +54,6 @@ enum class ComponentType
 {
 	//PlayerState,
 	Gravity,
-	BubbleSpawner,
 
 	Count
 };
