@@ -77,19 +77,19 @@
       <Filter>04.Level &amp; Actor\03.Ending\01.Level</Filter>
     </ClInclude>
     <ClInclude Include="PlayerStateBase.h">
-      <Filter>06.FSM\01.PlayerFSM\02.StateBase</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\02.StateBase</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_Idle.h">
-      <Filter>06.FSM\01.PlayerFSM\03.Idle</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\03.Idle</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_Move.h">
-      <Filter>06.FSM\01.PlayerFSM\04.Move</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\04.Move</Filter>
     </ClInclude>
     <ClInclude Include="ComponentBase.h">
       <Filter>05.ContentsComponent\01.ComponentBase</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState.h">
-      <Filter>06.FSM\01.PlayerFSM\01.FSM</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\01.FSM</Filter>
     </ClInclude>
     <ClInclude Include="PlayerBase.h">
       <Filter>03.CommonActors\02.MovableObject\02.Player\01.Base</Filter>
@@ -104,10 +104,10 @@
       <Filter>03.CommonActors\02.MovableObject\01.Base</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_Falling.h">
-      <Filter>06.FSM\01.PlayerFSM\05.Falling</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\05.Falling</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_Jump.h">
-      <Filter>06.FSM\01.PlayerFSM\06.Jump</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\06.Jump</Filter>
     </ClInclude>
     <ClInclude Include="Player_Bobblun.h">
       <Filter>03.CommonActors\02.MovableObject\02.Player\03.Bobblun%28파랑%29</Filter>
@@ -119,16 +119,16 @@
       <Filter>03.CommonActors\02.MovableObject\02.Player\05.Cororon%28분홍%29</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_StageMove.h">
-      <Filter>06.FSM\01.PlayerFSM\07.StageMove</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\07.StageMove</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_Sleep.h">
-      <Filter>06.FSM\01.PlayerFSM\08.Sleep</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\08.Sleep</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_Damaged.h">
-      <Filter>06.FSM\01.PlayerFSM\09.Damaged</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\09.Damaged</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState_Enter.h">
-      <Filter>06.FSM\01.PlayerFSM\10.Enter</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\10.Enter</Filter>
     </ClInclude>
     <ClInclude Include="BubbleSpawner.h">
       <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\01.BubbleSpanwer</Filter>
@@ -137,37 +137,37 @@
       <Filter>03.CommonActors\02.MovableObject\04.Monster</Filter>
     </ClInclude>
     <ClInclude Include="BubbleMissleFSM.h">
-      <Filter>06.FSM\02.BubbleFSM\01.FSM</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\01.FSM</Filter>
     </ClInclude>
     <ClInclude Include="BubbleMissleStateBase.h">
-      <Filter>06.FSM\02.BubbleFSM\02.Base</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\02.Base</Filter>
     </ClInclude>
     <ClInclude Include="BubbleMissle.h">
       <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\02.Bubble</Filter>
     </ClInclude>
     <ClInclude Include="BubbleStateThrow.h">
-      <Filter>06.FSM\02.BubbleFSM\03.Throw</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\03.Throw</Filter>
     </ClInclude>
     <ClInclude Include="BubbleStateMove.h">
-      <Filter>06.FSM\02.BubbleFSM\04.Move</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\04.Move</Filter>
     </ClInclude>
     <ClInclude Include="BubbleStatePop.h">
-      <Filter>06.FSM\02.BubbleFSM\06.Pop</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\06.Pop</Filter>
     </ClInclude>
     <ClInclude Include="RigidBody.h">
       <Filter>05.ContentsComponent\02.RigidBody</Filter>
     </ClInclude>
     <ClInclude Include="BubbleStateIdle.h">
-      <Filter>06.FSM\02.BubbleFSM\05.Idle</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\05.Idle</Filter>
     </ClInclude>
     <ClInclude Include="BubbleCore.h">
       <Filter>01.GameCore</Filter>
     </ClInclude>
     <ClInclude Include="BubbleDestHelper.h">
-      <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination\02.Helper</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\03.BubbleDestination\02.Helper</Filter>
     </ClInclude>
     <ClInclude Include="BubbleDestination.h">
-      <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination\01.Actor</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\03.BubbleDestination\01.Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -241,19 +241,19 @@
       <Filter>04.Level &amp; Actor\03.Ending\01.Level</Filter>
     </ClCompile>
     <ClCompile Include="PlayerStateBase.cpp">
-      <Filter>06.FSM\01.PlayerFSM\02.StateBase</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\02.StateBase</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_Idle.cpp">
-      <Filter>06.FSM\01.PlayerFSM\03.Idle</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\03.Idle</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_Move.cpp">
-      <Filter>06.FSM\01.PlayerFSM\04.Move</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\04.Move</Filter>
     </ClCompile>
     <ClCompile Include="ComponentBase.cpp">
       <Filter>05.ContentsComponent\01.ComponentBase</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
-      <Filter>06.FSM\01.PlayerFSM\01.FSM</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\01.FSM</Filter>
     </ClCompile>
     <ClCompile Include="PlayerBase.cpp">
       <Filter>03.CommonActors\02.MovableObject\02.Player\01.Base</Filter>
@@ -268,10 +268,10 @@
       <Filter>03.CommonActors\02.MovableObject\01.Base</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_Falling.cpp">
-      <Filter>06.FSM\01.PlayerFSM\05.Falling</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\05.Falling</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_Jump.cpp">
-      <Filter>06.FSM\01.PlayerFSM\06.Jump</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\06.Jump</Filter>
     </ClCompile>
     <ClCompile Include="Player_Bobblun.cpp">
       <Filter>03.CommonActors\02.MovableObject\02.Player\03.Bobblun%28파랑%29</Filter>
@@ -283,16 +283,16 @@
       <Filter>03.CommonActors\02.MovableObject\02.Player\05.Cororon%28분홍%29</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_StageMove.cpp">
-      <Filter>06.FSM\01.PlayerFSM\07.StageMove</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\07.StageMove</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_Sleep.cpp">
-      <Filter>06.FSM\01.PlayerFSM\08.Sleep</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\08.Sleep</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_Damaged.cpp">
-      <Filter>06.FSM\01.PlayerFSM\09.Damaged</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\09.Damaged</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState_Enter.cpp">
-      <Filter>06.FSM\01.PlayerFSM\10.Enter</Filter>
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\10.Enter</Filter>
     </ClCompile>
     <ClCompile Include="BubbleSpawner.cpp">
       <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\01.BubbleSpanwer</Filter>
@@ -301,40 +301,40 @@
       <Filter>03.CommonActors\02.MovableObject\04.Monster</Filter>
     </ClCompile>
     <ClCompile Include="BubbleMissleFSM.cpp">
-      <Filter>06.FSM\02.BubbleFSM\01.FSM</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\01.FSM</Filter>
     </ClCompile>
     <ClCompile Include="BubbleMissleStateBase.cpp">
-      <Filter>06.FSM\02.BubbleFSM\02.Base</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\02.Base</Filter>
     </ClCompile>
     <ClCompile Include="BubbleMissle.cpp">
       <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\02.Bubble</Filter>
     </ClCompile>
     <ClCompile Include="BubbleStateThrow.cpp">
-      <Filter>06.FSM\02.BubbleFSM\03.Throw</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\03.Throw</Filter>
     </ClCompile>
     <ClCompile Include="BubbleStateMove.cpp">
-      <Filter>06.FSM\02.BubbleFSM\04.Move</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\04.Move</Filter>
     </ClCompile>
     <ClCompile Include="BubbleStatePop.cpp">
-      <Filter>06.FSM\02.BubbleFSM\06.Pop</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\06.Pop</Filter>
     </ClCompile>
     <ClCompile Include="RigidBody.cpp">
       <Filter>05.ContentsComponent\02.RigidBody</Filter>
     </ClCompile>
     <ClCompile Include="BubbleStateIdle.cpp">
-      <Filter>06.FSM\02.BubbleFSM\05.Idle</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\05.Idle</Filter>
     </ClCompile>
     <ClCompile Include="BubbleCore.cpp">
       <Filter>01.GameCore</Filter>
     </ClCompile>
     <ClCompile Include="BubbleDestHelper.cpp">
-      <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination\02.Helper</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\03.BubbleDestination\02.Helper</Filter>
     </ClCompile>
     <ClCompile Include="BubbleDestPositions.cpp">
-      <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination\02.Helper</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\03.BubbleDestination\02.Helper</Filter>
     </ClCompile>
     <ClCompile Include="BubbleDestination.cpp">
-      <Filter>03.CommonActors\01.StaticObject\04.BubbleDestination\01.Actor</Filter>
+      <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\03.BubbleDestination\01.Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -428,54 +428,6 @@
     <Filter Include="05.ContentsComponent">
       <UniqueIdentifier>{05742b4a-c282-4f71-925f-089005b2ecd8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="06.FSM">
-      <UniqueIdentifier>{8f622beb-f763-44e1-aa30-fd84b1ea9c17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\02.BubbleFSM">
-      <UniqueIdentifier>{e68db3e3-5d03-4fc5-b879-313a1fe45151}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\02.BubbleFSM\01.FSM">
-      <UniqueIdentifier>{a226ed1a-2dce-4ab6-bb4f-82c70feadbff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\02.BubbleFSM\02.Base">
-      <UniqueIdentifier>{5ab7f902-bad0-45fd-adae-db7a192eed84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\02.BubbleFSM\03.Throw">
-      <UniqueIdentifier>{7bd526ee-ecca-4420-8098-3b39e2015f85}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\01.PlayerFSM">
-      <UniqueIdentifier>{a4e9b13c-5281-49dd-9f47-810dbc433c6b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\01.PlayerFSM\07.StageMove">
-      <UniqueIdentifier>{852e9de9-e9a7-4048-ae06-84f92eb90ce4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\01.PlayerFSM\08.Sleep">
-      <UniqueIdentifier>{5c5d1b35-853c-48f2-98c2-9ee46bf92444}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\01.PlayerFSM\09.Damaged">
-      <UniqueIdentifier>{72dcb196-4541-4db0-b6b8-0917cb96b4a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\01.PlayerFSM\10.Enter">
-      <UniqueIdentifier>{2a353d2e-bdc1-440e-82d3-1c9986c8b7e7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\01.PlayerFSM\03.Idle">
-      <UniqueIdentifier>{a18518ff-6508-43ef-86ef-6f1ee0f0719e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\01.PlayerFSM\04.Move">
-      <UniqueIdentifier>{766871c2-afd6-47a7-a6e1-49eb2f5e5ad9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\01.PlayerFSM\05.Falling">
-      <UniqueIdentifier>{9b8f7abe-b18f-4df1-88e4-9efc6d9649f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\01.PlayerFSM\06.Jump">
-      <UniqueIdentifier>{98dbfde0-ab10-4980-bb82-9f3c0420b1d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\01.PlayerFSM\01.FSM">
-      <UniqueIdentifier>{665cfe20-5278-459d-bda8-f0e051df0476}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\01.PlayerFSM\02.StateBase">
-      <UniqueIdentifier>{89f30bb6-a72e-45c4-957b-db3d59039496}</UniqueIdentifier>
-    </Filter>
     <Filter Include="05.ContentsComponent\02.RigidBody">
       <UniqueIdentifier>{63d7bd75-d208-43f9-9071-2178c670e1d3}</UniqueIdentifier>
     </Filter>
@@ -533,24 +485,6 @@
     <Filter Include="03.CommonActors\01.StaticObject\01.TextLine">
       <UniqueIdentifier>{9dad718b-a627-4176-a49c-ac4fa8c3328d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.CommonActors\01.StaticObject\04.BubbleDestination">
-      <UniqueIdentifier>{8026af5e-2bdf-48d4-a7a9-056bd05040dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\02.BubbleFSM\04.Move">
-      <UniqueIdentifier>{3bead157-e4c2-48dc-aa94-b317483d45a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\02.BubbleFSM\06.Pop">
-      <UniqueIdentifier>{209d64b6-7e82-4bbd-9615-7fe422f3a449}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06.FSM\02.BubbleFSM\05.Idle">
-      <UniqueIdentifier>{5198de69-df09-43d1-99b3-a851fdd309e4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.CommonActors\01.StaticObject\04.BubbleDestination\01.Actor">
-      <UniqueIdentifier>{1e259033-3976-41a2-b994-3220cd0c7a2d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.CommonActors\01.StaticObject\04.BubbleDestination\02.Helper">
-      <UniqueIdentifier>{18b22b20-fd8e-4300-b751-42961ec45085}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA">
       <UniqueIdentifier>{bdfec7d0-2626-4662-83b7-fca0484fdb93}</UniqueIdentifier>
     </Filter>
@@ -583,6 +517,69 @@
     </Filter>
     <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\04.RoundA-3\01.Level">
       <UniqueIdentifier>{d2aeb647-a466-46c2-9dc7-85d58b961873}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\03.BubbleMissle\03.BubbleDestination">
+      <UniqueIdentifier>{8026af5e-2bdf-48d4-a7a9-056bd05040dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\03.BubbleMissle\03.BubbleDestination\01.Actor">
+      <UniqueIdentifier>{1e259033-3976-41a2-b994-3220cd0c7a2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\03.BubbleMissle\03.BubbleDestination\02.Helper">
+      <UniqueIdentifier>{18b22b20-fd8e-4300-b751-42961ec45085}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM">
+      <UniqueIdentifier>{e68db3e3-5d03-4fc5-b879-313a1fe45151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\01.FSM">
+      <UniqueIdentifier>{a226ed1a-2dce-4ab6-bb4f-82c70feadbff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\02.Base">
+      <UniqueIdentifier>{5ab7f902-bad0-45fd-adae-db7a192eed84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\03.Throw">
+      <UniqueIdentifier>{7bd526ee-ecca-4420-8098-3b39e2015f85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\04.Move">
+      <UniqueIdentifier>{3bead157-e4c2-48dc-aa94-b317483d45a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\06.Pop">
+      <UniqueIdentifier>{209d64b6-7e82-4bbd-9615-7fe422f3a449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\03.BubbleMissle\04.BubbleFSM\05.Idle">
+      <UniqueIdentifier>{5198de69-df09-43d1-99b3-a851fdd309e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM">
+      <UniqueIdentifier>{a4e9b13c-5281-49dd-9f47-810dbc433c6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\07.StageMove">
+      <UniqueIdentifier>{852e9de9-e9a7-4048-ae06-84f92eb90ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\08.Sleep">
+      <UniqueIdentifier>{5c5d1b35-853c-48f2-98c2-9ee46bf92444}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\09.Damaged">
+      <UniqueIdentifier>{72dcb196-4541-4db0-b6b8-0917cb96b4a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\10.Enter">
+      <UniqueIdentifier>{2a353d2e-bdc1-440e-82d3-1c9986c8b7e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\03.Idle">
+      <UniqueIdentifier>{a18518ff-6508-43ef-86ef-6f1ee0f0719e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\04.Move">
+      <UniqueIdentifier>{766871c2-afd6-47a7-a6e1-49eb2f5e5ad9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\05.Falling">
+      <UniqueIdentifier>{9b8f7abe-b18f-4df1-88e4-9efc6d9649f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\06.Jump">
+      <UniqueIdentifier>{98dbfde0-ab10-4980-bb82-9f3c0420b1d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\01.FSM">
+      <UniqueIdentifier>{665cfe20-5278-459d-bda8-f0e051df0476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\02.StateBase">
+      <UniqueIdentifier>{89f30bb6-a72e-45c4-957b-db3d59039496}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
