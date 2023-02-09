@@ -34,7 +34,7 @@ void BubbleMissle::Start()
 void BubbleMissle::Init(PlayerCharacterType _CharType, BubbleMissleType _BubbleType)
 {
 	FSM->Bubble = this;
-	FSM->Init(_CharType, _BubbleType);
+	FSM->Start(_CharType, _BubbleType);
 }
 
 

@@ -52,7 +52,7 @@ enum class CollisionOrder
 
 enum class ComponentType
 {
-	PlayerState,
+	//PlayerState,
 	Gravity,
 	BubbleSpawner,
 

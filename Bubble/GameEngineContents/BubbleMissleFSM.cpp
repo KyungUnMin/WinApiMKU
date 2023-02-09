@@ -27,7 +27,7 @@ BubbleMissleFSM::~BubbleMissleFSM()
 	States.clear();
 }
 
-void BubbleMissleFSM::Init(PlayerCharacterType _CharType, BubbleMissleType _BubbleType)
+void BubbleMissleFSM::Start(PlayerCharacterType _CharType, BubbleMissleType _BubbleType)
 {
 	States.resize(static_cast<size_t>(BubbleStateType::Count), nullptr);
 

@@ -88,9 +88,6 @@
     <ClInclude Include="ComponentBase.h">
       <Filter>05.ContentsComponent\01.ComponentBase</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerState.h">
-      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\01.FSM</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerBase.h">
       <Filter>03.CommonActors\02.MovableObject\02.Player\01.Base</Filter>
     </ClInclude>
@@ -168,6 +165,9 @@
     </ClInclude>
     <ClInclude Include="BubbleDestination.h">
       <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\03.BubbleDestination\01.Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFSM.h">
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\01.FSM</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -252,9 +252,6 @@
     <ClCompile Include="ComponentBase.cpp">
       <Filter>05.ContentsComponent\01.ComponentBase</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
-      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\01.FSM</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerBase.cpp">
       <Filter>03.CommonActors\02.MovableObject\02.Player\01.Base</Filter>
     </ClCompile>
@@ -335,6 +332,9 @@
     </ClCompile>
     <ClCompile Include="BubbleDestination.cpp">
       <Filter>03.CommonActors\02.MovableObject\03.BubbleMissle\03.BubbleDestination\01.Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFSM.cpp">
+      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\01.FSM</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@
 #include <GameEngineBase/GameEngineMath.h>
 #include "ContentsEnum.h"
 
-class PlayerState;
+class PlayerFSM;
 class PlayerBase;
 class GameEngineRender;
 class RoundLevelBase;
@@ -24,10 +24,10 @@ public:
 
 
 	//Player FSM을 관리하는 객체 반환
-	PlayerState* GetOwner();
+	PlayerFSM* GetOwner();
 
 	//Player FSM을 관리하는 객체 설정
-	inline void SetOwner(PlayerState* _Owner)
+	inline void SetOwner(PlayerFSM* _Owner)
 	{
 		Owner = _Owner;
 	}
@@ -102,7 +102,7 @@ private:
 
 
 
-	PlayerState*				Owner				= nullptr;
+	PlayerFSM*				Owner				= nullptr;
 	PlayerBase*					Player				= nullptr;
 	GameEngineRender*	Render				= nullptr;
 

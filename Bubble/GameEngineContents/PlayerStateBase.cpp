@@ -128,7 +128,7 @@ void PlayerStateBase::Update(float _DeltaTime)
 
 
 
-PlayerState* PlayerStateBase::GetOwner()
+PlayerFSM* PlayerStateBase::GetOwner()
 {
 	if (nullptr == Owner)
 	{

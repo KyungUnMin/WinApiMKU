@@ -20,6 +20,5 @@ protected:
 
 private:
 	HBRUSH	BackColor	= HBRUSH();
-	HPEN		BackPen		= HPEN();
 };
 

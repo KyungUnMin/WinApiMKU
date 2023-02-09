@@ -5,6 +5,7 @@
 
 class ComponentBase;
 class GameEngineCollision;
+class PlayerFSM;
 
 //모든 플레이어 클래스의 부모가 되는 추상 클래스
 class PlayerBase : public MovableActor
@@ -43,6 +44,10 @@ public:
 
 	PlayerCharacterType GetCharacterType();
 
+	inline  PlayerFSM* GetFSM()
+	{
+		return FsmPtr;
+	}
 
 protected:
 	//플레이어가 사용할 컴포넌트를 만들고 초기화
@@ -59,10 +64,13 @@ protected:
 private:
 	//컴포넌트 구조로 동작
 	std::map<ComponentType,ComponentBase*>	Components;
+	PlayerFSM*						FsmPtr				= nullptr;
 
 	PlayerCharacterType		CharcterType	= PlayerCharacterType::COUNT;
 	GameEngineCollision*		CollisionPtr		= nullptr;
 	int									lifeCnt				= 3;
+
+
 
 	void BubbleCollisionCheck();
 };

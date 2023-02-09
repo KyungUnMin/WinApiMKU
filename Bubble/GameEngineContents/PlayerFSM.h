@@ -19,26 +19,25 @@ enum class PlayerStateType
 	Count,
 };
 
+class PlayerBase;
 class PlayerStateBase;
 
 //PlayerStateBase를 상속받은 클래스를 관리하는 FSM 클래스
-class PlayerState : public ComponentBase
+class PlayerFSM
 {
+	friend PlayerBase;
+
 public:
-	PlayerState();
-	~PlayerState() override;
+	PlayerFSM();
+	~PlayerFSM();
 
-	PlayerState(const PlayerState& _Other) = delete;
-	PlayerState(PlayerState&& _Other) noexcept = delete;
-	PlayerState& operator=(const PlayerState& _Other) = delete;
-	PlayerState& operator=(const PlayerState&& _Other) noexcept = delete;
+	PlayerFSM(const PlayerFSM& _Other) = delete;
+	PlayerFSM(PlayerFSM&& _Other) noexcept = delete;
+	PlayerFSM& operator=(const PlayerFSM& _Other) = delete;
+	PlayerFSM& operator=(const PlayerFSM&& _Other) noexcept = delete;
 
 
-	//자료구조에 모든 FSM들을 생성하고 관리
-	void Start() override;
 
-	//현재 FSM 동작
-	void Update(float _DeltaTime) override;
 
 	PlayerStateBase* GetState(PlayerStateType _Type);
 
@@ -55,8 +54,15 @@ public:
 protected:
 
 private:
-	PlayerStateBase*						CurState	= nullptr;
+	PlayerBase* Player = nullptr;
+	PlayerStateBase* CurState = nullptr;
 	std::vector<PlayerStateBase*>	States;
+
+	//자료구조에 모든 FSM들을 생성하고 관리
+	void Start();
+
+	//현재 FSM 동작
+	void Update(float _DeltaTime);
 
 	//타입에 따라 컴포넌트 생성
 	void CreateState(PlayerStateType _StateType);

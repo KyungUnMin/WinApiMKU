@@ -1,6 +1,6 @@
 #include "Player_Kululun.h"
 #include "ContentsEnum.h"
-#include "PlayerState.h"
+
 
 Player_Kululun::Player_Kululun()
 {

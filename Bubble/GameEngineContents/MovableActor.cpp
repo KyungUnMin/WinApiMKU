@@ -2,7 +2,7 @@
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include "ContentsDefine.h"
-#include "PlayerState.h"
+#include "PlayerFSM.h"
 #include "Gravity.h"
 
 const std::string		MovableActor::LeftStr				= "Left_";

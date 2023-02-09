@@ -1,7 +1,7 @@
 #include "PlayerState_Damaged.h"
 #include <GameEngineCore/GameEngineRender.h>
 #include "PlayerBase.h"
-#include "PlayerState.h"
+#include "PlayerFSM.h"
 
 PlayerState_Damaged::PlayerState_Damaged()
 {

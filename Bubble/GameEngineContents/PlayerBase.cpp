@@ -5,7 +5,7 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include "ContentsDefine.h"
-#include "PlayerState.h"
+#include "PlayerFSM.h"
 #include "Gravity.h"
 #include "BubbleSpawner.h"
 #include "BubbleMissle.h"
@@ -16,12 +16,19 @@ const float4 PlayerBase::CollisionScale = float4{ 50.f, 50.f };
 
 PlayerBase::PlayerBase()
 {
-	
+	FsmPtr = new PlayerFSM;
 }
 
 //플레이어가 들고 있던 컴포넌트들을 delete
 PlayerBase::~PlayerBase()
 {
+	if (nullptr != FsmPtr)
+	{
+		delete FsmPtr;
+		FsmPtr = nullptr;
+	}
+
+
 	for (auto Pair : Components)
 	{
 		if (nullptr != Pair.second)
@@ -53,8 +60,11 @@ void PlayerBase::Start()
 	CollisionPtr->SetScale(CollisionScale);
 	CollisionPtr->SetPosition(CollisionOffset);
 
+	FsmPtr->Player = this;
+	FsmPtr->Start();
+
 	//플레이어가 사용할 컴포넌트 생성
-	Components[ComponentType::PlayerState] = new PlayerState;
+	//Components[ComponentType::PlayerState] = new PlayerFSM;
 	Components[ComponentType::Gravity] = new Gravity;
 	Components[ComponentType::BubbleSpawner] = new BubbleSpawner;
 
@@ -73,6 +83,8 @@ void PlayerBase::Update(float _DeltaTime)
 {
 	//이 객체의 방향을 체크
 	MovableActor::CheckDirection();
+
+	FsmPtr->Update(_DeltaTime);
 
 	//컴포넌트의 Update를 작동
 	for (auto Pair : Components)

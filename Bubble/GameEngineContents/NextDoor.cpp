@@ -7,7 +7,7 @@
 #include "ContentsEnum.h"
 #include "RoundLevelBase.h"
 #include "PlayerBase.h"
-#include "PlayerState.h"
+#include "PlayerFSM.h"
 
 const float4 NextDoor::CollisionScale = {8.f, 8.f};
 const float4 NextDoor::CollisionOffset = { 0.f, 20.f };
@@ -144,7 +144,7 @@ void NextDoor::CollisionPlayer()
 	for (size_t i = 0; i < Players.size(); ++i)
 	{
 		PlayerBase* Player = dynamic_cast<PlayerBase*>(Players[i]->GetActor());
-		PlayerState* PlayerFSM = Player->GetComponent<PlayerState>(ComponentType::PlayerState);
+		PlayerFSM* PlayerFSM = Player->GetFSM();
 		PlayerFSM->ChangeState(PlayerStateType::EnterDoor);
 	}
 

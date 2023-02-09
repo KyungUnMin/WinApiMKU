@@ -1,6 +1,6 @@
 #include "Player_Cororon.h"
 #include "ContentsEnum.h"
-#include "PlayerState.h"
+
 
 Player_Cororon::Player_Cororon()
 {

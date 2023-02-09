@@ -1,4 +1,4 @@
-#include "PlayerState.h"
+#include "PlayerFSM.h"
 #include <GameEngineBase/GameEngineDebug.h>
 
 #include "PlayerBase.h"
@@ -11,13 +11,13 @@
 #include "PlayerState_Damaged.h"
 #include "PlayerState_Enter.h"
 
-PlayerState::PlayerState()
+PlayerFSM::PlayerFSM()
 {
 
 }
 
 //가지고 있던 컴포넌트들을 delete
-PlayerState::~PlayerState()
+PlayerFSM::~PlayerFSM()
 {
 	for (size_t i = 0; i < States.size(); ++i)
 	{
@@ -28,10 +28,15 @@ PlayerState::~PlayerState()
 	}
 }
 
-void PlayerState::Start()
+void PlayerFSM::Start()
 {
+	if (nullptr == Player)
+	{
+		MsgAssert("PlayerFSM을 초기화해주기 전에 FSM의 Player를 설정해주어야 합니다");
+		return;
+	}
+
 	States.resize(static_cast<size_t>(PlayerStateType::Count), nullptr);
-	PlayerBase* Player = dynamic_cast<PlayerBase*>(GetOwner());
 
 	for (size_t i = 0; i < States.size(); ++i)
 	{
@@ -54,7 +59,7 @@ void PlayerState::Start()
 
 
 //타입에 따라 컴포넌트 생성
-void PlayerState::CreateState(PlayerStateType _StateType)
+void PlayerFSM::CreateState(PlayerStateType _StateType)
 {
 	size_t Index = static_cast<size_t>(_StateType);
 
@@ -94,7 +99,7 @@ void PlayerState::CreateState(PlayerStateType _StateType)
 
 
 
-PlayerStateBase* PlayerState::GetState(PlayerStateType _Type)
+PlayerStateBase* PlayerFSM::GetState(PlayerStateType _Type)
 {
 	if (PlayerStateType::Count == _Type)
 	{
@@ -107,7 +112,7 @@ PlayerStateBase* PlayerState::GetState(PlayerStateType _Type)
 
 
 //FSM 변경
-void PlayerState::ChangeState(PlayerStateBase* _NextState)
+void PlayerFSM::ChangeState(PlayerStateBase* _NextState)
 {
 	//이전 FSM이 다른 FSM으로 바뀔때 처리
 	CurState->ExitState();
@@ -120,7 +125,7 @@ void PlayerState::ChangeState(PlayerStateBase* _NextState)
 }
 
 //현재 FSM 동작
-void PlayerState::Update(float _DeltaTime)
+void PlayerFSM::Update(float _DeltaTime)
 {
 	if (nullptr == CurState)
 	{

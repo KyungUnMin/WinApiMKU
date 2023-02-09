@@ -46,7 +46,7 @@ private:
 	std::vector<BubbleMissleStateBase*>	States;
 	BubbleMissle*											Bubble		= nullptr;
 
-	void Init(PlayerCharacterType _CharType, BubbleMissleType _BubbleType);
+	void Start(PlayerCharacterType _CharType, BubbleMissleType _BubbleType);
 	void Update(float _DeltaTime);
 
 	//타입에 따라 컴포넌트 생성

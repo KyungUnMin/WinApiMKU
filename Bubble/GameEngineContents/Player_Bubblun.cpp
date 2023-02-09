@@ -1,6 +1,6 @@
 #include "Player_Bubblun.h"
 #include "ContentsEnum.h"
-#include "PlayerState.h"
+
 
 Player_Bubblun::Player_Bubblun()
 {
