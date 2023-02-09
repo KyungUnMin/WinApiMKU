@@ -49,6 +49,7 @@ OpeningLevel::~OpeningLevel()
 void OpeningLevel::Loading()
 {
 	ResourceLoad();
+	SoundPlay();
 	CreateBackGround();
 
 	GameEngineActor* Player = CreateActor<OpeningPlayer>();
@@ -113,6 +114,18 @@ void OpeningLevel::CreateText()
 	Text->SetOwner(GameLogo);
 	Text->SetPos(GameEngineWindow::GetScreenSize().half() + float4::Down * 300.f);
 	Text->SetString("ALL RIGHTS RESERVED");
+}
+
+void OpeningLevel::SoundPlay()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("BGM");
+
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("Opening.mp3"));
+	GameEngineSoundPlayer Sound = GameEngineResources::GetInst().SoundPlayerToControl("Opening.mp3");
 }
 
 

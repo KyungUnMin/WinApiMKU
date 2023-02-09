@@ -56,5 +56,6 @@ private:
 	void ResourceLoad();
 	void CreateBackGround();
 	void CreateText();
+	void SoundPlay();
 };
 
