@@ -5,7 +5,10 @@ class GameEngineRender;
 
 class PlayerState_Move : public PlayerStateBase
 {
+
 public:
+	static const float MoveSpeed;
+
 	PlayerState_Move();
 	~PlayerState_Move() override;
 
@@ -20,7 +23,6 @@ public:
 protected:
 
 private:
-	const float					MoveSpeed		= 500.f;
 
 	void ResourceLoad();
 	void CreateAnimation(PlayerCharacterType _CharacterType);

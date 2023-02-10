@@ -81,10 +81,19 @@ void PlayerBase::Update(float _DeltaTime)
 	GravityPtr->Update(_DeltaTime);
 
 	if (GameEngineInput::IsDown(PLAYER_ATTACK))
+	{
+		FsmPtr->PlayerAttack();
 		BBSpawner->CreateBubble(GetDirVec());
+	}
 
 	//플레이어와 버블의 충돌 처리및 버블 연쇄적으로 터뜨리기
 	BubbleCollisionCheck();
+}
+
+void PlayerBase::Render(float _DeltaTime)
+{
+	FsmPtr->DebugRender();
+	
 }
 
 void PlayerBase::BubbleCollisionCheck()

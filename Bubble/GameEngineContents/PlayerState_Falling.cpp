@@ -8,6 +8,8 @@
 #include "PlayerFSM.h"
 #include "ContentsDefine.h"
 
+const float	PlayerState_Falling::AirMoveSpeed = 100.f;
+
 
 PlayerState_Falling::PlayerState_Falling()
 {
@@ -64,18 +66,11 @@ void PlayerState_Falling::Update(float _DeltaTime)
 	if (false == GetRoundLevel()->IsBlockPos(NowPos + float4::Down))
 		return;
 
-	//땅에 닿은 순간에 점프키가 눌려있는 경우
-	if (true == GameEngineInput::IsPress(PLAYER_JUMP))
-	{
-		GetOwner()->ChangeState(PlayerStateType::Jump);
-		return;
-	}
-
-	////착지한 위치가 벽일때 벽 아래로 이동
-	//while (GetRoundLevel()->IsBlockPos(NowPos))
+	////땅에 닿은 순간에 점프키가 눌려있는 경우
+	//if (true == GameEngineInput::IsPress(PLAYER_JUMP))
 	//{
-	//	NowPos += float4::Down;
-	//	GetPlayer()->SetPos(NowPos);
+	//	GetOwner()->ChangeState(PlayerStateType::Jump);
+	//	return;
 	//}
 
 	//그 외에는 정상적으로 땅에 착지 했으므로 Idle
@@ -90,6 +85,7 @@ void PlayerState_Falling::ResourceLoad()
 	Dir.Move("Image");
 	Dir.Move("Common");
 	Dir.Move("Player");
+	Dir.Move("Falling");
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerFalling.bmp"))->Cut(2, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerFalling.bmp"))->Cut(2, 4);
 }

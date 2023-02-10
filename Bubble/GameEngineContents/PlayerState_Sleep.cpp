@@ -64,6 +64,7 @@ void PlayerState_Sleep::ResourceLoad()
 	Dir.Move("Image");
 	Dir.Move("Common");
 	Dir.Move("Player");
+	Dir.Move("Sleep");
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerSleep.bmp"))->Cut(3, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerSleep.bmp"))->Cut(3, 4);
 }

@@ -36,6 +36,7 @@ void PlayerState_Enter::ResourceLoad()
 	Dir.Move("Image");
 	Dir.Move("Common");
 	Dir.Move("Player");
+	Dir.Move("Enter");
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerEnter.bmp"))->Cut(2, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerEnter.bmp"))->Cut(2, 4);
 }

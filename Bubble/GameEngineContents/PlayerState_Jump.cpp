@@ -9,6 +9,9 @@
 #include "ContentsDefine.h"
 #include "Gravity.h"
 
+const float	PlayerState_Jump::AirMoveSpeed = 250.f;
+const float	PlayerState_Jump::JumpAcc = 400.f;
+
 PlayerState_Jump::PlayerState_Jump()
 {
 
@@ -94,6 +97,7 @@ void PlayerState_Jump::ResourceLoad()
 	Dir.Move("Image");
 	Dir.Move("Common");
 	Dir.Move("Player");
+	Dir.Move("Jump");
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerJump.bmp"))->Cut(4, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerJump.bmp"))->Cut(4, 4);
 }

@@ -9,6 +9,8 @@
 #include "PlayerFSM.h"
 #include "RoundLevelBase.h"
 
+const float PlayerState_Move::MoveSpeed = 400.f;
+
 PlayerState_Move::PlayerState_Move()
 {
 
@@ -89,6 +91,7 @@ void PlayerState_Move::ResourceLoad()
 	Dir.Move("Image");
 	Dir.Move("Common");
 	Dir.Move("Player");
+	Dir.Move("Move");
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerMove.bmp"))->Cut(5, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerMove.bmp"))->Cut(5, 4);
 }

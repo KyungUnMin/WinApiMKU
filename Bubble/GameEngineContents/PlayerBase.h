@@ -47,6 +47,7 @@ protected:
 
 	//방향을 체크하고 컴포넌트들을 동작
 	void Update(float _DeltaTime) final;
+	void Render(float _DeltaTime) override;
 
 	inline void SetCharacterType(PlayerCharacterType _Type)
 	{

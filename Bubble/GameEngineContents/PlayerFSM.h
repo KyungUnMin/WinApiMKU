@@ -11,10 +11,16 @@ enum class PlayerStateType
 	Move,
 	Falling,
 	Jump,
+
 	StageMove,
 	Sleep,
 	Damaged,
 	EnterDoor,
+
+	IdleAttack,
+	MoveAttack,
+	FallingAttack,
+	JumpAttack,
 
 	Count,
 };
@@ -50,6 +56,8 @@ public:
 		return RenderPtr;
 	}
 
+	void PlayerAttack();
+
 protected:
 
 private:
@@ -69,7 +77,11 @@ private:
 	//현재 FSM 동작
 	void Update(float _DeltaTime);
 
+	void DebugRender();
+
 	//타입에 따라 컴포넌트 생성
 	void CreateState(PlayerStateType _StateType);
+
+	PlayerStateType GetCurStateByEnum();
 };
 

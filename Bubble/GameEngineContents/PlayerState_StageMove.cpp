@@ -44,6 +44,7 @@ void PlayerState_StageMove::ResourceLoad()
 	Dir.Move("Image");
 	Dir.Move("Common");
 	Dir.Move("Player");
+	Dir.Move("StageMove");
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerStageMove.bmp"))->Cut(3, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerStageMove.bmp"))->Cut(3, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("StageMoveBubble.bmp"))->Cut(3, 1);

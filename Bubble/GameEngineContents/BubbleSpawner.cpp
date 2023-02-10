@@ -55,11 +55,11 @@ void BubbleSpawner::CreateBubble(const float4 _Dir)
 	float4 CreatePos = GetPos();
 	if (nullptr != Player)
 	{
-		CreatePos += SpawnOffset;
+		float4 Dir = Player->GetDirVec();
+		float4 PlayerCollisionScale = PlayerBase::CollisionScale;
+		float4 BubbleCollisionScale = BubbleMissle::CollisionScale;
+		CreatePos += Dir * (PlayerCollisionScale.half() + BubbleCollisionScale.half()) + SpawnOffset;
 	}
-
-	/*float4 PlayerCollisionScale = PlayerBase::CollisionScale;
-	float4 BubbleCollisionScale = BubbleMissle::CollisionScale;*/
 
 	//Bubble->SetPos(PlayerPos + Dir * (PlayerCollisionScale.half() + BubbleCollisionScale.half()) + SpawnOffset);
 	Bubble->SetPos(CreatePos);

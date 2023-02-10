@@ -4,6 +4,9 @@
 class PlayerState_Falling : public PlayerStateBase
 {
 public:
+	static const float	AirMoveSpeed;
+
+
 	PlayerState_Falling();
 	~PlayerState_Falling();
 
@@ -18,7 +21,6 @@ public:
 protected:
 
 private:
-	const float		AirMoveSpeed				= 100.f;
 
 	void ResourceLoad();
 	void CreateAnimation(PlayerCharacterType _CharacterType);

@@ -6,6 +6,9 @@ class RoundLevelBase;
 class PlayerState_Jump : public PlayerStateBase
 {
 public:
+	static const float					AirMoveSpeed;
+	static const float					JumpAcc;
+
 	PlayerState_Jump();
 	~PlayerState_Jump();
 
@@ -22,8 +25,7 @@ public:
 protected:
 
 private:
-	const float					AirMoveSpeed	= 250.f;
-	const float					JumpAcc			= 400.f;
+	
 
 	void ResourceLoad();
 	void CreateAnimation(PlayerCharacterType _CharacterType);
