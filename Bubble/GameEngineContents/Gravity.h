@@ -6,8 +6,6 @@ class GameEngineActor;
 class Gravity
 {
 public:
-	static bool GlobalGravityUse;
-
 	Gravity();
 	~Gravity();
 
@@ -29,10 +27,14 @@ public:
 		NowGravityAcc = _Acc;
 	}
 
+	void On();
+	void Off();
 
 protected:
 
 private:
+	bool								UseGravity			= true;
+
 	//맵 충돌을 확인하기 위한 포인터
 	RoundLevelBase*		RoundLevel			= nullptr;
 	GameEngineActor*		Owner					= nullptr;

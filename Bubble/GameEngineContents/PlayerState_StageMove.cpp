@@ -115,7 +115,8 @@ void PlayerState_StageMove::EnterState()
 	//Stage가 전환될때 처음 플레이어 위치 기록
 	PlayerOriginPos = GetPlayer()->GetPos();
 	ClearBubble->On();
-	Gravity::GlobalGravityUse = false;
+
+	GetPlayer()->GetGravity()->Off();
 }
 
 void PlayerState_StageMove::Update(float _DeltaTime)
@@ -140,6 +141,6 @@ void PlayerState_StageMove::Update(float _DeltaTime)
 void PlayerState_StageMove::ExitState()
 {
 	ClearBubble->Off();
-	Gravity::GlobalGravityUse = true;
+	GetPlayer()->GetGravity()->On();
 }
 

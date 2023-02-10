@@ -99,21 +99,21 @@ void PlayerState_IdleAttack::Update(float _DeltaTime)
 	//공중에 있는 경우
 	if (false == GetRoundLevel()->IsBlockPos(GetPlayer()->GetPos() + float4::Down))
 	{
-		GetOwner()->ChangeState(PlayerStateType::FallingAttack);
+		GetOwner()->ChangeState(PlayerStateType::Falling);
 		return;
 	}
 
 	//점프하는 경우
 	if (true == GameEngineInput::IsDown(PLAYER_JUMP))
 	{
-		GetOwner()->ChangeState(PlayerStateType::JumpAttack);
+		GetOwner()->ChangeState(PlayerStateType::Jump);
 		return;
 	}
 
 	//움직인 경우
 	if (GameEngineInput::IsPress(PLAYER_LEFT) || GameEngineInput::IsPress(PLAYER_RIGHT))
 	{
-		GetOwner()->ChangeState(PlayerStateType::MoveAttack);
+		GetOwner()->ChangeState(PlayerStateType::Move);
 		return;
 	}
 

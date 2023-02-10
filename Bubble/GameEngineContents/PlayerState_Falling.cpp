@@ -36,46 +36,6 @@ void PlayerState_Falling::Start(PlayerCharacterType _CharacterType)
 }
 
 
-void PlayerState_Falling::Update(float _DeltaTime)
-{
-	//스테이지가 이동할 때
-	if (true == GetRoundLevel()->IsMoving())
-	{
-		GetOwner()->ChangeState(PlayerStateType::StageMove);
-		return;
-	}
-
-	//플레이어의 방향 체크
-	PlayerStateBase::Update(_DeltaTime);
-	float4 NowPos = GetPlayer()->GetPos();
-	float4 MoveDir = GetPlayer()->GetDirVec();
-
-	//떨어지면서도 이동하는 경우에 
-	if (GameEngineInput::IsPress(PLAYER_RIGHT) || GameEngineInput::IsPress(PLAYER_LEFT))
-	{
-		//이동할 위치에 벽이 있는지 확인, 없다면 이동
-		if (false == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * PlayerBase::CollisionScale * 0.5f))
-		{
-			GetPlayer()->SetMove(MoveDir * AirMoveSpeed * _DeltaTime);
-		}
-		
-	}
-	
-
-	//공중에 있는 경우엔 return
-	if (false == GetRoundLevel()->IsBlockPos(NowPos + float4::Down))
-		return;
-
-	////땅에 닿은 순간에 점프키가 눌려있는 경우
-	//if (true == GameEngineInput::IsPress(PLAYER_JUMP))
-	//{
-	//	GetOwner()->ChangeState(PlayerStateType::Jump);
-	//	return;
-	//}
-
-	//그 외에는 정상적으로 땅에 착지 했으므로 Idle
-	GetOwner()->ChangeState(PlayerStateType::Idle);
-}
 
 void PlayerState_Falling::ResourceLoad()
 {
@@ -118,4 +78,59 @@ void PlayerState_Falling::CreateAnimation(PlayerCharacterType _CharacterType)
 		.End = AniIndex + ImgXCnt - 1,
 		.InterTimer = 0.25f,
 	});
+}
+
+
+
+
+
+
+
+
+void PlayerState_Falling::Update(float _DeltaTime)
+{
+	//스테이지가 이동할 때
+	if (true == GetRoundLevel()->IsMoving())
+	{
+		GetOwner()->ChangeState(PlayerStateType::StageMove);
+		return;
+	}
+
+	//플레이어의 방향 체크
+	PlayerStateBase::Update(_DeltaTime);
+	float4 NowPos = GetPlayer()->GetPos();
+	float4 MoveDir = GetPlayer()->GetDirVec();
+
+
+	//떨어지면서도 이동하는 경우에 
+	if (GameEngineInput::IsPress(PLAYER_RIGHT) || GameEngineInput::IsPress(PLAYER_LEFT))
+	{
+		//이동할 위치에 벽이 있는지 확인, 없다면 이동
+		if (false == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * PlayerBase::CollisionScale * 0.5f))
+		{
+			GetPlayer()->SetMove(MoveDir * AirMoveSpeed * _DeltaTime);
+		}
+
+	}
+
+
+	//공중에 있는 경우엔 return
+	if (false == GetRoundLevel()->IsBlockPos(NowPos + float4::Down))
+		return;
+
+	if (true == GetRoundLevel()->IsBlockPos(NowPos))
+		return;
+
+	////땅에 닿은 순간에 점프키가 눌려있는 경우
+	//if (true == GameEngineInput::IsPress(PLAYER_JUMP))
+	//{
+	//	GetOwner()->ChangeState(PlayerStateType::Jump);
+	//	return;
+	//}x
+
+
+	
+
+	//그 외에는 정상적으로 땅에 착지 했으므로 Idlex
+	GetOwner()->ChangeState(PlayerStateType::Idle);
 }

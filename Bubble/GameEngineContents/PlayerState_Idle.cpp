@@ -90,8 +90,10 @@ void PlayerState_Idle::Update(float _DeltaTime)
 		return;
 	}
 
+	float4 NowPos = GetPlayer()->GetPos();
+
 	//공중에 있는 경우
-	if (false == GetRoundLevel()->IsBlockPos(GetPlayer()->GetPos() + float4::Down))
+	if (false == GetRoundLevel()->IsBlockPos(NowPos + float4::Down))
 	{
 		GetOwner()->ChangeState(PlayerStateType::Falling);
 		return;

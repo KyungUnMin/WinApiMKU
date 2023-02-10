@@ -21,7 +21,6 @@ public:
 protected:
 
 private:
-
 	void ResourceLoad();
 	void CreateAnimation(PlayerCharacterType _CharacterType);
 };

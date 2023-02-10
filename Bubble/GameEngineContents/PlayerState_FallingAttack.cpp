@@ -121,6 +121,9 @@ void PlayerState_FallingAttack::Update(float _DeltaTime)
 	if (false == GetRoundLevel()->IsBlockPos(NowPos + float4::Down))
 		return;
 
+	if (true == GetRoundLevel()->IsBlockPos(NowPos))
+		return;
+
 	////땅에 닿은 순간에 점프키가 눌려있는 경우
 	//if (true == GameEngineInput::IsPress(PLAYER_JUMP))
 	//{
@@ -129,5 +132,5 @@ void PlayerState_FallingAttack::Update(float _DeltaTime)
 	//}
 
 	//그 외에는 정상적으로 땅에 착지 했으므로 Idle
-	GetOwner()->ChangeState(PlayerStateType::IdleAttack);
+	GetOwner()->ChangeState(PlayerStateType::Idle);
 }

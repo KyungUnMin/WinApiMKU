@@ -103,21 +103,21 @@ void PlayerState_MoveAttack::Update(float _DeltaTime)
 	float4 NowPos = GetPlayer()->GetPos();
 	if (false == GetRoundLevel()->IsBlockPos(NowPos + float4::Down))
 	{
-		GetOwner()->ChangeState(PlayerStateType::FallingAttack);
+		GetOwner()->ChangeState(PlayerStateType::Falling);
 		return;
 	}
 
 	//점프하는 경우
 	if (true == GameEngineInput::IsDown(PLAYER_JUMP))
 	{
-		GetOwner()->ChangeState(PlayerStateType::JumpAttack);
+		GetOwner()->ChangeState(PlayerStateType::Jump);
 		return;
 	}
 
 	//방향키 뗀 경우
 	if (GameEngineInput::IsFree(PLAYER_LEFT) && GameEngineInput::IsFree(PLAYER_RIGHT))
 	{
-		GetOwner()->ChangeState(PlayerStateType::IdleAttack);
+		GetOwner()->ChangeState(PlayerStateType::Idle);
 		return;
 	}
 

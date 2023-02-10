@@ -90,10 +90,15 @@ void PlayerBase::Update(float _DeltaTime)
 	BubbleCollisionCheck();
 }
 
+#include <GameEnginePlatform/GameEngineWindow.h>
+#include <GameEnginePlatform/GameEngineImage.h>
+
 void PlayerBase::Render(float _DeltaTime)
 {
-	FsmPtr->DebugRender();
-	
+	float4 Pos = GetPos();
+	Rectangle(GameEngineWindow::GetDoubleBufferImage()->GetImageDC(), Pos.ix() - 1, Pos.iy() - 1, Pos.ix() + 1, Pos.iy() + 1);
+
+	FsmPtr->DebugRender();	
 }
 
 void PlayerBase::BubbleCollisionCheck()

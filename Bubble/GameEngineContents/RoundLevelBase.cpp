@@ -198,6 +198,8 @@ bool RoundLevelBase::IsBlockPos(const float4& _Pos)
 	//현재 Stage에 맞게 Offset을 조정	(3번 스테이지라면 해상도.x * 3)
 	float4 Offset = StageCollision->GetCutData(static_cast<int>(NowStageIndex)).GetStartPos();
 
+	float4 DEbug = Offset + _Pos;
+
 	//해당 지점의 색상 추출(스크린 밖으로도 나갈수 있는 상태)
 	DWORD Color = StageCollision->GetPixelColor(Offset + _Pos, RGB(255, 255, 255));
 

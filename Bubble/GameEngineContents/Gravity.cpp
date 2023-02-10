@@ -4,8 +4,6 @@
 #include "RoundLevelBase.h"
 #include "MovableActor.h"
 
-bool Gravity::GlobalGravityUse = true;
-
 Gravity::Gravity()
 {
 
@@ -31,7 +29,7 @@ void Gravity::Start(GameEngineActor* _Owner)
 
 void Gravity::Update(float _DeltaTime)
 {
-	if (false == GlobalGravityUse)
+	if (false == UseGravity)
 		return;
 
 	//현재위치
@@ -88,4 +86,17 @@ void Gravity::Update(float _DeltaTime)
 
 	//중력가속도에 따른 값만큼 이동(float4::Down을 Up으로 바꾸면 계산이 덜 복잡할 것 같다)
 	Owner->SetMove(float4::Down * NowGravityAcc * _DeltaTime);
+}
+
+void Gravity::On()
+{
+	UseGravity = true;
+}
+
+void Gravity::Off()
+{
+	UseGravity = false;
+	NowGravityAcc = 0.0f;
+	PrevGravityAcc = 0.0f;
+	IsTouchCollision = false;
 }

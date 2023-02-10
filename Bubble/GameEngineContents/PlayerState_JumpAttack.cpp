@@ -89,16 +89,16 @@ void PlayerState_JumpAttack::Update(float _DeltaTime)
 		return;
 	}
 
-	if (true == GetRender()->IsAnimationEnd())
+	/*if (true == GetRender()->IsAnimationEnd())
 	{
 		GetOwner()->ChangeState(PlayerStateType::Jump);
 		return;
-	}
+	}*/
 
 	//점프위치가 최고점에 닿았을때
 	if (0.f <= GetPlayer()->GetGravity()->GetAcc())
 	{
-		GetOwner()->ChangeState(PlayerStateType::FallingAttack);
+		GetOwner()->ChangeState(PlayerStateType::Falling);
 		return;
 	}
 
@@ -118,4 +118,11 @@ void PlayerState_JumpAttack::Update(float _DeltaTime)
 			GetPlayer()->SetMove(MoveDir * PlayerState_Jump::AirMoveSpeed * _DeltaTime);
 		}
 	}
+}
+
+//Jump::EnterState가 호출되면 공중에서 한번 더 점프하게 된다
+//그래서 override시킴
+void PlayerState_JumpAttack::EnterState()
+{
+	PlayerStateBase::EnterState();
 }
