@@ -1,6 +1,8 @@
 #include "PlayerState_Idle.h"
 #include <vector>
 
+#include<GameEngineBase/GameEngineDirectory.h>
+#include <GameEngineCore/GameEngineResources.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "ContentsDefine.h"
@@ -23,40 +25,63 @@ PlayerState_Idle::~PlayerState_Idle()
 
 void PlayerState_Idle::Start(PlayerCharacterType _CharacterType)
 {
-	//이 State의 정보 초기화
-	PlayerStateBase::Init(
-		"Left_PlayerIdle.bmp",
-		"Right_PlayerIdle.bmp",
-		"Idle",
-		std::make_pair(2, 4),
-		0.25f);
-
 	//딱 한번만 리소스 로드
 	static bool IsLoad = false;
 	if (false== IsLoad)
 	{
-		PlayerStateBase::ResourceLoad();
+		ResourceLoad();
 		IsLoad = true;
 	}
 
-	//애니메이션 생성 및 RoundLevel과 연결
-	PlayerStateBase::Start(_CharacterType);
-
-	//테스트 코드
-	if (false == GameEngineInput::IsKey("Test_PlayerDamaged"))
-		GameEngineInput::CreateKey("Test_PlayerDamaged", 'K');
+	ConnectRoundLevel();
+	CreateAnimation(_CharacterType);
 }
 
 
+void PlayerState_Idle::ResourceLoad()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Image");
+	Dir.Move("Common");
+	Dir.Move("Player");
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerIdle.bmp"))->Cut(2, 4);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerIdle.bmp"))->Cut(2, 4);
+}
+
+void PlayerState_Idle::CreateAnimation(PlayerCharacterType _CharacterType)
+{
+	int ImgXCnt = 2;
+	int AniIndex = static_cast<int>(_CharacterType) * ImgXCnt;
+
+	SetAniName("Idle");
+	std::string LeftAniName = MovableActor::LeftStr + GetAniName();
+	std::string RightAniName = MovableActor::RightStr + GetAniName();
+
+	//왼쪽 애니메이션 생성
+	GetRender()->CreateAnimation
+	({
+		.AnimationName = LeftAniName,
+		.ImageName = "Left_PlayerIdle.bmp",
+		.Start = AniIndex,
+		.End = AniIndex + ImgXCnt - 1,
+		.InterTimer = 0.25f,
+	});
+
+	//오른쪽 애니메이션 생성
+	GetRender()->CreateAnimation
+	({
+		.AnimationName = RightAniName,
+		.ImageName = "Right_PlayerIdle.bmp",
+		.Start = AniIndex,
+		.End = AniIndex + ImgXCnt - 1,
+		.InterTimer = 0.25f,
+	});
+}
+
 void PlayerState_Idle::Update(float _DeltaTime)
 {
-	//테스트 코드
-	if (true == GameEngineInput::IsDown("Test_PlayerDamaged"))
-	{
-		GetOwner()->ChangeState(PlayerStateType::Damaged);
-		return;
-	}
-
 	//스테이지가 이동할 때
 	if (true == GetRoundLevel()->IsMoving())
 	{
@@ -79,7 +104,7 @@ void PlayerState_Idle::Update(float _DeltaTime)
 	}
 
 	//움직인 경우
-	if(GameEngineInput::IsPress(PLAYER_LEFT) || GameEngineInput::IsPress(PLAYER_RIGHT))
+	if (GameEngineInput::IsPress(PLAYER_LEFT) || GameEngineInput::IsPress(PLAYER_RIGHT))
 	{
 		GetOwner()->ChangeState(PlayerStateType::Move);
 		return;
@@ -96,4 +121,3 @@ void PlayerState_Idle::Update(float _DeltaTime)
 	//방향에 따라 idle 애니메이션 설정
 	PlayerStateBase::Update(_DeltaTime);
 }
-

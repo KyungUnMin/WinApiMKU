@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <GameEngineBase/GameEngineMath.h>
 #include "ContentsEnum.h"
 
 //플레이어 상태의 종류
@@ -20,6 +21,7 @@ enum class PlayerStateType
 
 class PlayerBase;
 class PlayerStateBase;
+class GameEngineRender;
 
 //PlayerStateBase를 상속받은 클래스를 관리하는 FSM 클래스
 class PlayerFSM
@@ -43,13 +45,20 @@ public:
 	//FSM 변경(PlayerStateBase 포인터)
 	void ChangeState(PlayerStateBase* _NextState);
 
+	inline GameEngineRender* GetRender()
+	{
+		return RenderPtr;
+	}
 
 protected:
 
 private:
 	std::vector<PlayerStateBase*>	States;
-	PlayerBase*									Player			= nullptr;
-	PlayerStateBase*						CurState		= nullptr;
+	PlayerBase*									Player						= nullptr;
+	PlayerStateBase*						CurState					= nullptr;
+
+	const float4								PlayerRenderScale	= float4{ 200.f, 200.f };
+	GameEngineRender*					RenderPtr				= nullptr;
 
 	PlayerFSM();
 	~PlayerFSM();

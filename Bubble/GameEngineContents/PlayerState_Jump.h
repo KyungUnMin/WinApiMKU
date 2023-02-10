@@ -24,5 +24,8 @@ protected:
 private:
 	const float					AirMoveSpeed	= 250.f;
 	const float					JumpAcc			= 400.f;
+
+	void ResourceLoad();
+	void CreateAnimation(PlayerCharacterType _CharacterType);
 };
 

@@ -3,6 +3,7 @@
 
 class GameEngineRender;
 
+
 class PlayerState_Idle : public PlayerStateBase
 {
 public:
@@ -27,5 +28,8 @@ protected:
 private:
 	float								AccTime					= 0.0f;
 	const float						SleepChangeTime	= 3.f;
+
+	void ResourceLoad();
+	void CreateAnimation(PlayerCharacterType _CharacterType);
 };
 

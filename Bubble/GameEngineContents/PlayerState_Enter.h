@@ -13,11 +13,13 @@ public:
 	PlayerState_Enter& operator=(const PlayerState_Enter&& _Other) noexcept = delete;
 
 	void Start(PlayerCharacterType _CharacterType) override;
-	void Update(float _DeltaTime) override;
+	void Update(float _DeltaTime) override{}
 
 protected:
 
 private:
 
+	void ResourceLoad();
+	void CreateAnimation(PlayerCharacterType _CharacterType);
 };
 

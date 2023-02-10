@@ -21,5 +21,8 @@ protected:
 
 private:
 	const float					MoveSpeed		= 500.f;
+
+	void ResourceLoad();
+	void CreateAnimation(PlayerCharacterType _CharacterType);
 };
 

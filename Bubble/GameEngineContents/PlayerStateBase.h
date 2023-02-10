@@ -41,10 +41,8 @@ public:
 		Player = _Player;
 	}
 
-
-
 	//애니메이션 생성 및 RoundLevel과 연결
-	virtual void Start(PlayerCharacterType _CharacterType);
+	virtual void Start(PlayerCharacterType _CharacterType) = 0;
 
 	//플레이어의 방향이 바뀌였다면 그 방향에 따라 애니메이션 전환
 	virtual void Update(float _DeltaTime);
@@ -53,65 +51,29 @@ public:
 	virtual void EnterState();
 
 	//애니메이션의 렌더러 끄기
-	virtual void ExitState();
+	virtual void ExitState(){}
 
 protected:
-	void Init(
-		const std::string_view& _LeftAniPath,
-		const std::string_view& _RightAniPath,
-		const std::string_view& _AniName,
-		const std::pair<int, int>& _CutInfo,
-		float _AniInterval = 0.1f,
-		bool _AniLoop = true)
-	{
-		LeftAniPath = _LeftAniPath;
-		RightAniPath = _RightAniPath;
-		AniName = _AniName;
-		CutInfo = _CutInfo;
-		AniInterval = _AniInterval;
-		AniLoop = _AniLoop;
-	}
-
-
-
-	//자식들의 리소스를 로드하는데 도와주는 함수
-	void ResourceLoad();
-
-	//Init을 사용하지 않고 특정 이미지를 직접 로드
-	void ResourceLoad(const std::string_view& _ImagePath, const std::pair<int,int>& _CutInfo);
-
-
-	inline GameEngineRender* GetRender()
-	{
-		return Render;
-	}
-
 	RoundLevelBase* GetRoundLevel();
+	void ConnectRoundLevel();
+
+	inline void SetAniName(const std::string_view& _AniName)
+	{
+		AniName = _AniName;
+	}
+
+	inline const std::string& GetAniName()
+	{
+		return AniName;
+	}
+
+	GameEngineRender* GetRender();
 
 private:
-	//Init에 사용되는 정보
-	std::string					LeftAniPath		= "";
-	std::string					RightAniPath	= "";
-	std::string					AniName			= "";
-	std::pair<int, int> 		CutInfo;
-	float							AniInterval		= 0.1f;
-	bool								AniLoop			= true;
-
-	RoundLevelBase*		RoundLevel		= nullptr;
-	const float4				PlayerScale		= float4{ 200.f, 200.f };
-
-
-
-	PlayerFSM*				Owner				= nullptr;
+	PlayerFSM*					Owner				= nullptr;
 	PlayerBase*					Player				= nullptr;
-	GameEngineRender*	Render				= nullptr;
-
-
-	//애니메이션 만들기
-	void CreateAnimation(PlayerCharacterType _CharacterType);
-
-	//플레이어가 사용되는 Level인 RoundLevel과 연결
-	void ConnectRoundLevel();
+	RoundLevelBase*		RoundLevel		= nullptr;
+	std::string					AniName			= "";
 };
 
 

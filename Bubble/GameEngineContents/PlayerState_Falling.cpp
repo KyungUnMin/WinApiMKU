@@ -1,5 +1,7 @@
 #include "PlayerState_Falling.h"
+#include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineInput.h>
+#include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "PlayerBase.h"
 #include "RoundLevelBase.h"
@@ -19,24 +21,16 @@ PlayerState_Falling::~PlayerState_Falling()
 
 void PlayerState_Falling::Start(PlayerCharacterType _CharacterType)
 {
-	//이 State의 정보 초기화
-	PlayerStateBase::Init(
-		"Left_PlayerFalling.bmp",
-		"Right_PlayerFalling.bmp",
-		"Falling",
-		std::make_pair(2, 4),
-		0.25f);
-
 	//딱 한번만 리소스 로드
 	static bool IsLoad = false;
 	if (false == IsLoad)
 	{
-		PlayerStateBase::ResourceLoad();
+		ResourceLoad();
 		IsLoad = true;
 	}
 
-	//애니메이션 생성 및 RoundLevel과 연결
-	PlayerStateBase::Start(_CharacterType);
+	ConnectRoundLevel();
+	CreateAnimation(_CharacterType);
 }
 
 
@@ -86,4 +80,46 @@ void PlayerState_Falling::Update(float _DeltaTime)
 
 	//그 외에는 정상적으로 땅에 착지 했으므로 Idle
 	GetOwner()->ChangeState(PlayerStateType::Idle);
+}
+
+void PlayerState_Falling::ResourceLoad()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Image");
+	Dir.Move("Common");
+	Dir.Move("Player");
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerFalling.bmp"))->Cut(2, 4);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerFalling.bmp"))->Cut(2, 4);
+}
+
+void PlayerState_Falling::CreateAnimation(PlayerCharacterType _CharacterType)
+{
+	int ImgXCnt = 2;
+	int AniIndex = static_cast<int>(_CharacterType) * ImgXCnt;
+
+	SetAniName("Falling");
+	std::string LeftAniName = MovableActor::LeftStr + GetAniName();
+	std::string RightAniName = MovableActor::RightStr + GetAniName();
+
+	//왼쪽 애니메이션 생성
+	GetRender()->CreateAnimation
+	({
+		.AnimationName = LeftAniName,
+		.ImageName = "Left_PlayerFalling.bmp",
+		.Start = AniIndex,
+		.End = AniIndex + ImgXCnt - 1,
+		.InterTimer = 0.25f,
+	});
+
+	//오른쪽 애니메이션 생성
+	GetRender()->CreateAnimation
+	({
+		.AnimationName = RightAniName,
+		.ImageName = "Right_PlayerFalling.bmp",
+		.Start = AniIndex,
+		.End = AniIndex + ImgXCnt - 1,
+		.InterTimer = 0.25f,
+	});
 }

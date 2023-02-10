@@ -542,9 +542,6 @@
     <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\09.Damaged">
       <UniqueIdentifier>{72dcb196-4541-4db0-b6b8-0917cb96b4a1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\10.Enter">
-      <UniqueIdentifier>{2a353d2e-bdc1-440e-82d3-1c9986c8b7e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\03.Idle">
       <UniqueIdentifier>{a18518ff-6508-43ef-86ef-6f1ee0f0719e}</UniqueIdentifier>
     </Filter>
@@ -571,6 +568,9 @@
     </Filter>
     <Filter Include="05.ContentsModule\02.Gravity">
       <UniqueIdentifier>{095385e8-eb3c-4743-bee7-6ab29f7538d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\10.Enter">
+      <UniqueIdentifier>{2a353d2e-bdc1-440e-82d3-1c9986c8b7e7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

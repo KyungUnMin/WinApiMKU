@@ -1,6 +1,8 @@
 #include "PlayerState_StageMove.h"
+#include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineMath.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineResources.h>
 #include "RoundLevelBase.h"
 #include "PlayerBase.h"
 #include "PlayerFSM.h"
@@ -18,27 +20,63 @@ PlayerState_StageMove::~PlayerState_StageMove()
 
 void PlayerState_StageMove::Start(PlayerCharacterType _CharacterType)
 {
-	//이 State의 정보 초기화
-	PlayerStateBase::Init(
-		"Left_PlayerStageMove.bmp",
-		"Right_PlayerStageMove.bmp",
-		"StageMove",
-		std::make_pair(3, 4));
-
 	//딱 한번만 리소스 로드
 	static bool IsLoad = false;
 	if (false == IsLoad)
 	{
 		ResourceLoad();
-		ResourceLoad("StageMoveBubble.bmp", std::make_pair(3,1));
 		IsLoad = true;
 	}
 
-	//애니메이션 생성 및 RoundLevel과 연결
-	PlayerStateBase::Start(_CharacterType);
+	ConnectRoundLevel();
+	CreateAnimation(_CharacterType);
 
 	//뒤쪽 투명 거품 애니메이션 생성(private)
 	CreateBubbleAni();
+}
+
+
+void PlayerState_StageMove::ResourceLoad()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Image");
+	Dir.Move("Common");
+	Dir.Move("Player");
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerStageMove.bmp"))->Cut(3, 4);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerStageMove.bmp"))->Cut(3, 4);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("StageMoveBubble.bmp"))->Cut(3, 1);
+}
+
+void PlayerState_StageMove::CreateAnimation(PlayerCharacterType _CharacterType)
+{
+	int ImgXCnt = 3;
+	int AniIndex = static_cast<int>(_CharacterType) * ImgXCnt;
+
+	SetAniName("StageMove");
+	std::string LeftAniName = MovableActor::LeftStr + GetAniName();
+	std::string RightAniName = MovableActor::RightStr + GetAniName();
+
+	//왼쪽 애니메이션 생성
+	GetRender()->CreateAnimation
+	({
+		.AnimationName = LeftAniName,
+		.ImageName = "Left_PlayerStageMove.bmp",
+		.Start = AniIndex,
+		.End = AniIndex + ImgXCnt - 1,
+		.InterTimer = 0.1f,
+	});
+
+	//오른쪽 애니메이션 생성
+	GetRender()->CreateAnimation
+	({
+		.AnimationName = RightAniName,
+		.ImageName = "Right_PlayerStageMove.bmp",
+		.Start = AniIndex,
+		.End = AniIndex + ImgXCnt - 1,
+		.InterTimer = 0.1f,
+	});
 }
 
 void PlayerState_StageMove::CreateBubbleAni()
@@ -71,10 +109,10 @@ void PlayerState_StageMove::CreateBubbleAni()
 //플레이어 애니메이션 켜기 & 뒤쪽 거품 켜기
 void PlayerState_StageMove::EnterState()
 {
+	PlayerStateBase::EnterState();
+
 	//Stage가 전환될때 처음 플레이어 위치 기록
 	PlayerOriginPos = GetPlayer()->GetPos();
-
-	GetRender()->On();
 	ClearBubble->On();
 	Gravity::GlobalGravityUse = false;
 }
@@ -100,7 +138,6 @@ void PlayerState_StageMove::Update(float _DeltaTime)
 //플레이어 애니메이션 끄기 & 뒤쪽 거품 끄기
 void PlayerState_StageMove::ExitState()
 {
-	GetRender()->Off();
 	ClearBubble->Off();
 	Gravity::GlobalGravityUse = true;
 }

@@ -19,5 +19,8 @@ protected:
 
 private:
 	const float		AirMoveSpeed				= 100.f;
+
+	void ResourceLoad();
+	void CreateAnimation(PlayerCharacterType _CharacterType);
 };
 

@@ -1,4 +1,8 @@
 #include "PlayerState_Enter.h"
+#include <GameEngineBase/GameEngineDirectory.h>
+#include <GameEngineCore/GameEngineResources.h>
+#include <GameEngineCore/GameEngineRender.h>
+#include "MovableActor.h"
 
 PlayerState_Enter::PlayerState_Enter()
 {
@@ -12,27 +16,58 @@ PlayerState_Enter::~PlayerState_Enter()
 
 void PlayerState_Enter::Start(PlayerCharacterType _CharacterType)
 {
-	//이 State의 정보 초기화
-	PlayerStateBase::Init(
-		"Left_PlayerEnter.bmp",
-		"Right_PlayerEnter.bmp",
-		"Enter",
-		std::make_pair(2, 4),
-		0.5f, false);
-
 	//딱 한번만 리소스 로드
 	static bool IsLoad = false;
 	if (false == IsLoad)
 	{
-		PlayerStateBase::ResourceLoad();
+		ResourceLoad();
 		IsLoad = true;
 	}
 
-	//애니메이션 생성 및 RoundLevel과 연결
-	PlayerStateBase::Start(_CharacterType);
+	ConnectRoundLevel();
+	CreateAnimation(_CharacterType);
 }
 
-void PlayerState_Enter::Update(float _DeltaTime)
+void PlayerState_Enter::ResourceLoad()
 {
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Image");
+	Dir.Move("Common");
+	Dir.Move("Player");
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerEnter.bmp"))->Cut(2, 4);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerEnter.bmp"))->Cut(2, 4);
+}
 
+void PlayerState_Enter::CreateAnimation(PlayerCharacterType _CharacterType)
+{
+	int ImgXCnt = 2;
+	int AniIndex = static_cast<int>(_CharacterType) * ImgXCnt;
+
+	SetAniName("Enter");
+	std::string LeftAniName = MovableActor::LeftStr + GetAniName();
+	std::string RightAniName = MovableActor::RightStr + GetAniName();
+
+	//왼쪽 애니메이션 생성
+	GetRender()->CreateAnimation
+	({
+		.AnimationName = LeftAniName,
+		.ImageName = "Left_PlayerEnter.bmp",
+		.Start = AniIndex,
+		.End = AniIndex + ImgXCnt - 1,
+		.InterTimer = 0.5f,
+		.Loop = false
+	});
+
+	//오른쪽 애니메이션 생성
+	GetRender()->CreateAnimation
+	({
+		.AnimationName = RightAniName,
+		.ImageName = "Right_PlayerEnter.bmp",
+		.Start = AniIndex,
+		.End = AniIndex + ImgXCnt - 1,
+		.InterTimer = 0.5f,
+		.Loop = false
+	});
 }

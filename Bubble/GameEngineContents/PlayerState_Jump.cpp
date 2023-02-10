@@ -1,6 +1,8 @@
 #include "PlayerState_Jump.h"
+#include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineResources.h>
 #include "PlayerFSM.h"
 #include "PlayerBase.h"
 #include "RoundLevelBase.h"
@@ -19,23 +21,16 @@ PlayerState_Jump::~PlayerState_Jump()
 
 void PlayerState_Jump::Start(PlayerCharacterType _CharacterType)
 {
-	//이 State의 정보 초기화
-	PlayerStateBase::Init(
-		"Left_PlayerJump.bmp",
-		"Right_PlayerJump.bmp",
-		"Jump",
-		std::make_pair(4, 4));
-
 	//딱 한번만 리소스 로드
 	static bool IsLoad = false;
 	if (false == IsLoad)
 	{
-		PlayerStateBase::ResourceLoad();
+		ResourceLoad();
 		IsLoad = true;
 	}
 
-	//애니메이션 생성 및 RoundLevel과 연결
-	PlayerStateBase::Start(_CharacterType);
+	ConnectRoundLevel();
+	CreateAnimation(_CharacterType);
 }
 
 void PlayerState_Jump::Update(float _DeltaTime)
@@ -87,4 +82,49 @@ void PlayerState_Jump::EnterState()
 	PlayerStateBase::EnterState();
 	GetPlayer()->SetMove(float4::Up);
 	GetPlayer()->GetGravity()->SetAcc(-JumpAcc);
+}
+
+
+
+void PlayerState_Jump::ResourceLoad()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Image");
+	Dir.Move("Common");
+	Dir.Move("Player");
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerJump.bmp"))->Cut(4, 4);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerJump.bmp"))->Cut(4, 4);
+}
+
+
+void PlayerState_Jump::CreateAnimation(PlayerCharacterType _CharacterType)
+{
+	int ImgXCnt = 4;
+	int AniIndex = static_cast<int>(_CharacterType) * ImgXCnt;
+
+	SetAniName("Jump");
+	std::string LeftAniName = MovableActor::LeftStr + GetAniName();
+	std::string RightAniName = MovableActor::RightStr + GetAniName();
+
+	//왼쪽 애니메이션 생성
+	GetRender()->CreateAnimation
+	({
+		.AnimationName = LeftAniName,
+		.ImageName = "Left_PlayerJump.bmp",
+		.Start = AniIndex,
+		.End = AniIndex + ImgXCnt - 1,
+		.InterTimer = 0.1f,
+	});
+
+	//오른쪽 애니메이션 생성
+	GetRender()->CreateAnimation
+	({
+		.AnimationName = RightAniName,
+		.ImageName = "Right_PlayerJump.bmp",
+		.Start = AniIndex,
+		.End = AniIndex + ImgXCnt - 1,
+		.InterTimer = 0.1f,
+	});
 }

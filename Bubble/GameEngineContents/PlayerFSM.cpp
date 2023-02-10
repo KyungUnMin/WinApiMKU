@@ -1,6 +1,6 @@
 #include "PlayerFSM.h"
 #include <GameEngineBase/GameEngineDebug.h>
-
+#include <GameEngineCore/GameEngineRender.h>
 #include "PlayerBase.h"
 #include "PlayerState_Idle.h"
 #include "PlayerState_Move.h"
@@ -36,8 +36,10 @@ void PlayerFSM::Start()
 		return;
 	}
 
-	States.resize(static_cast<size_t>(PlayerStateType::Count), nullptr);
+	RenderPtr = Player->CreateRender(RenderOrder::Player1);
+	RenderPtr->SetScale(PlayerRenderScale);
 
+	States.resize(static_cast<size_t>(PlayerStateType::Count), nullptr);
 	for (size_t i = 0; i < States.size(); ++i)
 	{
 		//생성
@@ -114,15 +116,19 @@ PlayerStateBase* PlayerFSM::GetState(PlayerStateType _Type)
 //FSM 변경
 void PlayerFSM::ChangeState(PlayerStateBase* _NextState)
 {
-	//이전 FSM이 다른 FSM으로 바뀔때 처리
-	CurState->ExitState();
-
-	//전환되는 FSM으로 들어올때
-	_NextState->EnterState();
+	PlayerStateBase* NextState = _NextState;
+	PlayerStateBase* PrevState = CurState;
 
 	//FSM변경
 	CurState = _NextState;
+
+	//이전 FSM이 다른 FSM으로 바뀔때 처리
+	PrevState->ExitState();
+
+	//전환되는 FSM으로 들어올때
+	NextState->EnterState();
 }
+
 
 //현재 FSM 동작
 void PlayerFSM::Update(float _DeltaTime)
