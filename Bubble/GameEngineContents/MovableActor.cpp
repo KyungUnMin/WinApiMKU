@@ -135,9 +135,7 @@ bool MovableActor::MoveHorizon(float _Speed, const float4& _CollisionScale, floa
 
 	//이동시키려는 위치가 벽이라면 이동 안함
 	if (true == RoundLevel->IsBlockPos(CheckPos))
-	{
 		return false;
-	}
 
 	//이동
 	SetPos(NextPos);

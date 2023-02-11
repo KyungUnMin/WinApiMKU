@@ -98,6 +98,9 @@ void PlayerState_Jump::EnterState()
 
 void PlayerState_Jump::Update(float _DeltaTime)
 {
+	//시간 세기
+	AccTime += _DeltaTime;
+
 	if (true == CheckStateChange(_DeltaTime))
 		return;
 
@@ -123,9 +126,6 @@ bool PlayerState_Jump::CheckStateChange(float _DeltaTime)
 		return true;
 	}
 
-	//시간 세기
-	AccTime += _DeltaTime;
-
 	//점프 유지 시간이 전부 지났을때
 	if (FallingChangeTime < AccTime)
 	{
@@ -144,8 +144,11 @@ void PlayerState_Jump::Move(float _DeltaTime)
 	//플레이어의 방향이 바뀌였다면 그 방향에 따라 애니메이션 전환
 	ChangeAniDir();
 
+	float Ratio = AccTime / FallingChangeTime;
+	float4 NowJumpSpeed = float4::LerpClamp(JumpSpeed, float4::Zero, Ratio);
+
 	float4 NowPos = GetPlayer()->GetPos();
-	float4 NextPos = NowPos + (float4::Up * JumpSpeed * _DeltaTime);
+	float4 NextPos = NowPos + (float4::Up * NowJumpSpeed * _DeltaTime);
 	float4 CollisionScale = PlayerBase::CollisionScale;
 	float PlayerHeight = CollisionScale.Size();
 
@@ -159,6 +162,8 @@ void PlayerState_Jump::Move(float _DeltaTime)
 	//점프중에도 플레이어를 이동키실때
 	if (GameEngineInput::IsPress(PLAYER_RIGHT) || GameEngineInput::IsPress(PLAYER_LEFT))
 	{
+		//점프의 경우 MoveHorizon안에 벽을 뛰어넘을수 있는 범위의 함수를 오버로딩하면
+		//중간에 걸리는 느낌을 없앨수 있을것 같다.(추후에 생각해보자)
 		GetPlayer()->MoveHorizon(AirMoveSpeed.x, PlayerBase::CollisionScale, _DeltaTime);
 	}
 }

@@ -26,7 +26,7 @@ private:
 	const float		FallingChangeTime		= 0.5f;
 
 	const float4	AirMoveSpeed				= float4{ 250.f, 0.f };
-	const float4	JumpSpeed					= float4{ 0.f, 400.f };
+	const float4	JumpSpeed					= float4{ 0.f, 600.f };
 	const float		ScreenTopOffset		= 50.f;
 	
 
