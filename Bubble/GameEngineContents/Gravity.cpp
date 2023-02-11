@@ -3,6 +3,7 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include "RoundLevelBase.h"
 #include "MovableActor.h"
+#include "BubbleCore.h"
 
 Gravity::Gravity()
 {
@@ -15,9 +16,10 @@ Gravity::~Gravity()
 }
 
 
-void Gravity::Start(GameEngineActor* _Owner)
+void Gravity::Start(GameEngineActor* _Owner, const float4& _CollisionScale)
 {
 	Owner = _Owner;
+	CollisionScale = _CollisionScale;
 
 	GameEngineLevel* Level = Owner->GetLevel();
 	RoundLevel = dynamic_cast<RoundLevelBase*>(Level);
@@ -57,11 +59,12 @@ void Gravity::Update(float _DeltaTime)
 
 	if (false == IsTouchCollision)
 	{
-		//바로 아래 위치
-		float4 DownPos = NowPos + float4::Down;
+		//충돌체보다 살짝 작은 가로 범위(바로 아래)
+		float4 LeftCheckPos = (NowPos + float4::Left * CollisionScale.half()) + float4::Down + float4::Right;
+		float4 RightCheckPos = (NowPos + float4::Right * CollisionScale.half()) + float4::Down + float4::Left;
 
 		//아래로 떨어지는 경우(가속도 값이 양수)면서 내 바로 밑이 바닥일때
-		if (0.f <= NowGravityAcc && RoundLevel->IsBlockPos(DownPos))
+		if (0.f <= NowGravityAcc && (RoundLevel->IsBlockPos(LeftCheckPos) || RoundLevel->IsBlockPos(RightCheckPos)))
 		{
 			//가속도 0
 			NowGravityAcc = 0.f;
@@ -86,6 +89,14 @@ void Gravity::Update(float _DeltaTime)
 
 	//중력가속도에 따른 값만큼 이동(float4::Down을 Up으로 바꾸면 계산이 덜 복잡할 것 같다)
 	Owner->SetMove(float4::Down * NowGravityAcc * _DeltaTime);
+}
+
+void Gravity::DebugRender()
+{
+	if (false == BubbleCore::GetInst().IsDebug())
+		return;
+
+	GameEngineLevel::DebugTextPush(std::to_string(NowGravityAcc));
 }
 
 void Gravity::On()

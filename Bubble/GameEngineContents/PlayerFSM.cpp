@@ -34,6 +34,13 @@ PlayerFSM::~PlayerFSM()
 	}
 }
 
+
+
+
+
+
+
+
 void PlayerFSM::Start()
 {
 	if (nullptr == Player)
@@ -52,7 +59,7 @@ void PlayerFSM::Start()
 		CreateState(static_cast<PlayerStateType>(i));
 
 		//이 FSM을 관리하고 있는 클래스로 자기자신을 등록
-		States[i]->SetOwner(this);
+		States[i]->SetFSM(this);
 		//이 FSM이 가르키고 있는 객체 등록(Player의 FSM이기 때문에 플레이어 등록)
 		States[i]->SetPlayer(Player);
 
@@ -64,6 +71,9 @@ void PlayerFSM::Start()
 	CurState = GetState(PlayerStateType::Idle);
 	CurState->EnterState();
 }
+
+
+
 
 
 //타입에 따라 컴포넌트 생성
@@ -115,6 +125,11 @@ void PlayerFSM::CreateState(PlayerStateType _StateType)
 	}
 }
 
+
+
+
+
+//현재 플레이어의 State를 Enum으로 반환
 PlayerStateType PlayerFSM::GetCurStateByEnum()
 {
 	for (size_t i = 0; i < States.size(); ++i)
@@ -130,8 +145,7 @@ PlayerStateType PlayerFSM::GetCurStateByEnum()
 }
 
 
-
-
+//enum으로 받은 값을 States에서 찾아 반환
 PlayerStateBase* PlayerFSM::GetState(PlayerStateType _Type)
 {
 	if (PlayerStateType::Count == _Type)
@@ -142,7 +156,6 @@ PlayerStateBase* PlayerFSM::GetState(PlayerStateType _Type)
 
 	return States[static_cast<size_t>(_Type)];
 }
-
 
 //FSM 변경
 void PlayerFSM::ChangeState(PlayerStateBase* _NextState)
@@ -160,53 +173,58 @@ void PlayerFSM::ChangeState(PlayerStateBase* _NextState)
 	NextState->EnterState();
 }
 
-void PlayerFSM::PlayerAttack()
-{
-	//Attack 애니메이션으로 전환
-	if (States[static_cast<int>(PlayerStateType::Idle)] == CurState)
-	{
-		ChangeState(GetState(PlayerStateType::IdleAttack));
-		return;
-	}
-	else if (States[static_cast<int>(PlayerStateType::Move)] == CurState)
-	{
-		ChangeState(GetState(PlayerStateType::MoveAttack));
-		return;
-	}
-	else if (States[static_cast<int>(PlayerStateType::Falling)] == CurState)
-	{
-		ChangeState(GetState(PlayerStateType::FallingAttack));
-		return;
-	}
-	else if (States[static_cast<int>(PlayerStateType::Jump)] == CurState)
-	{
-		ChangeState(GetState(PlayerStateType::JumpAttack));
-		return;
-	}
 
-	//이미 Attack애니메이션 상태일땐 애니메이션 다시 재생
-	if (States[static_cast<int>(PlayerStateType::IdleAttack)] == CurState)
-	{
-		CurState->PlayerStateBase::EnterState();
-		return;
-	}
-	else if (States[static_cast<int>(PlayerStateType::MoveAttack)] == CurState)
-	{
-		CurState->PlayerStateBase::EnterState();
-		return;
-	}
-	else if (States[static_cast<int>(PlayerStateType::FallingAttack)] == CurState)
-	{
-		CurState->PlayerStateBase::EnterState();
-		return;
-	}
-	else if (States[static_cast<int>(PlayerStateType::JumpAttack)] == CurState)
-	{
-		CurState->PlayerStateBase::EnterState();
-		return;
-	}
 
-}
+
+
+
+//void PlayerFSM::PlayerAttack()
+//{
+//	//Attack 애니메이션으로 전환
+//	if (States[static_cast<int>(PlayerStateType::Idle)] == CurState)
+//	{
+//		ChangeState(GetState(PlayerStateType::IdleAttack));
+//		return;
+//	}
+//	else if (States[static_cast<int>(PlayerStateType::Move)] == CurState)
+//	{
+//		ChangeState(GetState(PlayerStateType::MoveAttack));
+//		return;
+//	}
+//	else if (States[static_cast<int>(PlayerStateType::Falling)] == CurState)
+//	{
+//		ChangeState(GetState(PlayerStateType::FallingAttack));
+//		return;
+//	}
+//	else if (States[static_cast<int>(PlayerStateType::Jump)] == CurState)
+//	{
+//		ChangeState(GetState(PlayerStateType::JumpAttack));
+//		return;
+//	}
+//
+//	//이미 Attack애니메이션 상태일땐 애니메이션 다시 재생
+//	if (States[static_cast<int>(PlayerStateType::IdleAttack)] == CurState)
+//	{
+//		CurState->PlayerStateBase::EnterState();
+//		return;
+//	}
+//	else if (States[static_cast<int>(PlayerStateType::MoveAttack)] == CurState)
+//	{
+//		CurState->PlayerStateBase::EnterState();
+//		return;
+//	}
+//	else if (States[static_cast<int>(PlayerStateType::FallingAttack)] == CurState)
+//	{
+//		CurState->PlayerStateBase::EnterState();
+//		return;
+//	}
+//	else if (States[static_cast<int>(PlayerStateType::JumpAttack)] == CurState)
+//	{
+//		CurState->PlayerStateBase::EnterState();
+//		return;
+//	}
+//
+//}
 
 
 //현재 FSM 동작

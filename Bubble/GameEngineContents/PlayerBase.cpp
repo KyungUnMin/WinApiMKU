@@ -16,91 +16,75 @@ const float4 PlayerBase::CollisionScale = float4{ 50.f, 50.f };
 
 PlayerBase::PlayerBase()
 {
-	FsmPtr = new PlayerFSM;
-	GravityPtr = new Gravity;
+	FSMPtr = new PlayerFSM;
 }
 
 //플레이어가 들고 있던 컴포넌트들을 delete
 PlayerBase::~PlayerBase()
 {
-	if (nullptr != FsmPtr)
+	if (nullptr != FSMPtr)
 	{
-		delete FsmPtr;
-		FsmPtr = nullptr;
-	}
-
-	if (nullptr != GravityPtr)
-	{
-		delete GravityPtr;
-		GravityPtr = nullptr;
+		delete FSMPtr;
+		FSMPtr = nullptr;
 	}
 }
 
 
 
-PlayerCharacterType PlayerBase::GetCharacterType()
-{
-	if (CharcterType == PlayerCharacterType::COUNT)
-	{
-		MsgAssert("플레이어 타입을 설정해주지 않았습니다");
-		return PlayerCharacterType::COUNT;
-	}
 
-	return CharcterType;
-}
+
+
+
+
 
 void PlayerBase::Start()
 {
+	MovableActor::Start();
+
 	CollisionPtr = CreateCollision(CollisionOrder::Player);
 	CollisionPtr->SetScale(CollisionScale);
 	CollisionPtr->SetPosition(CollisionOffset);
 
-	FsmPtr->Player = this;
-	FsmPtr->Start();
 
-	GravityPtr->Start(this);
+	FSMPtr->Player = this;
+	FSMPtr->Start();
 
 
 	BBSpawner = GetLevel()->CreateActor<BubbleSpawner>();
 	BBSpawner->SetPlayer(this);
 }
 
-/*
-지금 당장은 버블 생성 못함
-나중에 FSM에서 버블을 생성할 수 있게끔 할 예정
-아니면 FSM안에 버블이 존재하고 있어도 될 듯하다
-*/
 
 
 void PlayerBase::Update(float _DeltaTime)
 {
 	//이 객체의 방향을 체크
-	MovableActor::CheckDirection();
+	MovableActor::Update(_DeltaTime);
 
-	FsmPtr->Update(_DeltaTime);
-	GravityPtr->Update(_DeltaTime);
+	FSMPtr->Update(_DeltaTime);
 
-	if (GameEngineInput::IsDown(PLAYER_ATTACK))
+	/*if (GameEngineInput::IsDown(PLAYER_ATTACK))
 	{
 		FsmPtr->PlayerAttack();
 		BBSpawner->CreateBubble(GetDirVec());
-	}
+	}*/
 
-	//플레이어와 버블의 충돌 처리및 버블 연쇄적으로 터뜨리기
-	BubbleCollisionCheck();
+	//BubbleCollisionCheck();
 }
-
-#include <GameEnginePlatform/GameEngineWindow.h>
-#include <GameEnginePlatform/GameEngineImage.h>
 
 void PlayerBase::Render(float _DeltaTime)
 {
-	float4 Pos = GetPos();
-	Rectangle(GameEngineWindow::GetDoubleBufferImage()->GetImageDC(), Pos.ix() - 1, Pos.iy() - 1, Pos.ix() + 1, Pos.iy() + 1);
-
-	FsmPtr->DebugRender();	
+	MovableActor::Render(_DeltaTime);
+	FSMPtr->DebugRender();	
 }
 
+
+
+
+
+
+
+//플레이어와 버블의 충돌 처리및 버블 연쇄적으로 터뜨리기
 void PlayerBase::BubbleCollisionCheck()
 {
 	//이 플레이어가 버블과 충돌했다면 충돌한 버블들을 가져오기
@@ -165,3 +149,21 @@ void PlayerBase::BubbleCollisionCheck()
 	}
 
 }
+
+
+
+
+
+
+
+PlayerCharacterType PlayerBase::GetCharacterType()
+{
+	if (CharcterType == PlayerCharacterType::COUNT)
+	{
+		MsgAssert("플레이어 타입을 설정해주지 않았습니다");
+		return PlayerCharacterType::COUNT;
+	}
+
+	return CharcterType;
+}
+

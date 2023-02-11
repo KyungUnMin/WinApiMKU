@@ -32,29 +32,6 @@ void PlayerState_Sleep::Start(PlayerCharacterType _CharacterType)
 	CreateAnimation(_CharacterType);
 }
 
-void PlayerState_Sleep::Update(float _DeltaTime)
-{
-	//스테이지 전환중일때
-	if (true == GetRoundLevel()->IsMoving())
-	{
-		GetOwner()->ChangeState(PlayerStateType::StageMove);
-		return;
-	}
-
-	//점프키를 눌렀을때
-	if (true == GameEngineInput::IsDown(PLAYER_JUMP))
-	{
-		GetOwner()->ChangeState(PlayerStateType::Jump);
-		return;
-	}
-
-	//왼쪽 또는 오른쪽으로 이동하려고 했을때
-	if (GameEngineInput::IsPress(PLAYER_RIGHT) || GameEngineInput::IsPress(PLAYER_LEFT))
-	{
-		GetOwner()->ChangeState(PlayerStateType::Move);
-		return;
-	}
-}
 
 void PlayerState_Sleep::ResourceLoad()
 {
@@ -68,6 +45,10 @@ void PlayerState_Sleep::ResourceLoad()
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerSleep.bmp"))->Cut(3, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerSleep.bmp"))->Cut(3, 4);
 }
+
+
+
+
 
 void PlayerState_Sleep::CreateAnimation(PlayerCharacterType _CharacterType)
 {
@@ -94,7 +75,7 @@ void PlayerState_Sleep::CreateAnimation(PlayerCharacterType _CharacterType)
 		.End = AniIndex + ImgXCnt - 1,
 		.InterTimer = 0.25f,
 		.Loop = AniLoop
-	});
+		});
 
 	//오른쪽 애니메이션 생성
 	GetRender()->CreateAnimation
@@ -104,5 +85,30 @@ void PlayerState_Sleep::CreateAnimation(PlayerCharacterType _CharacterType)
 		.Start = AniIndex,
 		.End = AniIndex + ImgXCnt - 1,
 		.InterTimer = 0.25f,
-	});
+		});
+}
+
+
+void PlayerState_Sleep::Update(float _DeltaTime)
+{
+	//스테이지 전환중일때
+	if (true == GetRoundLevel()->IsMoving())
+	{
+		GetFSM()->ChangeState(PlayerStateType::StageMove);
+		return;
+	}
+
+	//점프키를 눌렀을때
+	if (true == GameEngineInput::IsDown(PLAYER_JUMP))
+	{
+		GetFSM()->ChangeState(PlayerStateType::Jump);
+		return;
+	}
+
+	//왼쪽 또는 오른쪽으로 이동하려고 했을때
+	if (GameEngineInput::IsPress(PLAYER_RIGHT) || GameEngineInput::IsPress(PLAYER_LEFT))
+	{
+		GetFSM()->ChangeState(PlayerStateType::Move);
+		return;
+	}
 }

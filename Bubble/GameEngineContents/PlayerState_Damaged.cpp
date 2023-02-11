@@ -29,26 +29,7 @@ void PlayerState_Damaged::Start(PlayerCharacterType _CharacterType)
 	CreateAnimation(_CharacterType);
 }
 
-void PlayerState_Damaged::Update(float _DeltaTime)
-{
-	//애니메이션이 끝날때까지 대기
-	if (false == GetRender()->IsAnimationEnd())
-		return;
 
-	//플레이어 생명력을 감소시키고 플레이어가 살아있다면
-	if (true == GetPlayer()->DecreaseLife())
-	{
-		GetOwner()->ChangeState(PlayerStateType::Idle);
-		//GetPlayer()->SetPos(GetRoundLevel()->)
-		return;
-	}
-
-	//플레이어가 죽었을때
-	GetPlayer()->Death();
-
-	//TODO
-	//GetRoundLevel()->
-}
 
 void PlayerState_Damaged::ResourceLoad()
 {
@@ -62,6 +43,8 @@ void PlayerState_Damaged::ResourceLoad()
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerDamaged.bmp"))->Cut(17, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerDamaged.bmp"))->Cut(17, 4);
 }
+
+
 
 void PlayerState_Damaged::CreateAnimation(PlayerCharacterType _CharacterType)
 {
@@ -81,7 +64,7 @@ void PlayerState_Damaged::CreateAnimation(PlayerCharacterType _CharacterType)
 		.End = AniIndex + ImgXCnt - 1,
 		.InterTimer = 0.1f,
 		.Loop = false
-	});
+		});
 
 	//오른쪽 애니메이션 생성
 	GetRender()->CreateAnimation
@@ -92,6 +75,30 @@ void PlayerState_Damaged::CreateAnimation(PlayerCharacterType _CharacterType)
 		.End = AniIndex + ImgXCnt - 1,
 		.InterTimer = 0.1f,
 		.Loop = false
-	});
+		});
 }
 
+
+
+
+
+void PlayerState_Damaged::Update(float _DeltaTime)
+{
+	//애니메이션이 끝날때까지 대기
+	if (false == GetRender()->IsAnimationEnd())
+		return;
+
+	//플레이어 생명력을 감소시키고 플레이어가 살아있다면
+	if (true == GetPlayer()->DecreaseLife())
+	{
+		GetFSM()->ChangeState(PlayerStateType::Idle);
+		//GetPlayer()->SetPos(GetRoundLevel()->)
+		return;
+	}
+
+	//플레이어가 죽었을때
+	GetPlayer()->Death();
+
+	//TODO
+	//GetRoundLevel()->
+}

@@ -1,14 +1,13 @@
 #include "PlayerState_Falling.h"
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineInput.h>
+#include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "PlayerBase.h"
 #include "RoundLevelBase.h"
 #include "PlayerFSM.h"
 #include "ContentsDefine.h"
-
-const float	PlayerState_Falling::AirMoveSpeed = 100.f;
 
 
 PlayerState_Falling::PlayerState_Falling()
@@ -86,51 +85,91 @@ void PlayerState_Falling::CreateAnimation(PlayerCharacterType _CharacterType)
 
 
 
+void PlayerState_Falling::EnterState()
+{
+	PlayerStateBase::EnterState();
+
+	//Falling으로 전환됐을때 벽 내부에 존재했는지 체크
+	IsBlocked = GetPlayer()->IsGround(PlayerBase::CollisionScale);
+}
+
+
+
 
 void PlayerState_Falling::Update(float _DeltaTime)
+{
+	//다른 애니메이션으로 전환되는 경우
+	if (true == CheckStateChange(_DeltaTime))
+		return;
+
+	//움직임 처리
+	Move(_DeltaTime);
+}
+
+
+bool PlayerState_Falling::CheckStateChange(float _DeltaTime)
 {
 	//스테이지가 이동할 때
 	if (true == GetRoundLevel()->IsMoving())
 	{
-		GetOwner()->ChangeState(PlayerStateType::StageMove);
-		return;
+		GetFSM()->ChangeState(PlayerStateType::StageMove);
+		return true;
 	}
 
-	//플레이어의 방향 체크
-	PlayerStateBase::Update(_DeltaTime);
-	float4 NowPos = GetPlayer()->GetPos();
-	float4 MoveDir = GetPlayer()->GetDirVec();
+	//공격키를 누른 경우
+	if (true == GameEngineInput::IsDown(PLAYER_ATTACK))
+	{
+		GetFSM()->ChangeState(PlayerStateType::FallingAttack);
+		return true;
+	}
+
+	//Falling상태가 되었을때 벽 안에 있었고, 이젠 그 벽을 빠져나왔다면
+	if ((true == IsBlocked) && false == GetPlayer()->IsGround(PlayerBase::CollisionScale))
+	{
+		//이제부터 땅에 닿았을때 Idle상태로 변환가능
+		IsBlocked = false;
+	}
+
+	//땅에 닿았다면 Idle상태로 전환
+	if (false == IsBlocked && true == GetPlayer()->IsGround(PlayerBase::CollisionScale))
+	{
+		GetFSM()->ChangeState(PlayerStateType::Idle);
+		GetPlayer()->RaiseOnGround(PlayerBase::CollisionScale);
+		return true;
+	}
+
+	return false;
+}
 
 
-	//떨어지면서도 이동하는 경우에 
+
+void PlayerState_Falling::Move(float _DeltaTime)
+{
+	//플레이어의 방향이 바뀌였다면 그 방향에 따라 애니메이션 전환
+	ChangeAniDir();
+
+	//아래로 이동
+	GetPlayer()->SetMove(float4::Down * GravitySpeed * _DeltaTime);
+
+	//떨어지면서도 이동할때
 	if (GameEngineInput::IsPress(PLAYER_RIGHT) || GameEngineInput::IsPress(PLAYER_LEFT))
 	{
-		//이동할 위치에 벽이 있는지 확인, 없다면 이동
-		if (false == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * PlayerBase::CollisionScale * 0.5f))
-		{
-			GetPlayer()->SetMove(MoveDir * AirMoveSpeed * _DeltaTime);
-		}
+		float4 ScreenSize = GameEngineWindow::GetScreenSize();
+		float4 NowPos = GetPlayer()->GetPos();
 
+		//캐릭터가 화면 아래로 내려가지 않았을때만 움직이기 가능
+		if (NowPos.y < ScreenSize.y)
+		{
+			GetPlayer()->MoveHorizon(AirMoveSpeed.x, PlayerBase::CollisionScale, _DeltaTime);
+		}
 	}
 
-
-	//공중에 있는 경우엔 return
-	if (false == GetRoundLevel()->IsBlockPos(NowPos + float4::Down))
-		return;
-
-	if (true == GetRoundLevel()->IsBlockPos(NowPos))
-		return;
-
-	////땅에 닿은 순간에 점프키가 눌려있는 경우
-	//if (true == GameEngineInput::IsPress(PLAYER_JUMP))
-	//{
-	//	GetOwner()->ChangeState(PlayerStateType::Jump);
-	//	return;
-	//}x
-
-
-	
-
-	//그 외에는 정상적으로 땅에 착지 했으므로 Idlex
-	GetOwner()->ChangeState(PlayerStateType::Idle);
+	//캐릭터가 화면 아래로 내려갔다면 위로 올리기
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+	float4 NowPos = GetPlayer()->GetPos();
+	if (ScreenSize.y + ScreenOutOffsetY < NowPos.y)
+	{
+		//y를 0으로 만들기
+		GetPlayer()->SetPos(NowPos * float4::Right);
+	}
 }

@@ -38,6 +38,7 @@ void PlayerState_Idle::Start(PlayerCharacterType _CharacterType)
 }
 
 
+
 void PlayerState_Idle::ResourceLoad()
 {
 	GameEngineDirectory Dir;
@@ -81,46 +82,62 @@ void PlayerState_Idle::CreateAnimation(PlayerCharacterType _CharacterType)
 	});
 }
 
+
+
+
+
+
+void PlayerState_Idle::EnterState()
+{
+	PlayerStateBase::EnterState();
+	AccTime = 0.f;
+}
+
+
+
 void PlayerState_Idle::Update(float _DeltaTime)
 {
 	//스테이지가 이동할 때
 	if (true == GetRoundLevel()->IsMoving())
 	{
-		GetOwner()->ChangeState(PlayerStateType::StageMove);
+		GetFSM()->ChangeState(PlayerStateType::StageMove);
 		return;
 	}
 
-	float4 NowPos = GetPlayer()->GetPos();
-
-	//공중에 있는 경우
-	if (false == GetRoundLevel()->IsBlockPos(NowPos + float4::Down))
+	//공격키를 누른경우
+	if (true == GameEngineInput::IsDown(PLAYER_ATTACK))
 	{
-		GetOwner()->ChangeState(PlayerStateType::Falling);
+		GetFSM()->ChangeState(PlayerStateType::IdleAttack);
+		return;
+	}
+
+	//허공에 떠있는 경우
+	if (false == GetPlayer()->IsGround(PlayerBase::CollisionScale))
+	{
+		GetFSM()->ChangeState(PlayerStateType::Falling);
 		return;
 	}
 
 	//점프하는 경우
 	if (true == GameEngineInput::IsDown(PLAYER_JUMP))
 	{
-		GetOwner()->ChangeState(PlayerStateType::Jump);
+		GetFSM()->ChangeState(PlayerStateType::Jump);
 		return;
 	}
 
 	//움직인 경우
 	if (GameEngineInput::IsPress(PLAYER_LEFT) || GameEngineInput::IsPress(PLAYER_RIGHT))
 	{
-		GetOwner()->ChangeState(PlayerStateType::Move);
+		GetFSM()->ChangeState(PlayerStateType::Move);
 		return;
 	}
 
 	//idle 상태가 된지 SleepChangeTime시간만큼 흘렀을때
 	AccTime += _DeltaTime;
+
 	if (SleepChangeTime < AccTime)
 	{
-		GetOwner()->ChangeState(PlayerStateType::Sleep);
+		GetFSM()->ChangeState(PlayerStateType::Sleep);
 		return;
 	}
-
-	//방향에 따라 idle 애니메이션 설정
-	PlayerStateBase::Update(_DeltaTime);
 }

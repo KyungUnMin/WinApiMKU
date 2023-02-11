@@ -115,8 +115,6 @@ void PlayerState_StageMove::EnterState()
 	//Stage가 전환될때 처음 플레이어 위치 기록
 	PlayerOriginPos = GetPlayer()->GetPos();
 	ClearBubble->On();
-
-	GetPlayer()->GetGravity()->Off();
 }
 
 void PlayerState_StageMove::Update(float _DeltaTime)
@@ -134,13 +132,12 @@ void PlayerState_StageMove::Update(float _DeltaTime)
 	}
 	
 	//현재 레벨의 Stage 전환이 끝났다면 Idle상태로 전환
-	GetOwner()->ChangeState(PlayerStateType::Idle);
+	GetFSM()->ChangeState(PlayerStateType::Idle);
 }
 
 //플레이어 애니메이션 끄기 & 뒤쪽 거품 끄기
 void PlayerState_StageMove::ExitState()
 {
 	ClearBubble->Off();
-	GetPlayer()->GetGravity()->On();
 }
 

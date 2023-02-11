@@ -6,7 +6,6 @@
 class GameEngineCollision;
 class PlayerFSM;
 class BubbleSpawner;
-class Gravity;
 
 //모든 플레이어 클래스의 부모가 되는 추상 클래스
 class PlayerBase : public MovableActor
@@ -33,13 +32,11 @@ public:
 
 	inline  PlayerFSM* GetFSM()
 	{
-		return FsmPtr;
+		return FSMPtr;
 	}
 
-	inline Gravity* GetGravity()
-	{
-		return GravityPtr;
-	}
+	//플레이어와 버블의 충돌 처리및 버블 연쇄적으로 터뜨리기
+	void BubbleCollisionCheck();
 
 protected:
 	//플레이어가 사용할 컴포넌트를 만들고 초기화
@@ -54,17 +51,18 @@ protected:
 		CharcterType = _Type;
 	}
 
+
+
 private:
-	PlayerFSM*						FsmPtr				= nullptr;
+	PlayerFSM*						FSMPtr				= nullptr;
 	BubbleSpawner*				BBSpawner		= nullptr;
-	Gravity*							GravityPtr		= nullptr;
 
 	PlayerCharacterType		CharcterType	= PlayerCharacterType::COUNT;
 	GameEngineCollision*		CollisionPtr		= nullptr;
 	int									lifeCnt				= 3;
 
 
-
-	void BubbleCollisionCheck();
+	
+	
 };
 

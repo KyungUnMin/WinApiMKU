@@ -19,6 +19,8 @@ PlayerState_JumpAttack::~PlayerState_JumpAttack()
 
 }
 
+
+
 void PlayerState_JumpAttack::Start(PlayerCharacterType _CharacterType)
 {
 	//딱 한번만 리소스 로드
@@ -77,48 +79,21 @@ void PlayerState_JumpAttack::CreateAnimation(PlayerCharacterType _CharacterType)
 		.End = AniIndex + ImgXCnt - 1,
 		.InterTimer = 0.1f,
 		.Loop = false
-		});
+	});
 }
+
+
+
+
 
 void PlayerState_JumpAttack::Update(float _DeltaTime)
 {
-	//스테이지가 이동할 때
-	if (true == GetRoundLevel()->IsMoving())
-	{
-		GetOwner()->ChangeState(PlayerStateType::StageMove);
-		return;
-	}
-
-	/*if (true == GetRender()->IsAnimationEnd())
-	{
-		GetOwner()->ChangeState(PlayerStateType::Jump);
-		return;
-	}*/
-
-	//점프위치가 최고점에 닿았을때
-	if (0.f <= GetPlayer()->GetGravity()->GetAcc())
-	{
-		GetOwner()->ChangeState(PlayerStateType::Falling);
-		return;
-	}
-
-
-	//플레이어 방향 체크
-	PlayerStateBase::Update(_DeltaTime);
-
-	//점프중에도 플레이어를 이동키실때
-	if (GameEngineInput::IsPress(PLAYER_RIGHT) || GameEngineInput::IsPress(PLAYER_LEFT))
-	{
-		float4 NowPos = GetPlayer()->GetPos();
-		float4 MoveDir = GetPlayer()->GetDirVec();
-
-		//이동시키는 위치가 벽이 아니라면 이동
-		if (false == GetRoundLevel()->IsBlockPos(NowPos + MoveDir * PlayerBase::CollisionScale * 0.5f))
-		{
-			GetPlayer()->SetMove(MoveDir * PlayerState_Jump::AirMoveSpeed * _DeltaTime);
-		}
-	}
+	PlayerState_Jump::Update(_DeltaTime);
 }
+
+
+
+
 
 //Jump::EnterState가 호출되면 공중에서 한번 더 점프하게 된다
 //그래서 override시킴

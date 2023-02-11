@@ -80,45 +80,18 @@ void PlayerState_IdleAttack::CreateAnimation(PlayerCharacterType _CharacterType)
 	});
 }
 
+
+
+
+
+
+
+
+
+
+
+
 void PlayerState_IdleAttack::Update(float _DeltaTime)
 {
-	//스테이지가 이동할 때
-	if (true == GetRoundLevel()->IsMoving())
-	{
-		GetOwner()->ChangeState(PlayerStateType::StageMove);
-		return;
-	}
-
-	//공격 애니메이션이 끝났다면 idle 상태로 전환
-	if (true == GetRender()->IsAnimationEnd())
-	{
-		GetOwner()->ChangeState(PlayerStateType::Idle);
-		return;
-	}
-
-	//공중에 있는 경우
-	if (false == GetRoundLevel()->IsBlockPos(GetPlayer()->GetPos() + float4::Down))
-	{
-		GetOwner()->ChangeState(PlayerStateType::Falling);
-		return;
-	}
-
-	//점프하는 경우
-	if (true == GameEngineInput::IsDown(PLAYER_JUMP))
-	{
-		GetOwner()->ChangeState(PlayerStateType::Jump);
-		return;
-	}
-
-	//움직인 경우
-	if (GameEngineInput::IsPress(PLAYER_LEFT) || GameEngineInput::IsPress(PLAYER_RIGHT))
-	{
-		GetOwner()->ChangeState(PlayerStateType::Move);
-		return;
-	}
-
-	
-
-	//방향에 따라 idle 애니메이션 설정
-	PlayerStateBase::Update(_DeltaTime);
+	PlayerState_Idle::Update(_DeltaTime);
 }

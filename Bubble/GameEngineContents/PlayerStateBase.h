@@ -24,12 +24,12 @@ public:
 
 
 	//Player FSM을 관리하는 객체 반환
-	PlayerFSM* GetOwner();
+	PlayerFSM* GetFSM();
 
 	//Player FSM을 관리하는 객체 설정
-	inline void SetOwner(PlayerFSM* _Owner)
+	inline void SetFSM(PlayerFSM* _FSMPtr)
 	{
-		Owner = _Owner;
+		FSMPtr = _FSMPtr;
 	}
 
 	//Player 객체 반환
@@ -45,7 +45,7 @@ public:
 	virtual void Start(PlayerCharacterType _CharacterType) = 0;
 
 	//플레이어의 방향이 바뀌였다면 그 방향에 따라 애니메이션 전환
-	virtual void Update(float _DeltaTime);
+	virtual void Update(float _DeltaTime){}
 
 	//플레이어의 방향을 확인하고 해당 애니메이션을 동작
 	virtual void EnterState();
@@ -69,8 +69,11 @@ protected:
 
 	GameEngineRender* GetRender();
 
+	//플레이어의 방향이 바뀌였다면 그 방향에 따라 애니메이션 전환
+	void ChangeAniDir();
+
 private:
-	PlayerFSM*					Owner				= nullptr;
+	PlayerFSM*					FSMPtr				= nullptr;
 	PlayerBase*					Player				= nullptr;
 	RoundLevelBase*		RoundLevel		= nullptr;
 	std::string					AniName			= "";

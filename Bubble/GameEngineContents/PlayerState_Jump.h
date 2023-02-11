@@ -6,9 +6,6 @@ class RoundLevelBase;
 class PlayerState_Jump : public PlayerStateBase
 {
 public:
-	static const float					AirMoveSpeed;
-	static const float					JumpAcc;
-
 	PlayerState_Jump();
 	~PlayerState_Jump();
 
@@ -25,9 +22,18 @@ public:
 protected:
 
 private:
+	float				AccTime						= 0.0f;
+	const float		FallingChangeTime		= 0.5f;
+
+	const float4	AirMoveSpeed				= float4{ 250.f, 0.f };
+	const float4	JumpSpeed					= float4{ 0.f, 400.f };
+	const float		ScreenTopOffset		= 50.f;
 	
 
 	void ResourceLoad();
 	void CreateAnimation(PlayerCharacterType _CharacterType);
+
+	bool CheckStateChange(float _DeltaTime);
+	void Move(float _DeltaTime);
 };
 

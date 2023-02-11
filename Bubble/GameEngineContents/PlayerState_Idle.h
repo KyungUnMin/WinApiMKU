@@ -3,7 +3,6 @@
 
 class GameEngineRender;
 
-
 class PlayerState_Idle : public PlayerStateBase
 {
 public:
@@ -17,11 +16,7 @@ public:
 
 	void Start(PlayerCharacterType _CharacterType) override;
 	void Update(float _DeltaTime) override;
-	void EnterState() override
-	{
-		PlayerStateBase::EnterState();
-		AccTime = 0.f;
-	}
+	void EnterState() override;
 
 protected:
 

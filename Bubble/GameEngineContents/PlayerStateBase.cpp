@@ -46,13 +46,13 @@ RoundLevelBase* PlayerStateBase::GetRoundLevel()
 
 GameEngineRender* PlayerStateBase::GetRender()
 {
-	if (nullptr == Owner)
+	if (nullptr == FSMPtr)
 	{
 		MsgAssert("현재 State와 PlayerFSM을 연결해주지 않았습니다");
 		return nullptr;
 	}
 
-	GameEngineRender* RenderPtr = Owner->GetRender();
+	GameEngineRender* RenderPtr = FSMPtr->GetRender();
 	if (nullptr == RenderPtr)
 	{
 		MsgAssert("플레이어가 Render를 생성하지 않았습니다");
@@ -66,15 +66,16 @@ GameEngineRender* PlayerStateBase::GetRender()
 
 
 
-PlayerFSM* PlayerStateBase::GetOwner()
+
+PlayerFSM* PlayerStateBase::GetFSM()
 {
-	if (nullptr == Owner)
+	if (nullptr == FSMPtr)
 	{
 		MsgAssert("이 State에 Owner를 지정해주지 않았습니다");
 		return nullptr;
 	}
 
-	return Owner;
+	return FSMPtr;
 }
 
 PlayerBase* PlayerStateBase::GetPlayer()
@@ -92,9 +93,8 @@ PlayerBase* PlayerStateBase::GetPlayer()
 
 
 
-
 //플레이어의 방향이 바뀌였다면 그 방향에 따라 애니메이션 전환
-void PlayerStateBase::Update(float _DeltaTime)
+void PlayerStateBase::ChangeAniDir()
 {
 	if (false == GetPlayer()->IsDirChanged())
 		return;
@@ -108,6 +108,6 @@ void PlayerStateBase::Update(float _DeltaTime)
 //플레이어의 방향을 확인하고 해당 애니메이션을 동작
 void PlayerStateBase::EnterState()
 {
-	const std::string StartDir = Player->GetDirStr();
-	GetRender()->ChangeAnimation(StartDir + AniName, true);
+	const std::string NowDir = GetPlayer()->GetDirStr();
+	GetRender()->ChangeAnimation(NowDir + AniName);
 }

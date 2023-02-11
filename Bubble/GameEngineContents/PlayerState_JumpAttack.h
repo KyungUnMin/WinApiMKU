@@ -1,7 +1,6 @@
 #pragma once
 #include "PlayerState_Jump.h"
 
-
 class PlayerState_JumpAttack : public PlayerState_Jump
 {
 public:

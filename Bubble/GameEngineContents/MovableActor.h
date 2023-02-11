@@ -3,7 +3,7 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include "ContentsEnum.h"
 
-class ComponentBase;
+class RoundLevelBase;
 
 //계산을 통해 움직이는 Actor는 이 클래스를 상속
 class MovableActor : public GameEngineActor
@@ -38,14 +38,26 @@ public:
 
 	void SetDir(const float4& _Dir);
 
+	//내 바로 아래가 땅인지 확인
+	bool IsGround(const float4& _CollisionScale);
 
+	bool MoveHorizon(float _Speed, const float4& _CollisionScale, float _DeltaTime);
+
+	void RaiseOnGround(const float4& _CollisionScale);
 
 protected:
+	void Start() override;
+
 	//이번 프레임에 방향이 바뀌였는지 체크
-	virtual void CheckDirection();
+	void Update(float _DeltaTime) override;
+
+	void Render(float _DeltaTime) override;
+
+	RoundLevelBase* GetRoundLevel();
 
 private:
-	std::string	Dir					= MovableActor::RightStr;
-	bool				DirChanged		= false;
+	std::string				Dir					= MovableActor::RightStr;
+	bool							DirChanged		= false;
+	RoundLevelBase*	RoundLevel		= nullptr;
 };
 

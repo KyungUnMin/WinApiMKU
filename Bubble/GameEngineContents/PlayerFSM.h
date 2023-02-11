@@ -56,7 +56,7 @@ public:
 		return RenderPtr;
 	}
 
-	void PlayerAttack();
+	//void PlayerAttack();
 
 protected:
 

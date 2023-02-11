@@ -133,17 +133,6 @@ bool RoundLevelBase::MoveToNextStage()
 
 void RoundLevelBase::Update(float _DeltaTime)
 {
-	if (nullptr != Player)
-	{
-		float4 ScreenSize = GameEngineWindow::GetScreenSize();
-		float4 PlayerPos = Player->GetPos();
-		if (ScreenSize.y + 100.f < PlayerPos.y)
-		{
-			Player->SetMove(float4::Up * ScreenSize.y);
-		}
-	}
-
-
 	//IsMoving이 true일때만 Stage가 이동함
 	if (false == IsMoveValue)
 		return;
