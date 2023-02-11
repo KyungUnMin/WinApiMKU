@@ -125,7 +125,7 @@ void PlayerState_StageMove::Update(float _DeltaTime)
 		float StageMoveTime = GetRoundLevel()->GetStageMoveTime();
 		float Ratio = StageMoveTime / RoundLevelBase::StageMoveDuration;
 
-		float4 DestPos = GetRoundLevel()->GetPlayerSpawnPos();
+		float4 DestPos = RoundLevelBase::PlayerSpawnPos;
 		float4 NextPos = float4::LerpClamp(PlayerOriginPos, DestPos, Ratio);
 		GetPlayer()->SetPos(NextPos);
 		return;

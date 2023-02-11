@@ -6,8 +6,6 @@ class BackGround;
 class RoundA1Level : public RoundLevelBase
 {
 public:
-	static const std::vector<float4>								PlayerSpanwPos;
-
 	RoundA1Level();
 	~RoundA1Level();
 

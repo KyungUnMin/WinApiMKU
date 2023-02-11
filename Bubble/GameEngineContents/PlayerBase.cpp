@@ -63,18 +63,16 @@ void PlayerBase::Update(float _DeltaTime)
 
 	FSMPtr->Update(_DeltaTime);
 
-	/*if (GameEngineInput::IsDown(PLAYER_ATTACK))
+	if (GameEngineInput::IsDown(PLAYER_ATTACK))
 	{
-		FsmPtr->PlayerAttack();
 		BBSpawner->CreateBubble(GetDirVec());
-	}*/
+	}
 
-	//BubbleCollisionCheck();
+	BubbleCollisionCheck();
 }
 
 void PlayerBase::Render(float _DeltaTime)
 {
-	MovableActor::Render(_DeltaTime);
 	FSMPtr->DebugRender();	
 }
 

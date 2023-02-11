@@ -12,16 +12,6 @@
 #include "PlayerBase.h"
 #include "BubbleDestHelper.h"
 
-const std::vector<float4> RoundA3Level::PlayerSpanwPos = 
-{
-	{ 100.f, 700.f },
-	{ 100.f, 700.f },
-	{ 100.f, 700.f },
-	{ 100.f, 700.f },
-	{ 100.f, 700.f },
-	{ 100.f, 700.f }
-};
-
 RoundA3Level::RoundA3Level()
 {
 
@@ -43,9 +33,6 @@ void RoundA3Level::Loading()
 	//뒤 배경과 레벨의 지형을 오른쪽으로 정렬하여 생성
 	CreateBackGround();
 	RoundLevelBase::CreateStage(float4::Right, RenderOrder::Obstacle1);
-
-	//플레이어가 생성될 위치 설정
-	SetPlayerSpawnPos(PlayerSpanwPos);
 
 	CreateBubbleDest();
 }

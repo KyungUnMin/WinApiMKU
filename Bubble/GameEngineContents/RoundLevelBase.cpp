@@ -16,7 +16,8 @@
 #include "BubbleMissleFSM.h"
 #include "BubbleDestHelper.h"
 
-const float RoundLevelBase::StageMoveDuration = 1.5f;
+const float4	RoundLevelBase::PlayerSpawnPos			= { 100.f, 600.f };
+const float		RoundLevelBase::StageMoveDuration	= 1.5f;
 
 RoundLevelBase::RoundLevelBase()
 {
@@ -246,14 +247,8 @@ void RoundLevelBase::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		CreatePlayer(PrevRoundLevel->GetSelectCharacter());
 	}
 
-	if (true == PlayerSpwanPos.empty())
-	{
-		size_t Index = ImageName.find('_', 0);
-		MsgAssert(ImageName.substr(0, Index) + " 라운드의 플레이어 생성 위치를 설정해주지 않았습니다");
-	}
-
 	//플레이어 위치 조정
-	Player->SetPos(PlayerSpwanPos[0]);
+	Player->SetPos(PlayerSpawnPos);
 	DestHelperPtr->TurnOnBubbleDest(NowStageIndex);
 }
 
@@ -262,23 +257,9 @@ void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	IsMoveValue = false;
 	SetNowStage(0);
-	Player->SetPos(PlayerSpwanPos[0]);
+	Player->SetPos(PlayerSpawnPos);
 	DestHelperPtr->TurnOnBubbleDest(NowStageIndex);
 }
-
-const float4& RoundLevelBase::GetPlayerSpawnPos()
-{
-	if (PlayerSpwanPos.size() <= NowStageIndex)
-	{
-		MsgAssert("해당 Stage에는 플레이어 스폰 위치를 설정해주지 않았습니다");
-		return float4::Zero;
-	}
-
-	return PlayerSpwanPos[NowStageIndex];
-}
-
-
-
 
 
 //현재 Round의 Stage를 강제로 설정하는 함수

@@ -23,16 +23,6 @@ public:
 
 	void CreateBubble(const float4 _Dir);
 
-	/*inline PlayerBase* GetPlayer()
-	{
-		return Player;
-	}
-
-	inline void SetPlayer(PlayerBase* _Player)
-	{
-		Player = _Player;
-	}*/
-
 	inline void SetPlayer(PlayerBase* _Player)
 	{
 		Player = _Player;
@@ -40,7 +30,6 @@ public:
 
 	void Start() override;
 	void Update(float _DeltaTime) override;
-	void Render(float _DeltaTime) override;
 
 protected:
 	

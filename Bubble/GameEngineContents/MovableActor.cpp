@@ -153,27 +153,5 @@ void MovableActor::RaiseOnGround(const float4& _CollisionScale)
 }
 
 
-#include <GameEnginePlatform/GameEngineWindow.h>
-#include <GameEnginePlatform/GameEngineImage.h>
-#include "PlayerBase.h"
-
-void MovableActor::Render(float _DeltaTime)
-{
-	//임시 테스트 코드
-	float4 Pos[3];
-	Pos[0] = GetPos() + float4::Down;
-	Pos[1] = Pos[0] + (float4::Left * PlayerBase::CollisionScale.half());
-	Pos[2] = Pos[0] + (float4::Right * PlayerBase::CollisionScale.half());
-
-	HDC Hdc = GameEngineWindow::GetDoubleBufferImage()->GetImageDC();
-
-	for (size_t i = 0; i < 3; ++i)
-	{
-		Rectangle(Hdc, Pos[i].ix() - 1, Pos[i].iy() - 1, Pos[i].ix() + 1, Pos[i].iy() + 1);
-	}
-
-
-}
-
 
 

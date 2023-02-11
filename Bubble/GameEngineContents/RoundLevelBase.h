@@ -16,7 +16,8 @@ class BubbleDestHelper;
 class RoundLevelBase : public GameEngineLevel
 {
 public:
-	static const float StageMoveDuration;
+	static const float4		PlayerSpawnPos;
+	static const float		StageMoveDuration;
 
 	RoundLevelBase();
 	virtual ~RoundLevelBase() = 0;
@@ -58,14 +59,6 @@ public:
 	{
 		return IsMoveValue;
 	}
-
-	const float4& GetPlayerSpawnPos();
-
-	void SetPlayerSpawnPos(const std::vector<float4>& _SpawnPos)
-	{
-		PlayerSpwanPos = _SpawnPos;
-	}
-
 
 	//현재 Round의 Stage를 강제로 설정하는 함수
 	void SetNowStage(size_t _StageNum);
@@ -117,7 +110,6 @@ private:
 	//선택한 캐릭터 타입
 	PlayerCharacterType	SelectedCharacter	= PlayerCharacterType::BUBBLUN;
 	PlayerBase*					Player						= nullptr;
-	std::vector<float4>		PlayerSpwanPos;
 
 	//Obstacle을 생성하는데 사용하는 변수
 	std::string					ImageName				= "Round";

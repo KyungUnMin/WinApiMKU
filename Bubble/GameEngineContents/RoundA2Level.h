@@ -5,8 +5,6 @@
 class RoundA2Level : public RoundLevelBase
 {
 public:
-	static const std::vector<float4> PlayerSpanwPos;
-
 	RoundA2Level();
 	~RoundA2Level();
 

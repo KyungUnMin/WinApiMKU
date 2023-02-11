@@ -51,8 +51,6 @@ protected:
 	//이번 프레임에 방향이 바뀌였는지 체크
 	void Update(float _DeltaTime) override;
 
-	void Render(float _DeltaTime) override;
-
 	RoundLevelBase* GetRoundLevel();
 
 private:

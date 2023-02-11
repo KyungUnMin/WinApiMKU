@@ -13,7 +13,6 @@
 
 #include "MonsterBase.h"
 
-const std::vector<float4>						RoundAEnterLevel::PlayerSpanwPos = { { 100.f, 700.f } };
 const float4											RoundAEnterLevel::MonsterSpawnPos[3] =
 {
 	{400.f, 430.f},{500.f, 430.f},{600.f, 430.f}
@@ -42,9 +41,6 @@ void RoundAEnterLevel::Loading()
 	//뒤 배경과 레벨의 지형 생성
 	CreateBackGround();
 	RoundLevelBase::CreateStage(float4::Right, RenderOrder::Obstacle1);
-
-	//플레이어가 생성될 위치 설정
-	SetPlayerSpawnPos(PlayerSpanwPos);
 
 	//뒤쪽 좌우로 움직이는 하늘 생성
 	CreateActor<RoundA_Enter_Sky>();
