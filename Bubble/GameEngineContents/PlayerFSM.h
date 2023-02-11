@@ -17,11 +17,6 @@ enum class PlayerStateType
 	Damaged,
 	EnterDoor,
 
-	IdleAttack,
-	MoveAttack,
-	FallingAttack,
-	JumpAttack,
-
 	Count,
 };
 

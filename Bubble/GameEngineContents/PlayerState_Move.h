@@ -16,13 +16,20 @@ public:
 
 	void Start(PlayerCharacterType _CharacterType) override;
 	void Update(float _DeltaTime) override;
+	void ExitState() override;
 
 protected:
 
 private:
-	const float4 MoveSpeed = float4{ 400.f, 0.f };
+	const std::string_view	MoveAniName		= "Move";
+	const std::string_view	AttackAniName	= "Move_Attack";
+
+	const float4					MoveSpeed			= float4{ 400.f, 0.f };
 	
 	void ResourceLoad();
 	void CreateAnimation(PlayerCharacterType _CharacterType);
+
+	bool CheckStateChange(float _DeltaTime);
+	void CheckAttack();
 };
 

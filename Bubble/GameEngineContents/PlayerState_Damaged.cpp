@@ -51,9 +51,9 @@ void PlayerState_Damaged::CreateAnimation(PlayerCharacterType _CharacterType)
 	int ImgXCnt = 17;
 	int AniIndex = static_cast<int>(_CharacterType) * ImgXCnt;
 
-	SetAniName("Damaged");
-	std::string LeftAniName = MovableActor::LeftStr + GetAniName();
-	std::string RightAniName = MovableActor::RightStr + GetAniName();
+	SetNowAniName("Damaged");
+	std::string LeftAniName = MovableActor::LeftStr + GetNowAniName();
+	std::string RightAniName = MovableActor::RightStr + GetNowAniName();
 
 	//哭率 局聪皋捞记 积己
 	GetRender()->CreateAnimation

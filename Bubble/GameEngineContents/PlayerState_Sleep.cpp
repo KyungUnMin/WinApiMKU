@@ -62,9 +62,9 @@ void PlayerState_Sleep::CreateAnimation(PlayerCharacterType _CharacterType)
 	int ImgXCnt = 3;
 	int AniIndex = static_cast<int>(_CharacterType) * ImgXCnt;
 
-	SetAniName("Sleep");
-	std::string LeftAniName = MovableActor::LeftStr + GetAniName();
-	std::string RightAniName = MovableActor::RightStr + GetAniName();
+	SetNowAniName("Sleep");
+	std::string LeftAniName = MovableActor::LeftStr + GetNowAniName();
+	std::string RightAniName = MovableActor::RightStr + GetNowAniName();
 
 	//哭率 局聪皋捞记 积己
 	GetRender()->CreateAnimation

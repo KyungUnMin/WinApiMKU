@@ -105,9 +105,15 @@ void PlayerStateBase::ChangeAniDir()
 
 
 
+//플레이어 방향 + 애니메이션이름
+const std::string PlayerStateBase::GetAniNamePlusDir(const std::string_view& _AniName)
+{
+	const std::string NowDir = GetPlayer()->GetDirStr();
+	return NowDir + _AniName.data();
+}
+
 //플레이어의 방향을 확인하고 해당 애니메이션을 동작
 void PlayerStateBase::EnterState()
 {
-	const std::string NowDir = GetPlayer()->GetDirStr();
-	GetRender()->ChangeAnimation(NowDir + AniName);
+	GetRender()->ChangeAnimation(GetAniNamePlusDir(AniName));
 }

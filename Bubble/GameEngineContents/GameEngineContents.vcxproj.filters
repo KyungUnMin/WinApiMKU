@@ -166,18 +166,6 @@
     <ClInclude Include="PlayerFSM.h">
       <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\01.FSM</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerState_IdleAttack.h">
-      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\11.Idle_Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerState_MoveAttack.h">
-      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\12.Move_Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerState_FallingAttack.h">
-      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\13.Falling_Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerState_JumpAttack.h">
-      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\14.Jump_Attack</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -341,18 +329,6 @@
     </ClCompile>
     <ClCompile Include="PlayerFSM.cpp">
       <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\01.FSM</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerState_IdleAttack.cpp">
-      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\11.Idle_Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerState_MoveAttack.cpp">
-      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\12.Move_Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerState_FallingAttack.cpp">
-      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\13.Falling_Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerState_JumpAttack.cpp">
-      <Filter>03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\14.Jump_Attack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -595,18 +571,6 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\10.Enter">
       <UniqueIdentifier>{2a353d2e-bdc1-440e-82d3-1c9986c8b7e7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\11.Idle_Attack">
-      <UniqueIdentifier>{e7ddab18-8dbb-40d5-b453-c2757c8ac3d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\12.Move_Attack">
-      <UniqueIdentifier>{4f47c6aa-9136-443e-97d0-f3863d644bd2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\13.Falling_Attack">
-      <UniqueIdentifier>{998b9899-aaa3-4cf3-9823-af67d16e103f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\02.Player\05.PlayerFSM\14.Jump_Attack">
-      <UniqueIdentifier>{1baf91c4-9247-4f26-99f2-7fa93c0199bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

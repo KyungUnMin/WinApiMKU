@@ -47,37 +47,82 @@ void PlayerState_Falling::ResourceLoad()
 	Dir.Move("Falling");
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerFalling.bmp"))->Cut(2, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerFalling.bmp"))->Cut(2, 4);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerFalling_Attack.bmp"))->Cut(4, 4);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerFalling_Attack.bmp"))->Cut(4, 4);
 }
 
 void PlayerState_Falling::CreateAnimation(PlayerCharacterType _CharacterType)
 {
-	int ImgXCnt = 2;
-	int AniIndex = static_cast<int>(_CharacterType) * ImgXCnt;
+	//일반 애니메이션
+	{
+		int ImgXCnt = 2;
+		int AniIndex = static_cast<int>(_CharacterType) * ImgXCnt;
 
-	SetAniName("Falling");
-	std::string LeftAniName = MovableActor::LeftStr + GetAniName();
-	std::string RightAniName = MovableActor::RightStr + GetAniName();
+		std::string LeftAniName = MovableActor::LeftStr + FallingAniName.data();
+		std::string RightAniName = MovableActor::RightStr + FallingAniName.data();
 
-	//왼쪽 애니메이션 생성
-	GetRender()->CreateAnimation
-	({
-		.AnimationName = LeftAniName,
-		.ImageName = "Left_PlayerFalling.bmp",
-		.Start = AniIndex,
-		.End = AniIndex + ImgXCnt - 1,
-		.InterTimer = 0.25f,
-	});
+		//왼쪽 애니메이션 생성
+		GetRender()->CreateAnimation
+		({
+			.AnimationName = LeftAniName,
+			.ImageName = "Left_PlayerFalling.bmp",
+			.Start = AniIndex,
+			.End = AniIndex + ImgXCnt - 1,
+			.InterTimer = 0.25f,
+		});
 
-	//오른쪽 애니메이션 생성
-	GetRender()->CreateAnimation
-	({
-		.AnimationName = RightAniName,
-		.ImageName = "Right_PlayerFalling.bmp",
-		.Start = AniIndex,
-		.End = AniIndex + ImgXCnt - 1,
-		.InterTimer = 0.25f,
-	});
+		//오른쪽 애니메이션 생성
+		GetRender()->CreateAnimation
+		({
+			.AnimationName = RightAniName,
+			.ImageName = "Right_PlayerFalling.bmp",
+			.Start = AniIndex,
+			.End = AniIndex + ImgXCnt - 1,
+			.InterTimer = 0.25f,
+		});
+	}
+
+	//공격 애니메이션
+	{
+		int ImgXCnt = 4;
+		int AniIndex = static_cast<int>(_CharacterType) * ImgXCnt;
+
+		std::string LeftAniName = MovableActor::LeftStr + AttackAniName.data();
+		std::string RightAniName = MovableActor::RightStr + AttackAniName.data();
+
+		//왼쪽 애니메이션 생성
+		GetRender()->CreateAnimation
+		({
+			.AnimationName = LeftAniName,
+			.ImageName = "Left_PlayerFalling_Attack.bmp",
+			.Start = AniIndex,
+			.End = AniIndex + ImgXCnt - 1,
+			.InterTimer = 0.1f,
+			.Loop = false
+		});
+
+		//오른쪽 애니메이션 생성
+		GetRender()->CreateAnimation
+		({
+			.AnimationName = RightAniName,
+			.ImageName = "Right_PlayerFalling_Attack.bmp",
+			.Start = AniIndex,
+			.End = AniIndex + ImgXCnt - 1,
+			.InterTimer = 0.1f,
+			.Loop = false
+		});
+	}
+
+	SetNowAniName(FallingAniName);
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -96,6 +141,8 @@ void PlayerState_Falling::EnterState()
 
 
 
+
+
 void PlayerState_Falling::Update(float _DeltaTime)
 {
 	//다른 애니메이션으로 전환되는 경우
@@ -104,6 +151,8 @@ void PlayerState_Falling::Update(float _DeltaTime)
 
 	//움직임 처리
 	Move(_DeltaTime);
+
+	CheckAttack();
 }
 
 
@@ -113,13 +162,6 @@ bool PlayerState_Falling::CheckStateChange(float _DeltaTime)
 	if (true == GetRoundLevel()->IsMoving())
 	{
 		GetFSM()->ChangeState(PlayerStateType::StageMove);
-		return true;
-	}
-
-	//공격키를 누른 경우
-	if (true == GameEngineInput::IsDown(PLAYER_ATTACK))
-	{
-		GetFSM()->ChangeState(PlayerStateType::FallingAttack);
 		return true;
 	}
 
@@ -172,4 +214,27 @@ void PlayerState_Falling::Move(float _DeltaTime)
 		//y를 0으로 만들기
 		GetPlayer()->SetPos(NowPos * float4::Right);
 	}
+}
+
+void PlayerState_Falling::CheckAttack()
+{
+	//공격 애니메이션이 끝난 경우
+	if (true == GetRender()->IsAnimationEnd())
+	{
+		GetRender()->ChangeAnimation(GetAniNamePlusDir(FallingAniName));
+		SetNowAniName(FallingAniName);
+	}
+
+	//공격키를 누른 경우만
+	if (false == GameEngineInput::IsDown(PLAYER_ATTACK))
+		return;
+
+	GetRender()->ChangeAnimation(GetAniNamePlusDir(AttackAniName), true);
+	SetNowAniName(AttackAniName);
+}
+
+
+void PlayerState_Falling::ExitState()
+{
+	SetNowAniName(FallingAniName);
 }

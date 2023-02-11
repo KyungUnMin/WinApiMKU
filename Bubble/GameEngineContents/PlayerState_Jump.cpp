@@ -47,37 +47,75 @@ void PlayerState_Jump::ResourceLoad()
 	Dir.Move("Jump");
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerJump.bmp"))->Cut(4, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerJump.bmp"))->Cut(4, 4);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerJump_Attack.bmp"))->Cut(4, 4);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerJump_Attack.bmp"))->Cut(4, 4);
 }
 
 
 void PlayerState_Jump::CreateAnimation(PlayerCharacterType _CharacterType)
 {
-	int ImgXCnt = 4;
-	int AniIndex = static_cast<int>(_CharacterType) * ImgXCnt;
+	//일반 애니메이션
+	{
+		int ImgXCnt = 4;
+		int AniIndex = static_cast<int>(_CharacterType) * ImgXCnt;
 
-	SetAniName("Jump");
-	std::string LeftAniName = MovableActor::LeftStr + GetAniName();
-	std::string RightAniName = MovableActor::RightStr + GetAniName();
+		std::string LeftAniName = MovableActor::LeftStr + JumpAniName.data();
+		std::string RightAniName = MovableActor::RightStr + JumpAniName.data();
 
-	//왼쪽 애니메이션 생성
-	GetRender()->CreateAnimation
-	({
-		.AnimationName = LeftAniName,
-		.ImageName = "Left_PlayerJump.bmp",
-		.Start = AniIndex,
-		.End = AniIndex + ImgXCnt - 1,
-		.InterTimer = 0.1f,
+		//왼쪽 애니메이션 생성
+		GetRender()->CreateAnimation
+		({
+			.AnimationName = LeftAniName,
+			.ImageName = "Left_PlayerJump.bmp",
+			.Start = AniIndex,
+			.End = AniIndex + ImgXCnt - 1,
+			.InterTimer = 0.1f,
 		});
 
-	//오른쪽 애니메이션 생성
-	GetRender()->CreateAnimation
-	({
-		.AnimationName = RightAniName,
-		.ImageName = "Right_PlayerJump.bmp",
-		.Start = AniIndex,
-		.End = AniIndex + ImgXCnt - 1,
-		.InterTimer = 0.1f,
+		//오른쪽 애니메이션 생성
+		GetRender()->CreateAnimation
+		({
+			.AnimationName = RightAniName,
+			.ImageName = "Right_PlayerJump.bmp",
+			.Start = AniIndex,
+			.End = AniIndex + ImgXCnt - 1,
+			.InterTimer = 0.1f,
 		});
+	}
+
+
+	//공격 애니메이션
+	{
+		int ImgXCnt = 4;
+		int AniIndex = static_cast<int>(_CharacterType) * ImgXCnt;
+
+		std::string LeftAniName = MovableActor::LeftStr + AttackAniName.data();
+		std::string RightAniName = MovableActor::RightStr + AttackAniName.data();
+
+		//왼쪽 애니메이션 생성
+		GetRender()->CreateAnimation
+		({
+			.AnimationName = LeftAniName,
+			.ImageName = "Left_PlayerJump_Attack.bmp",
+			.Start = AniIndex,
+			.End = AniIndex + ImgXCnt - 1,
+			.InterTimer = 0.1f,
+			.Loop = false
+		});
+
+		//오른쪽 애니메이션 생성
+		GetRender()->CreateAnimation
+		({
+			.AnimationName = RightAniName,
+			.ImageName = "Right_PlayerJump_Attack.bmp",
+			.Start = AniIndex,
+			.End = AniIndex + ImgXCnt - 1,
+			.InterTimer = 0.1f,
+			.Loop = false
+		});
+	}
+
+	SetNowAniName(JumpAniName);
 }
 
 
@@ -96,15 +134,19 @@ void PlayerState_Jump::EnterState()
 }
 
 
+
 void PlayerState_Jump::Update(float _DeltaTime)
 {
+	//플레이어의 방향이 바뀌였다면 그 방향에 따라 애니메이션 전환
+	ChangeAniDir();
+
 	//시간 세기
 	AccTime += _DeltaTime;
 
 	if (true == CheckStateChange(_DeltaTime))
 		return;
 
-	Move(_DeltaTime);
+	CheckAttack();
 }
 
 
@@ -118,16 +160,15 @@ bool PlayerState_Jump::CheckStateChange(float _DeltaTime)
 		return true;
 	}
 
-	//공격키를 눌렀을 때
-	if (true == GameEngineInput::IsDown(PLAYER_ATTACK))
+	//점프 유지 시간이 전부 지났을때
+	if (FallingChangeTime < AccTime)
 	{
-		//이러면 JumpAttack은 얼마나 점프를 유지해야 하지???
-		GetFSM()->ChangeState(PlayerStateType::JumpAttack);
+		GetFSM()->ChangeState(PlayerStateType::Falling);
 		return true;
 	}
 
-	//점프 유지 시간이 전부 지났을때
-	if (FallingChangeTime < AccTime)
+	//움직이다가 점프를 못하는 상황일때
+	if (false == Movement(_DeltaTime))
 	{
 		GetFSM()->ChangeState(PlayerStateType::Falling);
 		return true;
@@ -139,11 +180,8 @@ bool PlayerState_Jump::CheckStateChange(float _DeltaTime)
 
 
 
-void PlayerState_Jump::Move(float _DeltaTime)
+bool PlayerState_Jump::Movement(float _DeltaTime)
 {
-	//플레이어의 방향이 바뀌였다면 그 방향에 따라 애니메이션 전환
-	ChangeAniDir();
-
 	float Ratio = AccTime / FallingChangeTime;
 	float4 NowJumpSpeed = float4::LerpClamp(JumpSpeed, float4::Zero, Ratio);
 
@@ -152,9 +190,9 @@ void PlayerState_Jump::Move(float _DeltaTime)
 	float4 CollisionScale = PlayerBase::CollisionScale;
 	float PlayerHeight = CollisionScale.Size();
 
-	//다음에 이동할 위치가 스크린을 넘어가지 않을때만
+	//다음에 이동할 위치가 스크린을 넘어간다면
 	if (NextPos.y - PlayerHeight < ScreenTopOffset)
-		return;
+		return false;
 
 	GetPlayer()->SetPos(NextPos);
 
@@ -166,4 +204,30 @@ void PlayerState_Jump::Move(float _DeltaTime)
 		//중간에 걸리는 느낌을 없앨수 있을것 같다.(추후에 생각해보자)
 		GetPlayer()->MoveHorizon(AirMoveSpeed.x, PlayerBase::CollisionScale, _DeltaTime);
 	}
+
+	return true;
+}
+
+
+
+void PlayerState_Jump::CheckAttack()
+{
+	//공격 애니메이션이 끝난 경우
+	if (true == GetRender()->IsAnimationEnd())
+	{
+		GetRender()->ChangeAnimation(GetAniNamePlusDir(JumpAniName));
+		SetNowAniName(JumpAniName);
+	}
+
+	//공격키를 누른 경우만
+	if (false == GameEngineInput::IsDown(PLAYER_ATTACK))
+		return;
+
+	GetRender()->ChangeAnimation(GetAniNamePlusDir(AttackAniName), true);
+	SetNowAniName(AttackAniName);
+}
+
+void PlayerState_Jump::ExitState()
+{
+	SetNowAniName(JumpAniName);
 }

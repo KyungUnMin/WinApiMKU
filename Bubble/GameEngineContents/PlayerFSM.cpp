@@ -11,11 +11,7 @@
 #include "PlayerState_Sleep.h"
 #include "PlayerState_Damaged.h"
 #include "PlayerState_Enter.h"
-#include "PlayerState_IdleAttack.h"
-#include "PlayerState_MoveAttack.h"
-#include "PlayerState_FallingAttack.h"
-#include "PlayerState_JumpAttack.h"
-#include "BubbleCore.h"
+
 
 PlayerFSM::PlayerFSM()
 {
@@ -106,18 +102,6 @@ void PlayerFSM::CreateState(PlayerStateType _StateType)
 		break;
 	case PlayerStateType::EnterDoor:
 		States[Index] = new PlayerState_Enter;
-		break;
-	case PlayerStateType::IdleAttack:
-		States[Index] = new PlayerState_IdleAttack;
-		break;
-	case PlayerStateType::MoveAttack:
-		States[Index] = new PlayerState_MoveAttack;
-		break;
-	case PlayerStateType::FallingAttack:
-		States[Index] = new PlayerState_FallingAttack;
-		break;
-	case PlayerStateType::JumpAttack:
-		States[Index] = new PlayerState_JumpAttack;
 		break;
 	default:
 		MsgAssert("해당 State를 아직 PlayerState와 연결시켜 주지 않았습니다");
@@ -239,6 +223,9 @@ void PlayerFSM::Update(float _DeltaTime)
 	CurState->Update(_DeltaTime);
 }
 
+
+
+#include "BubbleCore.h"
 void PlayerFSM::DebugRender()
 {
 	if (false == BubbleCore::GetInst().IsDebug())
@@ -272,18 +259,6 @@ void PlayerFSM::DebugRender()
 		break;
 	case PlayerStateType::EnterDoor:
 		DebugStr += "EnterDoor";
-		break;
-	case PlayerStateType::IdleAttack:
-		DebugStr += "IdleAttack";
-		break;
-	case PlayerStateType::MoveAttack:
-		DebugStr += "MoveAttack";
-		break;
-	case PlayerStateType::FallingAttack:
-		DebugStr += "FallingAttack";
-		break;
-	case PlayerStateType::JumpAttack:
-		DebugStr += "JumpAttack";
 		break;
 	default:
 		DebugStr += "UNKNOWN";

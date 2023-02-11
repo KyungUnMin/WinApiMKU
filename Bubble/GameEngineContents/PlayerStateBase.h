@@ -57,12 +57,12 @@ protected:
 	RoundLevelBase* GetRoundLevel();
 	void ConnectRoundLevel();
 
-	inline void SetAniName(const std::string_view& _AniName)
+	inline void SetNowAniName(const std::string_view& _AniName)
 	{
 		AniName = _AniName;
 	}
 
-	inline const std::string& GetAniName()
+	inline const std::string& GetNowAniName()
 	{
 		return AniName;
 	}
@@ -71,6 +71,9 @@ protected:
 
 	//플레이어의 방향이 바뀌였다면 그 방향에 따라 애니메이션 전환
 	void ChangeAniDir();
+
+	//플레이어 방향 + 애니메이션이름
+	const std::string GetAniNamePlusDir(const std::string_view& _AniName);
 
 private:
 	PlayerFSM*					FSMPtr				= nullptr;

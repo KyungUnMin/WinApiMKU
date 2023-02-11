@@ -273,15 +273,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PlayerState_FallingAttack.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="PlayerState_Idle.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="PlayerState_IdleAttack.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -289,15 +281,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PlayerState_JumpAttack.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="PlayerState_Move.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="PlayerState_MoveAttack.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -504,15 +488,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PlayerState_FallingAttack.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="PlayerState_Idle.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayerState_IdleAttack.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -520,15 +496,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PlayerState_JumpAttack.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="PlayerState_Move.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayerState_MoveAttack.cpp">
       <SubType>
       </SubType>
     </ClCompile>
