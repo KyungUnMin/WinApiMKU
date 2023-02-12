@@ -1,13 +1,18 @@
 #pragma once
 #include "MovableActor.h"
+#include "MonsterStateEnum.h"
 
 class GameEngineCollision;
-class GameEngineActor;
 class GameEngineRender;
+class MonsterFSM;
 
 class MonsterBase : public MovableActor
 {
 public:
+	static const float4 RenderScale;
+	static const float4 CollisionScale;
+	static const float4 CollisionOffset;
+
 	MonsterBase();
 	~MonsterBase() override;
 
@@ -16,18 +21,31 @@ public:
 	MonsterBase& operator=(const MonsterBase& _Other) = delete;
 	MonsterBase& operator=(const MonsterBase&& _Other) noexcept = delete;
 
-	void Reset();
-	void BubbleLock(GameEngineActor* _Bubble);
+	inline GameEngineRender* GetRender()
+	{
+		return RenderPtr;
+	}
+
+	inline GameEngineCollision* GetCollision()
+	{
+		return CollisionPtr;
+	}
 
 protected:
 	void Start() override;
-	void Update(float _DeltaTime) override;
+	void Update(float _DeltaTime) final;
+	void Render(float _DeltaTime) override;
+
+	inline MonsterFSM* GetFSM()
+	{
+		return FsmPtr;
+	}
+
+	void Start_FSM(MonsterStateType _StartType);
 
 private:
-	GameEngineRender*		Render			= nullptr;
+	GameEngineRender*		RenderPtr	= nullptr;
 	GameEngineCollision*		CollisionPtr	= nullptr;
-	GameEngineActor*			LockBubble	= nullptr;
-
-	void ResourceLoad();
+	MonsterFSM*					FsmPtr			= nullptr;
 };
 

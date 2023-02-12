@@ -229,6 +229,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MonsterFSM.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MonsterStateBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MonsterStateEnum.h" />
+    <ClInclude Include="Monster_ZenChan.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MovableActor.h">
       <SubType>
       </SubType>
@@ -369,6 +382,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ZenChan_Move.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp">
@@ -441,6 +458,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MonsterBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MonsterFSM.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MonsterStateBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Monster_ZenChan.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -581,6 +610,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="OpeningLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ZenChan_Move.cpp">
       <SubType>
       </SubType>
     </ClCompile>

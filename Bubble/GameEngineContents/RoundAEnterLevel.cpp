@@ -22,6 +22,8 @@ RoundAEnterLevel::~RoundAEnterLevel()
 }
 
 
+#include "Monster_ZenChan.h"
+
 void RoundAEnterLevel::Loading()
 {
 	RoundLevelBase::Loading();
@@ -40,6 +42,9 @@ void RoundAEnterLevel::Loading()
 	CreateDoor();
 
 	CreateBubbleDest();
+
+	Monster_ZenChan* TestMonster = CreateActor<Monster_ZenChan>();
+	TestMonster->SetPos({ 300.f, 600.f });
 }
 
 void RoundAEnterLevel::ResourceLoad()

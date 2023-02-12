@@ -1,91 +1,59 @@
 #include "MonsterBase.h"
-#include <GameEngineBase/GameEngineDirectory.h>
-#include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "ContentsEnum.h"
+#include "MonsterFSM.h"
+
+const float4 MonsterBase::RenderScale = float4{ 200.f, 200.f };
+const float4 MonsterBase::CollisionScale = float4{ 100.f, 100.f };
+const float4 MonsterBase::CollisionOffset = float4{ 0.f, 50.f };
 
 MonsterBase::MonsterBase()
 {
-
+	FsmPtr = new MonsterFSM;
+	FsmPtr->SetMonser(this);
 }
 
 MonsterBase::~MonsterBase()
 {
-
+	if (nullptr != FsmPtr)
+	{
+		delete FsmPtr;
+		FsmPtr = nullptr;
+	}
 }
-
-
 
 void MonsterBase::Start()
 {
-	//이 클래스 통틀어 처음에만 리소스 로드하기
-	static bool IsLoad = false;
-	if (false == IsLoad)
-	{
-		ResourceLoad();
-		IsLoad = true;
-	}
-
-	Render = CreateRender(RenderOrder::Monster1);
-	Render->CreateAnimation
-	({
-		.AnimationName = "Move",
-		.ImageName = "LeftMove.bmp",
-		.Start = 0,
-		.End = 3,
-		.InterTimer = 0.25f,
-	});
-
-	Render->CreateAnimation
-	({
-		.AnimationName = "Locked",
-		.ImageName = "LeftLocked.bmp",
-		.Start = 0,
-		.End = 2,
-		.InterTimer = 0.25f,
-	});
-
-	Render->SetScale({ 150.f ,150.f });
-	Render->ChangeAnimation("Move");
+	RenderPtr = CreateRender(RenderOrder::Monster1);
+	RenderPtr->SetScale(RenderScale);
 
 	CollisionPtr = CreateCollision(CollisionOrder::Monster);
-	CollisionPtr->SetScale({ 50.f, 50.f });
-	CollisionPtr->SetPosition({ 0.f, -20.f });
+	CollisionPtr->SetScale(CollisionScale);
+	CollisionPtr->SetPosition(CollisionOffset);
 }
 
-void MonsterBase::ResourceLoad()
+void MonsterBase::Start_FSM(MonsterStateType _StartType)
 {
-	GameEngineDirectory Dir;
-	Dir.MoveParentToDirectory("ContentsResources");
-	Dir.Move("ContentsResources");
-	Dir.Move("Image");
-	Dir.Move("Common");
-	Dir.Move("Monster");
-	Dir.Move("ZenChan");
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("LeftMove.bmp"))->Cut(4, 1);
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("LeftLocked.bmp"))->Cut(3, 1);
+	if (true == FsmPtr->States.empty())
+	{
+		MsgAssert("아직 몬스터의 FSM을 만들어주지 않았습니다");
+		return;
+	}
+
+	FsmPtr->Start();
+	FsmPtr->ChangeState(_StartType);
 }
+
 
 void MonsterBase::Update(float _DeltaTime)
 {
-	if (nullptr == LockBubble)
-		return;
-
-	SetPos(LockBubble->GetPos());
+	FsmPtr->Update(_DeltaTime);
 }
 
-
-
-void MonsterBase::BubbleLock(GameEngineActor* _Bubble)
+void MonsterBase::Render(float _DeltaTime)
 {
-	LockBubble = _Bubble;
-	Render->ChangeAnimation("Locked");
+	FsmPtr->Render(_DeltaTime);
 }
 
-void MonsterBase::Reset()
-{
-	LockBubble = nullptr;
-	Render->ChangeAnimation("Move");
-	CollisionPtr->On();
-}
+
