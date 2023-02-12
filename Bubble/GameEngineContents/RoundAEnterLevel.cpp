@@ -11,14 +11,6 @@
 #include "PlayerBase.h"
 #include "BubbleDestHelper.h"
 
-#include "MonsterBase.h"
-
-const float4											RoundAEnterLevel::MonsterSpawnPos[3] =
-{
-	{400.f, 430.f},{500.f, 430.f},{600.f, 430.f}
-};
-
-
 RoundAEnterLevel::RoundAEnterLevel()
 {
 
@@ -46,14 +38,6 @@ void RoundAEnterLevel::Loading()
 	CreateActor<RoundA_Enter_Sky>();
 	//다음 레벨로 넘어가는 문 생성
 	CreateDoor();
-
-	Monsters.reserve(3);
-	for (size_t i = 0; i < 3; ++i)
-	{
-		MonsterBase* Monster = CreateActor<MonsterBase>();
-		Monster->SetPos(MonsterSpawnPos[i]);
-		Monsters.push_back(Monster);
-	}
 
 	CreateBubbleDest();
 }
@@ -105,17 +89,10 @@ void RoundAEnterLevel::CreateBubbleDest()
 
 void RoundAEnterLevel::Update(float _DeltaTime)
 {
-	for (size_t i = 0; i < Monsters.size(); ++i)
-	{
-		if (Monsters[i]->IsUpdate())
-			return;
-	}
-
 	for (size_t i = 0; i < 3; ++i)
 	{
 		Door[i]->On();
 	}
-
 
 	//문이 선택되었을때를 확인
 	if (SelectedDoor < 0)
@@ -170,13 +147,6 @@ void RoundAEnterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	for (size_t i = 0; i < 3; ++i)
 	{
 		Door[i]->Reset();
-	}
-
-	for (size_t i = 0; i < Monsters.size(); ++i)
-	{
-		Monsters[i]->On();
-		Monsters[i]->Reset();
-		Monsters[i]->SetPos(MonsterSpawnPos[i]);
 	}
 
 	//문의 선택 초기화

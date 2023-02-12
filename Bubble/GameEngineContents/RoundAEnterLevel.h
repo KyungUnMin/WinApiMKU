@@ -7,8 +7,6 @@ class MonsterBase;
 class RoundAEnterLevel : public RoundLevelBase
 {
 public:
-	static const float4							MonsterSpawnPos[3];
-
 	RoundAEnterLevel();
 	~RoundAEnterLevel();
 
@@ -28,8 +26,6 @@ private:
 	int				SelectedDoor		= -1;
 	float			NextLevelTime		= 3.f;
 
-
-	std::vector<MonsterBase*> Monsters;
 
 	void ResourceLoad();
 	void CreateBackGround();
