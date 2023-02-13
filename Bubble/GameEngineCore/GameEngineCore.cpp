@@ -31,6 +31,15 @@ void GameEngineCore::GlobalStart()
 
 void GameEngineCore::GlobalUpdate()
 {
+	//시스템 사운드 업데이트
+	GameEngineSound::SoundUpdate();
+
+	//이전 프레임과 현재 프레임 사이 시간
+	float TimeDeltaTime = GameEngineTime::GlobalTime.TimeCheck();
+
+	//키 입력 처리
+	GameEngineInput::Update(TimeDeltaTime);
+
 	//씬 변경을 요구했다면
 	if (nullptr != Core->NextLevel)
 	{
@@ -56,14 +65,11 @@ void GameEngineCore::GlobalUpdate()
 		}
 	}
 
-	//시스템 사운드 업데이트
-	GameEngineSound::SoundUpdate();
-
-	//이전 프레임과 현재 프레임 사이 시간
-	float TimeDeltaTime = GameEngineTime::GlobalTime.TimeCheck();
-
-	//키 입력 처리
-	GameEngineInput::Update(TimeDeltaTime);
+	//디버깅을 위한 델타타임 제어
+	if (1.0f / 60.0f <= TimeDeltaTime)
+	{
+		TimeDeltaTime = 1.0f / 60.0f;
+	}
 
 	//GameEngineCore를 상속받은 자식의 Update가 실행됨
 	//코어에 대한 업데이트(...)

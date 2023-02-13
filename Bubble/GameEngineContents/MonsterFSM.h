@@ -5,6 +5,7 @@ enum class MonsterStateType
 {
 	Falling,
 	Move,
+	Jump,
 
 
 };

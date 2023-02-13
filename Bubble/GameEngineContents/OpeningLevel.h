@@ -15,6 +15,7 @@ enum class OpeningRenderOrder
 
 class GameEngineRender;
 class GameEngineActor;
+class GameEngineSoundPlayer;
 
 class OpeningLevel : public GameEngineLevel
 {
@@ -36,6 +37,8 @@ protected:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override {}
 
 private:
+	GameEngineSoundPlayer* SoundPtr = nullptr;
+
 	float							AccTime				= 0.0f;
 
 	GameEngineRender*	CompanyLogo		= nullptr;

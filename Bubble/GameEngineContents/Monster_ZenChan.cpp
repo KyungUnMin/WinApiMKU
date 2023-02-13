@@ -7,6 +7,7 @@
 
 #include "MonsterState_Falling.h"
 #include "MonsterState_Move.h"
+#include "MonsterState_Jump.h"
 
 
 const std::string_view		Monster_ZenChan::RightImagePath			= "Right_ZenChan.bmp";
@@ -34,8 +35,10 @@ void Monster_ZenChan::Start()
 
 	MonsterState_Falling* FallingState = GetFSM()->CreateState<MonsterState_Falling>(MonsterStateType::Falling);
 	MonsterState_Move* MoveState = GetFSM()->CreateState<MonsterState_Move>(MonsterStateType::Move);
+	MoveState->SetStateChangeFunc((StateChangeFuncPtr)&Monster_ZenChan::Test);
 
-	//for (FrameAnimationParameter Param : AniParams)
+	MonsterState_Jump* JumpState = GetFSM()->CreateState<MonsterState_Jump>(MonsterStateType::Jump);
+
 	for (size_t i = 0; i < AniParams.size(); ++i)
 	{
 		GetRender()->CreateAnimation(AniParams[i]);

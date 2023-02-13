@@ -241,6 +241,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MonsterState_Jump.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MonsterState_Move.h">
       <SubType>
       </SubType>
@@ -473,6 +477,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MonsterState_Falling.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MonsterState_Jump.cpp">
       <SubType>
       </SubType>
     </ClCompile>

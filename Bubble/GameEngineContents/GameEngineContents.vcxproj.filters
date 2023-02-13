@@ -181,6 +181,9 @@
     <ClInclude Include="MonsterState_Move.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\04.Move</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterState_Jump.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\05.Jump</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -362,6 +365,9 @@
     </ClCompile>
     <ClCompile Include="MonsterState_Move.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\04.Move</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterState_Jump.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\05.Jump</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -625,6 +631,9 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\04.Move">
       <UniqueIdentifier>{471df89e-f2b1-47ce-9129-c9a34da4dddd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\05.Jump">
+      <UniqueIdentifier>{e175d6d6-e1c0-4e2e-a3ea-a056da90a402}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

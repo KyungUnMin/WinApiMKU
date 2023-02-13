@@ -107,7 +107,7 @@ void GameEngineRender::FrameAnimation::Render(float _DeltaTime)
 		}
 
 		//시간 재설정
-		CurrentTime = FrameTime[CurrentIndex];
+		CurrentTime += FrameTime[CurrentIndex];
 	}
 
 }

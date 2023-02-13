@@ -35,9 +35,10 @@ void MonsterState_Move::Update(float _DeltaTime)
 		return;
 	}
 
-	//플레이어 이동
+	//몬스터 이동
 	if (false == GetMonster()->MoveHorizon(MoveSpeed.x, MonsterBase::CollisionScale, _DeltaTime))
 	{
+		//길이 막혔다면 반대 방향으로 이동
 		GetMonster()->SetReverseDir();
 		GameEngineRender* RenderPtr = GetMonster()->GetRender();
 

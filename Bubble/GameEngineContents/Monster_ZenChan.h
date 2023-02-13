@@ -53,7 +53,12 @@ protected:
 	void Start() override;
 
 private:
-	
+	bool Test()
+	{
+		int a = 0;
+
+		return false;
+	}
 
 
 	void ResourceLoad();

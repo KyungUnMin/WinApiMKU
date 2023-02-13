@@ -125,7 +125,8 @@ void OpeningLevel::SoundPlay()
 	Dir.Move("BGM");
 
 	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("Opening.mp3"));
-	GameEngineSoundPlayer Sound = GameEngineResources::GetInst().SoundPlayerToControl("Opening.mp3");
+	SoundPtr = &GameEngineResources::GetInst().SoundPlayerToControl("Opening.mp3");
+	SoundPtr->PauseOn();
 }
 
 
@@ -146,6 +147,7 @@ void OpeningLevel::Update(float _DeltaTime)
 	if (CompanyLogo->IsUpdate() && CompanyLogoOffTime < AccTime)
 	{
 		CompanyLogo->Off();
+		SoundPtr->PauseOff();
 	}
 
 	//SpotLightOffTime 시간이 경과했으면 스포트 라이트 끄기
