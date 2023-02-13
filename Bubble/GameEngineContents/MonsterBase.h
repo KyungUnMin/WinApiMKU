@@ -4,6 +4,7 @@
 class GameEngineCollision;
 class GameEngineRender;
 class MonsterFSM;
+
 enum class MonsterStateType;
 
 class MonsterBase : public MovableActor
@@ -31,6 +32,7 @@ public:
 		return CollisionPtr;
 	}
 	
+	void AttackedBubble();
 
 protected:
 	void Start() override;

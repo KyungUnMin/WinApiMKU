@@ -46,10 +46,14 @@ protected:
 		return AniName;
 	}
 
+	void PlayerCollisionCheck();
+
 private:
 	BubbleMissleFSM*		Fsm				= nullptr;
 	BubbleMissle*				Bubble			= nullptr;
 
 	std::string					AniName		= "";
+
+	void BubbleChainPop();
 };
 

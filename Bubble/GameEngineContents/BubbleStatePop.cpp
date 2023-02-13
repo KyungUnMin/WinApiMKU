@@ -45,6 +45,8 @@ void BubbleStatePop::EnterState()
 	BubbleMissleStateBase::EnterState();
 
 	GetBubble()->GetCollisionPtr()->Off();
+
+	//버블 타입에 따라 무언가 생성
 	switch (BubbleType)
 	{
 	case BubbleMissleType::Normal:

@@ -67,9 +67,6 @@ private:
 	const float						ProtectionTime = 3.f;
 	float								AliveLiveTime = 0.f;
 
-	//플레이어와 버블의 충돌 처리및 버블 연쇄적으로 터뜨리기
-	void BubbleCollisionCheck();
-
 	//몬스터와의 충돌
 	void MonsterCollisionCheck();
 

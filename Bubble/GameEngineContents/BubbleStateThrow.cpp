@@ -6,6 +6,7 @@
 #include "BubbleMissle.h"
 #include "BubbleMissleFSM.h"
 #include "RoundLevelBase.h"
+#include "MonsterBase.h"
 
 const float BubbleStateThrow::MoveSpeed = 500.f;
 
@@ -55,6 +56,7 @@ void BubbleStateThrow::ResourceLoad()
 }
 
 
+
 void BubbleStateThrow::Update(float _DeltaTime)
 {
 	BubbleMissle* Bubble = GetBubble();
@@ -75,13 +77,34 @@ void BubbleStateThrow::Update(float _DeltaTime)
 		return;
 	}
 
+	if (true == MonsterCollisionCheck())
+	{
+		GetFSM()->ChangeState(BubbleStateType::Move);
+		return;
+	}
+
+
 	Bubble->SetPos(NextPos);
 }
 
-void BubbleStateThrow::EnterState()
+bool BubbleStateThrow::MonsterCollisionCheck()
 {
-	BubbleMissleStateBase::EnterState();
-	GetBubble()->GetCollisionPtr()->Off();
+	std::vector<GameEngineCollision*> Monsters;
+	GameEngineCollision* CollisionPtr = GetBubble()->GetCollisionPtr();
+	if (false == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Monster) }, Monsters))
+		return false;
+
+	GameEngineActor* MonsterActor = Monsters.front()->GetActor();
+	MonsterBase* Monster = dynamic_cast<MonsterBase*>(MonsterActor);
+	if (nullptr == Monster)
+	{
+		MsgAssert("CollisionOrder::Monster에 몬스터가 아닌 객체가 들어가있습니다");
+		return false;
+	}
+
+	Monster->AttackedBubble();
+	GetBubble()->SetLockMonster(Monster);
+	return true;
 }
 
 

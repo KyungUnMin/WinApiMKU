@@ -79,9 +79,6 @@ void BubbleStateMove::EnterState()
 	//애니메이션 변경
 	BubbleMissleStateBase::EnterState();
 
-	//충돌체 켜기
-	GetBubble()->GetCollisionPtr()->On();
-
 	//가장 가까운 BubbleDest의 위치로 목적지 설정
 	RoundLevelBase* RoundLevel = GetBubble()->GetRoundLevel();
 	BubbleDestHelper* BDHelper = RoundLevel->GetBubbleDestHelper();
@@ -109,6 +106,9 @@ void BubbleStateMove::EnterState()
 
 void BubbleStateMove::Update(float _DeltaTime)
 {
+	//플레이어와 충돌 여부 확인
+	PlayerCollisionCheck();
+
 	//이동
 	MoveBubble(_DeltaTime);
 

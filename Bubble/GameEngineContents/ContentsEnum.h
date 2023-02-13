@@ -34,10 +34,11 @@ enum class RenderOrder
 
 	Monster1,
 	Monster2,
-	AttackBubble,
 
 	ClearBubble,
 	Player1,
+
+	AttackBubble,
 };
 
 enum class CollisionOrder

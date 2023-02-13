@@ -7,7 +7,7 @@
 
 const float4 MonsterBase::RenderScale		= float4{ 200.f, 200.f };
 const float4 MonsterBase::CollisionScale		= float4{ 50.f, 50.f };
-const float4 MonsterBase::CollisionOffset	= float4{ 0.f, -50.f };
+const float4 MonsterBase::CollisionOffset	= float4{ 0.f, -30.f };
 
 MonsterBase::MonsterBase()
 {
@@ -23,6 +23,7 @@ MonsterBase::~MonsterBase()
 		FsmPtr = nullptr;
 	}
 }
+
 
 void MonsterBase::Start()
 {
@@ -60,3 +61,8 @@ void MonsterBase::Render(float _DeltaTime)
 }
 
 
+
+void MonsterBase::AttackedBubble()
+{
+	//FsmPtr->ChangeState(Monster)
+}

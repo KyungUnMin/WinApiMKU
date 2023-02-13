@@ -17,10 +17,10 @@ public:
 protected:
 	void Init(PlayerCharacterType _CharType, BubbleMissleType _BubbleType) override;
 	void Update(float _DeltaTime) override;
-	void EnterState() override;
 
 private:
 
 	void ResourceLoad();
+	bool MonsterCollisionCheck();
 };
 

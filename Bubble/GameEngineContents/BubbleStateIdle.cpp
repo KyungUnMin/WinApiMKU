@@ -34,12 +34,14 @@ void BubbleStateIdle::Init(PlayerCharacterType _CharType, BubbleMissleType _Bubb
 void BubbleStateIdle::EnterState()
 {
 	BubbleMissleStateBase::EnterState();
-	GetBubble()->GetCollisionPtr()->On();
 	FinalDest = GetBubble()->GetPos();
 }
 
 void BubbleStateIdle::Update(float _DeltaTime)
 {
+	//플레이어와 충돌 여부 확인
+	PlayerCollisionCheck();
+
 	float4 NowPos = GetBubble()->GetPos();
 	float4 Dir = FinalDest - NowPos;
 	if (false == Dir.IsZero())
