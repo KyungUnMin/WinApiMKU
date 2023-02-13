@@ -1,10 +1,10 @@
 #pragma once
 #include "MovableActor.h"
-#include "MonsterStateEnum.h"
 
 class GameEngineCollision;
 class GameEngineRender;
 class MonsterFSM;
+enum class MonsterStateType;
 
 class MonsterBase : public MovableActor
 {

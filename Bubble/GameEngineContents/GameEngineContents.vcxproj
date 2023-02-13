@@ -237,7 +237,14 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MonsterStateEnum.h" />
+    <ClInclude Include="MonsterState_Falling.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MonsterState_Move.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Monster_ZenChan.h">
       <SubType>
       </SubType>
@@ -382,14 +389,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ZenChan_Falling.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="ZenChan_Move.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp">
@@ -473,10 +472,19 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MonsterState_Falling.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MonsterState_Move.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Monster_ZenChan.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Monster_ZenChanAniData.cpp" />
     <ClCompile Include="MovableActor.cpp">
       <SubType>
       </SubType>
@@ -614,14 +622,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="OpeningLevel.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="ZenChan_Falling.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="ZenChan_Move.cpp">
       <SubType>
       </SubType>
     </ClCompile>

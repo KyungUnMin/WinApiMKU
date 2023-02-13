@@ -1,13 +1,19 @@
 #pragma once
 #include <string>
 #include <string_view>
+#include "MonsterBase.h"
 
 class MonsterFSM;
 class MonsterBase;
+class FrameAnimationParameter;
+
+typedef bool(MonsterBase::* StateChangeFuncPtr)();
 
 class MonsterStateBase
 {
 public:
+	friend MonsterFSM;
+
 	MonsterStateBase();
 	virtual ~MonsterStateBase() = 0;
 
@@ -16,21 +22,11 @@ public:
 	MonsterStateBase& operator=(const MonsterStateBase& _Other) = delete;
 	MonsterStateBase& operator=(const MonsterStateBase&& _Other) noexcept = delete;
 
-	virtual void Start() = 0;
-	virtual void Update(float _DeltaTime) = 0;
-	virtual void Render(float _DeltaTime) {}
+	void CreateAnimation(const FrameAnimationParameter& _Param);
 
-	virtual void EnterState(){}
-	virtual void ExitState(){}
-
-	inline void SetMonster(MonsterBase* _Monster)
+	inline void SetStateChangeFunc(StateChangeFuncPtr _FuncPtr)
 	{
-		Monster = _Monster;
-	}
-
-	inline void SetFSM(MonsterFSM* _Fsm)
-	{
-		FsmPtr = _Fsm;
+		IsStateChange = _FuncPtr;
 	}
 
 protected:
@@ -54,10 +50,34 @@ protected:
 		return NowAniName;
 	}
 
-private:
-	MonsterBase*		Monster		= nullptr;
-	MonsterFSM*		FsmPtr			= nullptr;
+	inline StateChangeFuncPtr GetStateChangeFunc()
+	{
+		return IsStateChange;
+	}
 
-	std::string			NowAniName;
+	virtual void Start();
+	virtual void Update(float _DeltaTime) {}
+	virtual void Render(float _DeltaTime) {}
+
+	virtual void EnterState();
+	virtual void ExitState() {}
+	
+
+private:
+	StateChangeFuncPtr	IsStateChange		= nullptr;
+	MonsterBase*				Monster				= nullptr;
+	MonsterFSM*				FsmPtr					= nullptr;
+
+	std::string					NowAniName;
+
+	inline void SetMonster(MonsterBase* _Monster)
+	{
+		Monster = _Monster;
+	}
+
+	inline void SetFSM(MonsterFSM* _Fsm)
+	{
+		FsmPtr = _Fsm;
+	}
 };
 

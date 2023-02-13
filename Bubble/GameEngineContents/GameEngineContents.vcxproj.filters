@@ -172,17 +172,14 @@
     <ClInclude Include="MonsterStateBase.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\02.StateBase</Filter>
     </ClInclude>
-    <ClInclude Include="ZenChan_Move.h">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\02.FSM_Move</Filter>
-    </ClInclude>
-    <ClInclude Include="MonsterStateEnum.h">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\01.FSM</Filter>
+    <ClInclude Include="MonsterState_Falling.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\03.Falling</Filter>
     </ClInclude>
     <ClInclude Include="Monster_ZenChan.h">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\01.Actor</Filter>
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan</Filter>
     </ClInclude>
-    <ClInclude Include="ZenChan_Falling.h">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\03.FSM_Falling</Filter>
+    <ClInclude Include="MonsterState_Move.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\04.Move</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -354,14 +351,17 @@
     <ClCompile Include="MonsterStateBase.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\02.StateBase</Filter>
     </ClCompile>
-    <ClCompile Include="ZenChan_Move.cpp">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\02.FSM_Move</Filter>
+    <ClCompile Include="MonsterState_Falling.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\03.Falling</Filter>
     </ClCompile>
     <ClCompile Include="Monster_ZenChan.cpp">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\01.Actor</Filter>
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan</Filter>
     </ClCompile>
-    <ClCompile Include="ZenChan_Falling.cpp">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\03.FSM_Falling</Filter>
+    <ClCompile Include="Monster_ZenChanAniData.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterState_Move.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\04.Move</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -611,9 +611,6 @@
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\03.ZenChan">
       <UniqueIdentifier>{7845e64e-6d14-48dd-aaa6-599699145f2e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\01.Actor">
-      <UniqueIdentifier>{d19deb7f-60ec-4750-81f9-ea7df2615648}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase">
       <UniqueIdentifier>{415c0768-151b-418f-ba16-17a5a5b63985}</UniqueIdentifier>
     </Filter>
@@ -623,11 +620,11 @@
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\02.StateBase">
       <UniqueIdentifier>{89bc1172-b2be-46b6-abdf-8f1613b9ddf6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\02.FSM_Move">
-      <UniqueIdentifier>{5103aa2e-5917-4d29-a46e-eeed78a51bb7}</UniqueIdentifier>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\03.Falling">
+      <UniqueIdentifier>{557fc774-c8d3-49f3-b647-c483e5f77017}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\03.FSM_Falling">
-      <UniqueIdentifier>{3e625fda-461c-45aa-9cbc-57b52edb2cd3}</UniqueIdentifier>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSMBase\04.Move">
+      <UniqueIdentifier>{471df89e-f2b1-47ce-9129-c9a34da4dddd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

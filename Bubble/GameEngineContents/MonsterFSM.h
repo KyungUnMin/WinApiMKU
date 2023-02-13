@@ -1,6 +1,13 @@
 #pragma once
 #include <map>
-#include "MonsterStateEnum.h"
+
+enum class MonsterStateType
+{
+	Falling,
+	Move,
+
+
+};
 
 class MonsterStateBase;
 class MonsterBase;
@@ -16,9 +23,9 @@ public:
 	MonsterFSM& operator=(const MonsterFSM&& _Other) noexcept = delete;
 
 	template <typename StateType>
-	MonsterStateBase* CreateState(MonsterStateType _Type)
+	StateType* CreateState(MonsterStateType _Type)
 	{
-		MonsterStateBase* StetePtr = new StateType;
+		StateType* StetePtr = new StateType;
 		States[_Type] = StetePtr;
 		return StetePtr;
 	}
