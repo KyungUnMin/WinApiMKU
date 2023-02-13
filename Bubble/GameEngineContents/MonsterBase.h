@@ -30,6 +30,7 @@ public:
 	{
 		return CollisionPtr;
 	}
+	
 
 protected:
 	void Start() override;
@@ -42,6 +43,7 @@ protected:
 	}
 
 	void Start_FSM(MonsterStateType _StartType);
+
 
 private:
 	GameEngineRender*		RenderPtr	= nullptr;

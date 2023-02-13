@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineCore/GameEngineResources.h>
 
 enum class OpeningRenderOrder
 {
@@ -15,7 +16,6 @@ enum class OpeningRenderOrder
 
 class GameEngineRender;
 class GameEngineActor;
-class GameEngineSoundPlayer;
 
 class OpeningLevel : public GameEngineLevel
 {
@@ -37,8 +37,7 @@ protected:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override {}
 
 private:
-	GameEngineSoundPlayer* SoundPtr = nullptr;
-
+	GameEngineSoundPlayer SoundPlayer;
 	float							AccTime				= 0.0f;
 
 	GameEngineRender*	CompanyLogo		= nullptr;

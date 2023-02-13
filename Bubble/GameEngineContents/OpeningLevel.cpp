@@ -2,7 +2,6 @@
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
-#include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "BubbleCore.h"
 #include "BackGround.h"
@@ -125,8 +124,8 @@ void OpeningLevel::SoundPlay()
 	Dir.Move("BGM");
 
 	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("Opening.mp3"));
-	SoundPtr = &GameEngineResources::GetInst().SoundPlayerToControl("Opening.mp3");
-	SoundPtr->PauseOn();
+	SoundPlayer = GameEngineResources::GetInst().SoundPlayerToControl("Opening.mp3");
+	SoundPlayer.PauseOn();
 }
 
 
@@ -147,7 +146,7 @@ void OpeningLevel::Update(float _DeltaTime)
 	if (CompanyLogo->IsUpdate() && CompanyLogoOffTime < AccTime)
 	{
 		CompanyLogo->Off();
-		SoundPtr->PauseOff();
+		SoundPlayer.PauseOff();
 	}
 
 	//SpotLightOffTime 시간이 경과했으면 스포트 라이트 끄기

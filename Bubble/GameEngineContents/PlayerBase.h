@@ -11,6 +11,8 @@ class BubbleSpawner;
 class PlayerBase : public MovableActor
 {
 public:
+	static PlayerBase* MainPlayer;
+
 	static const float4 CollisionOffset;
 	static const float4 CollisionScale;
 

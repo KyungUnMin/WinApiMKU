@@ -16,6 +16,7 @@ public:
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
+	void EnterState() override;
 
 
 private:
@@ -23,7 +24,7 @@ private:
 	const float						FallingChangeTime	= 0.5f;
 
 	const float4					AirMoveSpeed			= float4{ 250.f, 0.f };
-	const float4					JumpSpeed				= float4{ 0.f, 600.f };
+	const float4					JumpSpeed				= float4{ 100.f, 600.f };
 	const float						ScreenTopOffset	= 50.f;
 
 	bool CheckStateChange(float _DeltaTime);

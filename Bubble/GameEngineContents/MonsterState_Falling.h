@@ -20,7 +20,7 @@ protected:
 	void EnterState() override;
 
 private:
-	const float4	GravitySpeed	= float4{ 0.f, 250.f };
+	const float4	GravitySpeed	= float4{ 0.f, 200.f };
 
 	bool					IsBlocked		= false;
 

@@ -62,6 +62,7 @@ protected:
 	virtual void EnterState();
 	virtual void ExitState() {}
 	
+	float4 GetHorizonDirToPlayer();
 
 private:
 	StateChangeFuncPtr	IsStateChange		= nullptr;

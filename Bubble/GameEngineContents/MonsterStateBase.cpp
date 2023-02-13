@@ -2,6 +2,7 @@
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "MonsterBase.h"
+#include "PlayerBase.h"
 
 MonsterStateBase::MonsterStateBase()
 {
@@ -56,3 +57,15 @@ void MonsterStateBase::CreateAnimation(const FrameAnimationParameter& _Param)
 	RenderPtr->CreateAnimation(_Param);
 }
 
+
+float4 MonsterStateBase::GetHorizonDirToPlayer()
+{
+	float4 PlayerPos = PlayerBase::MainPlayer->GetPos();
+	float4 MonsterPos = Monster->GetPos();
+
+	float4 Dir = PlayerPos - MonsterPos;
+	Dir.y = 0;
+	Dir.Normalize();
+
+	return Dir;
+}
