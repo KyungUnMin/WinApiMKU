@@ -46,13 +46,18 @@ RoundLevelBase* PlayerStateBase::GetRoundLevel()
 
 GameEngineRender* PlayerStateBase::GetRender()
 {
+	if (nullptr != RenderPtr)
+	{
+		return RenderPtr;
+	}
+
 	if (nullptr == FSMPtr)
 	{
 		MsgAssert("현재 State와 PlayerFSM을 연결해주지 않았습니다");
 		return nullptr;
 	}
 
-	GameEngineRender* RenderPtr = FSMPtr->GetRender();
+	RenderPtr = FSMPtr->GetRender();
 	if (nullptr == RenderPtr)
 	{
 		MsgAssert("플레이어가 Render를 생성하지 않았습니다");
@@ -111,6 +116,7 @@ const std::string PlayerStateBase::GetAniNamePlusDir(const std::string_view& _An
 	const std::string NowDir = GetPlayer()->GetDirStr();
 	return NowDir + _AniName.data();
 }
+
 
 //플레이어의 방향을 확인하고 해당 애니메이션을 동작
 void PlayerStateBase::EnterState()

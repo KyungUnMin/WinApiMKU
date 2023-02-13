@@ -103,6 +103,7 @@ void PlayerState_Damaged::ExitState()
 {
 	GetPlayer()->GetCollision()->On();
 	GetPlayer()->SetPos(RoundLevelBase::PlayerSpawnPos);
+	GetPlayer()->ResetAliveTime();
 
 	if (0 < GetPlayer()->GetLifeCount())
 		return;

@@ -46,10 +46,7 @@ public:
 	//FSM 변경(PlayerStateBase 포인터)
 	void ChangeState(PlayerStateBase* _NextState);
 
-	inline GameEngineRender* GetRender()
-	{
-		return RenderPtr;
-	}
+	GameEngineRender* GetRender();
 
 	//void PlayerAttack();
 
@@ -60,8 +57,6 @@ private:
 	PlayerBase*									Player						= nullptr;
 	PlayerStateBase*						CurState					= nullptr;
 
-	const float4								PlayerRenderScale	= float4{ 200.f, 200.f };
-	GameEngineRender*					RenderPtr				= nullptr;
 
 	PlayerFSM();
 	~PlayerFSM();

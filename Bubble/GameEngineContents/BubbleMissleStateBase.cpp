@@ -25,6 +25,9 @@ void BubbleMissleStateBase::EnterState()
 
 void BubbleMissleStateBase::PlayerCollisionCheck()
 {
+	if (nullptr == PlayerBase::MainPlayer)
+		return;
+
 	//이 플레이어가 버블과 충돌했다면 충돌한 버블들을 가져오기
 	float4 PlayerPos = PlayerBase::MainPlayer->GetPos();
 	float4 PlayerCollisionScale = PlayerBase::CollisionScale;

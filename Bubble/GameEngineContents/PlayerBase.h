@@ -4,6 +4,7 @@
 #include "ContentsEnum.h"
 
 class GameEngineCollision;
+class GameEngineRender;
 class PlayerFSM;
 class BubbleSpawner;
 
@@ -41,6 +42,16 @@ public:
 		return lifeCnt;
 	}
 
+	inline GameEngineRender* GetRender()
+	{
+		return RenderPtr;
+	}
+
+	inline void ResetAliveTime()
+	{
+		AliveLiveTime = 0.f;
+	}
+
 protected:
 	//플레이어가 사용할 컴포넌트를 만들고 초기화
 	void Start() override;
@@ -57,15 +68,18 @@ protected:
 
 
 private:
-	PlayerFSM*						FSMPtr				= nullptr;
-	BubbleSpawner*				BBSpawner		= nullptr;
+	const float4					PlayerRenderScale = float4{ 200.f, 200.f };
+	GameEngineRender*		RenderPtr				= nullptr;
 
-	PlayerCharacterType		CharcterType	= PlayerCharacterType::COUNT;
-	GameEngineCollision*		CollisionPtr		= nullptr;
-	int									lifeCnt				= 3;
+	PlayerFSM*						FSMPtr						= nullptr;
+	BubbleSpawner*				BBSpawner				= nullptr;
 
-	const float						ProtectionTime = 3.f;
-	float								AliveLiveTime = 0.f;
+	PlayerCharacterType		CharcterType			= PlayerCharacterType::COUNT;
+	GameEngineCollision*		CollisionPtr				= nullptr;
+	int									lifeCnt						= 3;
+
+	const float						ProtectionTime		= 3.f;
+	float								AliveLiveTime			= ProtectionTime;
 
 	//몬스터와의 충돌
 	void MonsterCollisionCheck();

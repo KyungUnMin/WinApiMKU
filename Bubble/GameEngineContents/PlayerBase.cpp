@@ -3,6 +3,7 @@
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include "ContentsDefine.h"
 #include "PlayerFSM.h"
@@ -57,6 +58,9 @@ void PlayerBase::Start()
 	CollisionPtr->SetScale(CollisionScale);
 	CollisionPtr->SetPosition(CollisionOffset);
 
+	RenderPtr = CreateRender(RenderOrder::Player1);
+	RenderPtr->SetScale(PlayerRenderScale);
+
 
 	FSMPtr->Player = this;
 	FSMPtr->Start();
@@ -82,8 +86,9 @@ void PlayerBase::Update(float _DeltaTime)
 		BBSpawner->CreateBubble(GetDirVec());
 	}
 
-	//BubbleCollisionCheck();
+	//플레이어와 몬스터의 충돌 체크
 	MonsterCollisionCheck();
+	ProtectionRender();
 }
 
 void PlayerBase::Render(float _DeltaTime)
@@ -93,7 +98,6 @@ void PlayerBase::Render(float _DeltaTime)
 
 
 
-//얘도 FSM 안에 넣을까? 그게 좋아 보인다
 void PlayerBase::MonsterCollisionCheck()
 {
 	if (false == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Monster) }))
@@ -104,19 +108,20 @@ void PlayerBase::MonsterCollisionCheck()
 
 	FSMPtr->ChangeState(PlayerStateType::Damaged);
 	--lifeCnt;
-	AliveLiveTime = 0.f;
 }
 
 
 
 void PlayerBase::ProtectionRender()
 {
+	//레벨이 시작하면서도 동작하기 때문에 초반엔 ProtectionTime 시간만큼 무적
 	if (ProtectionTime < AliveLiveTime)
 	{
+		RenderPtr->On();
 		return;
 	}
 
-
+	RenderPtr->OnOffSwtich();
 }
 
 

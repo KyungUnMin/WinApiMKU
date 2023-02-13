@@ -45,9 +45,6 @@ void PlayerFSM::Start()
 		return;
 	}
 
-	RenderPtr = Player->CreateRender(RenderOrder::Player1);
-	RenderPtr->SetScale(PlayerRenderScale);
-
 	States.resize(static_cast<size_t>(PlayerStateType::Count), nullptr);
 	for (size_t i = 0; i < States.size(); ++i)
 	{
@@ -157,58 +154,12 @@ void PlayerFSM::ChangeState(PlayerStateBase* _NextState)
 	NextState->EnterState();
 }
 
+GameEngineRender* PlayerFSM::GetRender()
+{
+	return Player->GetRender();
+}
 
 
-
-
-
-//void PlayerFSM::PlayerAttack()
-//{
-//	//Attack 애니메이션으로 전환
-//	if (States[static_cast<int>(PlayerStateType::Idle)] == CurState)
-//	{
-//		ChangeState(GetState(PlayerStateType::IdleAttack));
-//		return;
-//	}
-//	else if (States[static_cast<int>(PlayerStateType::Move)] == CurState)
-//	{
-//		ChangeState(GetState(PlayerStateType::MoveAttack));
-//		return;
-//	}
-//	else if (States[static_cast<int>(PlayerStateType::Falling)] == CurState)
-//	{
-//		ChangeState(GetState(PlayerStateType::FallingAttack));
-//		return;
-//	}
-//	else if (States[static_cast<int>(PlayerStateType::Jump)] == CurState)
-//	{
-//		ChangeState(GetState(PlayerStateType::JumpAttack));
-//		return;
-//	}
-//
-//	//이미 Attack애니메이션 상태일땐 애니메이션 다시 재생
-//	if (States[static_cast<int>(PlayerStateType::IdleAttack)] == CurState)
-//	{
-//		CurState->PlayerStateBase::EnterState();
-//		return;
-//	}
-//	else if (States[static_cast<int>(PlayerStateType::MoveAttack)] == CurState)
-//	{
-//		CurState->PlayerStateBase::EnterState();
-//		return;
-//	}
-//	else if (States[static_cast<int>(PlayerStateType::FallingAttack)] == CurState)
-//	{
-//		CurState->PlayerStateBase::EnterState();
-//		return;
-//	}
-//	else if (States[static_cast<int>(PlayerStateType::JumpAttack)] == CurState)
-//	{
-//		CurState->PlayerStateBase::EnterState();
-//		return;
-//	}
-//
-//}
 
 
 //현재 FSM 동작
