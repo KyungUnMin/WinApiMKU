@@ -70,6 +70,8 @@ void PlayerBase::Start()
 
 void PlayerBase::Update(float _DeltaTime)
 {
+	AliveLiveTime += _DeltaTime;
+
 	//이 객체의 방향을 체크
 	MovableActor::Update(_DeltaTime);
 
@@ -81,6 +83,7 @@ void PlayerBase::Update(float _DeltaTime)
 	}
 
 	BubbleCollisionCheck();
+	MonsterCollisionCheck();
 }
 
 void PlayerBase::Render(float _DeltaTime)
@@ -161,7 +164,30 @@ void PlayerBase::BubbleCollisionCheck()
 }
 
 
+void PlayerBase::MonsterCollisionCheck()
+{
+	if (false == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Monster) }))
+		return;
 
+	if (AliveLiveTime < ProtectionTime)
+		return;
+
+	FSMPtr->ChangeState(PlayerStateType::Damaged);
+	--lifeCnt;
+	AliveLiveTime = 0.f;
+}
+
+
+
+void PlayerBase::ProtectionRender()
+{
+	if (ProtectionTime < AliveLiveTime)
+	{
+		return;
+	}
+
+
+}
 
 
 

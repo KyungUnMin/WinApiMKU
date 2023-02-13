@@ -14,6 +14,8 @@ public:
 
 	void Start(PlayerCharacterType _CharacterType) override;
 	void Update(float _DeltaTime) override;
+	void EnterState() override;
+	void ExitState() override;
 
 protected:
 

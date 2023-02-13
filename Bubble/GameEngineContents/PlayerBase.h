@@ -24,12 +24,6 @@ public:
 	PlayerBase& operator=(const PlayerBase& _Other) = delete;
 	PlayerBase& operator=(const PlayerBase&& _Other) noexcept = delete;
 
-	bool DecreaseLife()
-	{
-		--lifeCnt;
-		return 0 < lifeCnt;
-	}
-
 	PlayerCharacterType GetCharacterType();
 
 	inline  PlayerFSM* GetFSM()
@@ -37,8 +31,15 @@ public:
 		return FSMPtr;
 	}
 
-	//플레이어와 버블의 충돌 처리및 버블 연쇄적으로 터뜨리기
-	void BubbleCollisionCheck();
+	inline GameEngineCollision* GetCollision()
+	{
+		return CollisionPtr;
+	}
+	
+	inline int GetLifeCount()
+	{
+		return lifeCnt;
+	}
 
 protected:
 	//플레이어가 사용할 컴포넌트를 만들고 초기화
@@ -63,8 +64,16 @@ private:
 	GameEngineCollision*		CollisionPtr		= nullptr;
 	int									lifeCnt				= 3;
 
+	const float						ProtectionTime = 3.f;
+	float								AliveLiveTime = 0.f;
 
-	
-	
+	//플레이어와 버블의 충돌 처리및 버블 연쇄적으로 터뜨리기
+	void BubbleCollisionCheck();
+
+	//몬스터와의 충돌
+	void MonsterCollisionCheck();
+
+	//부활한 뒤 무적 연출
+	void ProtectionRender();
 };
 

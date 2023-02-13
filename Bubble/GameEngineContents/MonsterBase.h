@@ -49,5 +49,6 @@ private:
 	GameEngineRender*		RenderPtr	= nullptr;
 	GameEngineCollision*		CollisionPtr	= nullptr;
 	MonsterFSM*					FsmPtr			= nullptr;
+
 };
 

@@ -100,6 +100,11 @@ bool MonsterState_Move::IsPlayerPosOver()
 
 float MonsterState_Move::HorizonSizeWithPlayer()
 {
+	if (nullptr == PlayerBase::MainPlayer)
+	{
+		return FLT_MAX;
+	}
+
 	float4 PlayerPos = PlayerBase::MainPlayer->GetPos();
 	float4 MonsterPos = GetMonster()->GetPos();
 

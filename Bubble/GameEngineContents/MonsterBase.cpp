@@ -3,6 +3,7 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include "ContentsEnum.h"
 #include "MonsterFSM.h"
+#include "PlayerBase.h"
 
 const float4 MonsterBase::RenderScale		= float4{ 200.f, 200.f };
 const float4 MonsterBase::CollisionScale		= float4{ 50.f, 50.f };
@@ -45,6 +46,7 @@ void MonsterBase::Start_FSM(MonsterStateType _StartType)
 	FsmPtr->Start();
 	FsmPtr->ChangeState(_StartType);
 }
+
 
 
 void MonsterBase::Update(float _DeltaTime)

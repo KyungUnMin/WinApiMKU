@@ -43,8 +43,13 @@ void RoundAEnterLevel::Loading()
 
 	CreateBubbleDest();
 
-	Monster_ZenChan* TestMonster = CreateActor<Monster_ZenChan>();
-	TestMonster->SetPos({ 100.f, 275.f });
+
+	for (int i = 1; i < 4; ++i)
+	{
+		Monster_ZenChan* TestMonster = CreateActor<Monster_ZenChan>();
+		TestMonster->SetPos({ 100.f * i, 275.f });
+	}
+	
 }
 
 void RoundAEnterLevel::ResourceLoad()

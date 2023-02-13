@@ -2,8 +2,10 @@
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineResources.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "PlayerBase.h"
 #include "PlayerFSM.h"
+#include "RoundLevelBase.h"
 
 PlayerState_Damaged::PlayerState_Damaged()
 {
@@ -88,17 +90,22 @@ void PlayerState_Damaged::Update(float _DeltaTime)
 	if (false == GetRender()->IsAnimationEnd())
 		return;
 
-	//플레이어 생명력을 감소시키고 플레이어가 살아있다면
-	if (true == GetPlayer()->DecreaseLife())
-	{
-		GetFSM()->ChangeState(PlayerStateType::Idle);
-		//GetPlayer()->SetPos(GetRoundLevel()->)
+	GetFSM()->ChangeState(PlayerStateType::Idle);
+}
+
+void PlayerState_Damaged::EnterState()
+{
+	PlayerStateBase::EnterState();
+	GetPlayer()->GetCollision()->Off();
+}
+
+void PlayerState_Damaged::ExitState()
+{
+	GetPlayer()->GetCollision()->On();
+	GetPlayer()->SetPos(RoundLevelBase::PlayerSpawnPos);
+
+	if (0 < GetPlayer()->GetLifeCount())
 		return;
-	}
 
-	//플레이어가 죽었을때
 	GetPlayer()->Death();
-
-	//TODO
-	//GetRoundLevel()->
 }

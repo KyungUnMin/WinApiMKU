@@ -32,13 +32,12 @@ enum class RenderOrder
 
 	Door,
 
-	ClearBubble,
-	Player1,
-
-	AttackBubble,
 	Monster1,
 	Monster2,
+	AttackBubble,
 
+	ClearBubble,
+	Player1,
 };
 
 enum class CollisionOrder
