@@ -14,6 +14,7 @@ enum class PlayerCharacterType
 enum class UpdateOrder
 {
 	Defalut,
+	Player,
 	Player_Missle,
 	BubbleDest,
 

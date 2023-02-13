@@ -152,6 +152,22 @@ void MovableActor::RaiseOnGround(const float4& _CollisionScale)
 	SetMove(float4::Down);
 }
 
+void MovableActor::SetReverseDir()
+{
+	if (LeftStr == Dir)
+	{
+		Dir = RightStr;
+	}
+	else if (RightStr == Dir)
+	{
+		Dir = LeftStr;
+	}
+	else
+	{
+		MsgAssert("방향 설정에대한 알 수 없는 오류");
+	}
+}
+
 
 
 

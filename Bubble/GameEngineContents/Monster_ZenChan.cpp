@@ -31,6 +31,8 @@ void Monster_ZenChan::Start()
 	ResourceLoad();
 
 	GetFSM()->CreateState<ZenChan_Move>(MonsterStateType::ZenChan_Move);
+	
+
 
 	Start_FSM(MonsterStateType::ZenChan_Move);
 }
@@ -55,16 +57,4 @@ void Monster_ZenChan::ResourceLoad()
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(DeadImagePath))->Cut(4, 1);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LockImagePath))->Cut(3, 2);
 	IsLoad = true;
-}
-
-#include <GameEngineCore/GameEngineLevel.h>
-#include <GameEnginePlatform/GameEngineWindow.h>
-
-void Monster_ZenChan::Render(float _DeltaTime)
-{
-	float4 Pos = GetPos();
-	GameEngineLevel::DebugTextPush("몬스터 위치 :" + std::to_string(Pos.ix()) + "/" + std::to_string(Pos.iy()));
-
-	Rectangle(GameEngineWindow::GetDoubleBufferImage()->GetImageDC(),
-		Pos.ix() - 10, Pos.iy() - 10, Pos.ix() + 10, Pos.iy() + 10);
 }

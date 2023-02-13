@@ -213,16 +213,16 @@ void RoundLevelBase::CreatePlayer(PlayerCharacterType _Type)
 	switch (_Type)
 	{
 	case PlayerCharacterType::BUBBLUN:
-		Player = CreateActor<Player_Bubblun>();
+		Player = CreateActor<Player_Bubblun>(UpdateOrder::Player);
 		break;
 	case PlayerCharacterType::BOBBLUN:
-		Player = CreateActor <Player_Bobblun>();
+		Player = CreateActor <Player_Bobblun>(UpdateOrder::Player);
 		break;
 	case PlayerCharacterType::KULULUN:
-		Player = CreateActor <Player_Kululun>();
+		Player = CreateActor <Player_Kululun>(UpdateOrder::Player);
 		break;
 	case PlayerCharacterType::CORORON:
-		Player = CreateActor <Player_Cororon>();
+		Player = CreateActor <Player_Cororon>(UpdateOrder::Player);
 		break;
 	}
 

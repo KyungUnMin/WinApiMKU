@@ -49,7 +49,7 @@ protected:
 		NowAniName = _AniName;
 	}
 
-	inline const std::string_view& GetNowAniName()
+	inline const std::string& GetNowAniName()
 	{
 		return NowAniName;
 	}

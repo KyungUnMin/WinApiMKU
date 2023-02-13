@@ -181,6 +181,9 @@
     <ClInclude Include="Monster_ZenChan.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\01.Actor</Filter>
     </ClInclude>
+    <ClInclude Include="ZenChan_Falling.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\03.FSM_Falling</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -356,6 +359,9 @@
     </ClCompile>
     <ClCompile Include="Monster_ZenChan.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\01.Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="ZenChan_Falling.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\03.FSM_Falling</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -619,6 +625,9 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\02.FSM_Move">
       <UniqueIdentifier>{5103aa2e-5917-4d29-a46e-eeed78a51bb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\03.ZenChan\03.FSM_Falling">
+      <UniqueIdentifier>{3e625fda-461c-45aa-9cbc-57b52edb2cd3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

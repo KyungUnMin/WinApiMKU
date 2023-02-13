@@ -21,7 +21,6 @@ public:
 	
 protected:
 	void Start() override;
-	void Render(float _DeltaTime) override;
 
 private:
 	void ResourceLoad();

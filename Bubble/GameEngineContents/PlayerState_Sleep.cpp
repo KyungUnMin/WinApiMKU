@@ -105,10 +105,9 @@ void PlayerState_Sleep::Update(float _DeltaTime)
 		return;
 	}
 
-	//왼쪽 또는 오른쪽으로 이동하려고 했을때
-	if (GameEngineInput::IsPress(PLAYER_RIGHT) || GameEngineInput::IsPress(PLAYER_LEFT))
+	if (true == GameEngineInput::IsAnyKey())
 	{
-		GetFSM()->ChangeState(PlayerStateType::Move);
+		GetFSM()->ChangeState(PlayerStateType::Idle);
 		return;
 	}
 }

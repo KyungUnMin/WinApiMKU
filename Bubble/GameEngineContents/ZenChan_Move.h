@@ -1,9 +1,13 @@
 #pragma once
 #include "MonsterStateBase.h"
 
+class RoundLevelBase;
+
 class ZenChan_Move : public MonsterStateBase
 {
 public:
+	static const float MoveSpeed;
+
 	ZenChan_Move();
 	~ZenChan_Move() override;
 
@@ -20,9 +24,11 @@ protected:
 	
 
 private:
-	const std::string_view MoveAniName	= "Move";
-	const std::string_view RageAniName		= "RageMove";
+	const std::string_view	MoveAniName		= "Move";
+	const std::string_view	RageAniName		= "RageMove";
+	RoundLevelBase*			RoundLevel			= nullptr;
 
-
+	void CreateAnimation();
+	void ChangeDir();
 };
 

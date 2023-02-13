@@ -45,6 +45,8 @@ public:
 
 	void RaiseOnGround(const float4& _CollisionScale);
 
+	void SetReverseDir();
+
 protected:
 	void Start() override;
 
