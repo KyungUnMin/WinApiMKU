@@ -191,6 +191,7 @@ void PlayerState_Move::CheckAttack()
 	if (false == GameEngineInput::IsDown(PLAYER_ATTACK))
 		return;
 
+	CreateBubble();
 	GetRender()->ChangeAnimation(GetAniNamePlusDir(AttackAniName), true);
 	SetNowAniName(AttackAniName);
 }

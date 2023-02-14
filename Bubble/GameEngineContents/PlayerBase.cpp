@@ -81,10 +81,10 @@ void PlayerBase::Update(float _DeltaTime)
 
 	FSMPtr->Update(_DeltaTime);
 
-	if (GameEngineInput::IsDown(PLAYER_ATTACK))
+	/*if (GameEngineInput::IsDown(PLAYER_ATTACK))
 	{
 		BBSpawner->CreateBubble(GetDirVec());
-	}
+	}*/
 
 	//何劝茄 第 公利 楷免
 	ProtectionRender();
@@ -106,6 +106,9 @@ void PlayerBase::AttackPlayer()
 		return;
 
 	if (PlayerStateType::Damaged == FSMPtr->GetCurStateByEnum())
+		return;
+
+	if (PlayerStateType::EnterDoor	== FSMPtr->GetCurStateByEnum())
 		return;
 
 	--lifeCnt;

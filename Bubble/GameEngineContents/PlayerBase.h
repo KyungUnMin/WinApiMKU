@@ -47,6 +47,11 @@ public:
 		return RenderPtr;
 	}
 
+	inline BubbleSpawner* GetBubbleSpawner()
+	{
+		return BBSpawner;
+	}
+
 	//몬스터쪽에서 호출됨
 	void AttackPlayer();
 

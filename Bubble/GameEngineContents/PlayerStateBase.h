@@ -75,6 +75,7 @@ protected:
 	//플레이어 방향 + 애니메이션이름
 	const std::string GetAniNamePlusDir(const std::string_view& _AniName);
 
+	void CreateBubble();
 
 private:
 	GameEngineRender*	RenderPtr		= nullptr;

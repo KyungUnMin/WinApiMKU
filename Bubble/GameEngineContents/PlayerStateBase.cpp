@@ -4,6 +4,7 @@
 #include "PlayerBase.h"
 #include "RoundLevelBase.h"
 #include "PlayerFSM.h"
+#include "BubbleSpawner.h"
 
 
 PlayerStateBase::PlayerStateBase()
@@ -115,6 +116,11 @@ const std::string PlayerStateBase::GetAniNamePlusDir(const std::string_view& _An
 {
 	const std::string NowDir = GetPlayer()->GetDirStr();
 	return NowDir + _AniName.data();
+}
+
+void PlayerStateBase::CreateBubble()
+{
+	Player->GetBubbleSpawner()->CreateBubble(Player->GetDirVec());
 }
 
 
