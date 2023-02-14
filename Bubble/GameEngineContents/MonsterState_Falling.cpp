@@ -1,6 +1,7 @@
 #include "MonsterState_Falling.h"
 #include "MonsterBase.h"
 #include "MonsterFSM.h"
+#include "PlayerBase.h"
 
 MonsterState_Falling::MonsterState_Falling()
 {
@@ -25,6 +26,13 @@ void MonsterState_Falling::Update(float _DeltaTime)
 
 	//아래로 이동
 	GetMonster()->SetMove(float4::Down * GravitySpeed * _DeltaTime);
+
+	//플레이어와 충돌했을때
+	if (true == PlayerCollisionCheck())
+	{
+		PlayerBase::MainPlayer->AttackPlayer();
+		return;
+	}
 }
 
 void MonsterState_Falling::EnterState()

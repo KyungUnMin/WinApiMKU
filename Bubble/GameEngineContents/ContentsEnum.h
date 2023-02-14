@@ -11,11 +11,15 @@ enum class PlayerCharacterType
 	COUNT
 };
 
+//몬스터는 항상 Bubble보다 늦게 실행되어야 합니다
+//그래야 버블이 Death될때 댕글링 포인터를 막을수 있습니다
+//하지만 버블에도 콜리전을 두어서 개선할 계획입니다
 enum class UpdateOrder
 {
 	Defalut,
 	Player,
 	Player_Missle,
+	Monster,
 	BubbleDest,
 
 	DEBUG_GRID
@@ -32,10 +36,10 @@ enum class RenderOrder
 
 	Door,
 
+	AttackBubble,
 	Monster1,
 	Monster2,
 
-	AttackBubble,
 	ClearBubble,
 	Player1,
 

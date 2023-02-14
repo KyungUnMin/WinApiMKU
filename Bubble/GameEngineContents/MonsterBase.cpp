@@ -62,7 +62,8 @@ void MonsterBase::Render(float _DeltaTime)
 
 
 
-void MonsterBase::AttackedBubble()
+void MonsterBase::AttackedBubble(BubbleMissle* _LockedBubble)
 {
-	//FsmPtr->ChangeState(Monster)
+	FsmPtr->ChangeState(MonsterStateType::Lock);
+	FsmPtr->Locked(_LockedBubble);
 }

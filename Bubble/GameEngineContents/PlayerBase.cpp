@@ -86,8 +86,7 @@ void PlayerBase::Update(float _DeltaTime)
 		BBSpawner->CreateBubble(GetDirVec());
 	}
 
-	//플레이어와 몬스터의 충돌 체크
-	MonsterCollisionCheck();
+	//부활한 뒤 무적 연출
 	ProtectionRender();
 }
 
@@ -98,16 +97,19 @@ void PlayerBase::Render(float _DeltaTime)
 
 
 
-void PlayerBase::MonsterCollisionCheck()
-{
-	if (false == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Monster) }))
-		return;
 
+
+void PlayerBase::AttackPlayer()
+{
+	//무적 시간
 	if (AliveLiveTime < ProtectionTime)
 		return;
 
-	FSMPtr->ChangeState(PlayerStateType::Damaged);
+	if (PlayerStateType::Damaged == FSMPtr->GetCurStateByEnum())
+		return;
+
 	--lifeCnt;
+	FSMPtr->ChangeState(PlayerStateType::Damaged);
 }
 
 

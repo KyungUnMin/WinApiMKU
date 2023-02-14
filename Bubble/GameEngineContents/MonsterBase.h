@@ -4,6 +4,7 @@
 class GameEngineCollision;
 class GameEngineRender;
 class MonsterFSM;
+class BubbleMissle;
 
 enum class MonsterStateType;
 
@@ -32,7 +33,7 @@ public:
 		return CollisionPtr;
 	}
 	
-	void AttackedBubble();
+	void AttackedBubble(BubbleMissle* _LockedBubble);
 
 protected:
 	void Start() override;
@@ -51,6 +52,5 @@ private:
 	GameEngineRender*		RenderPtr	= nullptr;
 	GameEngineCollision*		CollisionPtr	= nullptr;
 	MonsterFSM*					FsmPtr			= nullptr;
-
 };
 

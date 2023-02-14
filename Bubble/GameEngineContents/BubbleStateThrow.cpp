@@ -102,8 +102,7 @@ bool BubbleStateThrow::MonsterCollisionCheck()
 		return false;
 	}
 
-	Monster->AttackedBubble();
-	GetBubble()->SetLockMonster(Monster);
+	Monster->AttackedBubble(GetBubble());
 	return true;
 }
 

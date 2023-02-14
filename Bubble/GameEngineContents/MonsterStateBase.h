@@ -6,6 +6,7 @@
 class MonsterFSM;
 class MonsterBase;
 class FrameAnimationParameter;
+class BubbleMissle;
 
 typedef bool(MonsterBase::* StateChangeFuncPtr)();
 
@@ -29,7 +30,12 @@ public:
 		IsStateChange = _FuncPtr;
 	}
 
+
+
 protected:
+	virtual void Locked(BubbleMissle* _LockedBubble) {}
+
+
 	inline MonsterBase* GetMonster()
 	{
 		return Monster;
@@ -61,8 +67,10 @@ protected:
 
 	virtual void EnterState();
 	virtual void ExitState() {}
-	
+
 	float4 GetHorizonDirToPlayer();
+
+	bool PlayerCollisionCheck();
 
 private:
 	StateChangeFuncPtr	IsStateChange		= nullptr;

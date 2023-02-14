@@ -237,11 +237,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MonsterState_Dead.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MonsterState_Falling.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="MonsterState_Jump.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MonsterState_Lock.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -476,11 +484,19 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MonsterState_Dead.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MonsterState_Falling.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="MonsterState_Jump.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MonsterState_Lock.cpp">
       <SubType>
       </SubType>
     </ClCompile>

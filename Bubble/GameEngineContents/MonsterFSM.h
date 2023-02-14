@@ -6,12 +6,15 @@ enum class MonsterStateType
 	Falling,
 	Move,
 	Jump,
+	Lock,
+	Dead
 
 
 };
 
 class MonsterStateBase;
 class MonsterBase;
+class BubbleMissle;
 
 class MonsterFSM
 {
@@ -33,6 +36,8 @@ public:
 
 	void ChangeState(MonsterStateType _NextState);
 
+
+
 protected:
 	
 
@@ -52,5 +57,7 @@ private:
 
 	MonsterFSM();
 	~MonsterFSM();
+
+	void Locked(BubbleMissle* _LockedBubble);
 };
 

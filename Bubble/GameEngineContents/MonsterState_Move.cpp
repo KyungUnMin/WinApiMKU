@@ -83,6 +83,13 @@ void MonsterState_Move::Update(float _DeltaTime)
 		}
 		
 	}
+
+	//플레이어와 충돌했을때
+	if (true == PlayerCollisionCheck())
+	{
+		PlayerBase::MainPlayer->AttackPlayer();
+		return;
+	}
 }
 
 bool MonsterState_Move::IsPlayerPosOver()

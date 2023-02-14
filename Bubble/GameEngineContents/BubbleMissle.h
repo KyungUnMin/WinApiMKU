@@ -7,7 +7,6 @@ class GameEngineCollision;
 class BubbleSpawner;
 class BubbleMissleFSM;
 class RoundLevelBase;
-class MonsterBase;
 
 class BubbleMissle : public MovableActor
 {
@@ -45,17 +44,6 @@ public:
 		return FSM;
 	}
 
-	inline MonsterBase* GetLockMonster()
-	{
-		return LockMonster;
-	}
-
-	inline void SetLockMonster(MonsterBase* _LockMonster)
-	{
-		LockMonster = _LockMonster;
-	}
-
-
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) final;
@@ -67,8 +55,6 @@ private:
 
 	BubbleMissleFSM*			FSM					= nullptr;
 	RoundLevelBase*			RoundLevel		= nullptr;
-
-	MonsterBase*					LockMonster	= nullptr;
 
 	void Init(PlayerCharacterType _CharType, BubbleMissleType _BubbleType);
 };

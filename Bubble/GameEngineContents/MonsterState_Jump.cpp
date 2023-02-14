@@ -1,5 +1,6 @@
 #include "MonsterState_Jump.h"
 #include "MonsterFSM.h"
+#include "PlayerBase.h"
 
 MonsterState_Jump::MonsterState_Jump()
 {
@@ -30,6 +31,12 @@ void MonsterState_Jump::Update(float _DeltaTime)
 	if (true == CheckStateChange(_DeltaTime))
 		return;
 
+	//플레이어와 충돌했을때
+	if (true == PlayerCollisionCheck())
+	{
+		PlayerBase::MainPlayer->AttackPlayer();
+		return;
+	}
 }
 
 

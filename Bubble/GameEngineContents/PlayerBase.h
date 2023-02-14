@@ -47,6 +47,10 @@ public:
 		return RenderPtr;
 	}
 
+	//몬스터쪽에서 호출됨
+	void AttackPlayer();
+
+	//FSM의 Damaged State가 빠져나갈때 실행됨
 	inline void ResetAliveTime()
 	{
 		AliveLiveTime = 0.f;
@@ -66,7 +70,6 @@ protected:
 	}
 
 
-
 private:
 	const float4					PlayerRenderScale = float4{ 200.f, 200.f };
 	GameEngineRender*		RenderPtr				= nullptr;
@@ -76,13 +79,11 @@ private:
 
 	PlayerCharacterType		CharcterType			= PlayerCharacterType::COUNT;
 	GameEngineCollision*		CollisionPtr				= nullptr;
-	int									lifeCnt						= 3;
+	int									lifeCnt						= 39999;
 
 	const float						ProtectionTime		= 3.f;
 	float								AliveLiveTime			= ProtectionTime;
 
-	//몬스터와의 충돌
-	void MonsterCollisionCheck();
 
 	//부활한 뒤 무적 연출
 	void ProtectionRender();

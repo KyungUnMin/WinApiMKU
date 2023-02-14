@@ -1,8 +1,10 @@
 #include "MonsterStateBase.h"
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "MonsterBase.h"
 #include "PlayerBase.h"
+#include "BubbleMissle.h"
 
 MonsterStateBase::MonsterStateBase()
 {
@@ -68,4 +70,17 @@ float4 MonsterStateBase::GetHorizonDirToPlayer()
 	Dir.Normalize();
 
 	return Dir;
+}
+
+bool MonsterStateBase::PlayerCollisionCheck()
+{
+	if (nullptr == PlayerBase::MainPlayer)
+		return false;
+
+	float4 PlayerPos = PlayerBase::MainPlayer->GetPos();
+	float4 PlayerCollisionScale = PlayerBase::CollisionScale;
+	float4 MonsterPos = GetMonster()->GetPos();
+	float4 BubbleCollisionScale = BubbleMissle::CollisionScale;
+
+	return GameEngineCollision::CollisionCircleToCircle({ PlayerPos, PlayerCollisionScale }, { MonsterPos , BubbleCollisionScale });
 }

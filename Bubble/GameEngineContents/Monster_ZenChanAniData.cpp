@@ -160,6 +160,7 @@ ZenChan_AniParamInit::ZenChan_AniParamInit()
 
 	StartIndex = 0;
 	IndexCount = 3;
+	InterTimer = 0.25f;
 
 	Monster_ZenChan::AniParams[static_cast<int>(ZenChan_AniType::Lock)] = FrameAnimationParameter
 	{
@@ -188,6 +189,7 @@ ZenChan_AniParamInit::ZenChan_AniParamInit()
 
 	StartIndex = 0;
 	IndexCount = 4;
+	InterTimer = 0.1f;
 
 	Monster_ZenChan::AniParams[static_cast<int>(ZenChan_AniType::Dead)] = FrameAnimationParameter
 	{
