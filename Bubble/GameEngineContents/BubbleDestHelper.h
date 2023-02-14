@@ -33,7 +33,6 @@ public:
 	BubbleDestHelper& operator=(const BubbleDestHelper& _Other) = delete;
 	BubbleDestHelper& operator=(const BubbleDestHelper&& _Other) noexcept = delete;
 	
-
 	inline void SetOffset(const float4& _Offset)
 	{
 		Offset = _Offset;
@@ -52,6 +51,9 @@ public:
 
 	//지정한 스테이지의 버블 목적지만 켜고 나머지는 끄기
 	void TurnOnBubbleDest(size_t _Stage);
+
+	//그리드의 인덱스값을 화면의 좌표로 변경
+	float4 GetPointPos(int _Index);
 
 protected:
 	void Start() override;
@@ -74,8 +76,5 @@ private:
 
 	//enum을 받아 static const std::vector<std::vector<int>>를 반환
 	const std::vector<std::vector<int>>& GetData(HelpLevelType _LevelType);
-
-	//그리드의 인덱스값을 화면의 좌표로 변경
-	float4 GetPointPos(int _Index);
 };
 

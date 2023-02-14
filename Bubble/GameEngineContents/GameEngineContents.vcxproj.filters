@@ -176,7 +176,7 @@
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\03.Falling</Filter>
     </ClInclude>
     <ClInclude Include="Monster_ZenChan.h">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan</Filter>
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.ZenChan</Filter>
     </ClInclude>
     <ClInclude Include="MonsterState_Move.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\04.Move</Filter>
@@ -189,6 +189,9 @@
     </ClInclude>
     <ClInclude Include="MonsterState_Dead.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\07.Dead</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterSpawner.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.MonsterSpawner</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -364,10 +367,10 @@
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\03.Falling</Filter>
     </ClCompile>
     <ClCompile Include="Monster_ZenChan.cpp">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan</Filter>
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.ZenChan</Filter>
     </ClCompile>
     <ClCompile Include="Monster_ZenChanAniData.cpp">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.ZenChan</Filter>
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.ZenChan</Filter>
     </ClCompile>
     <ClCompile Include="MonsterState_Move.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\04.Move</Filter>
@@ -380,6 +383,9 @@
     </ClCompile>
     <ClCompile Include="MonsterState_Dead.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\07.Dead</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterSpawner.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\03.MonsterSpawner</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -626,9 +632,6 @@
     <Filter Include="03.CommonActors\02.MovableObject\02.Player\06.Cororon%28분홍%29">
       <UniqueIdentifier>{c445e85a-9318-439e-ada9-f18bf7424eb6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\03.ZenChan">
-      <UniqueIdentifier>{7845e64e-6d14-48dd-aaa6-599699145f2e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM">
       <UniqueIdentifier>{415c0768-151b-418f-ba16-17a5a5b63985}</UniqueIdentifier>
     </Filter>
@@ -652,6 +655,12 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\07.Dead">
       <UniqueIdentifier>{bc14cad7-1d7b-4018-ae39-c9586adf713f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\04.ZenChan">
+      <UniqueIdentifier>{7845e64e-6d14-48dd-aaa6-599699145f2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\03.MonsterSpawner">
+      <UniqueIdentifier>{3c22ef25-d2db-4e91-8f8f-1ba47e8dd9a0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

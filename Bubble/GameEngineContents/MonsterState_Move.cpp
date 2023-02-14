@@ -35,8 +35,8 @@ void MonsterState_Move::Update(float _DeltaTime)
 			return;
 	}
 
-	//플레이어와 몬스터의 x거리가 일정 범위 이내이고, 플레이어가 위에 있다면 점프
-	if (HorizonSizeWithPlayer()  < 10.f && true == IsPlayerPosOver())
+	//플레이어와 몬스터의 거리가 PlayerFindRange 이내이고, 플레이어가 위에 있다면 점프
+	if (HorizonSizeWithPlayer()  < PlayerFindRange && true == IsPlayerPosOver())
 	{
 		GetMonster()->SetReverseDir();
 		GetFSM()->ChangeState(MonsterStateType::Jump);

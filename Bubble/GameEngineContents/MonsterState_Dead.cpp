@@ -3,6 +3,7 @@
 #include <GameEngineCore/GameEngineRender.h>
 #include "RigidBody.h"
 #include "PlayerBase.h"
+#include "MonsterFSM.h"
 
 MonsterState_Dead::MonsterState_Dead()
 {
@@ -24,9 +25,15 @@ void MonsterState_Dead::EnterState()
 	GameEngineRender* RenderPtr = GetMonster()->GetRender();
 	RenderPtr->ChangeAnimation(GetNowAniName());
 
-	
-	NowSpeed.x *= PlayerBase::MainPlayer->GetDirVec().x;
+	if (nullptr != PlayerBase::MainPlayer)
+	{
+		NowSpeed.x *= PlayerBase::MainPlayer->GetDirVec().x;
+	}
 }
+
+
+
+
 
 void MonsterState_Dead::Update(float _DeltaTime)
 {
@@ -43,19 +50,29 @@ void MonsterState_Dead::Update(float _DeltaTime)
 	}
 
 	//È­¸é ÁÂ¿ì¿¡ ºÎµúÈù °æ¿ì
-	if (NextPos.x < 0.f || ScreenSize.x < NextPos.x)
+	if (NextPos.x < AreaOffset.x || (ScreenSize.x - AreaOffset.x) < NextPos.x)
 	{
 		NowSpeed.x *= -1.f;
 		return;
 	}
 
-	if ((ScreenSize.y - DeathVertical) < NextPos.y)
+	if ((ScreenSize.y - AreaOffset.y) < NextPos.y)
 	{
-		GetMonster()->Death();
+		GetFSM()->ChangeState(MonsterStateType::Falling);
 		return;
 	}
 
 	GetMonster()->SetPos(NextPos);
 }
 
+void MonsterState_Dead::ExitState()
+{
+	CreateItem();
+	GetMonster()->Off();
+}
 
+void MonsterState_Dead::CreateItem()
+{
+	//GetMonster()->GetLevel();
+	//TODO
+}

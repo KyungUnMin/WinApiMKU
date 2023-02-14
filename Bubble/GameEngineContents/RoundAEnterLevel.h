@@ -3,6 +3,7 @@
 
 class NextDoor;
 class MonsterBase;
+class MonsterSpawnerBase;
 
 class RoundAEnterLevel : public RoundLevelBase
 {
@@ -26,10 +27,13 @@ private:
 	int				SelectedDoor		= -1;
 	float			NextLevelTime		= 3.f;
 
+	MonsterSpawnerBase* MonSpawner = nullptr;
+
 
 	void ResourceLoad();
 	void CreateBackGround();
 	void CreateDoor();
 	void CreateBubbleDest();
+	void CreateMonsters();
 };
 

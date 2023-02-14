@@ -21,7 +21,8 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	const float4			MoveSpeed		= float4{ 150.f, 0.f };
+	const float				PlayerFindRange		= 10.f;
+	const float4			MoveSpeed				= float4{ 150.f, 0.f };
 	
 
 	bool IsPlayerPosOver();

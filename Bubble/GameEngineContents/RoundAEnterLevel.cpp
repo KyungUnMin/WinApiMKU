@@ -10,19 +10,24 @@
 #include "NextDoor.h"
 #include "PlayerBase.h"
 #include "BubbleDestHelper.h"
+#include "Monster_ZenChan.h"
+#include "MonsterSpawner.h"
 
 RoundAEnterLevel::RoundAEnterLevel()
 {
-
+	MonSpawner = new MonsterSpawner<Monster_ZenChan>(this);
 }
 
 RoundAEnterLevel::~RoundAEnterLevel()
 {
-
+	if (nullptr != MonSpawner)
+	{
+		delete MonSpawner;
+		MonSpawner = nullptr;
+	}
 }
 
 
-#include "Monster_ZenChan.h"
 
 void RoundAEnterLevel::Loading()
 {
@@ -43,13 +48,7 @@ void RoundAEnterLevel::Loading()
 
 	CreateBubbleDest();
 
-
-	for (int i = 1; i < 4; ++i)
-	{
-		Monster_ZenChan* TestMonster = CreateActor<Monster_ZenChan>();
-		TestMonster->SetPos({ 100.f * i, 275.f });
-	}
-	
+	CreateMonsters();
 }
 
 void RoundAEnterLevel::ResourceLoad()
@@ -96,6 +95,25 @@ void RoundAEnterLevel::CreateBubbleDest()
 	GetBubbleDestHelper()->ConnectDestToDest(Stage, 3, 2);
 	GetBubbleDestHelper()->ConnectDestToDest(Stage, 4, 3);
 }
+
+void RoundAEnterLevel::CreateMonsters()
+{
+	std::vector<float4> MonsterPos =
+	{
+		{100.f, 275.f},
+		{200.f, 275.f},
+		{300.f, 275.f},
+	};
+	
+	MonSpawner->CreateMonsters(MonsterPos);
+}
+
+
+
+
+
+
+
 
 void RoundAEnterLevel::Update(float _DeltaTime)
 {
