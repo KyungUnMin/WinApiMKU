@@ -9,6 +9,7 @@
 #include "MonsterState_Move.h"
 #include "MonsterState_Jump.h"
 #include "MonsterState_Lock.h"
+#include "MonsterState_Dead.h"
 
 
 const std::string_view		Monster_ZenChan::RightImagePath			= "Right_ZenChan.bmp";
@@ -40,6 +41,7 @@ void Monster_ZenChan::Start()
 
 	MonsterState_Jump* JumpState = GetFSM()->CreateState<MonsterState_Jump>(MonsterStateType::Jump);
 	MonsterState_Lock* LockState = GetFSM()->CreateState<MonsterState_Lock>(MonsterStateType::Lock);
+	MonsterState_Dead* DeadState = GetFSM()->CreateState<MonsterState_Dead>(MonsterStateType::Dead);
 
 
 	for (size_t i = 0; i < AniParams.size(); ++i)

@@ -29,7 +29,7 @@ void MonsterState_Lock::Update(float _DeltaTime)
 	if (true == PlayerCollisionCheck())
 	{
 		LockTarget = nullptr;
-		//GetFSM()->ChangeState(MonsterStateType::Dead);
+		GetFSM()->ChangeState(MonsterStateType::Dead);
 		return;
 	}
 
@@ -40,12 +40,10 @@ void MonsterState_Lock::EnterState()
 {
 	GameEngineRender* RenderPtr = GetMonster()->GetRender();
 	RenderPtr->ChangeAnimation(GetNowAniName());
-	//GetMonster()->GetCollision()->Off();
 }
 
 void MonsterState_Lock::ExitState()
 {
-	//GetMonster()->GetCollision()->On();
 }
 
 void MonsterState_Lock::Locked(BubbleMissle* _LockedBubble)

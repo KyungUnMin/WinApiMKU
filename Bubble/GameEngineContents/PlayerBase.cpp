@@ -81,11 +81,6 @@ void PlayerBase::Update(float _DeltaTime)
 
 	FSMPtr->Update(_DeltaTime);
 
-	/*if (GameEngineInput::IsDown(PLAYER_ATTACK))
-	{
-		BBSpawner->CreateBubble(GetDirVec());
-	}*/
-
 	//부활한 뒤 무적 연출
 	ProtectionRender();
 }
@@ -98,7 +93,7 @@ void PlayerBase::Render(float _DeltaTime)
 
 
 
-
+//몬스터쪽에서 호출됨
 void PlayerBase::AttackPlayer()
 {
 	//무적 시간
