@@ -13,6 +13,7 @@ public:
 
 	virtual void CreateMonsters(const std::vector<float4>& _MonstersPos) = 0;
 	virtual bool IsAllMonsterOff() = 0;
+	virtual void Reset() = 0;
 };
 
 
@@ -36,34 +37,43 @@ public:
 
 	void CreateMonsters(const std::vector<float4>& _MonstersPos) override
 	{
-		Monsters.resize(_MonstersPos.size(), nullptr);
+		Monsters.reserve(_MonstersPos.size());
 
 		for (float4 Pos : _MonstersPos)
 		{
-			MonsterType* Monster = Level->CreateActor<MonsterType>(UpdateOrder::Monster);
-			GameEngineActor* MonsterActor = Monster;
-
-			MonsterActor->SetPos(Pos);
-			Monsters.push_back(Monster);
+			GameEngineActor* Monster = Level->CreateActor<MonsterType>(UpdateOrder::Monster);
+			Monster->SetPos(Pos);
+			Monsters.push_back(std::make_pair(Monster, Pos));
 		}
 	}
 
 	bool IsAllMonsterOff() override
 	{
-		for (GameEngineActor* Monster : Monsters)
+		for (std::pair<GameEngineActor*, float4> Pair : Monsters)
 		{
-			if (Monster->IsUpdate())
+			if (Pair.first->IsUpdate())
 				return false;
 		}
 
 		return true;
 	}
 
+	void Reset() override
+	{
+		for (std::pair<GameEngineActor*, float4> Pair : Monsters)
+		{
+			GameEngineActor* Monster = Pair.first;
+			float4 OriginPos = Pair.second;
+			Monster->SetPos(OriginPos);
+			Monster->On();
+		}
+	}
+
 protected:
 
 
 private:
-	GameEngineLevel*							Level			= nullptr;
-	std::vector<GameEngineActor*>	Monsters;
+	GameEngineLevel*														Level			= nullptr;
+	std::vector<std::pair<GameEngineActor*, float4>>	Monsters;
 };
 

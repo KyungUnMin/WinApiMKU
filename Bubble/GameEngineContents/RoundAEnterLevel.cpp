@@ -98,12 +98,13 @@ void RoundAEnterLevel::CreateBubbleDest()
 
 void RoundAEnterLevel::CreateMonsters()
 {
-	std::vector<float4> MonsterPos =
-	{
-		{100.f, 275.f},
-		{200.f, 275.f},
-		{300.f, 275.f},
-	};
+	//236	240	244
+	std::vector<float4> MonsterPos(3, float4::Zero);
+
+	BubbleDestHelper* PosHelper = GetBubbleDestHelper();
+	MonsterPos[0] = PosHelper->GetPointPos(236);
+	MonsterPos[1] = PosHelper->GetPointPos(240);
+	MonsterPos[2] = PosHelper->GetPointPos(244);
 	
 	MonSpawner->CreateMonsters(MonsterPos);
 }
@@ -117,6 +118,9 @@ void RoundAEnterLevel::CreateMonsters()
 
 void RoundAEnterLevel::Update(float _DeltaTime)
 {
+	if (false == MonSpawner->IsAllMonsterOff())
+		return;
+
 	for (size_t i = 0; i < 3; ++i)
 	{
 		Door[i]->On();
@@ -170,6 +174,8 @@ void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void RoundAEnterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	RoundLevelBase::LevelChangeEnd(_NextLevel);
+
+	MonSpawner->Reset();
 
 	//문의 애니메이션들을 초기화
 	for (size_t i = 0; i < 3; ++i)

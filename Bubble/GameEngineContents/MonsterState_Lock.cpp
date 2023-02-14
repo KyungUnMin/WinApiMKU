@@ -40,10 +40,13 @@ void MonsterState_Lock::EnterState()
 {
 	GameEngineRender* RenderPtr = GetMonster()->GetRender();
 	RenderPtr->ChangeAnimation(GetNowAniName());
+
+	GetMonster()->GetCollision()->SetPosition(float4::Zero);
 }
 
 void MonsterState_Lock::ExitState()
 {
+	GetMonster()->GetCollision()->SetPosition(MonsterBase::CollisionOffset);
 }
 
 void MonsterState_Lock::Locked(BubbleMissle* _LockedBubble)
