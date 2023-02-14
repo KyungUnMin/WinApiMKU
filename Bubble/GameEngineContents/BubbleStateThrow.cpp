@@ -102,6 +102,11 @@ bool BubbleStateThrow::MonsterCollisionCheck()
 		return false;
 	}
 
+	//몬스터가 죽었거나 버블에 갇혀있을때
+	if (true == Monster->IsLocked())
+		return false;
+
+	GetBubble()->SetCatchTarget(Monster);
 	Monster->AttackedBubble(GetBubble());
 	return true;
 }

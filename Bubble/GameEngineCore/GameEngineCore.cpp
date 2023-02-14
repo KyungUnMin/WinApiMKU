@@ -142,9 +142,8 @@ GameEngineCore::~GameEngineCore()
 //이 프로그램의 첫 도입부
 void GameEngineCore::CoreStart(HINSTANCE _instance)
 {
-	//윈도우 생성
-	//GameEngineWindow::WindowCreate(_instance, "MainWindow", { 320 * 3, 224 * 3 }, { 0, 0 });
-	GameEngineWindow::WindowCreate(_instance, "MainWindow", { 320.f * 3.f, 240.f * 3.f }, { 0, 0 });
+	//윈도우 생성(960, 720)
+	GameEngineWindow::WindowCreate(_instance, "Bubble Bobble2 : Bubble Sympony", { 320.f * 3.f, 240.f * 3.f }, { 0, 0 });
 
 	//이 안에서 무한 루프로 게임이 진행(콜백방식)
 	GameEngineWindow::WindowLoop(GameEngineCore::GlobalStart, GameEngineCore::GlobalUpdate, GameEngineCore::GlobalEnd);

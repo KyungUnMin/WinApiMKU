@@ -25,6 +25,7 @@ void MonsterState_Dead::EnterState()
 	GameEngineRender* RenderPtr = GetMonster()->GetRender();
 	RenderPtr->ChangeAnimation(GetNowAniName());
 
+	NowSpeed = OriginSpeed;
 	if (nullptr != PlayerBase::MainPlayer)
 	{
 		NowSpeed.x *= PlayerBase::MainPlayer->GetDirVec().x;

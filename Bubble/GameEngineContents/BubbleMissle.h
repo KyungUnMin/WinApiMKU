@@ -7,6 +7,7 @@ class GameEngineCollision;
 class BubbleSpawner;
 class BubbleMissleFSM;
 class RoundLevelBase;
+class MonsterBase;
 
 class BubbleMissle : public MovableActor
 {
@@ -44,6 +45,16 @@ public:
 		return FSM;
 	}
 
+	inline MonsterBase* GetCatchTarget()
+	{
+		return CatchMonster;
+	}
+
+	inline void SetCatchTarget(MonsterBase* _Target)
+	{
+		CatchMonster = _Target;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) final;
@@ -55,6 +66,7 @@ private:
 
 	BubbleMissleFSM*			FSM					= nullptr;
 	RoundLevelBase*			RoundLevel		= nullptr;
+	MonsterBase*					CatchMonster	= nullptr;
 
 	void Init(PlayerCharacterType _CharType, BubbleMissleType _BubbleType);
 };

@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "BubbleMissle.h"
+#include "MonsterBase.h"
 
 BubbleStatePop::BubbleStatePop()
 {
@@ -43,6 +44,13 @@ void BubbleStatePop::Init(PlayerCharacterType _CharType, BubbleMissleType _Bubbl
 void BubbleStatePop::EnterState()
 {
 	BubbleMissleStateBase::EnterState();
+
+	MonsterBase* CatchTarget = GetBubble()->GetCatchTarget();
+	if (nullptr != CatchTarget)
+	{
+		CatchTarget->DeathFromBubble();
+		GetBubble()->SetCatchTarget(nullptr);
+	}
 
 	GetBubble()->GetCollisionPtr()->Off();
 

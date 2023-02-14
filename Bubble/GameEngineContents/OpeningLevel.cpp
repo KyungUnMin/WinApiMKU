@@ -15,22 +15,22 @@
 const float	OpeningLevel::CompanyLogoOffTime		= 3.f;
 
 //스포트 라이트가 밖으로 나갈수 있는 시간
-const float	OpeningLevel::SpotLightOutTime				= 7.f;
+const float	OpeningLevel::SpotLightOutTime				= 10.f;
 
 //스포트 라이트가 고정되는 시간
-const float	OpeningLevel::SpotLightStopTime			= 9.f;
+const float	OpeningLevel::SpotLightStopTime			= 11.f;
 
 //스포트 라이트가 꺼지는 시간
-const float	OpeningLevel::SpotLightOffTime				= 10.f;
+const float	OpeningLevel::SpotLightOffTime				= 12.f;
 
 //뒤쪽 커튼이 올라가는 시간
-const float	OpeningLevel::BackCurtainUpStartTime	= 12.f;
+const float	OpeningLevel::BackCurtainUpStartTime	= 13.f;
 
 //게임 로고 켜기는 시간
-const float	OpeningLevel::GameLogoOnTime				= 15.f;
+const float	OpeningLevel::GameLogoOnTime				= 19.f;
 
 //다음 씬으로 이동하는 시간
-const float	OpeningLevel::NextLevelChangeTime		= 18.f;
+const float	OpeningLevel::NextLevelChangeTime		= 27.f;
 
 
 OpeningLevel::OpeningLevel()
@@ -134,10 +134,19 @@ void OpeningLevel::Update(float _DeltaTime)
 {
 	AccTime += _DeltaTime;
 
+	if (true == GameEngineInput::IsAnyKey())
+	{
+		//특정 시간이 지나면 다음 씬으로 이동
+		SoundPlayer.Stop();
+		BubbleCore::GetInst().ChangeLevel("SelectPlayerLevel");
+		return;
+	}
+
 	//if (true == GameEngineInput::IsAnyKey())
 	if (NextLevelChangeTime < AccTime)
 	{
 		//특정 시간이 지나면 다음 씬으로 이동
+		SoundPlayer.Stop();
 		BubbleCore::GetInst().ChangeLevel("SelectPlayerLevel");
 		return;
 	}

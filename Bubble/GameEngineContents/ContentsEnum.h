@@ -43,6 +43,7 @@ enum class RenderOrder
 	ClearBubble,
 	Player1,
 
+	UI
 };
 
 enum class CollisionOrder

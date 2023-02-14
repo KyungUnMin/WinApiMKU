@@ -37,23 +37,23 @@ protected:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override {}
 
 private:
-	GameEngineSoundPlayer SoundPlayer;
-	float							AccTime				= 0.0f;
+	GameEngineSoundPlayer	SoundPlayer;
+	float									AccTime				= 0.0f;
 
-	GameEngineRender*	CompanyLogo		= nullptr;
-	GameEngineRender*	BackCurtain			= nullptr;
-	GameEngineRender*	GameLogo			= nullptr;
+	GameEngineRender*			CompanyLogo		= nullptr;
+	GameEngineRender*			BackCurtain			= nullptr;
+	GameEngineRender*			GameLogo			= nullptr;
 
-	GameEngineActor*		SpotLight			= nullptr;
+	GameEngineActor*				SpotLight			= nullptr;
 
 
-	static const float		CompanyLogoOffTime;
-	static const float		SpotLightOutTime;
-	static const float		SpotLightStopTime;
-	static const float		SpotLightOffTime;
-	static const float		BackCurtainUpStartTime;
-	static const float		GameLogoOnTime;
-	static const float		NextLevelChangeTime;
+	static const float				CompanyLogoOffTime;
+	static const float				SpotLightOutTime;
+	static const float				SpotLightStopTime;
+	static const float				SpotLightOffTime;
+	static const float				BackCurtainUpStartTime;
+	static const float				GameLogoOnTime;
+	static const float				NextLevelChangeTime;
 
 	void ResourceLoad();
 	void CreateBackGround();

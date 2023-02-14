@@ -88,6 +88,11 @@ void SelectCharacterLevel::ResourceLoad()
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("SelectCharacter_ClearBubble.bmp"))->Cut(3, 1);
 
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("SelectCharacte_SelectIcon.bmp"));
+
+	Dir.MoveParentToDirectory("Sound");
+	Dir.Move("Sound");
+	Dir.Move("BGM");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("SelectCharacter.mp3"));
 }
 
 
@@ -182,4 +187,10 @@ void SelectCharacterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	}
 
 	SelectTime = 0.f;
+	SoundPlayer.Stop();
+}
+
+void SelectCharacterLevel::LevelChangeStart(GameEngineLevel* _NextLevel)
+{
+	SoundPlayer = GameEngineResources::GetInst().SoundPlayerToControl("SelectCharacter.mp3");
 }

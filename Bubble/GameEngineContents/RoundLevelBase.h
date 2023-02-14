@@ -4,6 +4,7 @@
 #include <vector>
 #include <GameEngineBase/GameEngineMath.h>
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineCore/GameEngineResources.h>
 #include "ContentsEnum.h"
 
 class BackGround;
@@ -108,22 +109,27 @@ protected:
 
 private:
 	//선택한 캐릭터 타입
-	PlayerCharacterType	SelectedCharacter	= PlayerCharacterType::BUBBLUN;
-	PlayerBase*					Player						= nullptr;
+	PlayerCharacterType			SelectedCharacter	= PlayerCharacterType::BUBBLUN;
+	PlayerBase*							Player						= nullptr;
 
 	//Obstacle을 생성하는데 사용하는 변수
-	std::string					ImageName				= "Round";
-	BackGround*				StageImage				= nullptr;
-	GameEngineImage*		StageCollision			= nullptr;
+	std::string							ImageName				= "Round";
+	BackGround*						StageImage				= nullptr;
+	GameEngineImage*				StageCollision			= nullptr;
 
 
 	//IsMoveValue이 true일때 Update에서 Stage가 이동함
-	bool								IsMoveValue			= false;
-	size_t							NowStageIndex		= 0;
-	float4							ArrangeDir				= float4::Zero;
-	float							StageMoveTime		= 0.f;
+	bool										IsMoveValue			= false;
+	size_t									NowStageIndex		= 0;
+	float4									ArrangeDir				= float4::Zero;
+	float									StageMoveTime		= 0.f;
 
 	//BubbleDestination에 관련된 헬퍼클래스
-	BubbleDestHelper*		DestHelperPtr			= nullptr;
+	BubbleDestHelper*				DestHelperPtr			= nullptr;
+
+	GameEngineSoundPlayer	BGMPlayer;
+	const std::string_view		RoundBgmName		= "RoundBGM.mp3";
+
+	void BgmLoad();
 };
 

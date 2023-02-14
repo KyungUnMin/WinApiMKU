@@ -51,6 +51,11 @@ void EnterRoundLevel::ResourceLoad()
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("EnterRoundLevel_BackGround.bmp"));
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("EnterRoundLevel_Characters.bmp"))->Cut(4, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("EnterRoundLevel_ClearBubble.bmp"))->Cut(3, 1);
+
+	Dir.MoveParentToDirectory("Sound");
+	Dir.Move("Sound");
+	Dir.Move("BGM");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("EnterRound.mp3"));
 }
 
 
@@ -111,20 +116,24 @@ void EnterRoundLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 	//SelectedCharater  : 이번에 선택한 캐릭터
 	SelectedCharater = static_cast<PlayerCharacterType>(CharacterIndex);
+
+	SoundPlayer = GameEngineResources::GetInst().SoundPlayerToControl("EnterRound.mp3");
 }
 
 void EnterRoundLevel::Update(float _DeltaTime)
 {
 	if (true == GameEngineInput::IsAnyKey())
 	{
+		SoundPlayer.Stop();
 		BubbleCore::GetInst().ChangeLevel("RoundAEnterLevel");
 		return;
 	}
 
-	//10초뒤에 다음 레벨로 전환
+	//n초뒤에 다음 레벨로 전환
 	AccTime += _DeltaTime;
-	if (10.f < AccTime)
+	if (LevelChangeTime < AccTime)
 	{
+		SoundPlayer.Stop();
 		BubbleCore::GetInst().ChangeLevel("RoundAEnterLevel");
 	}
 }
@@ -144,6 +153,7 @@ void EnterRoundLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	}
 
 	RoundLevel->SetCharacter(SelectedCharater);
+	SoundPlayer.Stop();
 }
 
 

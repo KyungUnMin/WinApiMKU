@@ -82,3 +82,15 @@ void MonsterFSM::ChangeState(MonsterStateType _NextState)
 		NextState->EnterState();
 	}
 }
+
+MonsterStateType MonsterFSM::GetCurStateByEnum()
+{
+	for (std::pair<MonsterStateType, MonsterStateBase*> Pair : States)
+	{
+		if (CurState == Pair.second)
+			return Pair.first;
+	}
+
+	MsgAssert("현재 State가 MonsterFSM 자료구조에 존재하지 않습니다");
+	return MonsterStateType::Dead;
+}

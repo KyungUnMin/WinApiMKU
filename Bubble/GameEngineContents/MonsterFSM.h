@@ -36,7 +36,7 @@ public:
 
 	void ChangeState(MonsterStateType _NextState);
 
-
+	MonsterStateType GetCurStateByEnum();
 
 protected:
 	

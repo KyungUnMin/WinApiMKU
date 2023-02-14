@@ -34,7 +34,10 @@ RoundLevelBase::~RoundLevelBase()
 void RoundLevelBase::Loading()
 {
 	DestHelperPtr = CreateActor<BubbleDestHelper>();
+	BgmLoad();
 }
+
+
 
 
 //레벨의 지형과 충돌체를 로드하는 함수
@@ -228,6 +231,22 @@ void RoundLevelBase::CreatePlayer(PlayerCharacterType _Type)
 
 }
 
+void RoundLevelBase::BgmLoad()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("BGM");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName(RoundBgmName));
+	IsLoad = true;
+}
+
+
 
 
 void RoundLevelBase::LevelChangeStart(GameEngineLevel* _PrevLevel)
@@ -250,6 +269,8 @@ void RoundLevelBase::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	//플레이어 위치 조정
 	Player->SetPos(PlayerSpawnPos);
 	DestHelperPtr->TurnOnBubbleDest(NowStageIndex);
+
+	BGMPlayer = GameEngineResources::GetInst().SoundPlayerToControl(RoundBgmName);
 }
 
 //레벨이 전환될때 레벨 정리하고 가기
@@ -259,6 +280,8 @@ void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	SetNowStage(0);
 	Player->SetPos(PlayerSpawnPos);
 	DestHelperPtr->TurnOnBubbleDest(NowStageIndex);
+
+	BGMPlayer.Stop();
 }
 
 

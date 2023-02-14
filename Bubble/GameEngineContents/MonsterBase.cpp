@@ -67,3 +67,25 @@ void MonsterBase::AttackedBubble(BubbleMissle* _LockedBubble)
 	FsmPtr->ChangeState(MonsterStateType::Lock);
 	FsmPtr->Locked(_LockedBubble);
 }
+
+bool MonsterBase::IsLocked()
+{
+	if (MonsterStateType::Lock == FsmPtr->GetCurStateByEnum())
+		return true;
+
+	if (MonsterStateType::Dead == FsmPtr->GetCurStateByEnum())
+		return true;
+
+	return false;
+}
+
+void MonsterBase::DeathFromBubble()
+{
+	if (false == IsLocked())
+	{
+		MsgAssert("이 함수는 몬스터가 Bubble에 갖혀있을때만 사용할 수 있습니다");
+		return;
+	}
+
+	FsmPtr->ChangeState(MonsterStateType::Dead);
+}

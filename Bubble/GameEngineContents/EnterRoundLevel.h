@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include "ContentsEnum.h"
 
@@ -47,6 +48,9 @@ private:
 
 	static const std::string		TextString[3];
 	static const float				TextHeight[3];
+
+	GameEngineSoundPlayer	SoundPlayer;
+	const float							LevelChangeTime	= 8.5f;
 
 
 	void ResourceLoad();
