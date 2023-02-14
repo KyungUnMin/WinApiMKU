@@ -57,7 +57,5 @@ private:
 
 	MonsterFSM();
 	~MonsterFSM();
-
-	void Locked(BubbleMissle* _LockedBubble);
 };
 

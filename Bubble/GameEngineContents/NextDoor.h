@@ -9,12 +9,10 @@ enum class DoorType
 };
 
 class GameEngineRender;
-class GameEngineCollision;
 
 class NextDoor : public GameEngineActor
 {
 public:
-	static const float4 CollisionScale;
 	static const float4 CollisionOffset;
 
 	NextDoor();
@@ -55,7 +53,6 @@ protected:
 
 private:
 	GameEngineRender*		DoorRender			= nullptr;
-	GameEngineCollision*		CollisionPtr			= nullptr;
 
 	//문이 이미 열렸는지 여부
 	bool									IsOpenedValue	= false;

@@ -21,35 +21,10 @@ void MonsterState_Lock::Start()
 	SetNowAniName("Lock");
 }
 
-void MonsterState_Lock::Update(float _DeltaTime)
-{
-	if (nullptr == LockTarget)
-		return;
 
-	if (true == PlayerCollisionCheck())
-	{
-		LockTarget = nullptr;
-		GetFSM()->ChangeState(MonsterStateType::Dead);
-		return;
-	}
-
-	GetMonster()->SetPos(LockTarget->GetPos());
-}
 
 void MonsterState_Lock::EnterState()
 {
 	GameEngineRender* RenderPtr = GetMonster()->GetRender();
 	RenderPtr->ChangeAnimation(GetNowAniName());
-
-	GetMonster()->GetCollision()->SetPosition(float4::Zero);
-}
-
-void MonsterState_Lock::ExitState()
-{
-	GetMonster()->GetCollision()->SetPosition(MonsterBase::CollisionOffset);
-}
-
-void MonsterState_Lock::Locked(BubbleMissle* _LockedBubble)
-{
-	LockTarget = _LockedBubble;
 }

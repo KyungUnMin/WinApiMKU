@@ -6,6 +6,7 @@
 #include "BubbleMissle.h"
 #include "PlayerBase.h"
 #include "BubbleMissleFSM.h"
+#include "MonsterBase.h"
 
 BubbleMissleStateBase::BubbleMissleStateBase()
 {
@@ -29,7 +30,7 @@ void BubbleMissleStateBase::PlayerCollisionCheck()
 		return;
 
 	//이 플레이어가 버블과 충돌했다면 충돌한 버블들을 가져오기
-	float4 PlayerPos = PlayerBase::MainPlayer->GetPos();
+	float4 PlayerPos = PlayerBase::MainPlayer->GetPos() + PlayerBase::CollisionOffset;
 	float4 PlayerCollisionScale = PlayerBase::CollisionScale;
 	
 	float4 BubblePos = Bubble->GetPos();
@@ -39,6 +40,15 @@ void BubbleMissleStateBase::PlayerCollisionCheck()
 		return;
 	
 	BubbleChainPop();
+}
+
+void BubbleMissleStateBase::DragMonster()
+{
+	MonsterBase* Monster = GetBubble()->GetCatchTarget();
+	if (nullptr == Monster)
+		return;
+
+	Monster->SetPos(GetBubble()->GetPos());
 }
 
 void BubbleMissleStateBase::BubbleChainPop()

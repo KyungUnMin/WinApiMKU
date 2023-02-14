@@ -50,6 +50,7 @@ void BubbleStateIdle::Update(float _DeltaTime)
 		GetBubble()->SetMove(Dir * MoveSpeed * _DeltaTime);
 	}
 
+	DragMonster();
 
 	//버블 서로간의 충돌처리
 	CollisionEachOther();

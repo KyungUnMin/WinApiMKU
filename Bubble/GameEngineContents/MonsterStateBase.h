@@ -6,7 +6,6 @@
 class MonsterFSM;
 class MonsterBase;
 class FrameAnimationParameter;
-class BubbleMissle;
 
 typedef bool(MonsterBase::* StateChangeFuncPtr)();
 
@@ -33,7 +32,6 @@ public:
 
 
 protected:
-	virtual void Locked(BubbleMissle* _LockedBubble) {}
 
 
 	inline MonsterBase* GetMonster()

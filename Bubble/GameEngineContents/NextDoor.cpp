@@ -9,8 +9,7 @@
 #include "PlayerBase.h"
 #include "PlayerFSM.h"
 
-const float4 NextDoor::CollisionScale = {8.f, 8.f};
-const float4 NextDoor::CollisionOffset = { 0.f, 20.f };
+const float4 NextDoor::CollisionOffset = float4{ 0.f, 40.f };
 
 NextDoor::NextDoor()
 {
@@ -32,11 +31,6 @@ void NextDoor::Start()
 		ResourceLoad();
 		IsLoad = true;
 	}
-
-	//충돌체 생성
-	CollisionPtr = CreateCollision(CollisionOrder::Door);
-	CollisionPtr->SetScale(CollisionScale);
-	CollisionPtr->SetPosition(CollisionOffset);
 }
 
 
@@ -136,17 +130,15 @@ void NextDoor::CollisionPlayer()
 	if (true == IsPlayerCollision)
 		return;
 
-	//플레이어와 이 문이 원 vs 원 충돌했을때만
-	std::vector<GameEngineCollision*> Players;
-	if (false == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Player) }, Players))
+	//플레이어와 이 문이 원 vs 점 충돌했을때만
+	float4 PlayerPos = PlayerBase::MainPlayer->GetPos();
+	float4 PlayerCollisionScale = PlayerBase::MainPlayer->CollisionScale;
+	if (false == GameEngineCollision::CollisionCircleToPoint({ PlayerPos , PlayerCollisionScale }, { GetPos() + CollisionOffset, float4::Zero }))
 		return;
 
-	for (size_t i = 0; i < Players.size(); ++i)
-	{
-		PlayerBase* Player = dynamic_cast<PlayerBase*>(Players[i]->GetActor());
-		PlayerFSM* PlayerFSM = Player->GetFSM();
-		PlayerFSM->ChangeState(PlayerStateType::EnterDoor);
-	}
+	PlayerFSM* Fsm = PlayerBase::MainPlayer->GetFSM();
+	Fsm->ChangeState(PlayerStateType::EnterDoor);
+
 
 	DoorOpen();
 	IsPlayerCollision = true;

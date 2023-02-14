@@ -6,7 +6,6 @@
 
 class BubbleMissleFSM;
 class BubbleMissle;
-class MonsterBase;
 
 class BubbleMissleStateBase
 {
@@ -49,13 +48,14 @@ protected:
 
 	void PlayerCollisionCheck();
 
+	void DragMonster();
+
 
 private:
 	BubbleMissleFSM*		Fsm						= nullptr;
 	BubbleMissle*				Bubble					= nullptr;
 
 	std::string					AniName				= "";
-	MonsterBase*				CatchMonster		= nullptr;
 
 	void BubbleChainPop();
 };

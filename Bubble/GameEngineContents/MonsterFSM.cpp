@@ -18,11 +18,6 @@ MonsterFSM::~MonsterFSM()
 	States.clear();
 }
 
-void MonsterFSM::Locked(BubbleMissle* _LockedBubble)
-{
-	CurState->Locked(_LockedBubble);
-}
-
 
 
 void MonsterFSM::Start()

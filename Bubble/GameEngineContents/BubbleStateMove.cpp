@@ -112,6 +112,8 @@ void BubbleStateMove::Update(float _DeltaTime)
 	//이동
 	MoveBubble(_DeltaTime);
 
+	DragMonster();
+
 	//목적지에 도착했는지 확인
 	CheckDest();
 }

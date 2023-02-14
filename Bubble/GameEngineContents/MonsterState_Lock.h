@@ -1,8 +1,6 @@
 #pragma once
 #include "MonsterStateBase.h"
 
-class BubbleMissle;
-
 class MonsterState_Lock : public MonsterStateBase
 {
 public:
@@ -16,13 +14,9 @@ public:
 
 protected:
 	void Start() override;
-	void Update(float _DeltaTime) override;
 	void EnterState() override;
-	void ExitState() override;
-	void Locked(BubbleMissle* _LockedBubble) override;
 
 private:
-	BubbleMissle* LockTarget = nullptr;
 
 };
 
