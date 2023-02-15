@@ -1,7 +1,10 @@
 #pragma once
+#include <map>
 #include "RoundLevelBase.h"
+#include "ContentsEnum.h"
 
 class BackGround;
+class MonsterSpawnerBase;
 
 class RoundA1Level : public RoundLevelBase
 {
@@ -19,11 +22,15 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
+	std::map<MonsterType, MonsterSpawnerBase*> MonSpanwers;
+
 	void ResourceLoad();
 
 	//2개의 배경 애니메이션 생성
 	void CreateBackGround();
 
 	void CreateBubbleDest();
+
+	void CreateMonster();
 };
 

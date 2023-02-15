@@ -66,3 +66,9 @@ enum class BubbleMissleType
 	Windy,
 	Melody
 };
+
+enum class MonsterType
+{
+	ZenChan,
+
+};

@@ -11,15 +11,28 @@
 #include "PlayerBase.h"
 #include "BubbleDestHelper.h"
 
+#include "MonsterSpawner.h"
+#include "Monster_ZenChan.h"
+
 
 RoundA1Level::RoundA1Level()
 {
+	MonSpanwers[MonsterType::ZenChan] = new MonsterSpawner<Monster_ZenChan>(this);
 
 }
 
 RoundA1Level::~RoundA1Level()
 {
+	for (std::pair<MonsterType, MonsterSpawnerBase*> Pair : MonSpanwers)
+	{
+		if (nullptr == Pair.second)
+			continue;
 
+		delete Pair.second;
+		Pair.second = nullptr;
+	}
+
+	MonSpanwers.clear();
 }
 
 void RoundA1Level::Loading()
@@ -149,6 +162,12 @@ void RoundA1Level::CreateBubbleDest()
 			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
 		}
 	}
+}
+
+
+void RoundA1Level::CreateMonster()
+{
+
 }
 
 
