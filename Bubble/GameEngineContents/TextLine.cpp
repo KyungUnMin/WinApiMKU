@@ -46,14 +46,16 @@ void TextLine::Start()
 //StringValue와 Text.bmp를 매칭시켜 렌더링
 void TextLine::Render(float _DeltaTime)
 {
-	//글씨 크기의 절반만큼 렌더링 시작 위치 이동
 	float4 StartPos = GetPos();
 	StartPos.y -= static_cast<float>(Scale.hiy());
 
-	//단 왼쪽 정렬일땐 현재위치(GetPos)에서 부터 Text를 출력
-	if (false == LeftAlign)
+	if (TextAlignType::Center == AlignType)
 	{
-		StartPos.x -= static_cast<float>(Scale.hix() * StringValue.size());
+		StartPos.x -= Scale.hx() * StringValue.size();
+	}
+	else if (TextAlignType::Right == AlignType)
+	{
+		StartPos.x -= Scale.x * StringValue.size();
 	}
 
 	//' 또는 " 의 방향을 매칭시키기 위한 bool값

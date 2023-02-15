@@ -18,6 +18,13 @@ enum class TextLineColor
 	Gold				= 63 * 9
 };
 
+enum class TextAlignType
+{
+	Center,
+	Left,
+	Right
+};
+
 class GameEngineImage;
 
 class TextLine : public GameEngineActor
@@ -56,9 +63,9 @@ public:
 		Scale = _Scale;
 	}
 
-	void OnLeftAlign()
+	void SetAlign(TextAlignType _AlignType)
 	{
-		LeftAlign = true;
+		AlignType = _AlignType;
 	}
 
 protected:
@@ -71,6 +78,6 @@ private:
 
 	GameEngineImage*		Image			= nullptr;
 	float4							Scale			= float4{20.f, 30.f};
-	bool								LeftAlign		= false;
+	TextAlignType				AlignType	= TextAlignType::Center;
 };
 

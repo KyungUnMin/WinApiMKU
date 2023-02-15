@@ -131,7 +131,7 @@ void SelectCharacterLevel::CreateDescriptionText()
 			Text->SetString(Description[y][x]);
 
 			//¿ÞÂÊ Á¤·Ä
-			Text->OnLeftAlign();
+			Text->SetAlign(TextAlignType::Left);
 			Text->SetScale({ 23.f, 30.f });
 			Text->SetPos(NowPos);
 			NowPos.x += Gap.x;

@@ -57,5 +57,11 @@ void PointPannel::CreatePannel()
 
 void PointPannel::CreateText()
 {
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
 
+	TextLine* T1 = GetLevel()->CreateActor<TextLine>();
+	T1->SetAlign(TextAlignType::Right);
+	T1->SetScale({ 30.f ,50.f });
+	T1->SetPos({ ScreenSize.x, 50.f });
+	T1->SetString("Hello Welcome to My TExt", TextLineColor::White);
 }
