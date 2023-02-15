@@ -134,12 +134,10 @@ bool GameEngineCollision::CollisionRectToPoint(const CollisionData& _Left, const
 
 void GameEngineCollision::SetOrder(int _Order)
 {
-	GameEngineComponent::SetOrder(_Order);
-
 	//(Collision객체를 Level와 Actor의 자료구조, 두 곳에서 관리한다)
 	// 생성 및 소멸은 Actor, Update는 Level
 	//GameEngineLevel의 Collisions에 등록
-	GetActor()->GetLevel()->PushCollision(this);
+	GetActor()->GetLevel()->PushCollision(this, _Order);
 }
 
 

@@ -175,6 +175,50 @@ void GameEngineImage::TransCopy(const GameEngineImage* _OtherImage, float4 _Copy
 		_Color);
 }
 
+void GameEngineImage::AlphaCopy(const GameEngineImage* _OtherImage, int _CutIndex, float4 _CopyCenterPos, float4 _CopySize, int _Alpha)
+{
+	if (false == _OtherImage->IsCut)
+	{
+		MsgAssert(" 잘리지 않은 이미지로 cut출력 함수를 사용하려고 했습니다.");
+		return;
+	}
+
+	ImageCutData Data = _OtherImage->GetCutData(_CutIndex);
+
+	AlphaCopy(_OtherImage, _CopyCenterPos, _CopySize, Data.GetStartPos(), Data.GetScale(), _Alpha);
+}
+
+void GameEngineImage::AlphaCopy(const GameEngineImage* _OtherImage, float4 _CopyCenterPos, float4 _CopySize, float4 _OtherImagePos, float4 _OtherImageSize, int _Alpha)
+{
+	BLENDFUNCTION BF;
+
+	BF.BlendOp = AC_SRC_OVER;
+	BF.BlendFlags = 0;
+	BF.SourceConstantAlpha = _Alpha;
+	BF.AlphaFormat = AC_SRC_ALPHA;
+
+	AlphaBlend(ImageDC,
+		_CopyCenterPos.ix() - _CopySize.hix(),
+		_CopyCenterPos.iy() - _CopySize.hiy(),
+		_CopySize.ix(),
+		_CopySize.iy(),
+		_OtherImage->GetImageDC(),
+		_OtherImagePos.ix(),
+		_OtherImagePos.iy(),
+		_OtherImageSize.ix(),
+		_OtherImageSize.iy(),
+		BF);
+}
+
+
+
+
+
+
+
+
+
+
 
 //X(가로 이미지 갯수), Y(세로 이미지 갯수)로 자른 이미지 정보를 벡터에 저장
 void GameEngineImage::Cut(int _X, int _Y)

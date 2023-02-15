@@ -46,6 +46,9 @@ void TextLine::Start()
 //StringValue¿Í Text.bmp¸¦ ¸ÅÄª½ÃÄÑ ·»´õ¸µ
 void TextLine::Render(float _DeltaTime)
 {
+	if (true == StringValue.empty())
+		return;
+
 	float4 StartPos = GetPos();
 	StartPos.y -= static_cast<float>(Scale.hiy());
 

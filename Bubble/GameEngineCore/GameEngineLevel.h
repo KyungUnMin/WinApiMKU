@@ -153,7 +153,7 @@ private:
 	//Renders에 GameEngineRender를 등록(GameEngineRender::SetOrder에서 직접 등록)
 	void PushRender(GameEngineRender* _Render, int _ChangeOrder);
 
-	void PushCollision(GameEngineCollision* _Collision);
+	void PushCollision(GameEngineCollision* _Collision, int _ChangeOrder);
 
 	//이 레벨에 존재하는 모든 엑터들의 Update호출(Core의 GlobalUpdate에서 호출)
 	void ActorsUpdate(float _DeltaTime);

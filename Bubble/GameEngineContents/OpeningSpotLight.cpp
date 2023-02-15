@@ -18,6 +18,7 @@ void OpeningSpotLight::Start()
 	//생성 및 크기 위치 설정
 	GameEngineRender* Render = CreateRender("Opening_SpotLight.bmp", OpeningRenderOrder::SpotLight);
 	Render->SetScale(GameEngineWindow::GetScreenSize() * 3.5f);
+	Render->SetAlpha(200);
 	SetPos(GameEngineWindow::GetScreenSize().half());
 }
 

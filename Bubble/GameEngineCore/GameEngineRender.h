@@ -5,6 +5,13 @@
 #include <GameEnginePlatform/GameEngineImage.h>
 #include "GameEngineComponent.h"
 
+enum class TextAlign
+{
+	Left = TA_LEFT,
+	Right = TA_RIGHT,
+	Center = TA_CENTER
+};
+
 //CreateAnimation 함수의 인자가 될 구조체
 class FrameAnimationParameter
 {
@@ -117,8 +124,14 @@ public:
 	//렌더링 되는 순서 결정 및 Level의 Renders에 등록
 	void SetOrder(int _Order) override;
 
+
+	void SetAlpha(int _Alpha)
+	{
+		Alpha = _Alpha;
+	}
+
 	//이 함수를 통해 값을 설정하면 TextRender모드가 된다
-	void SetText(const std::string_view& _Text);
+	void SetText(const std::string_view& _Text, const int _TextHeight = 20, const std::string_view& _TextType = "굴림", const TextAlign _TextAlign = TextAlign::Left, const COLORREF _TextColor = RGB(0,0,0));
 
 protected:
 
@@ -129,6 +142,8 @@ private:
 	//이미지를 잘랐을때 그릴 이미지 인덱스
 	int								Frame					= 0;
 
+	int								Alpha					= 255;
+
 	//Render함수에서 TransparentBlt할때 지울 배경색상
 	int								TransColor			= RGB(147, 187, 236);
 
@@ -136,8 +151,7 @@ private:
 	bool								IsEffectCamera	= true;
 
 
-	//이 값에 내용이 존재하면 TextRender를 실행
-	std::string RenderText;
+	
 
 	//Level의 Render를 통해 실제 렌더링되는 함수
 	void Render(float _DeltaTime);
@@ -183,5 +197,13 @@ private:
 
 	std::map<std::string, FrameAnimation>	Animation;
 	FrameAnimation*									CurrentAnimation = nullptr;
+
+	//이 값에 내용이 존재하면 TextRender를 실행
+	std::string		RenderText		= std::string();
+
+	int					TextHeight		= 0;
+	std::string		TextType			= std::string();
+	TextAlign			Align				= TextAlign::Left;
+	COLORREF		TextColor		= RGB(0, 0, 0);
 };
 

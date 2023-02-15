@@ -114,9 +114,13 @@ void GameEngineRender::FrameAnimation::Render(float _DeltaTime)
 
 
 //이 함수를 통해 값을 설정하면 TextRender모드가 된다
-void GameEngineRender::SetText(const std::string_view& _Text)
+void GameEngineRender::SetText(const std::string_view& _Text, const int _TextHeight, const std::string_view& _TextType, const TextAlign _TextAlign, const COLORREF _TextColor)
 {
-	RenderText = _Text;
+	RenderText	= _Text;
+	TextHeight = _TextHeight;
+	TextType = _TextType;
+	Align = _TextAlign;
+	TextColor = _TextColor;
 }
 
 
@@ -145,7 +149,37 @@ void GameEngineRender::TextRender(float _DeltaTime)
 
 	//렌더링 위치 계산해서 텍스트 출력
 	float4 RenderPos = GetActorPlusPos() - CameraPos;
+
+
+
+	HDC hdc = GameEngineWindow::GetDoubleBufferImage()->GetImageDC();
+	HFONT hFont, OldFont;
+	LOGFONTA lf;
+	lf.lfHeight = TextHeight;
+	lf.lfWidth = 0;
+	lf.lfEscapement = 0;
+	lf.lfOrientation = 0;
+	lf.lfWeight = 0;
+	lf.lfItalic = 0;
+	lf.lfUnderline = 0;
+	lf.lfStrikeOut = 0;
+	lf.lfCharSet = HANGEUL_CHARSET;
+	lf.lfOutPrecision = 0;
+	lf.lfClipPrecision = 0;
+	lf.lfQuality = 0;
+	lf.lfPitchAndFamily = VARIABLE_PITCH | FF_ROMAN;
+	lstrcpy(lf.lfFaceName, TEXT(TextType.c_str()));
+	hFont = CreateFontIndirect(&lf);
+	OldFont = static_cast<HFONT>(SelectObject(hdc, hFont));
+
+	SetTextAlign(hdc, static_cast<UINT>(Align));
+	SetTextColor(hdc, TextColor);
+	SetBkMode(hdc, TRANSPARENT);
+
 	TextOutA(GameEngineWindow::GetDoubleBufferImage()->GetImageDC(), RenderPos.ix(), RenderPos.iy(), RenderText.c_str(), static_cast<int>(RenderText.size()));
+
+	SelectObject(hdc, OldFont);
+	DeleteObject(hFont);
 }
 
 void GameEngineRender::ImageRender(float _DeltaTime)
@@ -184,14 +218,29 @@ void GameEngineRender::ImageRender(float _DeltaTime)
 	//이미지를 자른 경우
 	if (true == Image->IsImageCutting())
 	{
-		GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, Frame, RenderPos, GetScale(), TransColor);
+		if (255 == Alpha)
+		{
+			GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, Frame, RenderPos, GetScale(), TransColor);
+		}
+		else if(Alpha < 255)
+		{
+			GameEngineWindow::GetDoubleBufferImage()->AlphaCopy(Image, Frame, RenderPos, GetScale(), Alpha);
+		}
 	}
 
 	//이미지를 자르지 않은 경우엔 리소스 전체크기를 출력
 	else
 	{
-		GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, RenderPos, GetScale(), { 0.f, 0.f }, Image->GetImageScale()), TransColor;
+		if (255 == Alpha)
+		{
+			GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, RenderPos, GetScale(), { 0, 0 }, Image->GetImageScale(), TransColor);
+		}
+		else if (Alpha < 255)
+		{
+			GameEngineWindow::GetDoubleBufferImage()->AlphaCopy(Image, RenderPos, GetScale(), { 0, 0 }, Image->GetImageScale(), Alpha);
+		}
 	}
+	
 }
 
 
