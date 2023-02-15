@@ -9,7 +9,6 @@
 #include "PlayerBase.h"
 #include "PlayerFSM.h"
 
-const float4 NextDoor::CollisionOffset = float4{ 0.f, 40.f };
 
 NextDoor::NextDoor()
 {
@@ -116,11 +115,16 @@ void NextDoor::Update(float _DeltaTime)
 		return;
 	}
 
+	CreateLiveTime += _DeltaTime;
+
 	//플레이어와 충돌처리
 	CollisionPlayer();
 
 	//애니메이션 처리
 	DoorAnimation();
+
+	//플레이어와 충돌했을시 플레이어 위치를 자신의 위치로 이동
+	MovePlayer();
 }
 
 
@@ -130,15 +134,20 @@ void NextDoor::CollisionPlayer()
 	if (true == IsPlayerCollision)
 		return;
 
+	if (CreateLiveTime < CollisionOkTime)
+		return;
+
+
 	//플레이어와 이 문이 원 vs 점 충돌했을때만
 	float4 PlayerPos = PlayerBase::MainPlayer->GetPos();
 	float4 PlayerCollisionScale = PlayerBase::MainPlayer->CollisionScale;
-	if (false == GameEngineCollision::CollisionCircleToPoint({ PlayerPos , PlayerCollisionScale }, { GetPos() + CollisionOffset, float4::Zero }))
+	if (false == GameEngineCollision::CollisionCircleToPoint({ PlayerPos , PlayerCollisionScale }, { GetPos(), float4::Zero }))
 		return;
 
 	PlayerFSM* Fsm = PlayerBase::MainPlayer->GetFSM();
 	Fsm->ChangeState(PlayerStateType::EnterDoor);
-
+	PlayerColPos = PlayerPos;
+	ColisionTime = CreateLiveTime;
 
 	DoorOpen();
 	IsPlayerCollision = true;
@@ -165,6 +174,8 @@ void NextDoor::DoorAnimation()
 	DoorRender->ChangeAnimation("Wait");
 }
 
+
+
 void NextDoor::DoorOpen()
 {
 	if (true == IsOpenedValue)
@@ -177,11 +188,29 @@ void NextDoor::DoorOpen()
 	DoorRender->ChangeAnimation("Open");
 }
 
+
+void NextDoor::MovePlayer()
+{
+	if (false == IsPlayerCollision)
+		return;
+
+	//플레이어와 충돌한 후 흐른 시간
+	float NowDuration = CreateLiveTime - ColisionTime;
+
+	float Ratio = NowDuration / MoveDuration;
+
+	float4 PlayerMovePos = float4::LerpClamp(PlayerColPos, GetPos(), Ratio);
+
+	PlayerBase::MainPlayer->SetPos(PlayerMovePos);
+}
+
 //초기 상태로 되돌리기
 void NextDoor::Reset()
 {
 	DoorRender->ChangeAnimation("Create", true);
 	IsOpenedValue = false;
 	IsPlayerCollision = false;
+	CreateLiveTime = 0.f;
+	ColisionTime = 0.f;
 }
 

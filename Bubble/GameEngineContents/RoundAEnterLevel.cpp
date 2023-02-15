@@ -12,6 +12,7 @@
 #include "BubbleDestHelper.h"
 #include "Monster_ZenChan.h"
 #include "MonsterSpawner.h"
+#include "PointPannel.h"
 
 RoundAEnterLevel::RoundAEnterLevel()
 {
@@ -49,6 +50,8 @@ void RoundAEnterLevel::Loading()
 	CreateBubbleDest();
 
 	CreateMonsters();
+
+	PointPannel* TopPannel = CreateActor<PointPannel>();
 }
 
 void RoundAEnterLevel::ResourceLoad()
@@ -73,14 +76,18 @@ void RoundAEnterLevel::CreateBackGround()
 
 void RoundAEnterLevel::CreateDoor()
 {
-	const float4 ScreenSize = GameEngineWindow::GetScreenSize();
-	const float4 Pivot = float4{ ScreenSize.x * 0.5f, ScreenSize.y * 0.7f };
-	const float4 Offset[3] = { {-150.f, 0.f} , {0.f,0.f}, {150.f, 0.f} };
+	//620, 624, 628
+	float4 Pos[3];
+	float4 Offset = float4{ 0.f, -5.f };
+	Pos[0] = GetBubbleDestHelper()->GetPointPos(619, Offset);
+	Pos[1] = GetBubbleDestHelper()->GetPointPos(624, Offset);
+	Pos[2] = GetBubbleDestHelper()->GetPointPos(629, Offset);
+
 	for (size_t i = 0; i < 3; ++i)
 	{
 		Door[i] = CreateActor<NextDoor>();
-		Door[i]->SelectDoor(DoorType::Blue, { 200.f, 200.f }, RenderOrder::Door);
-		Door[i]->SetPos(Pivot + Offset[i]);
+		Door[i]->SelectDoor(DoorType::Blue, { 400.f, 400.f }, RenderOrder::Door);
+		Door[i]->SetPos(Pos[i]);
 		Door[i]->Off();
 	}
 }

@@ -47,6 +47,7 @@ void MonsterState_Dead::Update(float _DeltaTime)
 	if (NextPos.y < 0)
 	{
 		NowSpeed.y = 0.f;
+		GetMonster()->SetPos({ NowPos.x, 0.f });
 		return;
 	}
 

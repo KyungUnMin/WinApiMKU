@@ -20,5 +20,6 @@ protected:
 
 private:
 	HBRUSH	BackColor	= HBRUSH();
+	float4		ScreenSize	= float4::Zero;
 };
 

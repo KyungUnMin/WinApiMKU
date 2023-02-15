@@ -2,7 +2,7 @@
 #include <GameEngineCore/GameEngineActor.h>
 
 class GameEngineRender;
-class TextLine;
+class BubbleDestHelper;
 
 class PointPannel : public GameEngineActor
 {
@@ -20,12 +20,11 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
+	const float					OffsetY				= 50.f;
 	GameEngineRender*	RenderPtr			= nullptr;
-	TextLine*						PlayerPoint			= nullptr;
-	TextLine*						HighScoreText		= nullptr;
-	TextLine*						MoneyText			= nullptr;
 
 	void ResourceLoad();
 	void CreatePannel();
+	void CreateText();
 };
 

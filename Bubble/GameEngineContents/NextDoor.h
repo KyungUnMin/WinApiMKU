@@ -13,8 +13,6 @@ class GameEngineRender;
 class NextDoor : public GameEngineActor
 {
 public:
-	static const float4 CollisionOffset;
-
 	NextDoor();
 	~NextDoor();
 
@@ -60,6 +58,20 @@ private:
 	//플레이어와 충돌 했는지 여부
 	bool									IsPlayerCollision = false;
 
+	//문이 생성되고 난 시간
+	float								CreateLiveTime	= 0.f;
+
+	//플레이어와 충돌을 허락할 시간
+	const float						CollisionOkTime	= 2.f;
+
+	//플레이어와 문이 충돌했을때 플레이어 위치
+	float4								PlayerColPos		= float4::Zero;
+
+	//플레이어와 충돌한 시간
+	float								ColisionTime		= 0.f;
+
+	const float						MoveDuration = 1.f;
+
 	//문 열기 애니메이션 실행
 	void DoorOpen();
 
@@ -72,5 +84,6 @@ private:
 
 	void CollisionPlayer();
 	void DoorAnimation();
+	void MovePlayer();
 };
 

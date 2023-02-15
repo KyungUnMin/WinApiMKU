@@ -53,7 +53,7 @@ public:
 	void TurnOnBubbleDest(size_t _Stage);
 
 	//그리드의 인덱스값을 화면의 좌표로 변경
-	float4 GetPointPos(int _Index);
+	float4 GetPointPos(int _Index, const float4& _Offset = float4::Zero);
 
 protected:
 	void Start() override;

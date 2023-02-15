@@ -12,12 +12,11 @@ EndingLevel::EndingLevel()
 
 EndingLevel::~EndingLevel()
 {
-
 }
 
 void EndingLevel::Loading()
 {
-	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+	ScreenSize = GameEngineWindow::GetScreenSize();
 
 	TextLine* Text = CreateActor<TextLine>();
 	Text->SetPos(ScreenSize.half());
@@ -35,12 +34,10 @@ void EndingLevel::Loading()
 void EndingLevel::Update(float _DeltaTime)
 {
 	HDC Hdc = GameEngineWindow::GetDoubleBufferImage()->GetImageDC();
-	float4 ScreenSize = GameEngineWindow::GetScreenSize();
 
 	BackColor = static_cast<HBRUSH>(SelectObject(Hdc, BackColor));
 	Rectangle(Hdc, -1, -1, ScreenSize.ix() + 1, ScreenSize.iy() + 1);
 	BackColor = static_cast<HBRUSH>(SelectObject(Hdc, BackColor));
-
 
 	if (true == GameEngineInput::IsDown("ReStart"))
 		BubbleCore::GetInst().ChangeLevel("SelectCharacterLevel");

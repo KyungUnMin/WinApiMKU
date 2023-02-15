@@ -110,13 +110,14 @@ void BubbleDestHelper::SetBubbleDest(HelpLevelType _LevelType)
 
 
 //그리드의 인덱스값을 화면의 좌표로 변경
-float4 BubbleDestHelper::GetPointPos(int _Index)
+float4 BubbleDestHelper::GetPointPos(int _Index, const float4& _Offset)
 {
 	int X = _Index % WidthCount;
 	int Y = _Index / WidthCount;
 
 	float4 PixelSize = { (ScreenSize.x / WidthCount), (ScreenSize.y / HeightCount) };
-	return float4{ (PixelSize.x * X), (PixelSize.y * Y) };
+	float4 Pos = float4{ (PixelSize.x * X), (PixelSize.y * Y) };
+	return Pos + _Offset;
 }
 
 

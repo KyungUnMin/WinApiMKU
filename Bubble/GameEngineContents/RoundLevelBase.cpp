@@ -282,6 +282,14 @@ void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	DestHelperPtr->TurnOnBubbleDest(NowStageIndex);
 
 	BGMPlayer.Stop();
+
+	std::vector<GameEngineActor*> Bubbles = GetActors(UpdateOrder::Player_Missle);
+	for (size_t i = 0; i < Bubbles.size(); ++i)
+	{
+		Bubbles[i]->Death();
+	}
+
+	Bubbles.clear();
 }
 
 
