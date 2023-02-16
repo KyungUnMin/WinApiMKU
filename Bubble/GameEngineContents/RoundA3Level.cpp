@@ -12,6 +12,9 @@
 #include "PlayerBase.h"
 #include "BubbleDestHelper.h"
 
+#include "MonsterSpawner.h"
+#include "Monster_ZenChan.h"
+
 RoundA3Level::RoundA3Level()
 {
 
@@ -35,6 +38,7 @@ void RoundA3Level::Loading()
 	RoundLevelBase::CreateStage(float4::Right, RenderOrder::Obstacle1);
 
 	CreateBubbleDest();
+	CreateMonsters();
 }
 
 
@@ -57,6 +61,12 @@ void RoundA3Level::Update(float _DeltaTime)
 	if (false == RoundLevelBase::IsLastStage())
 		return;
 
+	//다음레벨로 전환
+	BubbleCore::GetInst().ChangeLevel("EndingLevel");
+}
+
+void RoundA3Level::ChangeNextLevel()
+{
 	//다음레벨로 전환
 	BubbleCore::GetInst().ChangeLevel("EndingLevel");
 }
@@ -198,6 +208,71 @@ void RoundA3Level::CreateBubbleDest()
 			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
 		}
 
+	}
+}
+
+void RoundA3Level::CreateMonsters()
+{
+	{
+		MonsterSpawner* MonSpawner = GetMonsterSpawner(0);
+		MonSpawner->ReserveSpanwer(4);
+
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(165));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(291));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(278));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(409));
+	}
+
+	{
+		MonsterSpawner* MonSpawner = GetMonsterSpawner(1);
+		MonSpawner->ReserveSpanwer(6);
+
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(367));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(369));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(495));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(497));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(591));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(593));
+	}
+
+	{
+		MonsterSpawner* MonSpawner = GetMonsterSpawner(2);
+		MonSpawner->ReserveSpanwer(4);
+
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(259));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(295));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(390));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(410));
+	}
+
+	{
+		MonsterSpawner* MonSpawner = GetMonsterSpawner(3);
+		MonSpawner->ReserveSpanwer(7);
+
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(176));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(238));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(242));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(298));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(310));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(451));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(477));
+	}
+
+	{
+		MonsterSpawner* MonSpawner = GetMonsterSpawner(4);
+		MonSpawner->ReserveSpanwer(5);
+
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(157));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(245));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(337));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(458));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(518));
+	}
+
+	{
+		MonsterSpawner* MonSpawner = GetMonsterSpawner(5);
+
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(134));
 	}
 }
 
