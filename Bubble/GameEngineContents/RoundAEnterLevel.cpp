@@ -12,7 +12,6 @@
 #include "BubbleDestHelper.h"
 #include "Monster_ZenChan.h"
 #include "MonsterSpawner.h"
-#include "PointPannel.h"
 
 RoundAEnterLevel::RoundAEnterLevel()
 {
@@ -45,8 +44,6 @@ void RoundAEnterLevel::Loading()
 	CreateBubbleDest();
 
 	CreateMonsters();
-
-	PointPannel* TopPannel = CreateActor<PointPannel>();
 }
 
 void RoundAEnterLevel::ResourceLoad()

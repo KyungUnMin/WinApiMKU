@@ -60,18 +60,7 @@ public:
 	GameEngineRender& operator=(const GameEngineRender& _Other) = delete;
 	GameEngineRender& operator=(const GameEngineRender&& _Other) noexcept = delete;
 
-	//GameEngineResources에서 이미지 찾아오기
-	void SetImage(const std::string_view& _ImageName);
-
-	//이미지 설정하고 크기도 리소스의 이미지크기로 설정
-	void SetImageToScaleToImage(const std::string_view& _ImageName);
-
-	//렌더링 이미지를 실제 리소스의 이미지 크기로 설정
-	void SetScaleToImage();
-
-
-	//프레임 직접 지정
-	void SetFrame(int _Frame);
+	
 
 
 	inline GameEngineImage* GetImage()
@@ -110,6 +99,29 @@ public:
 		SetEffectCamera(true);
 	}
 
+	inline int GetTextHeight()
+	{
+		return TextHeight;
+	}
+
+	void SetAlpha(int _Alpha)
+	{
+		Alpha = _Alpha;
+	}
+
+	//GameEngineResources에서 이미지 찾아오기
+	void SetImage(const std::string_view& _ImageName);
+
+	//이미지 설정하고 크기도 리소스의 이미지크기로 설정
+	void SetImageToScaleToImage(const std::string_view& _ImageName);
+
+	//렌더링 이미지를 실제 리소스의 이미지 크기로 설정
+	void SetScaleToImage();
+
+
+	//프레임 직접 지정
+	void SetFrame(int _Frame);
+
 
 	bool IsAnimationEnd();
 	
@@ -125,10 +137,7 @@ public:
 	void SetOrder(int _Order) override;
 
 
-	void SetAlpha(int _Alpha)
-	{
-		Alpha = _Alpha;
-	}
+	
 
 	//이 함수를 통해 값을 설정하면 TextRender모드가 된다
 	void SetText(const std::string_view& _Text, const int _TextHeight = 20, const std::string_view& _TextType = "굴림", const TextAlign _TextAlign = TextAlign::Left, const COLORREF _TextColor = RGB(0,0,0));

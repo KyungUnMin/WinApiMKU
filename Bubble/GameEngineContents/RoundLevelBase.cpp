@@ -16,6 +16,7 @@
 #include "BubbleMissleFSM.h"
 #include "BubbleDestHelper.h"
 #include "MonsterSpawner.h"
+#include "PointPannel.h"
 
 const float4	RoundLevelBase::PlayerSpawnPos			= { 100.f, 620.f };
 const float		RoundLevelBase::StageMoveDuration	= 1.5f;
@@ -45,6 +46,7 @@ void RoundLevelBase::Loading()
 {
 	DestHelperPtr = CreateActor<BubbleDestHelper>();
 	BgmLoad();
+	ScorePannel = CreateActor<PointPannel>();
 }
 
 

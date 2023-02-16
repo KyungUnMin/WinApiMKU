@@ -1,5 +1,6 @@
 #include "GameEngineDirectory.h"
-#include <GameEngineBase/GameEngineDebug.h>
+#include "GameEngineFile.h"
+#include "GameEngineDebug.h"
 
 GameEngineDirectory::GameEngineDirectory()
 {
@@ -53,4 +54,27 @@ bool GameEngineDirectory::MoveParent()
 	Path.MoveParent();
 
 	return true;
+}
+
+
+//이 파일에 있는 경로들을 벡터에 담아 리턴
+std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(const std::string_view& _Ext)
+{
+	//파일에 있는 경로를 순환할수 있는 반복자
+	std::filesystem::directory_iterator DirIter(Path.Path);
+
+	std::string Ext = _Ext.data();
+	std::vector<GameEngineFile> Files;
+
+	//순환
+	for (const std::filesystem::directory_entry& Entry : DirIter)
+	{
+		//존재하는 경로인지 확인
+		if (true == Entry.is_directory())
+			continue;
+
+		Files.push_back(GameEngineFile(Entry.path()));
+	}
+
+	return Files;
 }

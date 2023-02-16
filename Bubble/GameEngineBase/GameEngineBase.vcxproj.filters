@@ -19,6 +19,9 @@
     <ClCompile Include="GameEngineTime.cpp">
       <Filter>05.Time</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineFile.cpp">
+      <Filter>04.IO%28File%29\03.File</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineDebug.h">
@@ -38,6 +41,9 @@
     </ClInclude>
     <ClInclude Include="GameEngineTime.h">
       <Filter>05.Time</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineFile.h">
+      <Filter>04.IO%28File%29\03.File</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

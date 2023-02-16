@@ -4,6 +4,9 @@
 class GameEnginePath
 {
 public:
+	friend class GameEngineFile;
+	friend class GameEngineDirectory;
+
 	GameEnginePath();
 	GameEnginePath(std::filesystem::path _Path);
 	GameEnginePath(const std::string& _Path);
