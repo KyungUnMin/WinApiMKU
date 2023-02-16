@@ -16,6 +16,7 @@ public:
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
+	void ChangeNextLevel() override;
 
 private:
 
@@ -23,5 +24,6 @@ private:
 	void ResourceLoad();
 	void CreateBackGround();
 	void CreateBubbleDest();
+	void CreateMonsters();
 };
 

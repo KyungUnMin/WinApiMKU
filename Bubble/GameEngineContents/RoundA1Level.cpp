@@ -31,14 +31,14 @@ void RoundA1Level::Loading()
 
 	//리소스 로드
 	ResourceLoad();
-	RoundLevelBase::LoadStage("A1", RoundCount, 1);
+	RoundLevelBase::LoadStage("A1", 6, 1);
 
 	//뒤 배경과 레벨의 지형을 아래로 정렬하여 생성
 	CreateBackGround();
 	RoundLevelBase::CreateStage(float4::Down, RenderOrder::Obstacle1);
 
 	CreateBubbleDest();
-	CreateMonster();
+	CreateMonsters();
 }
 
 void RoundA1Level::ResourceLoad()
@@ -156,7 +156,7 @@ void RoundA1Level::CreateBubbleDest()
 }
 
 
-void RoundA1Level::CreateMonster()
+void RoundA1Level::CreateMonsters()
 {
 	{
 		MonsterSpawner* MonSpawner = GetMonsterSpawner(0);

@@ -23,8 +23,6 @@ protected:
 	void ChangeNextLevel() override;
 
 private:
-	const int											RoundCount = 6;
-
 	void ResourceLoad();
 
 	//2개의 배경 애니메이션 생성
@@ -32,6 +30,6 @@ private:
 
 	void CreateBubbleDest();
 
-	void CreateMonster();
+	void CreateMonsters();
 };
 
