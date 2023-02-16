@@ -19,10 +19,6 @@ MonsterState_Move::~MonsterState_Move()
 void MonsterState_Move::Start()
 {
 	SetNowAniName("Move");
-
-
-
-
 }
 
 void MonsterState_Move::Update(float _DeltaTime)
@@ -38,9 +34,13 @@ void MonsterState_Move::Update(float _DeltaTime)
 	//플레이어와 몬스터의 거리가 PlayerFindRange 이내이고, 플레이어가 위에 있다면 점프
 	if (HorizonSizeWithPlayer()  < PlayerFindRange && true == IsPlayerPosOver())
 	{
-		GetMonster()->SetReverseDir();
-		GetFSM()->ChangeState(MonsterStateType::Jump);
-		return;
+		//50%의 확률로만 점프
+		if (0 == rand() % CaseDoJump)
+		{
+			GetMonster()->SetReverseDir();
+			GetFSM()->ChangeState(MonsterStateType::Jump);
+			return;
+		}
 	}
 
 	//땅 끝에 도달한 경우

@@ -4,6 +4,7 @@
 #include "ContentsEnum.h"
 #include "MonsterFSM.h"
 #include "PlayerBase.h"
+#include "BubbleMissle.h"
 
 const float4 MonsterBase::RenderScale		= float4{ 200.f, 200.f };
 const float4 MonsterBase::CollisionScale		= float4{ 50.f, 50.f };
@@ -64,6 +65,7 @@ void MonsterBase::Render(float _DeltaTime)
 
 void MonsterBase::AttackedBubble(BubbleMissle* _LockedBubble)
 {
+	LockedBubble = _LockedBubble;
 	FsmPtr->ChangeState(MonsterStateType::Lock);
 }
 
@@ -87,4 +89,20 @@ void MonsterBase::DeathFromBubble()
 	}
 
 	FsmPtr->ChangeState(MonsterStateType::Dead);
+}
+
+void MonsterBase::FSMReset()
+{
+	MonsterStateType NowState = FsmPtr->GetCurStateByEnum();
+
+	if (MonsterStateType::Falling == NowState)
+		return;
+
+	if (nullptr != LockedBubble)
+	{
+		LockedBubble->SetCatchTarget(nullptr);
+		LockedBubble = nullptr;
+	}
+
+	FsmPtr->ChangeState(MonsterStateType::Falling);
 }

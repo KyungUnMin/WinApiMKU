@@ -17,22 +17,12 @@
 
 RoundA1Level::RoundA1Level()
 {
-	MonSpanwers[MonsterType::ZenChan] = new MonsterSpawner<Monster_ZenChan>(this);
-
+	
 }
 
 RoundA1Level::~RoundA1Level()
 {
-	for (std::pair<MonsterType, MonsterSpawnerBase*> Pair : MonSpanwers)
-	{
-		if (nullptr == Pair.second)
-			continue;
-
-		delete Pair.second;
-		Pair.second = nullptr;
-	}
-
-	MonSpanwers.clear();
+	
 }
 
 void RoundA1Level::Loading()
@@ -41,13 +31,14 @@ void RoundA1Level::Loading()
 
 	//리소스 로드
 	ResourceLoad();
-	RoundLevelBase::LoadStage("A1", 6, 1);
+	RoundLevelBase::LoadStage("A1", RoundCount, 1);
 
 	//뒤 배경과 레벨의 지형을 아래로 정렬하여 생성
 	CreateBackGround();
 	RoundLevelBase::CreateStage(float4::Down, RenderOrder::Obstacle1);
 
 	CreateBubbleDest();
+	CreateMonster();
 }
 
 void RoundA1Level::ResourceLoad()
@@ -167,7 +158,66 @@ void RoundA1Level::CreateBubbleDest()
 
 void RoundA1Level::CreateMonster()
 {
+	{
+		MonsterSpawner* MonSpawner = GetMonsterSpawner(0);
+		MonSpawner->ReserveSpanwer(4);
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(269));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(275));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(395));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(405));
+	}
+	
+	{
+		MonsterSpawner* MonSpawner = GetMonsterSpawner(1);
+		MonSpawner->ReserveSpanwer(4);
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(263));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(280));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(427));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(436));
+	}
 
+	{
+		MonsterSpawner* MonSpawner = GetMonsterSpawner(2);
+		MonSpawner->ReserveSpanwer(6);
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(153));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(141));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(259));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(279));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(433));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(455));
+	}
+
+	{
+		MonsterSpawner* MonSpawner = GetMonsterSpawner(3);
+		MonSpawner->ReserveSpanwer(6);
+
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(131));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(262));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(424));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(156));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(282));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(439));
+	}
+
+	{
+		MonsterSpawner* MonSpawner = GetMonsterSpawner(4);
+		MonSpawner->ReserveSpanwer(8);
+
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(134));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(154));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(368));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(427));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(489));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(437));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(503));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(656));
+	}
+
+	{
+		MonsterSpawner* MonSpawner = GetMonsterSpawner(5);
+
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(134));
+	}
 }
 
 
@@ -189,8 +239,16 @@ void RoundA1Level::Update(float _DeltaTime)
 	if (false == RoundLevelBase::IsLastStage())
 		return;
 
+
 	//다음레벨로 전환
 	BubbleCore::GetInst().ChangeLevel("EndingLevel");
 }
+
+void RoundA1Level::ChangeNextLevel()
+{
+	//다음레벨로 전환
+	BubbleCore::GetInst().ChangeLevel("EndingLevel");
+}
+
 
 

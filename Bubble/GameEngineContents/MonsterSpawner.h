@@ -1,79 +1,50 @@
 #pragma once
 #include <vector>
-#include <GameEngineBase/GameEngineMath.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineActor.h>
 #include "ContentsEnum.h"
 
-class MonsterSpawnerBase
+class GameEngineActor;
+
+class MonsterSpawner
 {
 public:
-	MonsterSpawnerBase(){}
-	virtual ~MonsterSpawnerBase(){}
-
-	virtual void CreateMonsters(const std::vector<float4>& _MonstersPos) = 0;
-	virtual bool IsAllMonsterOff() = 0;
-	virtual void Reset() = 0;
-};
-
-
-class GameEngineLevel;
-
-template <typename MonsterType>
-class MonsterSpawner : public MonsterSpawnerBase
-{
-public:
-	MonsterSpawner(GameEngineLevel* _Level)
-		:Level(_Level)
-	{
-
-	}
-	~MonsterSpawner() override{}
+	MonsterSpawner(GameEngineLevel* _Level);
+	~MonsterSpawner();
 
 	MonsterSpawner(const MonsterSpawner& _Other) = delete;
 	MonsterSpawner(MonsterSpawner&& _Other) noexcept = delete;
 	MonsterSpawner& operator=(const MonsterSpawner& _Other) = delete;
 	MonsterSpawner& operator=(const MonsterSpawner&& _Other) noexcept = delete;
 
-	void CreateMonsters(const std::vector<float4>& _MonstersPos) override
+	inline void ReserveSpanwer(size_t _Count)
 	{
-		Monsters.reserve(_MonstersPos.size());
-
-		for (float4 Pos : _MonstersPos)
-		{
-			GameEngineActor* Monster = Level->CreateActor<MonsterType>(UpdateOrder::Monster);
-			Monster->SetPos(Pos);
-			Monsters.push_back(std::make_pair(Monster, Pos));
-		}
+		Monsters.reserve(_Count);
 	}
 
-	bool IsAllMonsterOff() override
+	template <typename MonsterType>
+	GameEngineActor* CreateMonsters(const float4& _Pos)
 	{
-		for (std::pair<GameEngineActor*, float4> Pair : Monsters)
-		{
-			if (Pair.first->IsUpdate())
-				return false;
-		}
-
-		return true;
+		GameEngineActor* Monster = Level->CreateActor<MonsterType>(UpdateOrder::Monster);
+		Monster->SetPos(_Pos);
+		Monster->Off();
+		Monsters.push_back(std::make_pair(Monster, _Pos));
+		return Monster;
 	}
 
-	void Reset() override
-	{
-		for (std::pair<GameEngineActor*, float4> Pair : Monsters)
-		{
-			GameEngineActor* Monster = Pair.first;
-			float4 OriginPos = Pair.second;
-			Monster->SetPos(OriginPos);
-			Monster->On();
-		}
-	}
+	bool IsAllMonsterOff();
+
+	void AllMonsterOn();
+
+	void AllMonsterOff();
 
 protected:
 
 
 private:
-	GameEngineLevel*														Level			= nullptr;
-	std::vector<std::pair<GameEngineActor*, float4>>	Monsters;
+	GameEngineLevel*															Level = nullptr;
+	std::vector<std::pair<GameEngineActor*, float4>>		Monsters;
+
+
 };
 

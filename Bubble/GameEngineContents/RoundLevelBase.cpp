@@ -15,8 +15,9 @@
 #include "BubbleMissle.h"
 #include "BubbleMissleFSM.h"
 #include "BubbleDestHelper.h"
+#include "MonsterSpawner.h"
 
-const float4	RoundLevelBase::PlayerSpawnPos			= { 100.f, 600.f };
+const float4	RoundLevelBase::PlayerSpawnPos			= { 100.f, 620.f };
 const float		RoundLevelBase::StageMoveDuration	= 1.5f;
 
 RoundLevelBase::RoundLevelBase()
@@ -26,7 +27,16 @@ RoundLevelBase::RoundLevelBase()
 
 RoundLevelBase::~RoundLevelBase()
 {
+	for (size_t i = 0; i < MonsterSpawners.size(); ++i)
+	{
+		if (nullptr == MonsterSpawners[i])
+			continue;
 
+		delete MonsterSpawners[i];
+		MonsterSpawners[i] = nullptr;
+	}
+
+	MonsterSpawners.clear();
 }
 
 
@@ -66,8 +76,18 @@ void RoundLevelBase::LoadStage(const std::string_view& _RoundName, int _X, int _
 
 	StageImage = CreateActor<BackGround>();
 	StageImage->RenderReserve(_X * _Y);
+
+	CreateSpanwerPool(_X);
 }
 
+void RoundLevelBase::CreateSpanwerPool(int _StageCount)
+{
+	MonsterSpawners.resize(_StageCount, nullptr);
+	for (size_t i = 0; i < MonsterSpawners.size(); ++i)
+	{
+		MonsterSpawners[i] = new MonsterSpawner(this);
+	}
+}
 
 //레벨의 지형을 생성하는 함수
 void RoundLevelBase::CreateStage(const float4& _ArrangeDir, int _Order)
@@ -101,6 +121,8 @@ bool RoundLevelBase::MoveToNextStage()
 	//이미 Stage가 이동중이라면 Return
 	if (true == IsMoveValue)
 		return false;
+
+	MonsterSpawners[NowStageIndex]->AllMonsterOff();
 
 	//이번 스테이지가 마지막이였다면 false를 리턴
 	if (NowStageIndex + 1 == StageImage->GetRenderSize())
@@ -137,6 +159,21 @@ bool RoundLevelBase::MoveToNextStage()
 
 void RoundLevelBase::Update(float _DeltaTime)
 {
+	if (false ==IsMoveValue && true == MonsterSpawners[NowStageIndex]->IsAllMonsterOff())
+	{
+		//스테이지가 넘어갈 때 대기시간도 필요해 보임
+		//if(false == );
+		//	TODO
+
+		if (NowStageIndex + 1 == StageImage->GetRenderSize())
+		{
+			ChangeNextLevel();
+			return;
+		}
+
+		MoveToNextStage();
+	}
+
 	//IsMoving이 true일때만 Stage가 이동함
 	if (false == IsMoveValue)
 		return;
@@ -231,6 +268,8 @@ void RoundLevelBase::CreatePlayer(PlayerCharacterType _Type)
 
 }
 
+
+
 void RoundLevelBase::BgmLoad()
 {
 	static bool IsLoad = false;
@@ -271,13 +310,15 @@ void RoundLevelBase::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	DestHelperPtr->TurnOnBubbleDest(NowStageIndex);
 
 	BGMPlayer = GameEngineResources::GetInst().SoundPlayerToControl(RoundBgmName);
+
+	SetNowStage(0);
 }
 
 //레벨이 전환될때 레벨 정리하고 가기
 void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	IsMoveValue = false;
-	SetNowStage(0);
+	//SetNowStage(0);
 	Player->SetPos(PlayerSpawnPos);
 	DestHelperPtr->TurnOnBubbleDest(NowStageIndex);
 
@@ -306,5 +347,12 @@ void RoundLevelBase::SetNowStage(size_t _StageNum)
 	NowStageIndex = _StageNum;
 	StageImage->GetRender(NowStageIndex)->On();
 	StageImage->GetRender(NowStageIndex)->SetPosition(float4::Zero);
+
+	for (size_t i = 0; i < MonsterSpawners.size(); ++i)
+	{
+		MonsterSpawners[i]->AllMonsterOff();
+	}
+
+	MonsterSpawners[NowStageIndex]->AllMonsterOn();
 }
 

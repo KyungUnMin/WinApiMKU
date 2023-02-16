@@ -11,6 +11,7 @@ class BackGround;
 class GameEngineImage;
 class PlayerBase;
 class BubbleDestHelper;
+class MonsterSpawner;
 
 //실제 게임이 동작하는 레벨은 이 클래스를 상속받는다
 //RoundLevel은 일렬로 정렬된 Render를 갖고 있는다.(이 Render는 Stage를 의미, ex : RoundA_Stage01)
@@ -106,30 +107,39 @@ protected:
 		return Player;
 	}
 
+	inline MonsterSpawner* GetMonsterSpawner(size_t _StageNum)
+	{
+		return MonsterSpawners[_StageNum];
+	}
+
+	virtual void ChangeNextLevel(){}
 
 private:
 	//선택한 캐릭터 타입
-	PlayerCharacterType			SelectedCharacter	= PlayerCharacterType::BUBBLUN;
-	PlayerBase*							Player						= nullptr;
+	PlayerCharacterType					SelectedCharacter	= PlayerCharacterType::BUBBLUN;
+	PlayerBase*									Player						= nullptr;
 
 	//Obstacle을 생성하는데 사용하는 변수
-	std::string							ImageName				= "Round";
-	BackGround*						StageImage				= nullptr;
-	GameEngineImage*				StageCollision			= nullptr;
+	std::string									ImageName				= "Round";
+	BackGround*								StageImage				= nullptr;
+	GameEngineImage*						StageCollision			= nullptr;
 
 
 	//IsMoveValue이 true일때 Update에서 Stage가 이동함
-	bool										IsMoveValue			= false;
-	size_t									NowStageIndex		= 0;
-	float4									ArrangeDir				= float4::Zero;
-	float									StageMoveTime		= 0.f;
+	bool												IsMoveValue			= false;
+	size_t											NowStageIndex		= 0;
+	float4											ArrangeDir				= float4::Zero;
+	float											StageMoveTime		= 0.f;
 
 	//BubbleDestination에 관련된 헬퍼클래스
-	BubbleDestHelper*				DestHelperPtr			= nullptr;
+	BubbleDestHelper*						DestHelperPtr			= nullptr;
 
-	GameEngineSoundPlayer	BGMPlayer;
-	const std::string_view		RoundBgmName		= "RoundBGM.mp3";
+	GameEngineSoundPlayer			BGMPlayer;
+	const std::string_view				RoundBgmName		= "RoundBGM.mp3";
 
+	std::vector<MonsterSpawner*>	MonsterSpawners;
+
+	void CreateSpanwerPool(int _StageCount);
 	void BgmLoad();
 };
 

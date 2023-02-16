@@ -20,11 +20,11 @@ protected:
 	void EnterState() override;
 
 private:
-	const float4	GravitySpeed	= float4{ 0.f, 200.f };
+	const float4	GravitySpeed				= float4{ 0.f, 200.f };
+	const float		ScreenOutOffsetY		= 50.f;
+	bool					IsBlocked					= false;
 
-	bool					IsBlocked		= false;
-
-
+	void Move(float _DeltaTime);
 	bool CheckStateChange(float _DeltaTime);
 };
 

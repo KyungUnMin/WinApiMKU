@@ -16,16 +16,11 @@
 
 RoundAEnterLevel::RoundAEnterLevel()
 {
-	MonSpawner = new MonsterSpawner<Monster_ZenChan>(this);
 }
 
 RoundAEnterLevel::~RoundAEnterLevel()
 {
-	if (nullptr != MonSpawner)
-	{
-		delete MonSpawner;
-		MonSpawner = nullptr;
-	}
+	
 }
 
 
@@ -105,15 +100,11 @@ void RoundAEnterLevel::CreateBubbleDest()
 
 void RoundAEnterLevel::CreateMonsters()
 {
-	//236	240	244
-	std::vector<float4> MonsterPos(3, float4::Zero);
-
-	BubbleDestHelper* PosHelper = GetBubbleDestHelper();
-	MonsterPos[0] = PosHelper->GetPointPos(236);
-	MonsterPos[1] = PosHelper->GetPointPos(240);
-	MonsterPos[2] = PosHelper->GetPointPos(244);
-	
-	MonSpawner->CreateMonsters(MonsterPos);
+	MonSpawner = GetMonsterSpawner(0);
+	MonSpawner->ReserveSpanwer(3);
+	MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(236));
+	MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(240));
+	MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(244));
 }
 
 
@@ -171,6 +162,7 @@ void RoundAEnterLevel::Update(float _DeltaTime)
 void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	RoundLevelBase::LevelChangeStart(_PrevLevel);
+	MonSpawner->AllMonsterOn();
 
 	for (size_t i = 0; i < 3; ++i)
 	{
@@ -182,8 +174,6 @@ void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 void RoundAEnterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	RoundLevelBase::LevelChangeEnd(_NextLevel);
-
-	MonSpawner->Reset();
 
 	//문의 애니메이션들을 초기화
 	for (size_t i = 0; i < 3; ++i)

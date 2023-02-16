@@ -5,7 +5,20 @@
 #include "ContentsEnum.h"
 #include "BubbleDestination.h"
 
-bool BubbleDestHelper::IsRenderOn = false;
+bool				BubbleDestHelper::IsRenderOn		= false;
+const int		BubbleDestHelper::WidthCount		= 32;
+const int		BubbleDestHelper::HeightCount	= 24;
+
+float4 BubbleDestHelper::GetGridPos(int _Index)
+{
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+	int X = _Index % WidthCount;
+	int Y = _Index / WidthCount;
+
+	float4 PixelSize = { (ScreenSize.x / WidthCount), (ScreenSize.y / HeightCount) };
+	float4 Pos = float4{ (PixelSize.x * X), (PixelSize.y * Y) };
+	return Pos;
+}
 
 BubbleDestHelper::BubbleDestHelper()
 {

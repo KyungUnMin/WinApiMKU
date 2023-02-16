@@ -39,7 +39,7 @@ public:
 
 	void DeathFromBubble();
 
-
+	void FSMReset();
 
 protected:
 	void Start() override;
@@ -55,8 +55,9 @@ protected:
 
 
 private:
-	GameEngineRender*		RenderPtr	= nullptr;
-	GameEngineCollision*		CollisionPtr	= nullptr;
-	MonsterFSM*					FsmPtr			= nullptr;
+	GameEngineRender*		RenderPtr			= nullptr;
+	GameEngineCollision*		CollisionPtr			= nullptr;
+	MonsterFSM*					FsmPtr					= nullptr;
+	BubbleMissle*					LockedBubble		= nullptr;
 };
 

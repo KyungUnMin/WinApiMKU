@@ -23,7 +23,7 @@ protected:
 private:
 	const float				PlayerFindRange		= 10.f;
 	const float4			MoveSpeed				= float4{ 150.f, 0.f };
-	
+	const int					CaseDoJump			= 50;
 
 	bool IsPlayerPosOver();
 	float HorizonSizeWithPlayer();

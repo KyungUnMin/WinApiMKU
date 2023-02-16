@@ -1,10 +1,10 @@
 #pragma once
 #include <map>
+#include <vector>
 #include "RoundLevelBase.h"
 #include "ContentsEnum.h"
 
 class BackGround;
-class MonsterSpawnerBase;
 
 class RoundA1Level : public RoundLevelBase
 {
@@ -20,9 +20,10 @@ public:
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
+	void ChangeNextLevel() override;
 
 private:
-	std::map<MonsterType, MonsterSpawnerBase*> MonSpanwers;
+	const int											RoundCount = 6;
 
 	void ResourceLoad();
 

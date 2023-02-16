@@ -1,4 +1,5 @@
 #include "MonsterState_Falling.h"
+#include <GameEnginePlatform/GameEngineWindow.h>
 #include "MonsterBase.h"
 #include "MonsterFSM.h"
 #include "PlayerBase.h"
@@ -24,8 +25,7 @@ void MonsterState_Falling::Update(float _DeltaTime)
 	if (true == CheckStateChange(_DeltaTime))
 		return;
 
-	//아래로 이동
-	GetMonster()->SetMove(float4::Down * GravitySpeed * _DeltaTime);
+	Move(_DeltaTime);
 
 	//플레이어와 충돌했을때
 	if (true == PlayerCollisionCheck())
@@ -42,6 +42,7 @@ void MonsterState_Falling::EnterState()
 	//Falling으로 전환됐을때 벽 내부에 존재했는지 체크
 	IsBlocked = GetMonster()->IsGround(MonsterBase::CollisionScale);
 }
+
 
 bool MonsterState_Falling::CheckStateChange(float _DeltaTime)
 {
@@ -70,3 +71,19 @@ bool MonsterState_Falling::CheckStateChange(float _DeltaTime)
 
 	return false;
 }
+
+void MonsterState_Falling::Move(float _DeltaTime)
+{
+	//아래로 이동
+	GetMonster()->SetMove(float4::Down * GravitySpeed * _DeltaTime);
+
+	//캐릭터가 화면 아래로 내려갔다면 위로 올리기
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+	float4 NowPos = GetMonster()->GetPos();
+	if (ScreenSize.y + ScreenOutOffsetY < NowPos.y)
+	{
+		//y를 0으로 만들기
+		GetMonster()->SetPos(NowPos * float4::Right);
+	}
+}
+

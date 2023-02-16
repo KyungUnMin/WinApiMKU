@@ -71,4 +71,5 @@ enum class MonsterType
 {
 	ZenChan,
 
+	Count
 };

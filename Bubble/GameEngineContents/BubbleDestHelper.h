@@ -15,6 +15,10 @@ class BubbleDestination;
 class BubbleDestHelper : public GameEngineActor
 {
 public:
+	static const int WidthCount ;
+	static const int HeightCount;
+	static float4 GetGridPos(int _Index);
+
 	static const std::vector<std::vector<int>> RoundAEnter;
 	static const std::vector<std::vector<int>> RoundA1;
 	static const std::vector<std::vector<int>> RoundA2;
@@ -65,8 +69,7 @@ private:
 	float4				ScreenSize		= float4::Zero;
 	float4				Offset				= float4::Zero;
 
-	const int			WidthCount		= 32;
-	const int			HeightCount	= 24;
+	
 
 	HPEN				GridPen			= HPEN();
 

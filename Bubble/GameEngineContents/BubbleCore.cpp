@@ -1,4 +1,5 @@
 #include "BubbleCore.h"
+#include <time.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEnginePlatform/GameEngineImage.h>
@@ -32,6 +33,7 @@ void BubbleCore::Start()
 {
 	int* FOR_DEBUG = new int;
 
+	srand(static_cast<unsigned int>(time(nullptr)));
 	CreateDebugPenBrush();
 	CreateLevels();
 	CreateKeys();
