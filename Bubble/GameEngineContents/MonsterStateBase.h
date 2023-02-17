@@ -7,7 +7,7 @@ class MonsterFSM;
 class MonsterBase;
 class FrameAnimationParameter;
 
-typedef bool(MonsterBase::* StateChangeFuncPtr)();
+typedef bool(MonsterBase::* StateChangeFuncPtr)(float);
 
 class MonsterStateBase
 {

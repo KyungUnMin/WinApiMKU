@@ -2,9 +2,9 @@
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
+
+
 #include "MonsterFSM.h"
-
-
 #include "MonsterState_Falling.h"
 #include "MonsterState_Move.h"
 #include "MonsterState_Jump.h"
@@ -37,7 +37,7 @@ void Monster_ZenChan::Start()
 
 	MonsterState_Falling* FallingState = GetFSM()->CreateState<MonsterState_Falling>(MonsterStateType::Falling);
 	MonsterState_Move* MoveState = GetFSM()->CreateState<MonsterState_Move>(MonsterStateType::Move);
-	MoveState->SetStateChangeFunc((StateChangeFuncPtr)&Monster_ZenChan::Test);
+	//MoveState->SetStateChangeFunc((StateChangeFuncPtr)&Monster_ZenChan::Test);
 
 	MonsterState_Jump* JumpState = GetFSM()->CreateState<MonsterState_Jump>(MonsterStateType::Jump);
 	MonsterState_Lock* LockState = GetFSM()->CreateState<MonsterState_Lock>(MonsterStateType::Lock);

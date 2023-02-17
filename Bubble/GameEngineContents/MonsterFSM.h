@@ -7,7 +7,11 @@ enum class MonsterStateType
 	Move,
 	Jump,
 	Lock,
-	Dead
+	Dead,
+
+	NonStopDash,
+	Tired,
+
 
 
 };

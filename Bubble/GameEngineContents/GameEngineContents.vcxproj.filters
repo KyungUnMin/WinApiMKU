@@ -199,6 +199,12 @@
     <ClInclude Include="ContentsStruct.h">
       <Filter>02.Define</Filter>
     </ClInclude>
+    <ClInclude Include="Monster_PHLoop.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.PHLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterState_NonStopDash.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.NonStopDash</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -395,6 +401,15 @@
     </ClCompile>
     <ClCompile Include="PointPannel.cpp">
       <Filter>03.CommonActors\01.StaticObject\04.PointPannel</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_PHLoop.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.PHLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_PHLoopAniData.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.PHLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterState_NonStopDash.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.NonStopDash</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -673,6 +688,15 @@
     </Filter>
     <Filter Include="04.Level &amp; Actor\02.RoundRooms\02.RoundA\04.RoundA-3\01.Level">
       <UniqueIdentifier>{d2aeb647-a466-46c2-9dc7-85d58b961873}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.PHLoop">
+      <UniqueIdentifier>{082e9271-b85b-4b19-844e-1069f638f1a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\09.Tired">
+      <UniqueIdentifier>{a9771708-8fb9-4130-9875-bf619e669002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.NonStopDash">
+      <UniqueIdentifier>{9f2728d3-5bff-48b8-a3c1-3c57701a4edc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

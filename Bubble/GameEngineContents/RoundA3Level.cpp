@@ -161,7 +161,7 @@ void RoundA3Level::CreateBubbleDest()
 
 	{
 		size_t Stage = 4;
-		for (size_t i = 0; i < 9; ++i)
+		for (size_t i = 0; i < 10; ++i)
 		{
 			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
 		}
@@ -259,94 +259,100 @@ void RoundA3Level::CreateStageBubbleSpawners()
 	float4 TopPos[2] = { BubbleDestHelper::GetGridPos(10), BubbleDestHelper::GetGridPos(21) };
 	float4 BottomPos[2] = { BubbleDestHelper::GetGridPos(747), BubbleDestHelper::GetGridPos(758) };
 
-	////Stage1
-	//{
-	//	const int StageNum = 1;
-	//	BubbleSpawner* Spawner = nullptr;
+	//Stage1
+	{
+		const int StageNum = 1;
+		BubbleSpawner* Spawner = nullptr;
+		const float FireFixedTime = 3.f;
 
-	//	for (size_t i = 0; i < 2; ++i)
-	//	{
-	//		Spawner = CreateActor<BubbleSpawner>();
-	//		Spawner->SetPos(BottomPos[i]);
-	//		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
-	//	}
-	//}
+		for (size_t i = 0; i < 2; ++i)
+		{
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(TopPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i)));
 
-	////Stage2
-	//{
-	//	const int StageNum = 2;
-	//	BubbleSpawner* Spawner = nullptr;
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(TopPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i), FireFixedTime, FireFixedTime));
+			Spawner->SetBubbleType(BubbleMissleType::Fire);
+		}
 
-	//	for (size_t i = 0; i < 2; ++i)
-	//	{
-	//		Spawner = CreateActor<BubbleSpawner>();
-	//		Spawner->SetPos(TopPos[i]);
-	//		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
-	//	}
-	//}
+		for (size_t i = 0; i < 2; ++i)
+		{
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(BottomPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i + 2)));
 
-	////Stage3
-	//{
-	//	const int StageNum = 3;
-	//	BubbleSpawner* Spawner = nullptr;
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(BottomPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i + 2), FireFixedTime, FireFixedTime));
+			Spawner->SetBubbleType(BubbleMissleType::Fire);
+		}
+	}
 
-	//	for (size_t i = 0; i < 2; ++i)
-	//	{
-	//		Spawner = CreateActor<BubbleSpawner>();
-	//		Spawner->SetPos(TopPos[i]);
-	//		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
-	//	}
+	//Stage2
+	{
+		const int StageNum = 2;
+		BubbleSpawner* Spawner = nullptr;
 
-	//	for (size_t i = 0; i < 2; ++i)
-	//	{
-	//		Spawner = CreateActor<BubbleSpawner>();
-	//		Spawner->SetPos(BottomPos[i]);
-	//		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
-	//	}
+		for (size_t i = 0; i < 2; ++i)
+		{
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(TopPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i)));
+		}
 
-	//	const float ElecFixedTime = 3.f;
-	//	for (size_t i = 0; i < 2; ++i)
-	//	{
-	//		Spawner = CreateActor<BubbleSpawner>();
-	//		Spawner->SetPos(TopPos[i]);
-	//		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Yellow, ElecFixedTime, ElecFixedTime));
-	//		Spawner->SetBubbleType(BubbleMissleType::Electronic);
-	//		Spawner->SetColor(BubbleColor::Yellow);
-	//	}
+		for (size_t i = 0; i < 2; ++i)
+		{
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(BottomPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i + 2)));
+		}
+	}
 
-	//	for (size_t i = 0; i < 2; ++i)
-	//	{
-	//		Spawner = CreateActor<BubbleSpawner>();
-	//		Spawner->SetPos(BottomPos[i]);
-	//		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Yellow, ElecFixedTime, ElecFixedTime));
-	//		Spawner->SetBubbleType(BubbleMissleType::Electronic);
-	//		Spawner->SetColor(BubbleColor::Yellow);
-	//	}
-	//}
+	//Stage3
+	{
+		const int StageNum = 3;
+		BubbleSpawner* Spawner = nullptr;
+		const float WaveFixedTime = 3.f;
+		
+		Spawner = CreateActor<BubbleSpawner>();
+		Spawner->SetPos(BottomPos[0]);
+		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Yellow));
 
-	////Stage4
-	//{
-	//	const int StageNum = 4;
-	//	BubbleSpawner* Spawner = nullptr;
-	//	float4 Stage4Pos[2] = { BubbleDestHelper::GetGridPos(8), BubbleDestHelper::GetGridPos(19) };
+		Spawner = CreateActor<BubbleSpawner>();
+		Spawner->SetPos(BottomPos[0]);
+		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Yellow, WaveFixedTime, WaveFixedTime));
+		Spawner->SetBubbleType(BubbleMissleType::Water);
 
-	//	for (size_t i = 0; i < 2; ++i)
-	//	{
-	//		Spawner = CreateActor<BubbleSpawner>();
-	//		Spawner->SetPos(Stage4Pos[i]);
-	//		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
-	//	}
 
-	//	const float RainBowFixedTime = 3.f;
-	//	for (size_t i = 0; i < 2; ++i)
-	//	{
-	//		Spawner = CreateActor<BubbleSpawner>();
-	//		Spawner->SetPos(Stage4Pos[i]);
-	//		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Green, RainBowFixedTime, RainBowFixedTime));
-	//		Spawner->SetBubbleType(BubbleMissleType::Rainbow);
-	//		Spawner->SetColor(BubbleColor::Green);
-	//	}
-	//}
+
+		Spawner = CreateActor<BubbleSpawner>();
+		Spawner->SetPos(BottomPos[1]);
+		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Pink));
+
+		Spawner = CreateActor<BubbleSpawner>();
+		Spawner->SetPos(BottomPos[1]);
+		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Pink, WaveFixedTime, WaveFixedTime));
+		Spawner->SetBubbleType(BubbleMissleType::Water);
+	}
+
+	//Stage4
+	{
+		const int StageNum = 4;
+		BubbleSpawner* Spawner = nullptr;
+		const float WindyFixedTime = 3.f;
+
+		Spawner = CreateActor<BubbleSpawner>();
+		Spawner->SetPos(TopPos[1]);
+		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Blue));
+
+		Spawner = CreateActor<BubbleSpawner>();
+		Spawner->SetPos(TopPos[1]);
+		StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Blue, WindyFixedTime, WindyFixedTime));
+		Spawner->SetBubbleType(BubbleMissleType::Windy);
+	}
+
 }
 
 

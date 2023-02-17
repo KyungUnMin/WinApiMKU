@@ -23,6 +23,8 @@ protected:
 private:
 	const float				PlayerFindRange		= 10.f;
 	const float4			MoveSpeed				= float4{ 150.f, 0.f };
+
+	//점프하는 확률에 관한 값
 	const int					CaseDoJump			= 50;
 
 	bool IsPlayerPosOver();

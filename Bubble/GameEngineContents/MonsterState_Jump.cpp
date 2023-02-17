@@ -46,7 +46,7 @@ bool MonsterState_Jump::CheckStateChange(float _DeltaTime)
 	StateChangeFuncPtr IsChangeState = GetStateChangeFunc();
 	if (nullptr != IsChangeState)
 	{
-		if (true == (GetMonster()->*IsChangeState)())
+		if (true == (GetMonster()->*IsChangeState)(_DeltaTime))
 			return true;
 	}
 
