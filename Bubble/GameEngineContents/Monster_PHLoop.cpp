@@ -10,7 +10,7 @@
 #include "MonsterState_Jump.h"
 #include "MonsterState_Lock.h"
 #include "MonsterState_Dead.h"
-#include "MonsterState_NonStopDash.h"
+#include "MonsterState_GravityDash.h"
 
 const std::string_view		Monster_PHLoop::RightImagePath			= "Right_PLHoop.bmp";
 const std::string_view		Monster_PHLoop::LeftImagePath				= "Left_PLHoop.bmp";
@@ -42,7 +42,7 @@ void Monster_PHLoop::Start()
 	MonsterState_Lock* LockState = GetFSM()->CreateState<MonsterState_Lock>(MonsterStateType::Lock);
 	MonsterState_Dead* DeadState = GetFSM()->CreateState<MonsterState_Dead>(MonsterStateType::Dead);
 
-	MonsterState_NonStopDash* DashState = GetFSM()->CreateState<MonsterState_NonStopDash>(MonsterStateType::NonStopDash);
+	MonsterState_GravityDash* DashState = GetFSM()->CreateState<MonsterState_GravityDash>(MonsterStateType::GravityDash);
 
 	for (size_t i = 0; i < AniParams.size(); ++i)
 	{
@@ -82,7 +82,7 @@ bool Monster_PHLoop::MoveToDash(float _DeltaTime)
 
 	if (DashDuration < Timer)
 	{
-		GetFSM()->ChangeState(MonsterStateType::NonStopDash);
+		GetFSM()->ChangeState(MonsterStateType::GravityDash);
 		Timer = 0.f;
 		return true;
 	}

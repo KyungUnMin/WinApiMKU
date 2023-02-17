@@ -246,7 +246,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MonsterState_NonStopDash.h">
+    <ClInclude Include="MonsterState_GravityDash.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -509,7 +509,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MonsterState_NonStopDash.cpp">
+    <ClCompile Include="MonsterState_GravityDash.cpp">
       <SubType>
       </SubType>
     </ClCompile>

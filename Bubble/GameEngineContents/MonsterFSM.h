@@ -9,7 +9,7 @@ enum class MonsterStateType
 	Lock,
 	Dead,
 
-	NonStopDash,
+	GravityDash,
 	Tired,
 
 

@@ -202,7 +202,7 @@
     <ClInclude Include="Monster_PHLoop.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\05.PHLoop</Filter>
     </ClInclude>
-    <ClInclude Include="MonsterState_NonStopDash.h">
+    <ClInclude Include="MonsterState_GravityDash.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.NonStopDash</Filter>
     </ClInclude>
   </ItemGroup>
@@ -408,7 +408,7 @@
     <ClCompile Include="Monster_PHLoopAniData.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\05.PHLoop</Filter>
     </ClCompile>
-    <ClCompile Include="MonsterState_NonStopDash.cpp">
+    <ClCompile Include="MonsterState_GravityDash.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.NonStopDash</Filter>
     </ClCompile>
   </ItemGroup>

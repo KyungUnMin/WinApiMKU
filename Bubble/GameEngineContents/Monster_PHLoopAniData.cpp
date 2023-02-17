@@ -200,14 +200,14 @@ PHLoop_AniParamInit::PHLoop_AniParamInit()
 		.Loop = Loop
 	};
 
-	//---------------------------------------------------------------[Non-Stop-Dash]---------------------------------------
+	//---------------------------------------------------------------[GravityDash]---------------------------------------
 
 	StartIndex = 12;
 	IndexCount = 6;
 
 	Monster_PHLoop::AniParams[static_cast<int>(PHLoop_AniType::Right_Dash)] = FrameAnimationParameter
 	{
-		.AnimationName = "Right_NonStopDash",
+		.AnimationName = "Right_GravityDash",
 		.ImageName = Monster_PHLoop::RightImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
@@ -217,7 +217,7 @@ PHLoop_AniParamInit::PHLoop_AniParamInit()
 
 	Monster_PHLoop::AniParams[static_cast<int>(PHLoop_AniType::Left_Dash)] = FrameAnimationParameter
 	{
-		.AnimationName = "Left_NonStopDash",
+		.AnimationName = "Left_GravityDash",
 		.ImageName = Monster_PHLoop::RightImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
@@ -227,7 +227,7 @@ PHLoop_AniParamInit::PHLoop_AniParamInit()
 
 	Monster_PHLoop::AniParams[static_cast<int>(PHLoop_AniType::Right_Dash_Rage)] = FrameAnimationParameter
 	{
-		.AnimationName = "Right_NonStopDash_Rage",
+		.AnimationName = "Right_GravityDash_Rage",
 		.ImageName = Monster_PHLoop::RightRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
@@ -237,7 +237,7 @@ PHLoop_AniParamInit::PHLoop_AniParamInit()
 
 	Monster_PHLoop::AniParams[static_cast<int>(PHLoop_AniType::Left_Dash_Rage)] = FrameAnimationParameter
 	{
-		.AnimationName = "Left_NonStopDash_Rage",
+		.AnimationName = "Left_GravityDash_Rage",
 		.ImageName = Monster_PHLoop::LeftRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,

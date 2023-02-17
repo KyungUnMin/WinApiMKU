@@ -1,26 +1,26 @@
-#include "MonsterState_NonStopDash.h"
+#include "MonsterState_GravityDash.h"
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include "MonsterFSM.h"
 #include "PlayerBase.h"
 
-MonsterState_NonStopDash::MonsterState_NonStopDash()
+MonsterState_GravityDash::MonsterState_GravityDash()
 {
 
 }
 
-MonsterState_NonStopDash::~MonsterState_NonStopDash()
+MonsterState_GravityDash::~MonsterState_GravityDash()
 {
 
 }
 
-void MonsterState_NonStopDash::Start()
+void MonsterState_GravityDash::Start()
 {
-	SetNowAniName("NonStopDash");
+	SetNowAniName("GravityDash");
 }
 
 
 
-void MonsterState_NonStopDash::EnterState()
+void MonsterState_GravityDash::EnterState()
 {
 	MonsterStateBase::EnterState();
 	AccTime = 0.f;
@@ -28,7 +28,7 @@ void MonsterState_NonStopDash::EnterState()
 
 
 
-void MonsterState_NonStopDash::Update(float _DeltaTime)
+void MonsterState_GravityDash::Update(float _DeltaTime)
 {
 	//몬스터 객체에서 지정해준 우선 처리 사항
 	StateChangeFuncPtr IsChangeState = GetStateChangeFunc();
