@@ -33,7 +33,7 @@ void BubbleDestination::Start()
 }
 
 
-void BubbleDestination::SetNextDest(BubbleDestination* _Next)
+void BubbleDestination::SetNextDest(BubbleDestination* _Next, bool _IsTeleport)
 {
 	if (this == _Next)
 	{
@@ -47,6 +47,7 @@ void BubbleDestination::SetNextDest(BubbleDestination* _Next)
 		return;
 	}
 
+	IsTeleport = _IsTeleport;
 	NextDest = _Next;
 }
 

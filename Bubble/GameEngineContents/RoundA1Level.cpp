@@ -10,6 +10,7 @@
 #include "ContentsDefine.h"
 #include "PlayerBase.h"
 #include "BubbleDestHelper.h"
+#include "BubbleSpawner.h"
 
 #include "MonsterSpawner.h"
 #include "Monster_ZenChan.h"
@@ -31,7 +32,9 @@ void RoundA1Level::Loading()
 
 	//리소스 로드
 	ResourceLoad();
-	RoundLevelBase::LoadStage("A1", 6, 1);
+	const int StageCnt = 6;
+	RoundLevelBase::LoadStage("A1", StageCnt, 1);
+	StageBubbleSpawnCtrl.resize(StageCnt);
 
 	//뒤 배경과 레벨의 지형을 아래로 정렬하여 생성
 	CreateBackGround();
@@ -39,6 +42,7 @@ void RoundA1Level::Loading()
 
 	CreateBubbleDest();
 	CreateMonsters();
+	CreateStageBubbleSpawners();
 }
 
 void RoundA1Level::ResourceLoad()
@@ -221,8 +225,113 @@ void RoundA1Level::CreateMonsters()
 }
 
 
+
+
+
+void RoundA1Level::CreateStageBubbleSpawners()
+{
+	float4 TopPos[2] = { BubbleDestHelper::GetGridPos(10), BubbleDestHelper::GetGridPos(21) };
+	float4 BottomPos[2] = { BubbleDestHelper::GetGridPos(747), BubbleDestHelper::GetGridPos(758) };
+
+	//Stage0
+	{
+		const int StageNum = 0;
+		BubbleSpawner* Spawner = nullptr;
+
+		for (size_t i = 0; i < 2; ++i)
+		{
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(TopPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
+		}
+	}
+
+	//Stage1
+	{
+		const int StageNum = 1;
+		BubbleSpawner* Spawner = nullptr;
+
+		for (size_t i = 0; i < 2; ++i)
+		{
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(BottomPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
+		}
+	}
+
+	//Stage2
+	{
+		const int StageNum = 2;
+		BubbleSpawner* Spawner = nullptr;
+
+		for (size_t i = 0; i < 2; ++i)
+		{
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(TopPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
+		}
+
+		const float WaveFixedTime = 3.f;
+		for (size_t i = 0; i < 2; ++i)
+		{
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(TopPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Blue,WaveFixedTime, WaveFixedTime));
+			Spawner->SetBubbleType(BubbleMissleType::Water);
+			Spawner->SetColor(BubbleColor::Blue);
+		}
+	}
+
+	//Stage3
+	{
+		const int StageNum = 3;
+		BubbleSpawner* Spawner = nullptr;
+
+		for (size_t i = 0; i < 2; ++i)
+		{
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(TopPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
+		}
+	}
+
+	//Stage4
+	{
+		const int StageNum = 4;
+		BubbleSpawner* Spawner = nullptr;
+
+		for (size_t i = 0; i < 2; ++i)
+		{
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(BottomPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
+		}
+
+		const float ElecFixedTime = 3.f;
+		for (size_t i = 0; i < 2; ++i)
+		{
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(BottomPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Yellow,ElecFixedTime, ElecFixedTime));
+			Spawner->SetBubbleType(BubbleMissleType::Electronic);
+			Spawner->SetColor(BubbleColor::Yellow);
+		}
+	}
+
+
+}
+
+
+
+
+
+
+
+
 void RoundA1Level::Update(float _DeltaTime)
 {
+	Update_StageBubbleSpawner(_DeltaTime);
+
 	//RoundLevelBase::MoveToNextStage가 호출되었다면 Stage를 한칸 이동시킨다
 	//만약 호출되지 않았다면 그때는 동작하지 않는다
 	RoundLevelBase::Update(_DeltaTime);
@@ -243,6 +352,32 @@ void RoundA1Level::Update(float _DeltaTime)
 	//다음레벨로 전환
 	BubbleCore::GetInst().ChangeLevel("EndingLevel");
 }
+
+
+
+void RoundA1Level::Update_StageBubbleSpawner(float _DeltaTime)
+{
+	size_t NowStage = GetNowStage();
+
+	//현재 스테이지에는 버블스포너가 없음
+	if (true == StageBubbleSpawnCtrl[NowStage].empty())
+		return;
+
+	static const float LowDuration = 0.5f;
+	static const float HighDuration = 3.f;
+	std::vector<StageBubbleSpawnerInfo>& NowStageBubbleSpawners = StageBubbleSpawnCtrl[NowStage];
+	for (size_t i = 0; i < NowStageBubbleSpawners.size(); ++i)
+	{
+		StageBubbleSpawnerInfo& Info = NowStageBubbleSpawners[i];
+		Info.BubbleCreate(_DeltaTime);
+	}
+}
+
+
+
+
+
+
 
 void RoundA1Level::ChangeNextLevel()
 {

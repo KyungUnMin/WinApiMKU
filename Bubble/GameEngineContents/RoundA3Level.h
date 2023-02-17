@@ -1,6 +1,8 @@
 #pragma once
 #include "RoundLevelBase.h"
 
+class StageBubbleSpawnerInfo;
+
 class RoundA3Level : public RoundLevelBase
 {
 public:
@@ -18,11 +20,14 @@ protected:
 	void ChangeNextLevel() override;
 
 private:
-
+	std::vector<std::vector<StageBubbleSpawnerInfo>> StageBubbleSpawnCtrl;
 
 	void ResourceLoad();
 	void CreateBackGround();
 	void CreateBubbleDest();
 	void CreateMonsters();
+
+	void CreateStageBubbleSpawners();
+	void Update_StageBubbleSpawner(float _DeltaTime);
 };
 

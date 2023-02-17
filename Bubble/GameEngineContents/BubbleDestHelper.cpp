@@ -135,7 +135,7 @@ float4 BubbleDestHelper::GetPointPos(int _Index, const float4& _Offset)
 
 
 //Dest의 이동경로 설정
-void BubbleDestHelper::ConnectDestToDest(size_t _Stage, size_t _Start, size_t _End)
+void BubbleDestHelper::ConnectDestToDest(size_t _Stage, size_t _Start, size_t _End, bool _IsTelePort)
 {
 	if (BubbleDests.size() <= _Stage)
 	{
@@ -149,7 +149,7 @@ void BubbleDestHelper::ConnectDestToDest(size_t _Stage, size_t _Start, size_t _E
 		return;
 	}
 
-	BubbleDests[_Stage][_Start]->SetNextDest(BubbleDests[_Stage][_End]);
+	BubbleDests[_Stage][_Start]->SetNextDest(BubbleDests[_Stage][_End], _IsTelePort);
 }
 
 std::vector<BubbleDestination*>& BubbleDestHelper::GetBubbleDest(size_t _Stage)

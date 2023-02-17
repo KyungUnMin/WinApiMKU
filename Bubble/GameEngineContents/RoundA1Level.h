@@ -5,6 +5,9 @@
 #include "ContentsEnum.h"
 
 class BackGround;
+class BubbleSpawner;
+class StageBubbleSpawnerInfo;
+
 
 class RoundA1Level : public RoundLevelBase
 {
@@ -23,6 +26,8 @@ protected:
 	void ChangeNextLevel() override;
 
 private:
+	std::vector<std::vector<StageBubbleSpawnerInfo>> StageBubbleSpawnCtrl;
+
 	void ResourceLoad();
 
 	//2개의 배경 애니메이션 생성
@@ -31,5 +36,10 @@ private:
 	void CreateBubbleDest();
 
 	void CreateMonsters();
+
+	void CreateStageBubbleSpawners();
+
+
+	void Update_StageBubbleSpawner(float _DeltaTime);
 };
 

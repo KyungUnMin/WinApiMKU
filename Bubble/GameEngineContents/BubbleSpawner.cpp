@@ -8,6 +8,7 @@
 #include "ContentsEnum.h"
 #include "BubbleMissle.h"
 #include "RoundLevelBase.h"
+#include "BubbleMissleFSM.h"
 
 const float4 BubbleSpawner::SpawnOffset = float4{ 0.f, -30.f };
 
@@ -40,7 +41,7 @@ void BubbleSpawner::Update(float _DeltaTime)
 }
 
 
-void BubbleSpawner::CreateBubble(const float4 _Dir)
+void BubbleSpawner::CreateBubble()
 {
 	//Stage가 전환중일땐 버블을 시키지 않는다
 	if (RoundLevel->IsMoving())
@@ -63,6 +64,21 @@ void BubbleSpawner::CreateBubble(const float4 _Dir)
 	Bubble->RoundLevel = RoundLevel;
 
 	//이것도 나중에 오버로딩하자(플레이어와 기본 스포너 분리)
-	Bubble->SetDir(Player->GetDirVec());
-	Bubble->Init(Player->GetCharacterType(), Type);
+	if (nullptr != Player)
+	{
+		Bubble->SetDir(Player->GetDirVec());
+		Bubble->Init(Player->GetCharacterType(), Type);
+		return;
+	}
+
+	PlayerCharacterType InitColor = static_cast<PlayerCharacterType>(Color);
+	if(PlayerCharacterType::COUNT == InitColor)
+	{
+		int RandNum = rand() % static_cast<int>(PlayerCharacterType::COUNT);
+		InitColor = static_cast<PlayerCharacterType>(RandNum);
+	}
+
+	Bubble->Init(InitColor, Type);
+	Bubble->FSM->ChangeState(BubbleStateType::Move);
 }
+

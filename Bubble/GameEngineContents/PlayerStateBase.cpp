@@ -120,7 +120,7 @@ const std::string PlayerStateBase::GetAniNamePlusDir(const std::string_view& _An
 
 void PlayerStateBase::CreateBubble()
 {
-	Player->GetBubbleSpawner()->CreateBubble(Player->GetDirVec());
+	Player->GetBubbleSpawner()->CreateBubble();
 }
 
 

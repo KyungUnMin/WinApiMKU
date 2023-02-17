@@ -196,6 +196,9 @@
     <ClInclude Include="PointPannel.h">
       <Filter>03.CommonActors\01.StaticObject\04.PointPannel</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsStruct.h">
+      <Filter>02.Define</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
