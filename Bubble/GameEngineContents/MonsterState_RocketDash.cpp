@@ -15,6 +15,7 @@ MonsterState_RocketDash::~MonsterState_RocketDash()
 
 void MonsterState_RocketDash::Start()
 {
+	MonsterStateBase::Start();
 	SetNowAniName("RocketDash");
 }
 

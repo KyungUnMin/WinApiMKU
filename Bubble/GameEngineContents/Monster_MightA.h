@@ -24,6 +24,11 @@ enum class MightA_AniType
 	Lock_Rage,
 	Dead,
 
+	Right_ThrowMissle,
+	Left_ThrowMissle,
+	Right_ThrowMissle_Rage,
+	Left_ThrowMissle_Rage,
+
 	Count
 };
 
@@ -52,8 +57,8 @@ protected:
 	void Start() override;
 
 private:
-
 	void ResourceLoad();
+	bool MoveToThrow(float _DeltaTime);
 
 	static std::vector<FrameAnimationParameter> AniParams;
 };

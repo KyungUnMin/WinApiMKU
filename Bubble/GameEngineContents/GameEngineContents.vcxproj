@@ -238,6 +238,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MonsterMissleBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MonsterMissle_MightARock.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MonsterSpawner.h">
       <SubType>
       </SubType>
@@ -271,6 +279,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MonsterState_RocketDash.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MonsterState_ThrowMissle.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -513,6 +525,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MonsterMissleBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MonsterMissle_MightARock.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MonsterSpawner.cpp">
       <SubType>
       </SubType>
@@ -546,6 +566,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MonsterState_RocketDash.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MonsterState_ThrowMissle.cpp">
       <SubType>
       </SubType>
     </ClCompile>

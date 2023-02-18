@@ -19,6 +19,7 @@ enum class UpdateOrder
 	Defalut,
 	Player,
 	Player_Missle,
+	Monster_Missle,
 	Monster,
 	BubbleDest,
 
@@ -37,6 +38,7 @@ enum class RenderOrder
 	Door,
 
 	AttackBubble,
+	Monster_Missle,
 	Monster1,
 	Monster2,
 
@@ -65,11 +67,4 @@ enum class BubbleMissleType
 	Rainbow,
 	Windy,
 	Melody
-};
-
-enum class MonsterType
-{
-	ZenChan,
-
-	Count
 };

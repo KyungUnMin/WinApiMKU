@@ -11,6 +11,7 @@ enum class MonsterStateType
 
 	GravityDash,
 	RocketDash,
+	ThrowMissle,
 };
 
 class MonsterStateBase;

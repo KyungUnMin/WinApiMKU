@@ -10,6 +10,9 @@
 #include "MonsterState_Jump.h"
 #include "MonsterState_Lock.h"
 #include "MonsterState_Dead.h"
+#include "MonsterState_ThrowMissle.h"
+
+#include "PlayerBase.h"
 
 const std::string_view		Monster_MightA::RightImagePath				= "Right_MightA.bmp";
 const std::string_view		Monster_MightA::LeftImagePath				= "Left_MightA.bmp";
@@ -36,10 +39,13 @@ void Monster_MightA::Start()
 
 	MonsterState_Falling* FallingState = GetFSM()->CreateState<MonsterState_Falling>(MonsterStateType::Falling);
 	MonsterState_Move* MoveState = GetFSM()->CreateState<MonsterState_Move>(MonsterStateType::Move);
+	MoveState->SetStateChangeFunc((StateChangeFuncPtr)&Monster_MightA::MoveToThrow);
+
 	MonsterState_Jump* JumpState = GetFSM()->CreateState<MonsterState_Jump>(MonsterStateType::Jump);
 	MonsterState_Lock* LockState = GetFSM()->CreateState<MonsterState_Lock>(MonsterStateType::Lock);
 	MonsterState_Dead* DeadState = GetFSM()->CreateState<MonsterState_Dead>(MonsterStateType::Dead);
-
+	MonsterState_ThrowMissle* ThrowMissleState = GetFSM()->CreateState<MonsterState_ThrowMissle>(MonsterStateType::ThrowMissle);
+	ThrowMissleState->SetMissleType(MonMissleType::MightARock);
 
 	for (size_t i = 0; i < AniParams.size(); ++i)
 	{
@@ -69,4 +75,30 @@ void Monster_MightA::ResourceLoad()
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LockImagePath))->Cut(3, 2);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(DeadImagePath))->Cut(4, 1);
 	IsLoad = true;
+}
+
+bool Monster_MightA::MoveToThrow(float _DeltaTime)
+{
+	static const float FindHeightRange = 100.f;
+	static float Timer = 0.0f;
+	static const float ThrowTime = 3.f;
+
+	float4 PlayerPos = PlayerBase::MainPlayer->GetPos();
+	float4 ThisPos = GetPos();
+
+	//플레이어와의 높이차이가 FindHeightRange 미만일때만
+	if (FindHeightRange < abs(PlayerPos.y - ThisPos.y))
+		return false;
+
+	Timer += _DeltaTime;
+	if (Timer < ThrowTime)
+		return false;
+
+	//플레이어 바라보기
+	float4 Dir = (PlayerPos.x < ThisPos.x) ? float4::Left : float4::Right;
+	SetDir(Dir);
+	Timer -= ThrowTime;
+
+	GetFSM()->ChangeState(MonsterStateType::ThrowMissle);
+	return true;
 }

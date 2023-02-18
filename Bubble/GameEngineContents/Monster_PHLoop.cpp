@@ -77,13 +77,13 @@ void Monster_PHLoop::ResourceLoad()
 bool Monster_PHLoop::MoveToDash(float _DeltaTime)
 {
 	static float Timer = 0.0f;
-	static const float DashDuration = 3.f;
+	static const float DashTime = 3.f;
 	Timer += _DeltaTime;
 
-	if (DashDuration < Timer)
+	if (DashTime < Timer)
 	{
+		Timer -= DashTime;
 		GetFSM()->ChangeState(MonsterStateType::GravityDash);
-		Timer = 0.f;
 		return true;
 	}
 

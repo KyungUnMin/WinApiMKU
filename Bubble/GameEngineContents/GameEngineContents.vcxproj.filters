@@ -214,6 +214,15 @@
     <ClInclude Include="Monster_MightA.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\07.MightA</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterMissleBase.h">
+      <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\01.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterMissle_MightARock.h">
+      <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\02.MightARock</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterState_ThrowMissle.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\10.MissleThrow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -434,6 +443,15 @@
     </ClCompile>
     <ClCompile Include="Monster_MightAAniData.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\07.MightA</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterMissleBase.cpp">
+      <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\01.Base</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterMissle_MightARock.cpp">
+      <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\02.MightARock</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterState_ThrowMissle.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\10.MissleThrow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -727,6 +745,18 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\07.MightA">
       <UniqueIdentifier>{eb939c79-4241-4938-bc9a-c87c9fa2fc21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\05.MonsterMissle">
+      <UniqueIdentifier>{917fbb91-5152-4b45-879c-75f9a9204cab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\05.MonsterMissle\01.Base">
+      <UniqueIdentifier>{3be3f092-9b07-4911-8863-a78814a29480}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\05.MonsterMissle\02.MightARock">
+      <UniqueIdentifier>{76196b27-60f6-4837-9b5b-a75b5a707d39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\10.MissleThrow">
+      <UniqueIdentifier>{7909a804-ee13-44e7-a3ae-f2d7591576c4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

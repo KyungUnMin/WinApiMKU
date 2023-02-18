@@ -207,4 +207,50 @@ MightA_AniParamInit::MightA_AniParamInit()
 		.Loop = Loop
 	};
 
+	//---------------------------------------------------------------------[ThrowMissle]---------------------------------------
+
+	StartIndex = 8;
+	IndexCount = 3;
+	InterTimer = 0.1f;
+	Loop = false;
+
+	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Right_ThrowMissle)] = FrameAnimationParameter
+	{
+		.AnimationName = "Right_ThrowMissle",
+		.ImageName = Monster_MightA::RightImagePath,
+		.Start = StartIndex,
+		.End = StartIndex + IndexCount - 1,
+		.InterTimer = InterTimer,
+		.Loop = Loop
+	};
+
+	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Left_ThrowMissle)] = FrameAnimationParameter
+	{
+		.AnimationName = "Left_ThrowMissle",
+		.ImageName = Monster_MightA::LeftImagePath,
+		.Start = StartIndex,
+		.End = StartIndex + IndexCount - 1,
+		.InterTimer = InterTimer,
+		.Loop = Loop
+	};
+
+	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Right_ThrowMissle_Rage)] = FrameAnimationParameter
+	{
+		.AnimationName = "Right_ThrowMissle_Rage",
+		.ImageName = Monster_MightA::RightRageImagePath,
+		.Start = StartIndex,
+		.End = StartIndex + IndexCount - 1,
+		.InterTimer = InterTimer,
+		.Loop = Loop
+	};
+
+	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Left_ThrowMissle_Rage)] = FrameAnimationParameter
+	{
+		.AnimationName = "Left_ThrowMissle_Rage",
+		.ImageName = Monster_MightA::LeftRageImagePath,
+		.Start = StartIndex,
+		.End = StartIndex + IndexCount - 1,
+		.InterTimer = InterTimer,
+		.Loop = Loop
+	};
 }
