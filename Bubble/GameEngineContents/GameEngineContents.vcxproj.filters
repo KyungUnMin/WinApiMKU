@@ -692,9 +692,6 @@
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.PHLoop">
       <UniqueIdentifier>{082e9271-b85b-4b19-844e-1069f638f1a1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\09.Tired">
-      <UniqueIdentifier>{a9771708-8fb9-4130-9875-bf619e669002}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.NonStopDash">
       <UniqueIdentifier>{9f2728d3-5bff-48b8-a3c1-3c57701a4edc}</UniqueIdentifier>
     </Filter>

@@ -104,9 +104,14 @@ public:
 		return TextHeight;
 	}
 
-	void SetAlpha(int _Alpha)
+	inline void SetAlpha(int _Alpha)
 	{
 		Alpha = _Alpha;
+	}
+
+	inline void SetTextBoxScale(const float4& _TextBoxScale)
+	{
+		TextBoxScale = _TextBoxScale;
 	}
 
 	//GameEngineResources에서 이미지 찾아오기
@@ -140,7 +145,7 @@ public:
 	
 
 	//이 함수를 통해 값을 설정하면 TextRender모드가 된다
-	void SetText(const std::string_view& _Text, const int _TextHeight = 20, const std::string_view& _TextType = "굴림", const TextAlign _TextAlign = TextAlign::Left, const COLORREF _TextColor = RGB(0,0,0));
+	void SetText(const std::string_view& _Text, const int _TextHeight = 20, const std::string_view& _TextType = "굴림", const TextAlign _TextAlign = TextAlign::Left, const COLORREF _TextColor = RGB(0,0,0), const float4& _TextBoxScale = float4::Zero);
 
 protected:
 
@@ -214,5 +219,6 @@ private:
 	std::string		TextType			= std::string();
 	TextAlign			Align				= TextAlign::Left;
 	COLORREF		TextColor		= RGB(0, 0, 0);
+	float4				TextBoxScale	= float4::Zero;
 };
 

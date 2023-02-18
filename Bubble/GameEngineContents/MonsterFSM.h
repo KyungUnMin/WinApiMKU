@@ -10,10 +10,6 @@ enum class MonsterStateType
 	Dead,
 
 	GravityDash,
-	Tired,
-
-
-
 };
 
 class MonsterStateBase;

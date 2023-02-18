@@ -254,7 +254,16 @@ void GameEngineLevel::ActorsRender(float _DeltaTime)
 		for (size_t i = 0; i < DeBugTexts.size(); ++i)
 		{
 			HDC ImageDc = GameEngineWindow::GetDoubleBufferImage()->GetImageDC();
-			TextOutA(ImageDc, TextOutStart.ix(), TextOutStart.iy(), DeBugTexts[i].c_str(), static_cast<int>(DeBugTexts[i].size()));
+			/*TextOutA(ImageDc, TextOutStart.ix(), TextOutStart.iy(), DeBugTexts[i].c_str(), static_cast<int>(DeBugTexts[i].size()));
+			TextOutStart.y += 20.0f;*/
+
+			RECT Rect;
+			Rect.left = TextOutStart.ix();
+			Rect.top = TextOutStart.iy();
+			Rect.right = TextOutStart.ix() + 100;
+			Rect.bottom = TextOutStart.iy() + 100;
+
+			DrawTextA(ImageDc, DeBugTexts[i].c_str(), static_cast<int>(DeBugTexts[i].size()), &Rect, DT_LEFT);
 			TextOutStart.y += 20.0f;
 		}
 
