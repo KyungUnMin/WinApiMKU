@@ -15,6 +15,7 @@
 #include "MonsterSpawner.h"
 #include "Monster_ZenChan.h"
 #include "Monster_PHLoop.h"
+#include "Monster_Magician.h"
 
 
 RoundA1Level::RoundA1Level()
@@ -185,8 +186,8 @@ void RoundA1Level::CreateMonsters()
 		MonsterSpawner* MonSpawner = GetMonsterSpawner(2);
 		MonSpawner->ReserveSpanwer(6);
 		MonSpawner->CreateMonsters<Monster_PHLoop>(BubbleDestHelper::GetGridPos(153));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(141));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(259));
+		MonSpawner->CreateMonsters<Monster_Magician>(BubbleDestHelper::GetGridPos(141));
+		MonSpawner->CreateMonsters<Monster_Magician>(BubbleDestHelper::GetGridPos(259));
 		MonSpawner->CreateMonsters<Monster_PHLoop>(BubbleDestHelper::GetGridPos(279));
 		MonSpawner->CreateMonsters<Monster_PHLoop>(BubbleDestHelper::GetGridPos(433));
 		MonSpawner->CreateMonsters<Monster_PHLoop>(BubbleDestHelper::GetGridPos(455));

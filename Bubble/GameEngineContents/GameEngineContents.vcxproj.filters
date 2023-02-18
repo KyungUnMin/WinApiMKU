@@ -205,6 +205,9 @@
     <ClInclude Include="MonsterState_GravityDash.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.NonStopDash</Filter>
     </ClInclude>
+    <ClInclude Include="Monster_Magician.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\06.Magician</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -410,6 +413,12 @@
     </ClCompile>
     <ClCompile Include="MonsterState_GravityDash.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.NonStopDash</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_Magician.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\06.Magician</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_MagicianAniData.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\06.Magician</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -694,6 +703,9 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.NonStopDash">
       <UniqueIdentifier>{9f2728d3-5bff-48b8-a3c1-3c57701a4edc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\06.Magician">
+      <UniqueIdentifier>{66906e64-2353-425f-99f6-ead7727f2ee2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

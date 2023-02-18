@@ -1,11 +1,9 @@
 #pragma once
-#include <vector>
-#include <string_view>
 #include "MonsterBase.h"
 
 class FrameAnimationParameter;
 
-enum class ZenChan_AniType
+enum class Magician_AniType
 {
 	Right_Move,
 	Left_Move,
@@ -29,10 +27,10 @@ enum class ZenChan_AniType
 	Count
 };
 
-class Monster_ZenChan : public MonsterBase
+class Monster_Magician : public MonsterBase
 {
 public:
-	friend class ZenChan_AniParamInit;
+	friend class Magician_AniParamInit;
 
 	static const std::string_view		RightImagePath;
 	static const std::string_view		LeftImagePath;
@@ -41,13 +39,13 @@ public:
 	static const std::string_view		LockImagePath;
 	static const std::string_view		DeadImagePath;
 
-	Monster_ZenChan();
-	~Monster_ZenChan() override;
+	Monster_Magician();
+	~Monster_Magician();
 
-	Monster_ZenChan(const Monster_ZenChan& _Other) = delete;
-	Monster_ZenChan(Monster_ZenChan&& _Other) noexcept = delete;
-	Monster_ZenChan& operator=(const Monster_ZenChan& _Other) = delete;
-	Monster_ZenChan& operator=(const Monster_ZenChan&& _Other) noexcept = delete;
+	Monster_Magician(const Monster_Magician& _Other) = delete;
+	Monster_Magician(Monster_Magician&& _Other) noexcept = delete;
+	Monster_Magician& operator=(const Monster_Magician& _Other) = delete;
+	Monster_Magician& operator=(const Monster_Magician&& _Other) noexcept = delete;
 
 protected:
 	void Start() override;

@@ -1,8 +1,8 @@
-#include "Monster_ZenChan.h"
+#include "Monster_Magician.h"
+
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
-
 
 #include "MonsterFSM.h"
 #include "MonsterState_Falling.h"
@@ -11,26 +11,25 @@
 #include "MonsterState_Lock.h"
 #include "MonsterState_Dead.h"
 
+const std::string_view		Monster_Magician::RightImagePath			= "Right_Magician.bmp";
+const std::string_view		Monster_Magician::LeftImagePath			= "Left_Magician.bmp";
+const std::string_view		Monster_Magician::RightRageImagePath	= "Right_Magician_Rage.bmp";
+const std::string_view		Monster_Magician::LeftRageImagePath	= "Left_Magician_Rage.bmp";
+const std::string_view		Monster_Magician::LockImagePath			= "Magician_Lock.bmp";
+const std::string_view		Monster_Magician::DeadImagePath			= "Magician_Dead.bmp";
 
-const std::string_view		Monster_ZenChan::RightImagePath			= "Right_ZenChan.bmp";
-const std::string_view		Monster_ZenChan::LeftImagePath			= "Left_ZenChan.bmp";
-const std::string_view		Monster_ZenChan::RightRageImagePath	= "Right_ZenChan_Rage.bmp";
-const std::string_view		Monster_ZenChan::LeftRageImagePath	= "Left_ZenChan_Rage.bmp";
-const std::string_view		Monster_ZenChan::LockImagePath			= "ZenChan_Lock.bmp";
-const std::string_view		Monster_ZenChan::DeadImagePath			= "ZenChan_Dead.bmp";
 
-
-Monster_ZenChan::Monster_ZenChan()
+Monster_Magician::Monster_Magician()
 {
 
 }
 
-Monster_ZenChan::~Monster_ZenChan()
+Monster_Magician::~Monster_Magician()
 {
 
 }
 
-void Monster_ZenChan::Start()
+void Monster_Magician::Start()
 {
 	MonsterBase::Start();
 	ResourceLoad();
@@ -41,7 +40,6 @@ void Monster_ZenChan::Start()
 	MonsterState_Lock* LockState = GetFSM()->CreateState<MonsterState_Lock>(MonsterStateType::Lock);
 	MonsterState_Dead* DeadState = GetFSM()->CreateState<MonsterState_Dead>(MonsterStateType::Dead);
 
-
 	for (size_t i = 0; i < AniParams.size(); ++i)
 	{
 		GetRender()->CreateAnimation(AniParams[i]);
@@ -50,9 +48,7 @@ void Monster_ZenChan::Start()
 	Start_FSM(MonsterStateType::Falling);
 }
 
-
-
-void Monster_ZenChan::ResourceLoad()
+void Monster_Magician::ResourceLoad()
 {
 	static bool IsLoad = false;
 	if (true == IsLoad)
@@ -64,11 +60,11 @@ void Monster_ZenChan::ResourceLoad()
 	Dir.Move("Image");
 	Dir.Move("Common");
 	Dir.Move("Monster");
-	Dir.Move("ZenChan");
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(RightImagePath))->Cut(4, 3);
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LeftImagePath))->Cut(4, 3);
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(RightRageImagePath))->Cut(4, 3);
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LeftRageImagePath))->Cut(4, 3);
+	Dir.Move("Magician");
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(RightImagePath))->Cut(6, 3);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LeftImagePath))->Cut(6, 3);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(RightRageImagePath))->Cut(6, 3);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LeftRageImagePath))->Cut(6, 3);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LockImagePath))->Cut(3, 2);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(DeadImagePath))->Cut(4, 1);
 	IsLoad = true;
