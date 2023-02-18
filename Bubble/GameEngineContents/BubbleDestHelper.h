@@ -42,6 +42,8 @@ public:
 		Offset = _Offset;
 	}
 
+	void SetMoveDestPos(size_t _Stage, size_t _Num, const float4& _Offset);
+
 	//enum값을 입력받아 BubbleDestination을 생성하고 위치값 설정
 	void SetBubbleDest(HelpLevelType _LevelType);
 

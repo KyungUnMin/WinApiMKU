@@ -1,6 +1,7 @@
 #include "BubbleStateMove.h"
 #include <queue>
 #include <GameEngineBase/GameEngineDirectory.h>
+#include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineCollision.h>
@@ -31,6 +32,7 @@ void BubbleStateMove::Init(PlayerCharacterType _CharType, BubbleMissleType _Bubb
 	}
 
 	CreateAnimation(_CharType, _BubbleType);
+	ScreenSize = GameEngineWindow::GetScreenSize();
 }
 
 void BubbleStateMove::ResourceLoad()
@@ -80,6 +82,12 @@ void BubbleStateMove::EnterState()
 	BubbleMissleStateBase::EnterState();
 
 	//가장 가까운 BubbleDest의 위치로 목적지 설정
+	FindCloseDest();
+}
+
+
+void BubbleStateMove::FindCloseDest()
+{
 	RoundLevelBase* RoundLevel = GetBubble()->GetRoundLevel();
 	BubbleDestHelper* BDHelper = RoundLevel->GetBubbleDestHelper();
 	const std::vector<BubbleDestination*>& BubbleDests = BDHelper->GetBubbleDest(RoundLevel->GetNowStage());
@@ -112,11 +120,17 @@ void BubbleStateMove::Update(float _DeltaTime)
 	//이동
 	MoveBubble(_DeltaTime);
 
+	//화면 밖으로 나갔다면 반대편으로 위치 설정(몬스터를 잡고 있는 버블의 경우에만)
+	CycleScreenOut();
+
+	//이 버블 안에 몬스터가 갇혀있다면 몬스터의 위치를 자신의 위치로 변경
 	DragMonster();
 
 	//목적지에 도착했는지 확인
 	CheckDest();
 }
+
+
 
 
 
@@ -138,6 +152,43 @@ void BubbleStateMove::MoveBubble(float _DeltaTime)
 
 	GetBubble()->SetMove(Dir * MoveSpeed * _DeltaTime);
 }
+
+
+
+
+void BubbleStateMove::CycleScreenOut()
+{
+	static const float Offset = 10.f;
+	float4 BubblePos = GetBubble()->GetPos();
+
+	//스크린 안에 존재하는 경우엔 아무일도 일어나지 않음
+	if ((-Offset <= BubblePos.y) && (BubblePos.y < ScreenSize.y + Offset))
+		return;
+
+	//몬스터가 없는 버블의 경우엔 없애기
+	if (nullptr == GetBubble()->GetCatchTarget())
+	{
+		GetBubble()->Death();
+		return;
+	}
+
+	if (BubblePos.y < 0)
+	{
+		BubblePos.y = ScreenSize.y;
+	}
+	else if (ScreenSize.y < BubblePos.y)
+	{
+		BubblePos.y = 0.f;
+	}
+
+	GetBubble()->SetPos(BubblePos);
+	FindCloseDest();
+}
+
+
+
+
+
 
 void BubbleStateMove::CheckDest()
 {

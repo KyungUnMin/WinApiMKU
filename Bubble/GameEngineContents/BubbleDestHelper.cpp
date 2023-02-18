@@ -120,6 +120,23 @@ void BubbleDestHelper::SetBubbleDest(HelpLevelType _LevelType)
 	}
 }
 
+void BubbleDestHelper::SetMoveDestPos(size_t _Stage, size_t _Num, const float4& _Offset)
+{
+	if (BubbleDests.size() <= _Stage)
+	{
+		MsgAssert("해당 스테이지는 존재하지 않습니다");
+		return;
+	}
+
+	if (BubbleDests[_Stage].size() <= _Num)
+	{
+		MsgAssert("해당 스테이지에는 그 순서에 해당되는 BubbleDest가 존재하지 않습니다");
+		return;
+	}
+
+	BubbleDests[_Stage][_Num]->SetMove(_Offset);
+}
+
 
 
 //그리드의 인덱스값을 화면의 좌표로 변경

@@ -30,11 +30,15 @@ protected:
 
 private:
 	BubbleDestination*			NowDest			= nullptr;
+	float4								ScreenSize		= float4::Zero;
 
 	void ResourceLoad();
 	void CreateAnimation(PlayerCharacterType _CharType, BubbleMissleType _BubbleType);
 
+	//가장 가까운 BubbleDest의 위치로 목적지 설정
+	void FindCloseDest();
 	void MoveBubble(float _DeltaTime);
+	void CycleScreenOut();
 	void CheckDest();
 };
 

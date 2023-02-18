@@ -166,6 +166,8 @@ void RoundA3Level::CreateBubbleDest()
 		{
 			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
+
+		Helper->SetMoveDestPos(Stage, 10, { 0.f, -100.f });
 	}
 
 	{
@@ -174,16 +176,21 @@ void RoundA3Level::CreateBubbleDest()
 		{
 			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
+		Helper->SetMoveDestPos(Stage, 7, { 0.f, -100.f });
+
 
 		for (size_t i = 8; i < 13; ++i)
 		{
 			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
+		Helper->SetMoveDestPos(Stage, 13, { 0.f, -100.f });
+
 
 		for (size_t i = 14; i < 21; ++i)
 		{
 			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
+		Helper->SetMoveDestPos(Stage, 21, { 0.f, -100.f });
 
 	}
 }

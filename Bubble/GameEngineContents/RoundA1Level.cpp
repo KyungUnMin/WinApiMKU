@@ -159,6 +159,9 @@ void RoundA1Level::CreateBubbleDest()
 		{
 			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
+
+		Helper->SetMoveDestPos(Stage, 6, {0.f, -100.f});
+		Helper->SetMoveDestPos(Stage, 13, {0.f, -100.f});
 	}
 }
 

@@ -27,4 +27,11 @@ void MonsterState_Lock::EnterState()
 {
 	GameEngineRender* RenderPtr = GetMonster()->GetRender();
 	RenderPtr->ChangeAnimation(GetNowAniName());
+
+	GetMonster()->GetCollision()->Off();
+}
+
+void MonsterState_Lock::ExitState()
+{
+	GetMonster()->GetCollision()->On();
 }
