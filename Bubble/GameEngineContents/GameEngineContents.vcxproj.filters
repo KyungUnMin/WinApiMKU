@@ -203,10 +203,13 @@
       <Filter>03.CommonActors\02.MovableObject\04.Monster\05.PHLoop</Filter>
     </ClInclude>
     <ClInclude Include="MonsterState_GravityDash.h">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.NonStopDash</Filter>
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.GravityDash</Filter>
     </ClInclude>
     <ClInclude Include="Monster_Magician.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\06.Magician</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterState_RocketDash.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\09.RocketDash</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -412,13 +415,16 @@
       <Filter>03.CommonActors\02.MovableObject\04.Monster\05.PHLoop</Filter>
     </ClCompile>
     <ClCompile Include="MonsterState_GravityDash.cpp">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.NonStopDash</Filter>
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.GravityDash</Filter>
     </ClCompile>
     <ClCompile Include="Monster_Magician.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\06.Magician</Filter>
     </ClCompile>
     <ClCompile Include="Monster_MagicianAniData.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\06.Magician</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterState_RocketDash.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\09.RocketDash</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -701,11 +707,14 @@
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.PHLoop">
       <UniqueIdentifier>{082e9271-b85b-4b19-844e-1069f638f1a1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.NonStopDash">
-      <UniqueIdentifier>{9f2728d3-5bff-48b8-a3c1-3c57701a4edc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\06.Magician">
       <UniqueIdentifier>{66906e64-2353-425f-99f6-ead7727f2ee2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\08.GravityDash">
+      <UniqueIdentifier>{9f2728d3-5bff-48b8-a3c1-3c57701a4edc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\09.RocketDash">
+      <UniqueIdentifier>{d91cdca2-1d3b-4ded-b3a2-d8ec8b1b6424}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

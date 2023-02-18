@@ -22,7 +22,7 @@ Magician_AniParamInit::Magician_AniParamInit()
 	int StartIndex = 0;
 	int IndexCount = 6;
 	float InterTimer = 0.1f;
-	bool Loop = true;
+	bool Loop = false;
 
 	Monster_Magician::AniParams[static_cast<int>(Magician_AniType::Right_Move)] = FrameAnimationParameter
 	{
@@ -69,6 +69,7 @@ Magician_AniParamInit::Magician_AniParamInit()
 	StartIndex = 8;
 	IndexCount = 2;
 	InterTimer = 0.1f;
+	Loop = true;
 
 	Monster_Magician::AniParams[static_cast<int>(Magician_AniType::Right_Falling)] = FrameAnimationParameter
 	{
@@ -202,4 +203,50 @@ Magician_AniParamInit::Magician_AniParamInit()
 		.Loop = Loop
 	};
 
+	//---------------------------------------------------------------------[RocketDash]---------------------------------------
+
+	StartIndex = 12;
+	IndexCount = 6;
+	InterTimer = 0.1f;
+	Loop = true;
+
+	Monster_Magician::AniParams[static_cast<int>(Magician_AniType::Right_RocketDash)] = FrameAnimationParameter
+	{
+		.AnimationName = "Right_RocketDash",
+		.ImageName = Monster_Magician::RightImagePath,
+		.Start = StartIndex,
+		.End = StartIndex + IndexCount - 1,
+		.InterTimer = InterTimer,
+		.Loop = Loop
+	};
+
+	Monster_Magician::AniParams[static_cast<int>(Magician_AniType::Left_RocketDash)] = FrameAnimationParameter
+	{
+		.AnimationName = "Left_RocketDash",
+		.ImageName = Monster_Magician::LeftImagePath,
+		.Start = StartIndex,
+		.End = StartIndex + IndexCount - 1,
+		.InterTimer = InterTimer,
+		.Loop = Loop
+	};
+
+	Monster_Magician::AniParams[static_cast<int>(Magician_AniType::Right_RocketDash_Rage)] = FrameAnimationParameter
+	{
+		.AnimationName = "Right_RocketDash_Rage",
+		.ImageName = Monster_Magician::RightRageImagePath,
+		.Start = StartIndex,
+		.End = StartIndex + IndexCount - 1,
+		.InterTimer = InterTimer,
+		.Loop = Loop
+	};
+
+	Monster_Magician::AniParams[static_cast<int>(Magician_AniType::Left_RocketDash_Rage)] = FrameAnimationParameter
+	{
+		.AnimationName = "Left_RocketDash_Rage",
+		.ImageName = Monster_Magician::LeftRageImagePath,
+		.Start = StartIndex,
+		.End = StartIndex + IndexCount - 1,
+		.InterTimer = InterTimer,
+		.Loop = Loop
+	};
 }

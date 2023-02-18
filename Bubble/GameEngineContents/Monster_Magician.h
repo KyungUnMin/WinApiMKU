@@ -24,6 +24,11 @@ enum class Magician_AniType
 	Lock_Rage,
 	Dead,
 
+	Right_RocketDash,
+	Left_RocketDash,
+	Right_RocketDash_Rage,
+	Left_RocketDash_Rage,
+
 	Count
 };
 
@@ -53,6 +58,8 @@ protected:
 private:
 
 	void ResourceLoad();
+	bool MagicianMoveStep(float _DeltaTime);
+	
 
 	static std::vector<FrameAnimationParameter> AniParams;
 };
