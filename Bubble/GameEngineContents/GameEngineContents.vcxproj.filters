@@ -211,6 +211,9 @@
     <ClInclude Include="MonsterState_RocketDash.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\09.RocketDash</Filter>
     </ClInclude>
+    <ClInclude Include="Monster_MightA.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\07.MightA</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -425,6 +428,12 @@
     </ClCompile>
     <ClCompile Include="MonsterState_RocketDash.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\09.RocketDash</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_MightA.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\07.MightA</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_MightAAniData.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\07.MightA</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -715,6 +724,9 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\09.RocketDash">
       <UniqueIdentifier>{d91cdca2-1d3b-4ded-b3a2-d8ec8b1b6424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\07.MightA">
+      <UniqueIdentifier>{eb939c79-4241-4938-bc9a-c87c9fa2fc21}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
