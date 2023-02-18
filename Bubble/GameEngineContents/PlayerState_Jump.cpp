@@ -191,8 +191,8 @@ bool PlayerState_Jump::Movement(float _DeltaTime)
 	float PlayerHeight = CollisionScale.Size();
 
 	//다음에 이동할 위치가 스크린을 넘어간다면
-	if (NextPos.y - PlayerHeight < ScreenTopOffset)
-		return false;
+	/*if (NextPos.y - PlayerHeight < ScreenTopOffset)
+		return false;*/
 
 	GetPlayer()->SetPos(NextPos);
 
