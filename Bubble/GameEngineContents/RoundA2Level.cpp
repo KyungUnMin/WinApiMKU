@@ -91,18 +91,19 @@ void RoundA2Level::CreateBackGround()
 
 void RoundA2Level::CreateBubbleDest()
 {
-	GetBubbleDestHelper()->SetBubbleDest(HelpLevelType::RoundA2);
+	BubbleDestHelper* Helper = GetBubbleDestHelper();
+	Helper->SetBubbleDest(HelpLevelType::RoundA2);
 
 	{
 		size_t Stage = 0;
 		for (size_t i = 0; i < 2; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
 		
 		for (size_t i = 3; i < 5; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
 	}
 
@@ -110,17 +111,17 @@ void RoundA2Level::CreateBubbleDest()
 		size_t Stage = 1;
 		for (size_t i = 0; i < 5; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
 
 		for (size_t i = 6; i < 11; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
 
 		for (size_t i = 12; i < 15; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
 
 	}
@@ -129,12 +130,12 @@ void RoundA2Level::CreateBubbleDest()
 		size_t Stage = 2;
 		for (size_t i = 0; i < 7; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
 
 		for (size_t i = 8; i < 15; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
 
 	}
@@ -143,35 +144,35 @@ void RoundA2Level::CreateBubbleDest()
 		size_t Stage = 3;
 		for (size_t i = 0; i < 4; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
 
 		for (size_t i = 5; i < 9; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
 
-		GetBubbleDestHelper()->ConnectDestToDest(Stage, 10, 1);
-		GetBubbleDestHelper()->ConnectDestToDest(Stage, 11, 6);
-		GetBubbleDestHelper()->ConnectDestToDest(Stage, 12, 3);
-		GetBubbleDestHelper()->ConnectDestToDest(Stage, 13, 8);
+		Helper->ConnectDestToDest(Stage, 10, 1);
+		Helper->ConnectDestToDest(Stage, 11, 6);
+		Helper->ConnectDestToDest(Stage, 12, 3);
+		Helper->ConnectDestToDest(Stage, 13, 8);
 	}
 
 	{
 		size_t Stage = 4;
 		for (size_t i = 0; i < 5; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
 
 		for (size_t i = 6; i < 11; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
 
 		for (size_t i = 12; i < 15; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
 	}
 
@@ -179,26 +180,26 @@ void RoundA2Level::CreateBubbleDest()
 		size_t Stage = 5;
 		for (size_t i = 0; i < 11; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
 
 		for (size_t i = 12; i < 14; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
-		GetBubbleDestHelper()->ConnectDestToDest(Stage, 14, 4);
+		Helper->ConnectDestToDest(Stage, 14, 4);
 
 		for (size_t i = 15; i < 17; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
-		GetBubbleDestHelper()->ConnectDestToDest(Stage, 17, 5);
+		Helper->ConnectDestToDest(Stage, 17, 5);
 
 		for (size_t i = 18; i < 20; ++i)
 		{
-			GetBubbleDestHelper()->ConnectDestToDest(Stage, i, i + 1);
+			Helper->ConnectDestToDest(Stage, i, i + 1);
 		}
-		GetBubbleDestHelper()->ConnectDestToDest(Stage, 20, 6);
+		Helper->ConnectDestToDest(Stage, 20, 6);
 	}
 
 }

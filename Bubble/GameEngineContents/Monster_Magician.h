@@ -56,6 +56,7 @@ protected:
 	void Start() override;
 
 private:
+	const int RocketDashProbability = 20;
 
 	void ResourceLoad();
 	bool MagicianMoveStep(float _DeltaTime);

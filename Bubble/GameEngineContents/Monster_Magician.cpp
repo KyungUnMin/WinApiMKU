@@ -91,7 +91,6 @@ bool Monster_Magician::MagicianMoveStep(float _DeltaTime)
 {
 	static const float ResumeTime = 0.5f;
 	static float AniTime = 0.0f;
-	static const int RocketDashProbability = 50;
 
 	GameEngineRender* RenderPtr = GetRender();
 

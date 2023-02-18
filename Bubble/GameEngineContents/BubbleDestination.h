@@ -27,17 +27,13 @@ public:
 		return StageIndex;
 	}
 
-	void SetNextDest(BubbleDestination* _Next, bool _IsTeleport = false);
+	void SetNextDest(BubbleDestination* _Next);
 
 	inline BubbleDestination* GetNextDest()
 	{
 		return NextDest;
 	}
 
-	inline bool IsTeleportDest()
-	{
-		return IsTeleport;
-	}
 
 protected:
 	void Start() override;
@@ -48,7 +44,6 @@ private:
 	GameEngineCollision*		CollisionPtr		= nullptr;
 	BubbleDestination*			NextDest			= nullptr;
 	RoundLevelBase*			RoundLevel		= nullptr;
-	bool									IsTeleport		= false;
 
 	HPEN								PathLinePen;
 };

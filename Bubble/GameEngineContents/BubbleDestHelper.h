@@ -47,7 +47,7 @@ public:
 
 
 	//Dest의 이동경로 설정
-	void ConnectDestToDest(size_t _Stage, size_t _Start, size_t _End, bool _IsTelePort = false);
+	void ConnectDestToDest(size_t _Stage, size_t _Start, size_t _End);
 
 
 	//BubbleDests 자료구조 상에서 지정한 스테이지의 BubbleDestination 벡터 반환
