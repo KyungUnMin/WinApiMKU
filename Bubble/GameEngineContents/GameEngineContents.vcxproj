@@ -246,6 +246,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MonsterMissle_WarurinBress.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MonsterSpawner.h">
       <SubType>
       </SubType>
@@ -295,6 +299,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Monster_PHLoop.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Monster_Warurin.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -533,6 +541,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MonsterMissle_WarurinBress.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MonsterSpawner.cpp">
       <SubType>
       </SubType>
@@ -588,6 +600,11 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Monster_PHLoopAniData.cpp" />
+    <ClCompile Include="Monster_Warurin.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Monster_WarurinAniData.cpp" />
     <ClCompile Include="Monster_ZenChan.cpp">
       <SubType>
       </SubType>

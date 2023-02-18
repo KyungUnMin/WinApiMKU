@@ -14,7 +14,7 @@ public:
 	}
 };
 
-ZenChan_AniParamInit Init_ZenChan = ZenChan_AniParamInit();
+ZenChan_AniParamInit Init_MightA = ZenChan_AniParamInit();
 
 ZenChan_AniParamInit::ZenChan_AniParamInit()
 {

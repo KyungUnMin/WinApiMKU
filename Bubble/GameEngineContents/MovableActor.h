@@ -36,7 +36,7 @@ public:
 		return DirChanged;
 	}
 
-	void SetDir(const float4& _Dir);
+	virtual void SetDir(const float4& _Dir);
 
 	//내 바로 아래가 땅인지 확인
 	bool IsGround(const float4& _CollisionScale);

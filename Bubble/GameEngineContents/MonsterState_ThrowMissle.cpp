@@ -2,10 +2,12 @@
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineLevel.h>
-#include "MonsterMissle_MightARock.h"
 #include "MonsterBase.h"
 #include "PlayerBase.h"
 #include "MonsterFSM.h"
+
+#include "MonsterMissle_MightARock.h"
+#include "MonsterMissle_WarurinBress.h"
 
 const float4 MonsterState_ThrowMissle::SpawnOffset = float4{ 0.f, -30.f };
 
@@ -40,6 +42,7 @@ void MonsterState_ThrowMissle::EnterState()
 	Missle = CreateMissle(MissleType);
 	float4 CreatePos = Monster->GetPos();
 	float4 Dir = Monster->GetDirVec();
+	Missle->SetDir(Dir);
 
 	float4 MonsterColScale = MonsterBase::CollisionScale;
 	float4 BubbleColScale = MonsterMissleBase::CollisionScale;
@@ -58,6 +61,9 @@ MonsterMissleBase* MonsterState_ThrowMissle::CreateMissle(MonMissleType _Type)
 	{
 	case MonMissleType::MightARock:
 		ReturnMissle = Level->CreateActor<MonsterMissle_MightARock>(UpdateOrder::Monster_Missle);
+		break;
+	case MonMissleType::WarurinBress:
+		ReturnMissle = Level->CreateActor<MonsterMissle_WarurinBress>(UpdateOrder::Monster_Missle);
 		break;
 
 	default:

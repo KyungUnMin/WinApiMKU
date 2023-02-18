@@ -1,66 +1,66 @@
-#include "Monster_MightA.h"
+#include "Monster_Warurin.h"
 #include <GameEngineCore/GameEngineRender.h>
 #include "MonsterFSM.h"
 
-std::vector<FrameAnimationParameter> Monster_MightA::AniParams;
+std::vector<FrameAnimationParameter> Monster_Warurin::AniParams;
 
-class MightA_AniParamInit
+class Warurin_AniParamInit
 {
 public:
-	MightA_AniParamInit();
-	~MightA_AniParamInit()
+	Warurin_AniParamInit();
+	~Warurin_AniParamInit()
 	{
 
 	}
 };
 
-MightA_AniParamInit Init_MightA = MightA_AniParamInit();
+Warurin_AniParamInit Init_MightA = Warurin_AniParamInit();
 
-MightA_AniParamInit::MightA_AniParamInit()
+Warurin_AniParamInit::Warurin_AniParamInit()
 {
-	Monster_MightA::AniParams.resize(static_cast<int>(MightA_AniType::Count));
+	Monster_Warurin::AniParams.resize(static_cast<int>(Warurin_AniType::Count));
 
 	//-------------------------------------------------------[Move]----------------------------------------------
 
 	int StartIndex = 0;
-	int IndexCount = 4;
+	int IndexCount = 6;
 	float InterTimer = 0.1f;
 	bool Loop = true;
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Right_Move)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_Move)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_Move",
-		.ImageName = Monster_MightA::RightImagePath,
+		.ImageName = Monster_Warurin::RightImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Left_Move)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_Move)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_Move",
-		.ImageName = Monster_MightA::LeftImagePath,
+		.ImageName = Monster_Warurin::LeftImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Right_Move_Rage)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_Move_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_Move_Rage",
-		.ImageName = Monster_MightA::RightRageImagePath,
+		.ImageName = Monster_Warurin::RightRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Left_Move_Rage)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_Move_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_Move_Rage",
-		.ImageName = Monster_MightA::LeftRageImagePath,
+		.ImageName = Monster_Warurin::LeftRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -69,45 +69,45 @@ MightA_AniParamInit::MightA_AniParamInit()
 
 	//-----------------------------------------------------------[Falling]-----------------------------------------
 
-	StartIndex = 6;
+	StartIndex = 8;
 	IndexCount = 2;
 	InterTimer = 0.1f;
 	Loop = true;
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Right_Falling)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_Falling)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_Falling",
-		.ImageName = Monster_MightA::RightImagePath,
+		.ImageName = Monster_Warurin::RightImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Left_Falling)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_Falling)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_Falling",
-		.ImageName = Monster_MightA::LeftImagePath,
+		.ImageName = Monster_Warurin::LeftImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Right_Falling_Rage)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_Falling_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_Falling_Rage",
-		.ImageName = Monster_MightA::RightRageImagePath,
+		.ImageName = Monster_Warurin::RightRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Left_Falling_Rage)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_Falling_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_Falling_Rage",
-		.ImageName = Monster_MightA::LeftRageImagePath,
+		.ImageName = Monster_Warurin::LeftRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -116,25 +116,25 @@ MightA_AniParamInit::MightA_AniParamInit()
 
 	//------------------------------------------------------------[Jump]-----------------------------------------
 
-	StartIndex = 4;
+	StartIndex = 6;
 	IndexCount = 2;
 	InterTimer = 0.1f;
 	Loop = true;
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Right_Jump)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_Jump)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_Jump",
-		.ImageName = Monster_MightA::RightImagePath,
+		.ImageName = Monster_Warurin::RightImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Left_Jump)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_Jump)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_Jump",
-		.ImageName = Monster_MightA::LeftImagePath,
+		.ImageName = Monster_Warurin::LeftImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -142,20 +142,20 @@ MightA_AniParamInit::MightA_AniParamInit()
 	};
 
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Right_Jump_Rage)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_Jump_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_Jump_Rage",
-		.ImageName = Monster_MightA::RightRageImagePath,
+		.ImageName = Monster_Warurin::RightRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Left_Jump_Rage)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_Jump_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_Jump_Rage",
-		.ImageName = Monster_MightA::LeftRageImagePath,
+		.ImageName = Monster_Warurin::LeftRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -168,10 +168,10 @@ MightA_AniParamInit::MightA_AniParamInit()
 	IndexCount = 3;
 	InterTimer = 0.25f;
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Lock)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Lock)] = FrameAnimationParameter
 	{
 		.AnimationName = "Lock",
-		.ImageName = Monster_MightA::LockImagePath,
+		.ImageName = Monster_Warurin::LockImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -181,10 +181,10 @@ MightA_AniParamInit::MightA_AniParamInit()
 	StartIndex = 3;
 	IndexCount = 3;
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Lock_Rage)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Lock_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Lock_Rage",
-		.ImageName = Monster_MightA::LockImagePath,
+		.ImageName = Monster_Warurin::LockImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -197,10 +197,10 @@ MightA_AniParamInit::MightA_AniParamInit()
 	IndexCount = 4;
 	InterTimer = 0.1f;
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Dead)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Dead)] = FrameAnimationParameter
 	{
 		.AnimationName = "Dead",
-		.ImageName = Monster_MightA::DeadImagePath,
+		.ImageName = Monster_Warurin::DeadImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -209,45 +209,45 @@ MightA_AniParamInit::MightA_AniParamInit()
 
 	//---------------------------------------------------------------------[ThrowMissle]---------------------------------------
 
-	StartIndex = 8;
-	IndexCount = 3;
+	StartIndex = 10;
+	IndexCount = 4;
 	InterTimer = 0.1f;
 	Loop = false;
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Right_ThrowMissle)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_ThrowMissle)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_ThrowMissle",
-		.ImageName = Monster_MightA::RightImagePath,
+		.ImageName = Monster_Warurin::RightImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Left_ThrowMissle)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_ThrowMissle)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_ThrowMissle",
-		.ImageName = Monster_MightA::LeftImagePath,
+		.ImageName = Monster_Warurin::LeftImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Right_ThrowMissle_Rage)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_ThrowMissle_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_ThrowMissle_Rage",
-		.ImageName = Monster_MightA::RightRageImagePath,
+		.ImageName = Monster_Warurin::RightRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_MightA::AniParams[static_cast<int>(MightA_AniType::Left_ThrowMissle_Rage)] = FrameAnimationParameter
+	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_ThrowMissle_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_ThrowMissle_Rage",
-		.ImageName = Monster_MightA::LeftRageImagePath,
+		.ImageName = Monster_Warurin::LeftRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,

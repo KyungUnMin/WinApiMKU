@@ -7,6 +7,7 @@ class MonsterBase;
 enum class MonMissleType
 {
 	MightARock,
+	WarurinBress,
 
 	UNKNOWN
 };
