@@ -8,6 +8,7 @@
 
 #include "MonsterMissle_MightARock.h"
 #include "MonsterMissle_WarurinBress.h"
+#include "MonsterMissle_HidegonsBress.h"
 
 const float4 MonsterState_ThrowMissle::SpawnOffset = float4{ 0.f, -30.f };
 
@@ -64,6 +65,9 @@ MonsterMissleBase* MonsterState_ThrowMissle::CreateMissle(MonMissleType _Type)
 		break;
 	case MonMissleType::WarurinBress:
 		ReturnMissle = Level->CreateActor<MonsterMissle_WarurinBress>(UpdateOrder::Monster_Missle);
+		break;
+	case MonMissleType::HidegonsBress:
+		ReturnMissle = Level->CreateActor<MonsterMissle_HidegonsBress>(UpdateOrder::Monster_Missle);
 		break;
 
 	default:

@@ -1,4 +1,4 @@
-#include "Monster_Warurin.h"
+#include "Monster_Hidegons.h"
 
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineCore/GameEngineResources.h>
@@ -11,42 +11,40 @@
 #include "MonsterState_Lock.h"
 #include "MonsterState_Dead.h"
 #include "MonsterState_ThrowMissle.h"
-
 #include "PlayerBase.h"
 
+const std::string_view		Monster_Hidegons::RightImagePath			= "Right_Hidegons.bmp";
+const std::string_view		Monster_Hidegons::LeftImagePath				= "Left_Hidegons.bmp";
+const std::string_view		Monster_Hidegons::RightRageImagePath	= "Right_Hidegons_Rage.bmp";
+const std::string_view		Monster_Hidegons::LeftRageImagePath		= "Left_Hidegons_Rage.bmp";
+const std::string_view		Monster_Hidegons::LockImagePath			= "Hidegons_Lock.bmp";
+const std::string_view		Monster_Hidegons::DeadImagePath			= "Hidegons_Dead.bmp";
 
-const std::string_view		Monster_Warurin::RightImagePath			= "Right_Warurin.bmp";
-const std::string_view		Monster_Warurin::LeftImagePath				= "Left_Warurin.bmp";
-const std::string_view		Monster_Warurin::RightRageImagePath	= "Right_Warurin_Rage.bmp";
-const std::string_view		Monster_Warurin::LeftRageImagePath		= "Left_Warurin_Rage.bmp";
-const std::string_view		Monster_Warurin::LockImagePath			= "Warurin_Lock.bmp";
-const std::string_view		Monster_Warurin::DeadImagePath			= "Warurin_Dead.bmp";
-
-Monster_Warurin::Monster_Warurin()
-{
-	
-}
-
-Monster_Warurin::~Monster_Warurin()
+Monster_Hidegons::Monster_Hidegons()
 {
 
 }
 
-void Monster_Warurin::Start()
+Monster_Hidegons::~Monster_Hidegons()
+{
+
+}
+
+void Monster_Hidegons::Start()
 {
 	MonsterBase::Start();
 	ResourceLoad();
 
 	MonsterState_Falling* FallingState = GetFSM()->CreateState<MonsterState_Falling>(MonsterStateType::Falling);
 	MonsterState_Move* MoveState = GetFSM()->CreateState<MonsterState_Move>(MonsterStateType::Move);
-	MoveState->SetStateChangeFunc((StateChangeFuncPtr)&Monster_Warurin::MoveToThrow);
-	MoveState->SetSpeed({ 100.f, 0.f });
+	MoveState->SetStateChangeFunc((StateChangeFuncPtr)&Monster_Hidegons::MoveToThrow);
+	MoveState->SetSpeed(Speed);
 
 	MonsterState_Jump* JumpState = GetFSM()->CreateState<MonsterState_Jump>(MonsterStateType::Jump);
 	MonsterState_Lock* LockState = GetFSM()->CreateState<MonsterState_Lock>(MonsterStateType::Lock);
 	MonsterState_Dead* DeadState = GetFSM()->CreateState<MonsterState_Dead>(MonsterStateType::Dead);
-	MonsterState_ThrowMissle* ThrowMissleState = GetFSM()->CreateState<MonsterState_ThrowMissle>(MonsterStateType::ThrowMissle);
-	ThrowMissleState->SetMissleType(MonMissleType::WarurinBress);
+	MonsterState_ThrowMissle* ThrowState = GetFSM()->CreateState<MonsterState_ThrowMissle>(MonsterStateType::ThrowMissle);
+	ThrowState->SetMissleType(MonMissleType::HidegonsBress);
 
 	for (size_t i = 0; i < AniParams.size(); ++i)
 	{
@@ -56,7 +54,7 @@ void Monster_Warurin::Start()
 	Start_FSM(MonsterStateType::Falling);
 }
 
-void Monster_Warurin::ResourceLoad()
+void Monster_Hidegons::ResourceLoad()
 {
 	static bool IsLoad = false;
 	if (true == IsLoad)
@@ -68,17 +66,17 @@ void Monster_Warurin::ResourceLoad()
 	Dir.Move("Image");
 	Dir.Move("Common");
 	Dir.Move("Monster");
-	Dir.Move("Warurin");
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(RightImagePath))->Cut(6, 3);
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LeftImagePath))->Cut(6, 3);
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(RightRageImagePath))->Cut(6, 3);
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LeftRageImagePath))->Cut(6, 3);
+	Dir.Move("Hidegons");
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(RightImagePath))->Cut(4, 4);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LeftImagePath))->Cut(4, 4);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(RightRageImagePath))->Cut(4, 4);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LeftRageImagePath))->Cut(4, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LockImagePath))->Cut(3, 2);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(DeadImagePath))->Cut(4, 1);
 	IsLoad = true;
 }
 
-bool Monster_Warurin::MoveToThrow(float _DeltaTime)
+bool Monster_Hidegons::MoveToThrow(float _DeltaTime)
 {
 	if (nullptr == PlayerBase::MainPlayer)
 		return false;

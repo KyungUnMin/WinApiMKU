@@ -79,6 +79,9 @@ void Monster_MightA::ResourceLoad()
 
 bool Monster_MightA::MoveToThrow(float _DeltaTime)
 {
+	if (nullptr == PlayerBase::MainPlayer)
+		return false;
+
 	static const float FindHeightRange = 100.f;
 	static float Timer = 0.0f;
 	static const float ThrowTime = 3.f;

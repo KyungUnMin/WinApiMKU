@@ -126,6 +126,7 @@ bool RoundLevelBase::MoveToNextStage()
 
 	MonsterSpawners[NowStageIndex]->AllMonsterOff();
 
+
 	//이번 스테이지가 마지막이였다면 false를 리턴
 	if (NowStageIndex + 1 == StageImage->GetRenderSize())
 	{
@@ -147,6 +148,12 @@ bool RoundLevelBase::MoveToNextStage()
 	{
 		BubbleMissleFSM* BubbleFSM = dynamic_cast<BubbleMissle*>(Bubbles[i])->GetFSM();
 		BubbleFSM->ChangeState(BubbleStateType::Pop);
+	}
+
+	std::vector<GameEngineActor*> MonMissles = GetActors(UpdateOrder::Monster_Missle);
+	for (GameEngineActor* MonMissle : MonMissles)
+	{
+		MonMissle->Death();
 	}
 
 	return true;

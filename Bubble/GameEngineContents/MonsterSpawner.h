@@ -32,6 +32,13 @@ public:
 		return Monster;
 	}
 
+	template <typename MonsterType>
+	MonsterType* GetLastPushedMonster()
+	{
+		GameEngineActor* MonsterActor = Monsters.back().first;
+		return dynamic_cast<MonsterType*>(MonsterActor);
+	}
+
 	bool IsAllMonsterOff();
 
 	void AllMonsterOn();

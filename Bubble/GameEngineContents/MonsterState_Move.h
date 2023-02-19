@@ -3,8 +3,6 @@
 #include "MonsterStateBase.h"
 
 
-class RoundLevelBase;
-
 class MonsterState_Move : public MonsterStateBase
 {
 public:

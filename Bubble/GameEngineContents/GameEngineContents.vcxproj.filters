@@ -229,6 +229,21 @@
     <ClInclude Include="MonsterMissle_WarurinBress.h">
       <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\03.WarurinBress</Filter>
     </ClInclude>
+    <ClInclude Include="Monster_Titama.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\06.Titama</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterState_ReflectionFly.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\11.ReflectionFly</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster_PukaPuka.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\07.PukaPuka</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster_Hidegons.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\08.Hidegones</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterMissle_HidegonsBress.h">
+      <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\04.HidegonsBress</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -467,6 +482,30 @@
     </ClCompile>
     <ClCompile Include="MonsterMissle_WarurinBress.cpp">
       <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\03.WarurinBress</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_Titama.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\06.Titama</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_TitamaAniData.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\06.Titama</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterState_ReflectionFly.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\11.ReflectionFly</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_PukaPuka.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\07.PukaPuka</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_PukaPukaAniData.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\07.PukaPuka</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_Hidegons.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\08.Hidegones</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_HidegonsAniData.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\08.Hidegones</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterMissle_HidegonsBress.cpp">
+      <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\04.HidegonsBress</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -781,6 +820,21 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\05.Warurin">
       <UniqueIdentifier>{b6e0c646-1311-4123-be02-423e9dcf4b60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\06.Titama">
+      <UniqueIdentifier>{9335537c-b64e-469c-b49c-f25e1e4e9d48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\11.ReflectionFly">
+      <UniqueIdentifier>{eec1f8cc-86cc-4769-870f-7a045b665fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\07.PukaPuka">
+      <UniqueIdentifier>{49e173e0-b2b0-40ff-babf-e4fc7fd52c3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\08.Hidegones">
+      <UniqueIdentifier>{7a000c76-488b-4d93-b73a-67665587876e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\05.MonsterMissle\04.HidegonsBress">
+      <UniqueIdentifier>{3a2d53fd-f964-4d76-8e79-3fe3e0c643d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

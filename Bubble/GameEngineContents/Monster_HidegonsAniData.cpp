@@ -1,66 +1,66 @@
-#include "Monster_Warurin.h"
+#include "Monster_Hidegons.h"
 #include <GameEngineCore/GameEngineRender.h>
 #include "MonsterFSM.h"
 
-std::vector<FrameAnimationParameter> Monster_Warurin::AniParams;
+std::vector<FrameAnimationParameter> Monster_Hidegons::AniParams;
 
-class Warurin_AniParamInit
+class Hidegons_AniParamInit
 {
 public:
-	Warurin_AniParamInit();
-	~Warurin_AniParamInit()
+	Hidegons_AniParamInit();
+	~Hidegons_AniParamInit()
 	{
 
 	}
 };
 
-Warurin_AniParamInit Init_Warurin = Warurin_AniParamInit();
+Hidegons_AniParamInit Init_Hidegons = Hidegons_AniParamInit();
 
-Warurin_AniParamInit::Warurin_AniParamInit()
+Hidegons_AniParamInit::Hidegons_AniParamInit()
 {
-	Monster_Warurin::AniParams.resize(static_cast<int>(Warurin_AniType::Count));
+	Monster_Hidegons::AniParams.resize(static_cast<int>(Hidegons_AniType::Count));
 
 	//-------------------------------------------------------[Move]----------------------------------------------
 
 	int StartIndex = 0;
-	int IndexCount = 6;
+	int IndexCount = 4;
 	float InterTimer = 0.1f;
 	bool Loop = true;
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_Move)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Right_Move)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_Move",
-		.ImageName = Monster_Warurin::RightImagePath,
+		.ImageName = Monster_Hidegons::RightImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_Move)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Left_Move)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_Move",
-		.ImageName = Monster_Warurin::LeftImagePath,
+		.ImageName = Monster_Hidegons::LeftImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_Move_Rage)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Right_Move_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_Move_Rage",
-		.ImageName = Monster_Warurin::RightRageImagePath,
+		.ImageName = Monster_Hidegons::RightRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_Move_Rage)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Left_Move_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_Move_Rage",
-		.ImageName = Monster_Warurin::LeftRageImagePath,
+		.ImageName = Monster_Hidegons::LeftRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -69,45 +69,43 @@ Warurin_AniParamInit::Warurin_AniParamInit()
 
 	//-----------------------------------------------------------[Falling]-----------------------------------------
 
-	StartIndex = 8;
+	StartIndex = 6;
 	IndexCount = 2;
-	InterTimer = 0.1f;
-	Loop = true;
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_Falling)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Right_Falling)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_Falling",
-		.ImageName = Monster_Warurin::RightImagePath,
+		.ImageName = Monster_Hidegons::RightImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_Falling)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Left_Falling)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_Falling",
-		.ImageName = Monster_Warurin::LeftImagePath,
+		.ImageName = Monster_Hidegons::LeftImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_Falling_Rage)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Right_Falling_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_Falling_Rage",
-		.ImageName = Monster_Warurin::RightRageImagePath,
+		.ImageName = Monster_Hidegons::RightRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_Falling_Rage)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Left_Falling_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_Falling_Rage",
-		.ImageName = Monster_Warurin::LeftRageImagePath,
+		.ImageName = Monster_Hidegons::LeftRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -116,25 +114,23 @@ Warurin_AniParamInit::Warurin_AniParamInit()
 
 	//------------------------------------------------------------[Jump]-----------------------------------------
 
-	StartIndex = 6;
+	StartIndex = 4;
 	IndexCount = 2;
-	InterTimer = 0.1f;
-	Loop = true;
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_Jump)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Right_Jump)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_Jump",
-		.ImageName = Monster_Warurin::RightImagePath,
+		.ImageName = Monster_Hidegons::RightImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_Jump)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Left_Jump)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_Jump",
-		.ImageName = Monster_Warurin::LeftImagePath,
+		.ImageName = Monster_Hidegons::LeftImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -142,20 +138,20 @@ Warurin_AniParamInit::Warurin_AniParamInit()
 	};
 
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_Jump_Rage)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Right_Jump_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_Jump_Rage",
-		.ImageName = Monster_Warurin::RightRageImagePath,
+		.ImageName = Monster_Hidegons::RightRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_Jump_Rage)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Left_Jump_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_Jump_Rage",
-		.ImageName = Monster_Warurin::LeftRageImagePath,
+		.ImageName = Monster_Hidegons::LeftRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -168,10 +164,10 @@ Warurin_AniParamInit::Warurin_AniParamInit()
 	IndexCount = 3;
 	InterTimer = 0.25f;
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Lock)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Lock)] = FrameAnimationParameter
 	{
 		.AnimationName = "Lock",
-		.ImageName = Monster_Warurin::LockImagePath,
+		.ImageName = Monster_Hidegons::LockImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -181,10 +177,10 @@ Warurin_AniParamInit::Warurin_AniParamInit()
 	StartIndex = 3;
 	IndexCount = 3;
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Lock_Rage)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Lock_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Lock_Rage",
-		.ImageName = Monster_Warurin::LockImagePath,
+		.ImageName = Monster_Hidegons::LockImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -197,10 +193,10 @@ Warurin_AniParamInit::Warurin_AniParamInit()
 	IndexCount = 4;
 	InterTimer = 0.1f;
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Dead)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Dead)] = FrameAnimationParameter
 	{
 		.AnimationName = "Dead",
-		.ImageName = Monster_Warurin::DeadImagePath,
+		.ImageName = Monster_Hidegons::DeadImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
@@ -209,45 +205,45 @@ Warurin_AniParamInit::Warurin_AniParamInit()
 
 	//---------------------------------------------------------------------[ThrowMissle]---------------------------------------
 
-	StartIndex = 10;
-	IndexCount = 4;
+	StartIndex = 8;
+	IndexCount = 5;
 	InterTimer = 0.1f;
 	Loop = false;
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_ThrowMissle)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Right_ThrowMissle)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_ThrowMissle",
-		.ImageName = Monster_Warurin::RightImagePath,
+		.ImageName = Monster_Hidegons::RightImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_ThrowMissle)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Left_ThrowMissle)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_ThrowMissle",
-		.ImageName = Monster_Warurin::LeftImagePath,
+		.ImageName = Monster_Hidegons::LeftImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Right_ThrowMissle_Rage)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Right_ThrowMissle_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Right_ThrowMissle_Rage",
-		.ImageName = Monster_Warurin::RightRageImagePath,
+		.ImageName = Monster_Hidegons::RightRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
 		.Loop = Loop
 	};
 
-	Monster_Warurin::AniParams[static_cast<int>(Warurin_AniType::Left_ThrowMissle_Rage)] = FrameAnimationParameter
+	Monster_Hidegons::AniParams[static_cast<int>(Hidegons_AniType::Left_ThrowMissle_Rage)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_ThrowMissle_Rage",
-		.ImageName = Monster_Warurin::LeftRageImagePath,
+		.ImageName = Monster_Hidegons::LeftRageImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,

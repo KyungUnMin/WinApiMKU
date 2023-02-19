@@ -242,6 +242,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MonsterMissle_HidegonsBress.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MonsterMissle_MightARock.h">
       <SubType>
       </SubType>
@@ -282,11 +286,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MonsterState_ReflectionFly.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MonsterState_RocketDash.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="MonsterState_ThrowMissle.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Monster_Hidegons.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -299,6 +311,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Monster_PHLoop.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Monster_PukaPuka.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Monster_Titama.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -537,6 +557,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MonsterMissle_HidegonsBress.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MonsterMissle_MightARock.cpp">
       <SubType>
       </SubType>
@@ -577,6 +601,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MonsterState_ReflectionFly.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MonsterState_RocketDash.cpp">
       <SubType>
       </SubType>
@@ -585,6 +613,11 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Monster_Hidegons.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Monster_HidegonsAniData.cpp" />
     <ClCompile Include="Monster_Magician.cpp">
       <SubType>
       </SubType>
@@ -600,6 +633,16 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Monster_PHLoopAniData.cpp" />
+    <ClCompile Include="Monster_PukaPuka.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Monster_PukaPukaAniData.cpp" />
+    <ClCompile Include="Monster_Titama.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Monster_TitamaAniData.cpp" />
     <ClCompile Include="Monster_Warurin.cpp">
       <SubType>
       </SubType>

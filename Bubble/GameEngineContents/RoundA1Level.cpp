@@ -18,6 +18,9 @@
 #include "Monster_Magician.h"
 #include "Monster_MightA.h"
 #include "Monster_Warurin.h"
+#include "Monster_Titama.h"
+#include "Monster_PukaPuka.h"
+#include "Monster_Hidegons.h"
 
 
 RoundA1Level::RoundA1Level()
@@ -217,12 +220,12 @@ void RoundA1Level::CreateMonsters()
 
 		MonSpawner->CreateMonsters<Monster_Warurin>(BubbleDestHelper::GetGridPos(134));
 		MonSpawner->CreateMonsters<Monster_Warurin>(BubbleDestHelper::GetGridPos(154));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(368));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(427));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(489));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(437));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(503));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(656));
+		MonSpawner->CreateMonsters<Monster_Hidegons>(BubbleDestHelper::GetGridPos(368));
+		MonSpawner->CreateMonsters<Monster_Titama>(BubbleDestHelper::GetGridPos(364));
+		MonSpawner->CreateMonsters<Monster_Titama>(BubbleDestHelper::GetGridPos(489));
+		MonSpawner->CreateMonsters<Monster_PukaPuka>(BubbleDestHelper::GetGridPos(375));
+		MonSpawner->CreateMonsters<Monster_PukaPuka>(BubbleDestHelper::GetGridPos(503));
+		MonSpawner->CreateMonsters<Monster_Hidegons>(BubbleDestHelper::GetGridPos(656));
 	}
 
 	{

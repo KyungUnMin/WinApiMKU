@@ -8,6 +8,7 @@ enum class MonMissleType
 {
 	MightARock,
 	WarurinBress,
+	HidegonsBress,
 
 	UNKNOWN
 };
