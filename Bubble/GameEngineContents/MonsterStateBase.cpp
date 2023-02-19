@@ -39,9 +39,15 @@ void MonsterStateBase::EnterState()
 		return;
 	}
 
+	ChangeAniDir();
+}
+
+void MonsterStateBase::ChangeAniDir()
+{
 	const std::string NowDir = Monster->GetDirStr();
 	GameEngineRender* RenderPtr = Monster->GetRender();
-	RenderPtr->ChangeAnimation(NowDir + NowAniName);
+	RenderPtr->ChangeAnimation(NowDir + NowAniName, true);
+	//RenderPtr->ChangeAnimation(NowDir + NowAniName);
 }
 
 
@@ -84,3 +90,4 @@ bool MonsterStateBase::PlayerCollisionCheck()
 
 	return GameEngineCollision::CollisionCircleToCircle({ PlayerPos, PlayerCollisionScale }, { MonsterPos , BubbleCollisionScale });
 }
+

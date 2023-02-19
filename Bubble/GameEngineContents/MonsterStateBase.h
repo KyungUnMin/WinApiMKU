@@ -70,6 +70,8 @@ protected:
 
 	bool PlayerCollisionCheck();
 
+	void ChangeAniDir();
+
 private:
 	StateChangeFuncPtr	IsStateChange		= nullptr;
 	MonsterBase*				Monster				= nullptr;

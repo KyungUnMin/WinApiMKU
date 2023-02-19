@@ -3,7 +3,7 @@
 
 class FrameAnimationParameter;
 
-enum class Magician_AniType
+enum class Myata_AniType
 {
 	Right_Move,
 	Left_Move,
@@ -24,18 +24,23 @@ enum class Magician_AniType
 	Lock_Rage,
 	Dead,
 
-	Right_RocketDash,
-	Left_RocketDash,
-	Right_RocketDash_Rage,
-	Left_RocketDash_Rage,
+	Right_Dash,
+	Left_Dash,
+	Right_Dash_Rage,
+	Left_Dash_Rage,
+
+	Right_DashReady,
+	Left_DashReady,
+	Right_DashReady_Rage,
+	Left_DashReady_Rage,
 
 	Count
 };
 
-class Monster_Magician : public MonsterBase
+class Monster_Myata : public MonsterBase
 {
 public:
-	friend class Magician_AniParamInit;
+	friend class Myata_AniParamInit;
 
 	static const std::string_view		RightImagePath;
 	static const std::string_view		LeftImagePath;
@@ -44,23 +49,22 @@ public:
 	static const std::string_view		LockImagePath;
 	static const std::string_view		DeadImagePath;
 
-	Monster_Magician();
-	~Monster_Magician();
+	Monster_Myata();
+	~Monster_Myata() override;
 
-	Monster_Magician(const Monster_Magician& _Other) = delete;
-	Monster_Magician(Monster_Magician&& _Other) noexcept = delete;
-	Monster_Magician& operator=(const Monster_Magician& _Other) = delete;
-	Monster_Magician& operator=(const Monster_Magician&& _Other) noexcept = delete;
+	Monster_Myata(const Monster_Myata& _Other) = delete;
+	Monster_Myata(Monster_Myata&& _Other) noexcept = delete;
+	Monster_Myata& operator=(const Monster_Myata& _Other) = delete;
+	Monster_Myata& operator=(const Monster_Myata&& _Other) noexcept = delete;
 
 protected:
 	void Start() override;
 
 private:
-	const int RocketDashProbability = 10;
+	const size_t DashReadyFrameIndex = 8;
 
 	void ResourceLoad();
-	bool MagicianMoveStep(float _DeltaTime);
-	
+	bool MoveToDash(float _DeltaTime);
 
 	static std::vector<FrameAnimationParameter> AniParams;
 };

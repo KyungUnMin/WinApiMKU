@@ -14,6 +14,8 @@
 
 #include "MonsterSpawner.h"
 #include "Monster_ZenChan.h"
+#include "Monster_MightA.h"
+#include "Monster_Myata.h"
 
 RoundA2Level::RoundA2Level()
 {
@@ -222,10 +224,10 @@ void RoundA2Level::CreateMonsters()
 		MonsterSpawner* MonSpawner = GetMonsterSpawner(1);
 		MonSpawner->ReserveSpanwer(4);
 
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(184));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(308));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(465));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(588));
+		MonSpawner->CreateMonsters<Monster_MightA>(BubbleDestHelper::GetGridPos(184));
+		MonSpawner->CreateMonsters<Monster_Myata>(BubbleDestHelper::GetGridPos(308));
+		MonSpawner->CreateMonsters<Monster_Myata>(BubbleDestHelper::GetGridPos(465));
+		MonSpawner->CreateMonsters<Monster_Myata>(BubbleDestHelper::GetGridPos(588));
 	}
 
 	{

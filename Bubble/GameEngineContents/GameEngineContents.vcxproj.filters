@@ -244,6 +244,12 @@
     <ClInclude Include="MonsterMissle_HidegonsBress.h">
       <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\04.HidegonsBress</Filter>
     </ClInclude>
+    <ClInclude Include="Monster_Myata.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\09.Myata</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterState_RigidDash.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\12.RigidDash</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -506,6 +512,15 @@
     </ClCompile>
     <ClCompile Include="MonsterMissle_HidegonsBress.cpp">
       <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\04.HidegonsBress</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_Myata.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\09.Myata</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_MyataAniData.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\09.Myata</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterState_RigidDash.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\12.RigidDash</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -835,6 +850,12 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\05.MonsterMissle\04.HidegonsBress">
       <UniqueIdentifier>{3a2d53fd-f964-4d76-8e79-3fe3e0c643d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\09.Myata">
+      <UniqueIdentifier>{d02e25a7-e31f-47b1-8664-31688d66a1a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\12.RigidDash">
+      <UniqueIdentifier>{87aae070-862e-49d8-ad5a-e69aaab352c2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

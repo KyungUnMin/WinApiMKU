@@ -218,7 +218,7 @@ PHLoop_AniParamInit::PHLoop_AniParamInit()
 	Monster_PHLoop::AniParams[static_cast<int>(PHLoop_AniType::Left_Dash)] = FrameAnimationParameter
 	{
 		.AnimationName = "Left_GravityDash",
-		.ImageName = Monster_PHLoop::RightImagePath,
+		.ImageName = Monster_PHLoop::LeftImagePath,
 		.Start = StartIndex,
 		.End = StartIndex + IndexCount - 1,
 		.InterTimer = InterTimer,
