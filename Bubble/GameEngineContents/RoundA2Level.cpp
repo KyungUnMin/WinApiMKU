@@ -17,6 +17,8 @@
 #include "Monster_MightA.h"
 #include "Monster_Myata.h"
 #include "Monster_Dorabo.h"
+#include "Monster_Magician.h"
+#include "Monster_Warurin.h"
 
 RoundA2Level::RoundA2Level()
 {
@@ -235,10 +237,10 @@ void RoundA2Level::CreateMonsters()
 		MonsterSpawner* MonSpawner = GetMonsterSpawner(2);
 		MonSpawner->ReserveSpanwer(4);
 
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(233));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(247));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(359));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(377));
+		MonSpawner->CreateMonsters<Monster_MightA>(BubbleDestHelper::GetGridPos(233));
+		MonSpawner->CreateMonsters<Monster_MightA>(BubbleDestHelper::GetGridPos(247));
+		MonSpawner->CreateMonsters<Monster_Myata>(BubbleDestHelper::GetGridPos(359));
+		MonSpawner->CreateMonsters<Monster_Myata>(BubbleDestHelper::GetGridPos(377));
 	}
 
 	{
@@ -249,21 +251,21 @@ void RoundA2Level::CreateMonsters()
 		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(342));
 		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(426));
 		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(438));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(589));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(595));
+		MonSpawner->CreateMonsters<Monster_Magician>(BubbleDestHelper::GetGridPos(589));
+		MonSpawner->CreateMonsters<Monster_Magician>(BubbleDestHelper::GetGridPos(595));
 	}
 
 	{
 		MonsterSpawner* MonSpawner = GetMonsterSpawner(4);
 		MonSpawner->ReserveSpanwer(7);
 
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(173));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(179));
+		MonSpawner->CreateMonsters<Monster_Myata>(BubbleDestHelper::GetGridPos(173));
+		MonSpawner->CreateMonsters<Monster_Myata>(BubbleDestHelper::GetGridPos(179));
 		MonSpawner->CreateMonsters<Monster_Dorabo>(BubbleDestHelper::GetGridPos(262));
 		MonSpawner->CreateMonsters<Monster_Dorabo>(BubbleDestHelper::GetGridPos(264));
 		MonSpawner->CreateMonsters<Monster_Dorabo>(BubbleDestHelper::GetGridPos(280));
 		MonSpawner->CreateMonsters<Monster_Dorabo>(BubbleDestHelper::GetGridPos(282));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(624));
+		MonSpawner->CreateMonsters<Monster_Warurin>(BubbleDestHelper::GetGridPos(624));
 	}
 
 	{

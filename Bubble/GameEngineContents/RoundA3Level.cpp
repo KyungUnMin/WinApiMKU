@@ -16,8 +16,10 @@
 
 #include "MonsterSpawner.h"
 #include "Monster_ZenChan.h"
+#include "Monster_Magician.h"
 #include "Monster_HeitaKun.h"
 #include "Monster_Monsta.h"
+#include "Monster_Warurin.h"
 #include "Monster_PuruPuru.h"
 
 RoundA3Level::RoundA3Level()
@@ -227,10 +229,10 @@ void RoundA3Level::CreateMonsters()
 		MonsterSpawner* MonSpawner = GetMonsterSpawner(2);
 		MonSpawner->ReserveSpanwer(4);
 
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(259));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(295));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(390));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(410));
+		MonSpawner->CreateMonsters<Monster_Magician>(BubbleDestHelper::GetGridPos(259));
+		MonSpawner->CreateMonsters<Monster_Magician>(BubbleDestHelper::GetGridPos(295));
+		MonSpawner->CreateMonsters<Monster_Magician>(BubbleDestHelper::GetGridPos(390));
+		MonSpawner->CreateMonsters<Monster_Magician>(BubbleDestHelper::GetGridPos(410));
 	}
 
 	{
@@ -258,7 +260,7 @@ void RoundA3Level::CreateMonsters()
 		MonsterSpawner* MonSpawner = GetMonsterSpawner(4);
 		MonSpawner->ReserveSpanwer(5);
 
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(157));
+		MonSpawner->CreateMonsters<Monster_Warurin>(BubbleDestHelper::GetGridPos(157));
 		MonSpawner->CreateMonsters<Monster_PuruPuru>(BubbleDestHelper::GetGridPos(245));
 		MonSpawner->CreateMonsters<Monster_PuruPuru>(BubbleDestHelper::GetGridPos(337));
 		MonSpawner->CreateMonsters<Monster_PuruPuru>(BubbleDestHelper::GetGridPos(458));
