@@ -262,6 +262,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MonsterState_Dizzy.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MonsterState_GravityDash.h">
       <SubType>
       </SubType>
@@ -274,6 +278,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MonsterState_HorizonFly.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MonsterState_Jump.h">
       <SubType>
       </SubType>
@@ -283,6 +291,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MonsterState_Move.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MonsterState_RaiseFly.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -302,6 +314,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MonsterState_Tired.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MonsterState_VerticalShake.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Monster_Dorabo.h" />
     <ClInclude Include="Monster_Hidegons.h">
       <SubType>
       </SubType>
@@ -585,6 +606,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MonsterState_Dizzy.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MonsterState_GravityDash.cpp">
       <SubType>
       </SubType>
@@ -597,6 +622,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MonsterState_HorizonFly.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MonsterState_Jump.cpp">
       <SubType>
       </SubType>
@@ -606,6 +635,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MonsterState_Move.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MonsterState_RaiseFly.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -625,6 +658,16 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MonsterState_Tired.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MonsterState_VerticalShake.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Monster_Dorabo.cpp" />
+    <ClCompile Include="Monster_DoraboAniData.cpp" />
     <ClCompile Include="Monster_Hidegons.cpp">
       <SubType>
       </SubType>

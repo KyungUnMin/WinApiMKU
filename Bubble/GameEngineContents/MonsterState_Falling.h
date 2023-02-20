@@ -6,6 +6,8 @@
 class MonsterState_Falling : public MonsterStateBase
 {
 public:
+	static const std::string_view AniName;
+
 	MonsterState_Falling();
 	~MonsterState_Falling() override;
 
@@ -14,14 +16,19 @@ public:
 	MonsterState_Falling& operator=(const MonsterState_Falling& _Other) = delete;
 	MonsterState_Falling& operator=(const MonsterState_Falling&& _Other) noexcept = delete;
 
+	inline void SetGravitySpeed(const float4& _GravitySpeed)
+	{
+		GravitySpeed = _GravitySpeed;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void EnterState() override;
 
 private:
-	const float4	GravitySpeed				= float4{ 0.f, 200.f };
 	const float		ScreenOutOffsetY		= 50.f;
+	float4				GravitySpeed				= float4{ 0.f, 200.f };
 	bool					IsBlocked					= false;
 
 	void Move(float _DeltaTime);

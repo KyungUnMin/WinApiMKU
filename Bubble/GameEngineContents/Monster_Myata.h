@@ -61,7 +61,6 @@ protected:
 	void Start() override;
 
 private:
-	const size_t DashReadyFrameIndex = 8;
 
 	void ResourceLoad();
 	bool MoveToDash(float _DeltaTime);

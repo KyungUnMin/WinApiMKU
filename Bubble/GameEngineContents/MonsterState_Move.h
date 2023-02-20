@@ -7,7 +7,7 @@ class MonsterState_Move : public MonsterStateBase
 {
 public:
 	MonsterState_Move();
-	~MonsterState_Move();
+	~MonsterState_Move() override;
 
 	MonsterState_Move(const MonsterState_Move& _Other) = delete;
 	MonsterState_Move(MonsterState_Move&& _Other) noexcept = delete;

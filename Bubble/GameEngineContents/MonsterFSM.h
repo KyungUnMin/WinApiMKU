@@ -14,6 +14,12 @@ enum class MonsterStateType
 	ThrowMissle,
 	ReflectionFly,
 	RigidDash,
+
+	HorizonFly,
+	Tired,
+	VerticalShake,
+	Dizzy,
+	RaiseFly,
 };
 
 class MonsterStateBase;
@@ -41,6 +47,8 @@ public:
 	void ChangeState(MonsterStateType _NextState);
 
 	MonsterStateType GetCurStateByEnum();
+
+	bool IsUseState(MonsterStateType _FindState);
 
 protected:
 	

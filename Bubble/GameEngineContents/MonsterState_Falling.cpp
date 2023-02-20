@@ -4,6 +4,8 @@
 #include "MonsterFSM.h"
 #include "PlayerBase.h"
 
+const std::string_view MonsterState_Falling::AniName = "Falling";
+
 MonsterState_Falling::MonsterState_Falling()
 {
 
@@ -16,7 +18,7 @@ MonsterState_Falling::~MonsterState_Falling()
 
 void MonsterState_Falling::Start()
 {
-	SetNowAniName("Falling");
+	SetNowAniName(AniName);
 }
 
 void MonsterState_Falling::Update(float _DeltaTime)

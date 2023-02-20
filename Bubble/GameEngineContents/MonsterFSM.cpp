@@ -89,3 +89,9 @@ MonsterStateType MonsterFSM::GetCurStateByEnum()
 	MsgAssert("현재 State가 MonsterFSM 자료구조에 존재하지 않습니다");
 	return MonsterStateType::Dead;
 }
+
+bool MonsterFSM::IsUseState(MonsterStateType _FindState)
+{
+	auto FindIter = States.find(_FindState);
+	return (States.end() != FindIter);
+}

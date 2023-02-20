@@ -31,14 +31,16 @@ void MonsterState_Move::Update(float _DeltaTime)
 			return;
 	}
 
+	MonsterFSM* FsmPtr = GetFSM();
+
 	//플레이어와 몬스터의 거리가 PlayerFindRange 이내이고, 플레이어가 위에 있다면 점프
-	if (HorizonSizeWithPlayer()  < PlayerFindRange && true == IsPlayerPosOver())
+	if ((HorizonSizeWithPlayer() < PlayerFindRange) && (true == IsPlayerPosOver()))
 	{
 		//50%의 확률로만 점프
 		if (0 == rand() % CaseDoJump)
 		{
 			GetMonster()->SetReverseDir();
-			GetFSM()->ChangeState(MonsterStateType::Jump);
+			FsmPtr->ChangeState(MonsterStateType::Jump);
 			return;
 		}
 	}
@@ -50,13 +52,13 @@ void MonsterState_Move::Update(float _DeltaTime)
 		if (true == IsPlayerPosOver())
 		{
 			GetMonster()->SetDir(GetHorizonDirToPlayer());
-			GetFSM()->ChangeState(MonsterStateType::Jump);
+			FsmPtr->ChangeState(MonsterStateType::Jump);
 		}
 
 		//아래에 있는 경우엔 떨어지기
 		else
 		{
-			GetFSM()->ChangeState(MonsterStateType::Falling);
+			FsmPtr->ChangeState(MonsterStateType::Falling);
 		}
 
 		return;
@@ -69,7 +71,7 @@ void MonsterState_Move::Update(float _DeltaTime)
 		if (true == IsPlayerPosOver())
 		{
 			GetMonster()->SetReverseDir();
-			GetFSM()->ChangeState(MonsterStateType::Jump);
+			FsmPtr->ChangeState(MonsterStateType::Jump);
 			return;
 		}
 		else

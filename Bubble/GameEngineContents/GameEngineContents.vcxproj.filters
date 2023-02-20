@@ -250,6 +250,24 @@
     <ClInclude Include="MonsterState_RigidDash.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\12.RigidDash</Filter>
     </ClInclude>
+    <ClInclude Include="Monster_Dorabo.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\10.Dorabo</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterState_HorizonFly.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.HorizonFly</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterState_Tired.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\14.Tired</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterState_VerticalShake.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\15.VerticalShake</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterState_Dizzy.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\16.Dizzy</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterState_RaiseFly.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\17.RaiseFly</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -521,6 +539,27 @@
     </ClCompile>
     <ClCompile Include="MonsterState_RigidDash.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\12.RigidDash</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_Dorabo.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\10.Dorabo</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterState_HorizonFly.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.HorizonFly</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterState_Tired.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\14.Tired</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterState_VerticalShake.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\15.VerticalShake</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterState_Dizzy.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\16.Dizzy</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterState_RaiseFly.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\17.RaiseFly</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_DoraboAniData.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\10.Dorabo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -856,6 +895,24 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\12.RigidDash">
       <UniqueIdentifier>{87aae070-862e-49d8-ad5a-e69aaab352c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\10.Dorabo">
+      <UniqueIdentifier>{d2c58ab6-a640-47d1-a7da-a6d99ef60e08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.HorizonFly">
+      <UniqueIdentifier>{4d0c22b5-a1fb-4e6e-891c-45a9c34f7d6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\14.Tired">
+      <UniqueIdentifier>{d350dc9a-8136-4ab1-9c7c-63e4ad1198aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\15.VerticalShake">
+      <UniqueIdentifier>{a88bb8c5-4e9e-4b75-9d18-33ccb279f897}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\16.Dizzy">
+      <UniqueIdentifier>{23bf9741-fa05-4418-be30-23cb05a359fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\17.RaiseFly">
+      <UniqueIdentifier>{80a45311-76c6-46f0-a42c-60c37c253041}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
