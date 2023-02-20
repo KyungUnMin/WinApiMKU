@@ -16,7 +16,7 @@ public:
 	}
 };
 
-Monsta_AniParamInit Init_Titama = Monsta_AniParamInit();
+Monsta_AniParamInit Init_Monsta = Monsta_AniParamInit();
 
 Monsta_AniParamInit::Monsta_AniParamInit()
 {

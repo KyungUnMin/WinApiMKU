@@ -20,6 +20,7 @@ enum class MonsterStateType
 	VerticalShake,
 	Dizzy,
 	RaiseFly,
+	PuruFly,
 };
 
 class MonsterStateBase;

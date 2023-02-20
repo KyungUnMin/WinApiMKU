@@ -44,7 +44,7 @@ protected:
 
 private:
 	const float	ReflectionAngle	= 70.f;
-	const float	MoveSpeed			= 400.f;
+	const float	MoveSpeed			= 300.f;
 
 	void ResourceLoad();
 	bool FallingToFly(float _DeltaTime);
