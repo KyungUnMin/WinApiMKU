@@ -1,8 +1,10 @@
 #include "MonsterState_ReflectionFly.h"
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineMath.h>
+#include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "RoundLevelBase.h"
+#include "PlayerBase.h"
 
 MonsterState_ReflectionFly::MonsterState_ReflectionFly()
 {
@@ -13,6 +15,7 @@ MonsterState_ReflectionFly::~MonsterState_ReflectionFly()
 {
 
 }
+
 
 
 
@@ -56,12 +59,11 @@ void MonsterState_ReflectionFly::Update(float _DeltaTime)
 
 	Move(_DeltaTime);
 
-	//Titama만 이 상태를 쓴다면 플레이어와 충돌할 일이 있을까?
-	/*if (true == PlayerCollisionCheck())
+	if (true == PlayerCollisionCheck())
 	{
 		PlayerBase::MainPlayer->AttackPlayer();
 		return;
-	}*/
+	}
 }
 
 
@@ -75,8 +77,9 @@ void MonsterState_ReflectionFly::Move(float _DeltaTime)
 
 	//다음 위치
 	float4 NextPos = NowPos + MoveDir * MoveSpeed * _DeltaTime;
+	float4 CheckPos = NextPos + MoveDir * RotateRange;
 
-	if (false == RoundLevel->IsBlockPos(NextPos + MoveDir * RotateRange))
+	if (false == RoundLevel->IsBlockPos(CheckPos) && false == IsScreenOut(CheckPos))
 	{
 		Monster->SetPos(NextPos);
 		return;
@@ -101,4 +104,23 @@ void MonsterState_ReflectionFly::Move(float _DeltaTime)
 
 	//애니메이션 교체
 	ChangeAniDir();
+}
+
+bool MonsterState_ReflectionFly::IsScreenOut(const float4& _CheckPos)
+{
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+
+	if (_CheckPos.y < 0.f)
+		return true;
+
+	if (_CheckPos.x < 0.f)
+		return true;
+
+	if (ScreenSize.y < _CheckPos.y)
+		return true;
+
+	if (ScreenSize.x < _CheckPos.x)
+		return true;
+
+	return false;
 }

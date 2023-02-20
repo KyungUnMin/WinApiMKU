@@ -48,7 +48,7 @@ public:
 
 	MonsterStateType GetCurStateByEnum();
 
-	bool IsUseState(MonsterStateType _FindState);
+	MonsterStateBase* GetState(MonsterStateType _FindState);
 
 protected:
 	

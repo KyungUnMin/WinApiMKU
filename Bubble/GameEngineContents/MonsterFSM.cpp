@@ -90,8 +90,8 @@ MonsterStateType MonsterFSM::GetCurStateByEnum()
 	return MonsterStateType::Dead;
 }
 
-bool MonsterFSM::IsUseState(MonsterStateType _FindState)
+MonsterStateBase* MonsterFSM::GetState(MonsterStateType _FindState)
 {
 	auto FindIter = States.find(_FindState);
-	return (States.end() != FindIter);
+	return FindIter->second;
 }

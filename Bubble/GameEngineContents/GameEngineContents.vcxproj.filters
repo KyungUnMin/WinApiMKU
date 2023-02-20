@@ -271,6 +271,9 @@
     <ClInclude Include="Monster_HeitaKun.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\11.HeitaKun</Filter>
     </ClInclude>
+    <ClInclude Include="Monster_Monsta.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\12.Monsta</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -569,6 +572,12 @@
     </ClCompile>
     <ClCompile Include="Monster_HeitaKunAniData.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\11.HeitaKun</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_Monsta.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\12.Monsta</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_MonstaAniData.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\12.Monsta</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

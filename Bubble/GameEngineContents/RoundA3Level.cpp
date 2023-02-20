@@ -1,6 +1,7 @@
 #include "RoundA3Level.h"
 #include <vector>
 #include <GameEngineBase/GameEngineDirectory.h>
+#include <GameEngineBase/GameEngineMath.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineResources.h>
@@ -16,6 +17,7 @@
 #include "MonsterSpawner.h"
 #include "Monster_ZenChan.h"
 #include "Monster_HeitaKun.h"
+#include "Monster_Monsta.h"
 
 RoundA3Level::RoundA3Level()
 {
@@ -234,13 +236,21 @@ void RoundA3Level::CreateMonsters()
 		MonsterSpawner* MonSpawner = GetMonsterSpawner(3);
 		MonSpawner->ReserveSpanwer(7);
 
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(176));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(238));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(242));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(298));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(310));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(451));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(477));
+		const float MonstaStartDegree = 70.f;
+		const float4 MonstaStartDir = float4::AngleToDirection2DToDeg(MonstaStartDegree);
+
+		MonSpawner->CreateMonsters<Monster_HeitaKun>(BubbleDestHelper::GetGridPos(176));
+
+		GameEngineActor* Monsta = MonSpawner->CreateMonsters<Monster_Monsta>(BubbleDestHelper::GetGridPos(238));
+		dynamic_cast<Monster_Monsta*>(Monsta)->Init({ MonstaStartDir.x, MonstaStartDir.y }, true);
+
+		MonSpawner->CreateMonsters<Monster_Monsta>(BubbleDestHelper::GetGridPos(242));
+		dynamic_cast<Monster_Monsta*>(Monsta)->Init({ -MonstaStartDir.x, MonstaStartDir.y }, false);
+
+		MonSpawner->CreateMonsters<Monster_HeitaKun>(BubbleDestHelper::GetGridPos(298));
+		MonSpawner->CreateMonsters<Monster_HeitaKun>(BubbleDestHelper::GetGridPos(310));
+		MonSpawner->CreateMonsters<Monster_HeitaKun>(BubbleDestHelper::GetGridPos(451));
+		MonSpawner->CreateMonsters<Monster_HeitaKun>(BubbleDestHelper::GetGridPos(477));
 	}
 
 	{
