@@ -160,7 +160,7 @@ void MonsterMissle_HidegonsBress::Update(float _DeltaTime)
 	
 	for (int i = 0; i < MoveLength; ++i)
 	{
-		float4 CheckPos = PrevPos + (GetDirVec() * i);
+		float4 CheckPos = PrevPos + (GetDirVec() * static_cast<float>(i));
 		if (false == RoundLevel->IsBlockPos(CheckPos))
 			continue;
 

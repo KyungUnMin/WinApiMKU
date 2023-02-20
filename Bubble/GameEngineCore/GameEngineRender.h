@@ -7,9 +7,9 @@
 
 enum class TextAlign
 {
-	Left = TA_LEFT,
-	Right = TA_RIGHT,
-	Center = TA_CENTER
+	Left = DT_LEFT,
+	Right = DT_RIGHT,
+	Center = DT_CENTER
 };
 
 //CreateAnimation 함수의 인자가 될 구조체

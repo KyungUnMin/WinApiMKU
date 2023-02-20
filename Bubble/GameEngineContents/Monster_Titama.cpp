@@ -39,7 +39,7 @@ void Monster_Titama::Start()
 	GetCollision()->SetPosition(float4::Zero);
 
 	MonsterState_ReflectionFly* FlyState = GetFSM()->CreateState<MonsterState_ReflectionFly>(MonsterStateType::ReflectionFly);
-	FlyState->SetClockWiseMovePath(true);
+	FlyState->SetReflectionDir(true);
 
 	MonsterState_Lock* LockState = GetFSM()->CreateState<MonsterState_Lock>(MonsterStateType::Lock);
 	MonsterState_Dead* DeadState = GetFSM()->CreateState<MonsterState_Dead>(MonsterStateType::Dead);

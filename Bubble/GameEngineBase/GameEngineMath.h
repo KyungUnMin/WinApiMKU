@@ -12,6 +12,8 @@ public:
 
 	static const float PIE;
 	static const float PIE2;
+	static const float DegToRad;
+	static const float RadToDeg;
 
 private:
 	virtual ~GameEngineMath() = 0;
@@ -28,6 +30,16 @@ public:
 	static const float4 Back;
 	static const float4 Zero;
 	static const float4 Null;
+
+	static float4 AngleToDirection2DToDeg(float _Deg)
+	{
+		return AngleToDirection2DToRad(_Deg * GameEngineMath::DegToRad);
+	}
+
+	static float4 AngleToDirection2DToRad(float _Rad)
+	{
+		return float4{ cosf(_Rad), sinf(_Rad), 0.f, 1.f };
+	}
 
 public:
 	float x = 0.0f;

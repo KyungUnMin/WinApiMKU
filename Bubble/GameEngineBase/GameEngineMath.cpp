@@ -5,6 +5,12 @@
 const float			GameEngineMath::PIE	= 3.141592653589793238462643383279502884197169399375105820974944f;
 const float			GameEngineMath::PIE2	= PIE * 2.0f;
 
+//(180도는 파이 라디안), (1도는 파이 / 180 라디안)
+const float			GameEngineMath::DegToRad = GameEngineMath::PIE / 180;
+//(파이 라디안은 180), (1라디안은 180 / 파이)
+const float			GameEngineMath::RadToDeg = 180 / GameEngineMath::PIE;
+
+
 const float4		float4::Left						= { -1.0f, 0.0f, 0.0f, 1.0f };
 const float4		float4::Right					= { 1.0f, 0.0f, 0.0f, 1.0f };
 const float4		float4::Up						= { 0.0f, -1.0f, 0.0f, 1.0f };

@@ -14,6 +14,8 @@ MonsterState_ReflectionFly::~MonsterState_ReflectionFly()
 
 }
 
+
+
 void MonsterState_ReflectionFly::Start()
 {
 	SetNowAniName("ReflectionFly");
@@ -84,9 +86,10 @@ void MonsterState_ReflectionFly::Move(float _DeltaTime)
 	float PrevDirX = MoveDir.x;
 
 	//벡터 회전
+	float Radian = Angle * GameEngineMath::DegToRad;
 	float4 NextDir = float4::Zero;
-	NextDir.x = MoveDir.x* cos(Radian) - MoveDir.y * sin(Radian);
-	NextDir.y = MoveDir.x* sin(Radian) + MoveDir.y * cos(Radian);
+	NextDir.x = MoveDir.x* cosf(Radian) - MoveDir.y * sinf(Radian);
+	NextDir.y = MoveDir.x* sinf(Radian) + MoveDir.y * cosf(Radian);
 	MoveDir = NextDir;
 
 	//X축 방향이 바뀌였을때만
@@ -97,7 +100,5 @@ void MonsterState_ReflectionFly::Move(float _DeltaTime)
 	Monster->SetReverseDir();
 
 	//애니메이션 교체
-	const std::string NowDir = Monster->GetDirStr();
-	GameEngineRender* RenderPtr = Monster->GetRender();
-	RenderPtr->ChangeAnimation(NowDir + GetNowAniName());
+	ChangeAniDir();
 }

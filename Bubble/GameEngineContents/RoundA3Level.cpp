@@ -15,6 +15,7 @@
 
 #include "MonsterSpawner.h"
 #include "Monster_ZenChan.h"
+#include "Monster_HeitaKun.h"
 
 RoundA3Level::RoundA3Level()
 {
@@ -201,10 +202,10 @@ void RoundA3Level::CreateMonsters()
 		MonsterSpawner* MonSpawner = GetMonsterSpawner(0);
 		MonSpawner->ReserveSpanwer(4);
 
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(165));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(291));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(278));
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(409));
+		MonSpawner->CreateMonsters<Monster_HeitaKun>(BubbleDestHelper::GetGridPos(165));
+		MonSpawner->CreateMonsters<Monster_HeitaKun>(BubbleDestHelper::GetGridPos(291));
+		MonSpawner->CreateMonsters<Monster_HeitaKun>(BubbleDestHelper::GetGridPos(278));
+		MonSpawner->CreateMonsters<Monster_HeitaKun>(BubbleDestHelper::GetGridPos(409));
 	}
 
 	{

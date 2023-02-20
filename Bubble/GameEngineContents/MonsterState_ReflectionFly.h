@@ -14,12 +14,17 @@ public:
 	MonsterState_ReflectionFly& operator=(const MonsterState_ReflectionFly& _Other) = delete;
 	MonsterState_ReflectionFly& operator=(const MonsterState_ReflectionFly&& _Other) noexcept = delete;
 
-	void SetClockWiseMovePath(bool _IsClockWise)
+	void SetReflectionDir(bool _IsClockWise)
 	{
 		if (true == _IsClockWise)
-			Radian = -abs(Radian);
+			Angle = -abs(Angle);
 		else
-			Radian = abs(Radian);
+			Angle = abs(Angle);
+	}
+
+	inline void SetReflectionAngle(float _Degree)
+	{
+		Angle = _Degree;
 	}
 
 protected:
@@ -33,7 +38,8 @@ private:
 	const float4			RotateRange	= float4{ 100.f, 100.f };
 
 	const float				MoveSpeed		= 75.f;
-	float						Radian				= 0.25f;
+
+	float						Angle = 14.f;
 
 
 	void Move(float _DeltaTime);

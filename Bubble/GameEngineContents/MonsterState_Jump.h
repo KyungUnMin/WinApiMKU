@@ -13,6 +13,13 @@ public:
 	MonsterState_Jump& operator=(const MonsterState_Jump& _Other) = delete;
 	MonsterState_Jump& operator=(const MonsterState_Jump&& _Other) noexcept = delete;
 
+	inline void SetJumpSpeed(const float4& _Speed)
+	{
+		JumpSpeed = _Speed;
+	}
+
+
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -23,8 +30,7 @@ private:
 	float								AccTime					= 0.0f;
 	const float						FallingChangeTime	= 0.5f;
 
-	const float4					AirMoveSpeed			= float4{ 250.f, 0.f };
-	const float4					JumpSpeed				= float4{ 100.f, 600.f };
+	float4								JumpSpeed				= float4{ 100.f, 600.f };
 	const float						ScreenTopOffset	= 50.f;
 
 	bool CheckStateChange(float _DeltaTime);
