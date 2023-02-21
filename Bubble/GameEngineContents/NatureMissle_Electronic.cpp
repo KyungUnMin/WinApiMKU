@@ -4,6 +4,8 @@
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "MonsterBase.h"
+#include "PlayerBase.h"
+#include "PlayerFSM.h"
 
 const std::string_view NatureMissle_Electronic::ImagePath			= "Electronic.bmp";
 const std::string_view NatureMissle_Electronic::MoveAniName		= "Move";
@@ -106,6 +108,7 @@ void NatureMissle_Electronic::Update_Move(float _DeltaTime)
 		GetRender()->ChangeAnimation(AttachAniName, true);
 		NowState = State::PlayerAttach;
 		IsPlayerAttached = true;
+		PlayerBase::MainPlayer->GetFSM()->ChangeState(PlayerStateType::Embarrassed);
 		return;
 	}
 

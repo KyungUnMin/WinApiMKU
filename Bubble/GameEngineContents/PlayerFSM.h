@@ -16,6 +16,7 @@ enum class PlayerStateType
 	Sleep,
 	Damaged,
 	EnterDoor,
+	Embarrassed,
 
 	Count,
 };

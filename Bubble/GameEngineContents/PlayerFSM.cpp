@@ -11,7 +11,7 @@
 #include "PlayerState_Sleep.h"
 #include "PlayerState_Damaged.h"
 #include "PlayerState_Enter.h"
-
+#include "PlayerState_Embarrassed.h"
 
 PlayerFSM::PlayerFSM()
 {
@@ -99,6 +99,9 @@ void PlayerFSM::CreateState(PlayerStateType _StateType)
 		break;
 	case PlayerStateType::EnterDoor:
 		States[Index] = new PlayerState_Enter;
+		break;
+	case PlayerStateType::Embarrassed:
+		States[Index] = new PlayerState_Embarrassed;
 		break;
 	default:
 		MsgAssert("해당 State를 아직 PlayerState와 연결시켜 주지 않았습니다");
