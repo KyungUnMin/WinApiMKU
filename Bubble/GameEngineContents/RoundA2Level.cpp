@@ -288,8 +288,16 @@ void RoundA2Level::CreateStageBubbleSpawners()
 		for (size_t i = 0; i < 2; ++i)
 		{
 			Spawner = CreateActor<BubbleSpawner>();
-			Spawner->SetPos(BottomPos[i]);
-			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
+			Spawner->SetPos(TopPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i)));
+		}
+
+		for (size_t i = 0; i < 2; ++i)
+		{
+			Spawner = CreateActor<BubbleSpawner>();
+			Spawner->SetPos(TopPos[i]);
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i)));
+			Spawner->SetBubbleType(BubbleMissleType::Water);
 		}
 	}
 
@@ -302,7 +310,7 @@ void RoundA2Level::CreateStageBubbleSpawners()
 		{
 			Spawner = CreateActor<BubbleSpawner>();
 			Spawner->SetPos(TopPos[i]);
-			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i)));
 		}
 	}
 
@@ -315,14 +323,14 @@ void RoundA2Level::CreateStageBubbleSpawners()
 		{
 			Spawner = CreateActor<BubbleSpawner>();
 			Spawner->SetPos(TopPos[i]);
-			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i)));
 		}
 
 		for (size_t i = 0; i < 2; ++i)
 		{
 			Spawner = CreateActor<BubbleSpawner>();
 			Spawner->SetPos(BottomPos[i]);
-			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i + 2)));
 		}
 
 		const float ElecFixedTime = 3.f;
@@ -330,18 +338,16 @@ void RoundA2Level::CreateStageBubbleSpawners()
 		{
 			Spawner = CreateActor<BubbleSpawner>();
 			Spawner->SetPos(TopPos[i]);
-			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Yellow,ElecFixedTime, ElecFixedTime));
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i),ElecFixedTime, ElecFixedTime));
 			Spawner->SetBubbleType(BubbleMissleType::Electronic);
-			Spawner->SetColor(BubbleColor::Yellow);
 		}
 
 		for (size_t i = 0; i < 2; ++i)
 		{
 			Spawner = CreateActor<BubbleSpawner>();
 			Spawner->SetPos(BottomPos[i]);
-			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Yellow,ElecFixedTime, ElecFixedTime));
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i + 2),ElecFixedTime, ElecFixedTime));
 			Spawner->SetBubbleType(BubbleMissleType::Electronic);
-			Spawner->SetColor(BubbleColor::Yellow);
 		}
 	}
 
@@ -355,7 +361,7 @@ void RoundA2Level::CreateStageBubbleSpawners()
 		{
 			Spawner = CreateActor<BubbleSpawner>();
 			Spawner->SetPos(Stage4Pos[i]);
-			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner));
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i)));
 		}
 
 		const float RainBowFixedTime = 3.f;
@@ -363,9 +369,8 @@ void RoundA2Level::CreateStageBubbleSpawners()
 		{
 			Spawner = CreateActor<BubbleSpawner>();
 			Spawner->SetPos(Stage4Pos[i]);
-			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, BubbleColor::Green,RainBowFixedTime, RainBowFixedTime));
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i),RainBowFixedTime, RainBowFixedTime));
 			Spawner->SetBubbleType(BubbleMissleType::Rainbow);
-			Spawner->SetColor(BubbleColor::Green);
 		}
 	}
 }

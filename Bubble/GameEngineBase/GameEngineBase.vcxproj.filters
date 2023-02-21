@@ -4,9 +4,6 @@
     <ClCompile Include="GameEngineDebug.cpp">
       <Filter>01.Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineMath.cpp">
-      <Filter>02.Math</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngineString.cpp">
       <Filter>03.String</Filter>
     </ClCompile>
@@ -22,13 +19,16 @@
     <ClCompile Include="GameEngineFile.cpp">
       <Filter>04.IO%28File%29\03.File</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineMath.cpp">
+      <Filter>02.Math\01.Math</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineRandom.cpp">
+      <Filter>02.Math\02.Random</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineDebug.h">
       <Filter>01.Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineMath.h">
-      <Filter>02.Math</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineString.h">
       <Filter>03.String</Filter>
@@ -44,6 +44,12 @@
     </ClInclude>
     <ClInclude Include="GameEngineFile.h">
       <Filter>04.IO%28File%29\03.File</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineMath.h">
+      <Filter>02.Math\01.Math</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineRandom.h">
+      <Filter>02.Math\02.Random</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +76,12 @@
     </Filter>
     <Filter Include="05.Time">
       <UniqueIdentifier>{746ba254-e048-45b9-928d-f0160f15bb34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Math\01.Math">
+      <UniqueIdentifier>{3bf237ac-c6c6-4a84-96e8-ab6097891521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Math\02.Random">
+      <UniqueIdentifier>{d3f039d4-7ab2-48e1-a5a8-35a69f810bdf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

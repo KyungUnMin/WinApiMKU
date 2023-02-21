@@ -254,7 +254,7 @@
       <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\10.Dorabo</Filter>
     </ClInclude>
     <ClInclude Include="MonsterState_HorizonFly.h">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\01..HorizonFly</Filter>
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\01.HorizonFly</Filter>
     </ClInclude>
     <ClInclude Include="MonsterState_Tired.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\02..Tired</Filter>
@@ -556,7 +556,7 @@
       <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\10.Dorabo</Filter>
     </ClCompile>
     <ClCompile Include="MonsterState_HorizonFly.cpp">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\01..HorizonFly</Filter>
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\01.HorizonFly</Filter>
     </ClCompile>
     <ClCompile Include="MonsterState_Tired.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\02..Tired</Filter>
@@ -935,9 +935,6 @@
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo">
       <UniqueIdentifier>{212af33f-7681-4e27-94fb-e3bdc96bac56}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\01..HorizonFly">
-      <UniqueIdentifier>{4d0c22b5-a1fb-4e6e-891c-45a9c34f7d6f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\02..Tired">
       <UniqueIdentifier>{d350dc9a-8136-4ab1-9c7c-63e4ad1198aa}</UniqueIdentifier>
     </Filter>
@@ -961,6 +958,9 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\13.PuruPuru">
       <UniqueIdentifier>{26841b0a-5a9d-4f3b-b49f-92d2c8a73a9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\01.HorizonFly">
+      <UniqueIdentifier>{4d0c22b5-a1fb-4e6e-891c-45a9c34f7d6f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
