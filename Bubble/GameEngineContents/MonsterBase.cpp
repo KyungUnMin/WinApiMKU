@@ -91,6 +91,17 @@ void MonsterBase::DeathFromBubble()
 	FsmPtr->ChangeState(MonsterStateType::Dead);
 }
 
+void MonsterBase::DeathFromNature(NatureMissleBase* _Nature)
+{
+	if (_Nature == nullptr)
+	{
+		MsgAssert("NatureMissle 클래스만 이 함수를 호출할 수 있습니다");
+		return;
+	}
+
+	FsmPtr->ChangeState(MonsterStateType::Dead);
+}
+
 void MonsterBase::FSMReset()
 {
 	MonsterStateType NowState = FsmPtr->GetCurStateByEnum();

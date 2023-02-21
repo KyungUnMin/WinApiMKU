@@ -21,5 +21,6 @@ private:
 	BubbleMissleType BubbleType = BubbleMissleType::Normal;
 
 	void ResourceLoad();
+	void CreateNatureMissle();
 };
 

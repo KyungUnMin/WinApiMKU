@@ -280,6 +280,15 @@
     <ClInclude Include="Monster_PuruPuru.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\13.PuruPuru</Filter>
     </ClInclude>
+    <ClInclude Include="NatureMissleBase.h">
+      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\01.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="NatureMissle_Water.h">
+      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\03.Water</Filter>
+    </ClInclude>
+    <ClInclude Include="NatureMissle_Electronic.h">
+      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\02.Electronic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -593,6 +602,15 @@
     </ClCompile>
     <ClCompile Include="Monster_PuruPuruAniData.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\13.PuruPuru</Filter>
+    </ClCompile>
+    <ClCompile Include="NatureMissleBase.cpp">
+      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\01.Base</Filter>
+    </ClCompile>
+    <ClCompile Include="NatureMissle_Water.cpp">
+      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\03.Water</Filter>
+    </ClCompile>
+    <ClCompile Include="NatureMissle_Electronic.cpp">
+      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\02.Electronic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -961,6 +979,18 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\01.HorizonFly">
       <UniqueIdentifier>{4d0c22b5-a1fb-4e6e-891c-45a9c34f7d6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\06.NatureMissle">
+      <UniqueIdentifier>{bf601ccc-de24-45c0-82df-9d98ba3af462}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\06.NatureMissle\01.Base">
+      <UniqueIdentifier>{cae3ce41-7077-48fa-9f5d-3421f9726bec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\06.NatureMissle\03.Water">
+      <UniqueIdentifier>{93ade01b-c15e-41d7-b8f5-9235a7917646}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\06.NatureMissle\02.Electronic">
+      <UniqueIdentifier>{4e83292f-3ca1-44b3-94e2-322f40f76b25}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

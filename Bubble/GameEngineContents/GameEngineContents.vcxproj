@@ -379,6 +379,18 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="NatureMissleBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="NatureMissle_Electronic.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="NatureMissle_Water.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="NextDoor.h">
       <SubType>
       </SubType>
@@ -749,6 +761,18 @@
     </ClCompile>
     <ClCompile Include="Monster_ZenChanAniData.cpp" />
     <ClCompile Include="MovableActor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="NatureMissleBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="NatureMissle_Electronic.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="NatureMissle_Water.cpp">
       <SubType>
       </SubType>
     </ClCompile>

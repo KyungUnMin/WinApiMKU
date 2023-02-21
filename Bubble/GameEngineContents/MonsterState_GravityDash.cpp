@@ -28,6 +28,7 @@ void MonsterState_GravityDash::EnterState()
 
 
 
+
 void MonsterState_GravityDash::Update(float _DeltaTime)
 {
 	//몬스터 객체에서 지정해준 우선 처리 사항
@@ -43,8 +44,8 @@ void MonsterState_GravityDash::Update(float _DeltaTime)
 	//일정 시간이 흐르면 FSM 전환
 	if (DashDuration < AccTime)
 	{
-		//만약 땅에 머물러있어도 Falling이 알아서 move로 바꿔줄것임
-		GetFSM()->ChangeState(MonsterStateType::Falling);
+		//만약 공중에 있어도 Falling이 알아서 falling으로 바꿔줄것임
+		GetFSM()->ChangeState(MonsterStateType::Move);
 		return;
 	}
 
@@ -85,3 +86,8 @@ void MonsterState_GravityDash::Update(float _DeltaTime)
 	}
 }
 
+
+void MonsterState_GravityDash::ExitState()
+{
+	GetMonster()->RaiseOnGround(MonsterBase::CollisionScale);
+}

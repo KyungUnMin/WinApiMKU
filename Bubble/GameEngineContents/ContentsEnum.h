@@ -14,6 +14,9 @@ enum class PlayerCharacterType
 //몬스터는 항상 Bubble보다 늦게 실행되어야 합니다
 //그래야 버블이 Death될때 댕글링 포인터를 막을수 있습니다
 //하지만 버블에도 콜리전을 두어서 개선할 계획입니다
+
+//NatureMissle은 Monster보다 늦게 실행되어야 함
+//그래야 Nature가 Monster의 이동을 컨트롤 할 수 있음
 enum class UpdateOrder
 {
 	Defalut,
@@ -22,6 +25,7 @@ enum class UpdateOrder
 	Monster_Missle,
 	Monster,
 	BubbleDest,
+	Nature_Missle,
 
 	DEBUG_GRID
 };
@@ -44,6 +48,7 @@ enum class RenderOrder
 
 	ClearBubble,
 	Player1,
+	NatureMissle,
 
 	UI
 };
@@ -55,7 +60,8 @@ enum class CollisionOrder
 	Monster,
 	Player_Missle,
 	Monster_Missle,
-	BubbleDest
+	BubbleDest,
+	NatureMissle,
 };
 
 enum class BubbleMissleType

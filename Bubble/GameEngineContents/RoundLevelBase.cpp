@@ -17,6 +17,7 @@
 #include "BubbleDestHelper.h"
 #include "MonsterSpawner.h"
 #include "PointPannel.h"
+#include "NatureMissleBase.h"
 
 const float4	RoundLevelBase::PlayerSpawnPos			= { 100.f, 620.f };
 const float		RoundLevelBase::StageMoveDuration	= 1.5f;
@@ -155,6 +156,8 @@ bool RoundLevelBase::MoveToNextStage()
 	{
 		MonMissle->Death();
 	}
+	
+	NatureMissleBase::AllMissleClear();
 
 	return true;
 }

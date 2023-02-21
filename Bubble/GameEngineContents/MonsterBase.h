@@ -16,7 +16,7 @@ public:
 	static const float4 CollisionOffset;
 
 	MonsterBase();
-	~MonsterBase() override;
+	virtual ~MonsterBase() override;
 
 	MonsterBase(const MonsterBase& _Other) = delete;
 	MonsterBase(MonsterBase&& _Other) noexcept = delete;
@@ -38,6 +38,8 @@ public:
 	bool IsLocked();
 
 	void DeathFromBubble();
+
+	void DeathFromNature(class NatureMissleBase* _Nature);
 
 	void FSMReset();
 

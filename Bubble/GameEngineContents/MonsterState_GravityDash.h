@@ -16,6 +16,7 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime)  override;
 	void EnterState() override;
+	void ExitState() override;
 
 private:
 	const float4	DashGravity			= float4{ 0.f, 300.f };
