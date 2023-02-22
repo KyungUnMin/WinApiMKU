@@ -49,6 +49,8 @@ public:
 
 	GameEngineRender* GetRender();
 
+	PlayerStateType GetCurStateByEnum();
+
 	//void PlayerAttack();
 
 protected:
@@ -73,6 +75,5 @@ private:
 	//타입에 따라 컴포넌트 생성
 	void CreateState(PlayerStateType _StateType);
 
-	PlayerStateType GetCurStateByEnum();
 };
 

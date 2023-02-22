@@ -32,8 +32,8 @@ void MonsterState_RocketDash::Update(float _DeltaTime)
 	//움직임을 처리하고 벽에 막혔다면
 	if (false == GetMonster()->MoveHorizon(DashSpeed.x, MonsterBase::CollisionScale, _DeltaTime))
 	{
-		//아래로 떨어지기
-		GetFSM()->ChangeState(MonsterStateType::Falling);
+		//만약 공중에 있어도 Falling이 될 것
+		GetFSM()->ChangeState(MonsterStateType::Move);
 		return;
 	}
 
