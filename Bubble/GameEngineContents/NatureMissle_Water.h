@@ -16,6 +16,11 @@ public:
 
 	void InitPos(const float4& _HeadPos);
 
+	void SetWaterCount(int _Count) 
+	{
+		WaterCount = _Count;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime)  override;
@@ -28,6 +33,8 @@ private:
 
 	NatureMissle_Water*		FrontWater				= nullptr;
 	float4								PrevPos					= float4::Zero;
+	float4 StartPos;
+	int WaterCount;
 
 	void ResourceLoad();
 

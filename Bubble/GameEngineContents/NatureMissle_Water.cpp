@@ -3,6 +3,7 @@
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineLevel.h>
 
 const std::string_view				NatureMissle_Water::ImagePath	= "Water.bmp";
 std::list<NatureMissle_Water*>	NatureMissle_Water::AllWaters;
@@ -52,6 +53,8 @@ void NatureMissle_Water::ResourceLoad()
 //BubbleStatePop에서 호출됨
 void NatureMissle_Water::InitPos(const float4& _HeadPos)
 {
+	StartPos = _HeadPos;
+
 	if (true == AllWaters.empty())
 	{
 		PrevPos = _HeadPos;
@@ -71,19 +74,27 @@ void NatureMissle_Water::InitPos(const float4& _HeadPos)
 
 void NatureMissle_Water::Update(float _DeltaTime)
 {
+	if (0 != WaterCount && GetLiveTime() >= 0.1f)
+	{
+		NatureMissle_Water* WaterMissle = GetLevel()->CreateActor<NatureMissle_Water>(UpdateOrder::Nature_Missle);
+		WaterMissle->SetWaterCount(--WaterCount);
+		WaterMissle->InitPos(StartPos);
+		WaterCount = 0;
+	}
+
 	//이미지 프레임 결정
 	SetImageFrame();
 
-	if (nullptr == FrontWater)
-	{
+	//if (nullptr == FrontWater)
+	//{
 		//맨 앞쪽 파도 이동
 		HeadMove(_DeltaTime);
-	}
-	else
-	{
-		//맨 앞 파도를 제외한 나머지 파도 이동
-		TailMove(_DeltaTime);
-	}
+	//}
+	//else
+	//{
+	//	//맨 앞 파도를 제외한 나머지 파도 이동
+	//	TailMove(_DeltaTime);
+	//}
 
 }
 

@@ -115,12 +115,13 @@ void BubbleStatePop::CreateNatureMissle()
 		break;
 	case BubbleMissleType::Water:
 	{
-		const size_t WaterCnt = 10;
-		for (size_t i = 0; i < WaterCnt; ++i)
-		{
+		// const size_t WaterCnt = 10;
+		//for (size_t i = 0; i < WaterCnt; ++i)
+		//{
 			NatureMissle_Water* WaterMissle = Bubble->GetLevel()->CreateActor<NatureMissle_Water>(UpdateOrder::Nature_Missle);
+			WaterMissle->SetWaterCount(10);
 			WaterMissle->InitPos(Bubble->GetPos());
-		}
+		// }
 	}
 		break;
 	case BubbleMissleType::Electronic:
