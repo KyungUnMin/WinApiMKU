@@ -292,6 +292,9 @@
     <ClInclude Include="PlayerState_Embarrassed.h">
       <Filter>03.CommonActors\02.MovableObject\02.Player\02.PlayerFSM\11.Embarrassed</Filter>
     </ClInclude>
+    <ClInclude Include="NatureMissle_Rainbow.h">
+      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\04.Rainbow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -617,6 +620,9 @@
     </ClCompile>
     <ClCompile Include="PlayerState_Embarrassed.cpp">
       <Filter>03.CommonActors\02.MovableObject\02.Player\02.PlayerFSM\11.Embarrassed</Filter>
+    </ClCompile>
+    <ClCompile Include="NatureMissle_Rainbow.cpp">
+      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\04.Rainbow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1000,6 +1006,9 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\02.Player\02.PlayerFSM\11.Embarrassed">
       <UniqueIdentifier>{fa03fb23-62ef-4be4-89ff-f49b9179e7a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\06.NatureMissle\04.Rainbow">
+      <UniqueIdentifier>{962f1a11-4886-43e8-a38f-a63764fc5f0b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

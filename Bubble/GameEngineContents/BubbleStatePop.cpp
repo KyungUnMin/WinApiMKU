@@ -6,6 +6,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include "BubbleMissle.h"
 #include "MonsterBase.h"
+#include "PlayerBase.h"
 
 #include "NatureMissle_Electronic.h"
 #include "NatureMissle_Water.h"
@@ -115,9 +116,11 @@ void BubbleStatePop::CreateNatureMissle()
 		break;
 	case BubbleMissleType::Water:
 	{
+		float4 PlayerDir = PlayerBase::MainPlayer->GetDirVec();
+
 		NatureMissle_Water* WaterMissle = Bubble->GetLevel()->CreateActor<NatureMissle_Water>(UpdateOrder::Nature_Missle);
-		WaterMissle->SetCreateCount(5);
-		WaterMissle->InitPos(Bubble->GetPos());
+		WaterMissle->SetCreateCount(CreateWaterCount);
+		WaterMissle->InitPos(Bubble->GetPos(), {-PlayerDir.x, PlayerDir.y});
 	}
 		break;
 	case BubbleMissleType::Electronic:

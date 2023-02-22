@@ -1,10 +1,12 @@
 #include "PlayerBase.h"
 #include <queue>
 #include <GameEngineBase/GameEngineDebug.h>
+#include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineCore/GameEngineResources.h>
 #include "ContentsDefine.h"
 #include "PlayerFSM.h"
 #include "Gravity.h"
@@ -12,8 +14,9 @@
 #include "BubbleMissle.h"
 #include "BubbleMissleFSM.h"
 
-const float4 PlayerBase::CollisionOffset = float4{0.f, -30.f};
-const float4 PlayerBase::CollisionScale = float4{ 50.f, 50.f };
+const float4	PlayerBase::CollisionOffset = float4{0.f, -30.f};
+const float4	PlayerBase::CollisionScale = float4{ 50.f, 50.f };
+bool					PlayerBase::Unbeatable = false;
 
 PlayerBase* PlayerBase::MainPlayer = nullptr;
 
@@ -45,6 +48,25 @@ PlayerBase::~PlayerBase()
 
 
 
+void PlayerBase::UnbeatableSwitch()
+{
+	Unbeatable = !Unbeatable;
+	if (nullptr == MainPlayer)
+		return;
+
+	if (true == Unbeatable)
+	{
+		MainPlayer->ShieldRender->On();
+	}
+	else
+	{
+		MainPlayer->ShieldRender->Off();
+	}
+}
+
+
+
+
 
 
 
@@ -68,8 +90,47 @@ void PlayerBase::Start()
 
 	BBSpawner = GetLevel()->CreateActor<BubbleSpawner>();
 	BBSpawner->SetPlayer(this);
+
+	CreateCheetShield();
 }
 
+void PlayerBase::CreateCheetShield()
+{
+	static bool IsLoad = false;
+	if (false == IsLoad)
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToDirectory("ContentsResources");
+		Dir.Move("ContentsResources");
+		Dir.Move("Image");
+		Dir.Move("Common");
+		Dir.Move("Player");
+		GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("CheetShield.bmp"))->Cut(3, 1);
+		IsLoad = true;
+	}
+
+	ShieldRender = CreateRender(RenderOrder::Shield);
+	ShieldRender->SetScale(PlayerRenderScale);
+	ShieldRender->SetPosition(CollisionOffset);
+	ShieldRender->SetAlpha(100);
+
+	ShieldRender->CreateAnimation
+	({
+		.AnimationName = "CheetShield",
+		.ImageName = "CheetShield.bmp",
+		.Start = 0,
+		.End = 2,
+		.InterTimer = 0.1f,
+		.Loop = true
+	});
+	
+	ShieldRender->ChangeAnimation("CheetShield");
+
+	if (false == Unbeatable)
+	{
+		ShieldRender->Off();
+	}
+}
 
 
 void PlayerBase::Update(float _DeltaTime)
@@ -96,6 +157,10 @@ void PlayerBase::Render(float _DeltaTime)
 //몬스터쪽에서 호출됨
 void PlayerBase::AttackPlayer()
 {
+	//무적모드일때는 공격 취소
+	if (true == Unbeatable)
+		return;
+
 	//무적 시간
 	if (AliveLiveTime < ProtectionTime)
 		return;
@@ -123,6 +188,8 @@ void PlayerBase::ProtectionRender()
 
 	RenderPtr->OnOffSwtich();
 }
+
+
 
 
 

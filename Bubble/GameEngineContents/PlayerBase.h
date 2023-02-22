@@ -17,6 +17,13 @@ public:
 	static const float4 CollisionOffset;
 	static const float4 CollisionScale;
 
+	static void UnbeatableSwitch();
+
+	static bool IsUnbeatable()
+	{
+		return Unbeatable;
+	}
+
 	PlayerBase();
 	virtual ~PlayerBase() = 0;
 
@@ -76,6 +83,9 @@ protected:
 
 
 private:
+	static bool						Unbeatable;
+	GameEngineRender*		ShieldRender			= nullptr;
+
 	const float4					PlayerRenderScale = float4{ 200.f, 200.f };
 	GameEngineRender*		RenderPtr				= nullptr;
 
@@ -89,8 +99,8 @@ private:
 	const float						ProtectionTime		= 3.f;
 	float								AliveLiveTime			= ProtectionTime;
 
-
 	//何劝茄 第 公利 楷免
 	void ProtectionRender();
+	void CreateCheetShield();
 };
 

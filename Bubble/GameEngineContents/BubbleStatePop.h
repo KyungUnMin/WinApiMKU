@@ -18,7 +18,8 @@ protected:
 	void EnterState() override;
 
 private:
-	BubbleMissleType BubbleType = BubbleMissleType::Normal;
+	BubbleMissleType	BubbleType				= BubbleMissleType::Normal;
+	const int					CreateWaterCount	= 5;
 
 	void ResourceLoad();
 	void CreateNatureMissle();

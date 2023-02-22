@@ -4,18 +4,21 @@
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineCore/GameEngineCollision.h>
+#include "MonsterBase.h"
+#include "PlayerBase.h"
+#include "PlayerFSM.h"
 
-const std::string_view				NatureMissle_Water::ImagePath	= "Water.bmp";
-
+const std::string_view	NatureMissle_Water::ImagePath			= "Water.bmp";
+const float4					NatureMissle_Water::MoveColScale		= float4{ 5.f, 5.f };
 
 NatureMissle_Water::NatureMissle_Water()
 {
-
 }
 
 NatureMissle_Water::~NatureMissle_Water()
 {
-	
+	DragMonsters.clear();
 }
 
 
@@ -24,6 +27,8 @@ void NatureMissle_Water::Start()
 {
 	NatureMissleBase::Start();
 	ResourceLoad();
+	GetCollision()->SetScale(CollisionScale);
+
 
 	GetRender()->SetImage(ImagePath);
 	GetRender()->SetFrame(0);
@@ -49,28 +54,82 @@ void NatureMissle_Water::ResourceLoad()
 
 
 
+
 void NatureMissle_Water::Update(float _DeltaTime)
 {
-	if (CreateChildTime < GetLiveTime() && 0 < WaterCount)
-	{
-		NatureMissle_Water* WaterMissle = GetLevel()->CreateActor<NatureMissle_Water>(UpdateOrder::Nature_Missle);
-		WaterMissle->SetCreateCount(WaterCount - 1);
-		WaterMissle->InitPos(StartPos);
-		WaterCount = 0;
-	}
+	CreateChild();
 
 	//이미지 프레임 결정
 	SetImageFrame();
-
 	Move(_DeltaTime);
 
+	MonsterKill();
+	MonsterDrag();
+	PlayerDrag();
 }
+
+
+
+void NatureMissle_Water::CreateChild()
+{
+	if (WaterCount <= 0)
+		return;
+
+	if (GetLiveTime() < CreateChildTime)
+		return;
+
+	NatureMissle_Water* WaterMissle = GetLevel()->CreateActor<NatureMissle_Water>(UpdateOrder::Nature_Missle);
+	WaterMissle->SetCreateCount(WaterCount - 1, false);
+	WaterMissle->InitPos(StartPos, StartDir);
+	WaterCount = 0;
+}
+
+
+
+
+
+
+void NatureMissle_Water::SetImageFrame()
+{
+	static const int FallFrmIndex = 7;
+	static const int RightFrmIndex = 4;
+	static const int MidFrmIndex = 2;
+	static const int LeftFrmIndex = 0;
+
+	//공중에 있다면
+	if (false == IsGround(NatureMissleBase::CollisionScale))
+	{
+		GetRender()->SetFrame(FallFrmIndex);
+		return;
+	}
+
+	if (false == IsFirst)
+	{
+		GetRender()->SetFrame(MidFrmIndex);
+		return;
+	}
+
+	//오른쪽 왼쪽에 따른 애니메이션
+	float4 Dir = GetDirVec();
+	if (float4::Right == Dir)
+	{
+		GetRender()->SetFrame(RightFrmIndex);
+	}
+	else if (float4::Left == Dir)
+	{
+		GetRender()->SetFrame(LeftFrmIndex);
+	}
+
+}
+
+
+
 
 
 void NatureMissle_Water::Move(float _DeltaTime)
 {
 	//공중에 있다면 아래로 이동
-	if (false == IsGround(NatureMissleBase::CollisionScale))
+	if (false == IsGround(MoveColScale))
 	{
 		//아래로 이동
 		SetMove(float4::Down * MoveSpeed * _DeltaTime);
@@ -91,10 +150,10 @@ void NatureMissle_Water::Move(float _DeltaTime)
 	//그렇지 않다면 수평으로 이동
 	else
 	{
-		RaiseOnGround(NatureMissleBase::CollisionScale);
+		RaiseOnGround(MoveColScale);
 
 		//움직이고 벽에 막혔다면 false를 return
-		if (false == MoveHorizon(MoveSpeed.x, NatureMissleBase::CollisionScale, _DeltaTime))
+		if (false == MoveHorizon(MoveSpeed.x, MoveColScale, _DeltaTime))
 		{
 			//방향을 반대로 전환
 			SetReverseDir();
@@ -104,28 +163,49 @@ void NatureMissle_Water::Move(float _DeltaTime)
 
 
 
-void NatureMissle_Water::SetImageFrame()
+
+void NatureMissle_Water::MonsterKill()
 {
-	static const int FallFrmIndex = 7;
-	static const int RightFrmIndex = 0;
-	static const int LeftFrmIndex = 4;
-
-	//공중에 있다면
-	if (false == IsGround(NatureMissleBase::CollisionScale))
-	{
-		GetRender()->SetFrame(FallFrmIndex);
+	static std::vector<MonsterBase*> CollisionMonsters;
+	if (false == CollisionCheckWithMonster(CollisionMonsters))
 		return;
-	}
-
-	//오른쪽 왼쪽에 따른 애니메이션
-	float4 Dir = GetDirVec();
-	if (float4::Right == Dir)
+	
+	for (MonsterBase* Monster : CollisionMonsters)
 	{
-		GetRender()->SetFrame(RightFrmIndex);
+		Monster->DeathFromNature(this);
+		DragMonsters.push_back(Monster);
 	}
-	else if (float4::Left == Dir)
-	{
-		GetRender()->SetFrame(LeftFrmIndex);
-	}
-
 }
+
+void NatureMissle_Water::MonsterDrag()
+{
+	auto Iter = DragMonsters.begin();
+	while (Iter != DragMonsters.end())
+	{
+		if (true == (*Iter)->IsDeath())
+		{
+			Iter = DragMonsters.erase(Iter);
+		}
+
+		(*Iter)->SetPos(GetPos() + MonsterBase::CollisionOffset);
+		++Iter;
+	}
+}
+
+void NatureMissle_Water::PlayerDrag()
+{
+	if (false == CollisionCheckWithPlayer())
+		return;
+
+	PlayerStateType PlayerState = PlayerBase::MainPlayer->GetFSM()->GetCurStateByEnum();
+	if (PlayerState == PlayerStateType::Jump)
+		return;
+
+	if (PlayerState == PlayerStateType::Damaged)
+		return;
+
+
+	PlayerBase::MainPlayer->SetPos(GetPos());
+}
+
+

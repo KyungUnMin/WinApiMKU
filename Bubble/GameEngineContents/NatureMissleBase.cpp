@@ -52,6 +52,10 @@ bool NatureMissleBase::CollisionCheckWithPlayer()
 	if (nullptr == PlayerBase::MainPlayer)
 		return false;
 
+	//플레이어가 무적모드일 때
+	if (true == PlayerBase::IsUnbeatable())
+		return false;
+
 	float4 PlayerPos = PlayerBase::MainPlayer->GetPos();
 	float4 PlayerColScale = PlayerBase::CollisionScale;
 	float4 ThisPos = GetPos();

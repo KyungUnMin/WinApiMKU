@@ -48,6 +48,7 @@ enum class RenderOrder
 
 	ClearBubble,
 	Player1,
+	Shield,
 	NatureMissle,
 
 	UI
