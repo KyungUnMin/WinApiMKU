@@ -26,7 +26,6 @@ private:
 	const float						ScreenOutOffsetY	= 200.f;
 	const float4					MoveSpeed				= { 500.f, 500.f };
 
-	//const float						TailMoveTime			= 0.005f;
 	NatureMissle_Water*		FrontWater				= nullptr;
 	float4								PrevPos					= float4::Zero;
 
