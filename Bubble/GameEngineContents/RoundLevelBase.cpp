@@ -144,6 +144,7 @@ bool RoundLevelBase::MoveToNextStage()
 	NextRender->On();
 	NextRender->SetPosition(-ArrangeDir * ScreenSize);
 
+	//스테이지 상의 버블 삭제
 	std::vector<GameEngineActor*> Bubbles = GetActors(UpdateOrder::Player_Missle);
 	for (size_t i = 0; i < Bubbles.size(); ++i)
 	{
@@ -151,13 +152,19 @@ bool RoundLevelBase::MoveToNextStage()
 		BubbleFSM->ChangeState(BubbleStateType::Pop);
 	}
 
+	//스테이지 상의 몬스터 투사체 삭제
 	std::vector<GameEngineActor*> MonMissles = GetActors(UpdateOrder::Monster_Missle);
 	for (GameEngineActor* MonMissle : MonMissles)
 	{
 		MonMissle->Death();
 	}
 	
-	NatureMissleBase::AllMissleClear();
+	//스테이지 상의 특수버블 투사체 삭제
+	std::vector<GameEngineActor*> NatureMissles = GetActors(UpdateOrder::Nature_Missle);
+	for (GameEngineActor* NatureMissle : NatureMissles)
+	{
+		NatureMissle->Death();
+	}
 
 	return true;
 }

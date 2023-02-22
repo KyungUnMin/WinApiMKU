@@ -1,5 +1,4 @@
 #pragma once
-#include <set>
 #include "MovableActor.h"
 
 class GameEngineRender;
@@ -38,8 +37,6 @@ protected:
 	bool CollisionCheckWithMonster(std::vector<MonsterBase*>& _Monsters);
 
 private:
-	static std::set<NatureMissleBase*>		AllNatureMissles;
-
 	GameEngineRender*		RenderPtr		= nullptr;
 	GameEngineCollision*		CollisionPtr		= nullptr;
 };

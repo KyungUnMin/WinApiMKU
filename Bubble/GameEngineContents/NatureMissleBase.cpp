@@ -5,28 +5,22 @@
 #include "PlayerBase.h"
 #include "MonsterBase.h"
 
-const										float4 NatureMissleBase::CollisionScale	= float4{50.f, 50.f};
-const										float4 NatureMissleBase::RenderScale	= float4{200.f, 200.f};
-std::set<NatureMissleBase*>	NatureMissleBase::AllNatureMissles;
-
-
+const										float4 NatureMissleBase::CollisionScale		= float4{50.f, 50.f};
+const										float4 NatureMissleBase::RenderScale			= float4{200.f, 200.f};
 
 NatureMissleBase::NatureMissleBase()
 {
-	AllNatureMissles.insert(this);
+
 }
 
 NatureMissleBase::~NatureMissleBase()
 {
-	AllNatureMissles.erase(this);
+
 }
 
 void NatureMissleBase::AllMissleClear()
 {
-	for (NatureMissleBase* NatureMissle : AllNatureMissles)
-	{
-		NatureMissle->Death();
-	}
+
 }
 
 

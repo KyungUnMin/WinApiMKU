@@ -9,7 +9,7 @@ public:
 	static const std::string_view AttachAniName;
 
 	NatureMissle_Electronic();
-	~NatureMissle_Electronic();
+	~NatureMissle_Electronic() override;
 
 	NatureMissle_Electronic(const NatureMissle_Electronic& _Other) = delete;
 	NatureMissle_Electronic(NatureMissle_Electronic&& _Other) noexcept = delete;

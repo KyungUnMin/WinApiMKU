@@ -8,6 +8,7 @@
 #include "MonsterBase.h"
 
 #include "NatureMissle_Electronic.h"
+#include "NatureMissle_Water.h"
 
 BubbleStatePop::BubbleStatePop()
 {
@@ -57,9 +58,6 @@ void BubbleStatePop::EnterState()
 
 	GetBubble()->GetCollisionPtr()->Off();
 
-	if (BubbleMissleType::Normal == BubbleType)
-		return;
-
 	//버블 타입에 따라 무언가 생성
 	CreateNatureMissle();
 }
@@ -91,10 +89,21 @@ void BubbleStatePop::ResourceLoad()
 
 void BubbleStatePop::CreateNatureMissle()
 {
-
 	//임시
-	if (BubbleMissleType::Electronic != BubbleType)
+	if (BubbleMissleType::Normal == BubbleType)
 		return;
+
+	if (BubbleMissleType::Fire== BubbleType)
+		return;
+
+	if (BubbleMissleType::Rainbow == BubbleType)
+		return;
+
+	if (BubbleMissleType::Windy == BubbleType)
+		return;
+
+	/*if (BubbleMissleType::Water == BubbleType)
+		return;*/
 
 
 	NatureMissleBase* NatureMissle = nullptr;
@@ -105,9 +114,18 @@ void BubbleStatePop::CreateNatureMissle()
 	case BubbleMissleType::Fire:
 		break;
 	case BubbleMissleType::Water:
+	{
+		const size_t WaterCnt = 10;
+		for (size_t i = 0; i < WaterCnt; ++i)
+		{
+			NatureMissle_Water* WaterMissle = Bubble->GetLevel()->CreateActor<NatureMissle_Water>(UpdateOrder::Nature_Missle);
+			WaterMissle->InitPos(Bubble->GetPos());
+		}
+	}
 		break;
 	case BubbleMissleType::Electronic:
 		NatureMissle = Bubble->GetLevel()->CreateActor<NatureMissle_Electronic>(UpdateOrder::Nature_Missle);
+		NatureMissle->SetPos(Bubble->GetPos());
 		break;
 	case BubbleMissleType::Rainbow:
 		break;
@@ -115,5 +133,4 @@ void BubbleStatePop::CreateNatureMissle()
 		break;
 	}
 
-	NatureMissle->SetPos(Bubble->GetPos());
 }
