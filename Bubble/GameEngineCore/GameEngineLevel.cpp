@@ -69,6 +69,14 @@ void GameEngineLevel::ActorsUpdate(float _DeltaTime)
 	for (; GroupStartIter != GroupEndIter; ++GroupStartIter)
 	{
 		std::list<GameEngineActor*>& ActorList = GroupStartIter->second;
+		int Order = GroupStartIter->first;
+		float CurTimeScale = 1.f;
+
+		//이 그룹에 타임스케일을 지정해주었다면
+		if (TimeScales.end() != TimeScales.find(Order))
+		{
+			CurTimeScale = TimeScales[Order];
+		}
 
 		for (GameEngineActor* Actor : ActorList)
 		{
@@ -77,8 +85,13 @@ void GameEngineLevel::ActorsUpdate(float _DeltaTime)
 				continue;
 			}
 
+			Actor->TimeScale = CurTimeScale;
+
+			//Actor의 LiveTime은 실제 델타 타임으로
 			Actor->LiveTime += _DeltaTime;
-			Actor->Update(_DeltaTime);
+
+			//지정된 타임스케일로 Update
+			Actor->Update(_DeltaTime * CurTimeScale);
 		}
 	}
 
@@ -195,7 +208,7 @@ void GameEngineLevel::ActorsRender(float _DeltaTime)
 				if (nullptr == Render || false == Render->IsUpdate())
 					continue;
 
-				Render->Render(_DeltaTime);
+				Render->Render(_DeltaTime * Render->GetActor()->TimeScale);
 			}
 		}
 	}

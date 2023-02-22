@@ -107,6 +107,39 @@ public:
 		return w * 0.5f;
 	}
 
+	//벡터의 각도 구하기(Degree)
+	float GetAngleDeg()
+	{
+		return GetAngleRad() * GameEngineMath::RadToDeg;
+	}
+
+	//벡터의 각도 구하기(Radian)
+	float GetAngleRad()
+	{
+		float4 AngleCheck = (*this);
+		AngleCheck.Normalize();
+
+		//cos(각도)는 x값이 나온다
+		//그럼 역함수인 acos에 x값을 넣으면 각도가 나온다
+		float Result = acosf(AngleCheck.x);
+
+		//하지만 역삼각함수는 전단사함수(일대일 대응)가 아니다
+			//ex) sin(PIE * 1/2) == sin(PIE * 3/2) == 1
+			//ex) asin(1) => (PIE * 1/2 ) or (PIE * 3/2) ???
+		//그래서 역삼각함수의 치역은 0 ~ PIE로 제한된다
+
+		//(구한 각도가 PIE를 넘겼어야 하는 각도지만 
+			//수평선과 대칭되는 각도가 나왔었다면)
+		if (0.f < AngleCheck.y)
+		{
+			//각도를 수평선 기준으로 대칭이동 시킨다
+			Result = GameEngineMath::PIE2 - Result;
+		}
+
+		return Result;
+	}
+
+
 	float4 half() const
 	{
 		return { x * 0.5f,y * 0.5f,z * 0.5f,w };

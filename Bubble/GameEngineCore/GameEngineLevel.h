@@ -124,6 +124,17 @@ public:
 		DeBugTexts.push_back(_DebugText);
 	}
 
+	template <typename EnumType>
+	void SetTimeScale(EnumType _GroupIndex, float _Time)
+	{
+		SetTimeScale(static_cast<int>(_GroupIndex), _Time);
+	}
+
+	void SetTimeScale(int _GroupIndex, float _Time)
+	{
+		TimeScales[_GroupIndex] = _Time;
+	}
+
 protected:
 	virtual void Loading() = 0;
 	virtual void Update(float _DeltaTime) = 0;
@@ -146,6 +157,8 @@ private:
 	std::map<int, std::list<GameEngineActor*>>		Actors;
 	std::map<int, std::list<GameEngineRender*>>	Renders;
 	std::map<int, std::list<GameEngineCollision*>>	Collisions;
+
+	std::map<int, float> TimeScales;
 
 	//엑터가 생성될 때 호출(CreateActor)
 	void ActorStart(GameEngineActor* _Actor, int _Order);

@@ -90,6 +90,7 @@ protected:
 	}
 
 private:
+	float												TimeScale		= 0.f;
 	float												LiveTime			= 0.0f;
 	float4												Pos					= { 0.0f, 0.0f };
 	std::list<GameEngineRender*>		RenderList;
