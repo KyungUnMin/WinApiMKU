@@ -14,9 +14,13 @@ public:
 	NatureMissle_Water& operator=(const NatureMissle_Water& _Other) = delete;
 	NatureMissle_Water& operator=(const NatureMissle_Water&& _Other) noexcept = delete;
 
-	void InitPos(const float4& _HeadPos);
+	inline void InitPos(const float4& _StartPos)
+	{
+		StartPos = _StartPos;
+		SetPos(_StartPos);
+	}
 
-	void SetWaterCount(int _Count) 
+	void SetCreateCount(int _Count) 
 	{
 		WaterCount = _Count;
 	}
@@ -26,26 +30,16 @@ protected:
 	void Update(float _DeltaTime)  override;
 
 private:
-	static std::list<NatureMissle_Water*> AllWaters;
-
 	const float						ScreenOutOffsetY	= 200.f;
 	const float4					MoveSpeed				= { 500.f, 500.f };
 
-	NatureMissle_Water*		FrontWater				= nullptr;
-	float4								PrevPos					= float4::Zero;
-	float4 StartPos;
-	int WaterCount;
+	const float						CreateChildTime		= 0.05f;
+	float4								StartPos					= float4::Zero;
+	int									WaterCount				= 0;
+
 
 	void ResourceLoad();
-
-	void HeadMove(float _DeltaTime);
-	void TailMove(float _DeltaTime);
-
-	inline const float4& GetPrevPos()
-	{
-		return PrevPos;
-	}
-
+	void Move(float _DeltaTime);
 	void SetImageFrame();
 };
 

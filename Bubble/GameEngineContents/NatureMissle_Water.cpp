@@ -6,7 +6,6 @@
 #include <GameEngineCore/GameEngineLevel.h>
 
 const std::string_view				NatureMissle_Water::ImagePath	= "Water.bmp";
-std::list<NatureMissle_Water*>	NatureMissle_Water::AllWaters;
 
 
 NatureMissle_Water::NatureMissle_Water()
@@ -50,34 +49,12 @@ void NatureMissle_Water::ResourceLoad()
 
 
 
-//BubbleStatePop에서 호출됨
-void NatureMissle_Water::InitPos(const float4& _HeadPos)
-{
-	StartPos = _HeadPos;
-
-	if (true == AllWaters.empty())
-	{
-		PrevPos = _HeadPos;
-		SetPos(_HeadPos);
-	}
-	else
-	{
-		FrontWater = AllWaters.back();
-		PrevPos = FrontWater->GetPrevPos();
-		SetPos(FrontWater->GetPrevPos());
-	}
-
-	AllWaters.push_back(this);
-}
-
-
-
 void NatureMissle_Water::Update(float _DeltaTime)
 {
-	if (0 != WaterCount && GetLiveTime() >= 0.1f)
+	if (CreateChildTime < GetLiveTime() && 0 < WaterCount)
 	{
 		NatureMissle_Water* WaterMissle = GetLevel()->CreateActor<NatureMissle_Water>(UpdateOrder::Nature_Missle);
-		WaterMissle->SetWaterCount(--WaterCount);
+		WaterMissle->SetCreateCount(WaterCount - 1);
 		WaterMissle->InitPos(StartPos);
 		WaterCount = 0;
 	}
@@ -85,25 +62,13 @@ void NatureMissle_Water::Update(float _DeltaTime)
 	//이미지 프레임 결정
 	SetImageFrame();
 
-	//if (nullptr == FrontWater)
-	//{
-		//맨 앞쪽 파도 이동
-		HeadMove(_DeltaTime);
-	//}
-	//else
-	//{
-	//	//맨 앞 파도를 제외한 나머지 파도 이동
-	//	TailMove(_DeltaTime);
-	//}
+	Move(_DeltaTime);
 
 }
 
 
-void NatureMissle_Water::HeadMove(float _DeltaTime)
+void NatureMissle_Water::Move(float _DeltaTime)
 {
-	//뒤쪽 노드를 위해 움직이기 이전의 위치값 저장
-	PrevPos = GetPos();
-
 	//공중에 있다면 아래로 이동
 	if (false == IsGround(NatureMissleBase::CollisionScale))
 	{
@@ -115,11 +80,11 @@ void NatureMissle_Water::HeadMove(float _DeltaTime)
 		float4 NowPos = GetPos();
 		if (ScreenSize.y + ScreenOutOffsetY < NowPos.y)
 		{
-			//if(10.f <  GetLiveTime())
-				//Death();
+			if(10.f <  GetLiveTime())
+				Death();
 
 			//y를 0으로 만들기
-			SetPos(NowPos * float4::Right);
+			//SetPos(NowPos * float4::Right);
 		}
 	}
 
@@ -139,21 +104,11 @@ void NatureMissle_Water::HeadMove(float _DeltaTime)
 
 
 
-void NatureMissle_Water::TailMove(float _DeltaTime)
-{
-	PrevPos = GetPos();
-	SetPos(FrontWater->GetPrevPos());
-}
-
-
-
-
 void NatureMissle_Water::SetImageFrame()
 {
 	static const int FallFrmIndex = 7;
 	static const int RightFrmIndex = 0;
 	static const int LeftFrmIndex = 4;
-
 
 	//공중에 있다면
 	if (false == IsGround(NatureMissleBase::CollisionScale))
