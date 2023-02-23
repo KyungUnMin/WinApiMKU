@@ -107,6 +107,21 @@ public:
 		return w * 0.5f;
 	}
 
+
+	void RotationZDeg(float _Deg)
+	{
+		RotationZRad(_Deg * GameEngineMath::DegToRad);
+	}
+
+	void RotationZRad(float _Rad)
+	{
+		float4 Copy = *this;
+		x = Copy.x * cosf(_Rad) - Copy.y * sinf(_Rad);
+		y = Copy.x * sinf(_Rad) + Copy.y * cosf(_Rad);
+	}
+
+
+
 	//벡터의 각도 구하기(Degree)
 	float GetAngleDeg()
 	{

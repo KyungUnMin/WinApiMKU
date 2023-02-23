@@ -26,6 +26,7 @@ enum class UpdateOrder
 	Monster,
 	BubbleDest,
 	Nature_Missle,
+	Item,
 
 	DEBUG_GRID
 };
@@ -50,6 +51,7 @@ enum class RenderOrder
 	Player1,
 	Shield,
 	NatureMissle,
+	Items,
 
 	UI
 };
@@ -63,6 +65,7 @@ enum class CollisionOrder
 	Monster_Missle,
 	BubbleDest,
 	NatureMissle,
+	Items
 };
 
 enum class BubbleMissleType

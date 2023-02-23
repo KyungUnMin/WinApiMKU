@@ -230,6 +230,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ItemBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Item_Normal.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MonsterBase.h">
       <SubType>
       </SubType>
@@ -615,6 +623,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Gravity.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ItemBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Item_Normal.cpp">
       <SubType>
       </SubType>
     </ClCompile>

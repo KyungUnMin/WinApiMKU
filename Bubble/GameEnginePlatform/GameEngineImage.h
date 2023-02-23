@@ -149,6 +149,19 @@ public:
 		int _Alpha);
 
 
+	void PlgCopy(
+		const GameEngineImage* _OtherImage,
+		float4 _CopyCenterPos, float4 _CopySize,
+		float4 _OtherImagePos, float4 _OtherImageSize,
+		float _Angle, GameEngineImage* _FilterImage);
+
+
+	void PlgCopy(
+		const GameEngineImage* _OtherImage, int _CutIndex,
+		float4 _CopyCenterPos, float4 _CopySize,
+		float _Angle, GameEngineImage* _FilterImage);
+
+
 
 	//내가 가지고 있는 이미지에서 해당 좌표의 색상을 받아옴
 	DWORD GetPixelColor(float4 _Pos, DWORD _OutColor);

@@ -1,9 +1,12 @@
 #include "MonsterState_Dead.h"
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineLevel.h>
 #include "RigidBody.h"
 #include "PlayerBase.h"
 #include "MonsterFSM.h"
+#include "MonsterBase.h"
+#include "Item_Normal.h"
 
 MonsterState_Dead::MonsterState_Dead()
 {
@@ -75,6 +78,7 @@ void MonsterState_Dead::ExitState()
 
 void MonsterState_Dead::CreateItem()
 {
-	//GetMonster()->GetLevel();
-	//TODO
+	MonsterBase* Monster = GetMonster();
+	Item_Normal* Item = Monster->GetLevel()->CreateActor<Item_Normal>(UpdateOrder::Item);
+	Item->Init(Monster->GetPos());
 }

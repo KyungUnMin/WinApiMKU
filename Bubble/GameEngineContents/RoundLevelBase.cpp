@@ -146,6 +146,15 @@ bool RoundLevelBase::MoveToNextStage()
 	NextRender->On();
 	NextRender->SetPosition(-ArrangeDir * ScreenSize);
 
+	//이전 스테이지에 존재했던 Actor들을 삭제
+	StageClear();
+
+	return true;
+}
+
+
+void RoundLevelBase::StageClear()
+{
 	//스테이지 상의 버블 삭제
 	std::vector<GameEngineActor*> Bubbles = GetActors(UpdateOrder::Player_Missle);
 	for (size_t i = 0; i < Bubbles.size(); ++i)
@@ -160,7 +169,7 @@ bool RoundLevelBase::MoveToNextStage()
 	{
 		MonMissle->Death();
 	}
-	
+
 	//스테이지 상의 특수버블 투사체 삭제
 	std::vector<GameEngineActor*> NatureMissles = GetActors(UpdateOrder::Nature_Missle);
 	for (GameEngineActor* NatureMissle : NatureMissles)
@@ -168,9 +177,13 @@ bool RoundLevelBase::MoveToNextStage()
 		NatureMissle->Death();
 	}
 
-	return true;
+	//스테이지 상의 아이템 삭제
+	std::vector<GameEngineActor*> Items = GetActors(UpdateOrder::Item);
+	for (GameEngineActor* Item : Items)
+	{
+		Item->Death();
+	}
 }
-
 
 
 
@@ -396,3 +409,4 @@ std::vector<GameEngineActor*> RoundLevelBase::GetAliveMonsters()
 
 	return StageMonsters;
 }
+

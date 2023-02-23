@@ -2,23 +2,32 @@
 #include <GameEngineBase/GameEngineMath.h>
 #include "GameEngineActor.h"
 
+// 제약사항
+// 이 액터는 무조건 0,0,0
+// 각층을 세팅할때는 무조건 cutting된 이미지만 들어올수 있다.
+
 struct FloorInfo
 {
-
+    int X;
+    int Y;
 };
 
+// 설명 :
 class GameEngineCollision;
 class GameEngineTileMap : public GameEngineActor
 {
 public:
+    // constrcuter destructer
     GameEngineTileMap();
     ~GameEngineTileMap();
 
+    // delete Function
     GameEngineTileMap(const GameEngineTileMap& _Other) = delete;
     GameEngineTileMap(GameEngineTileMap&& _Other) noexcept = delete;
     GameEngineTileMap& operator=(const GameEngineTileMap& _Other) = delete;
     GameEngineTileMap& operator=(GameEngineTileMap&& _Other) noexcept = delete;
 
+    // 무조건 
     void CreateTileMap(int _X, int _Y, int _Z, int _Order, float4 _TileSize);
 
     void CreateTileMapCollision(int _X, int _Y, int _Z, int _Order, float4 _TileSize);
@@ -39,7 +48,7 @@ public:
 
     GameEngineCollision* GetTileCollision(int _ZIndex, float4 _Pos);
 
-    bool IsValidIndex(int _Z, int _Y, int _X);
+    bool IsValidIndex(int _Z, float _Y, float _X);
 
     float4 GetIndex(float4 _Pos);
 

@@ -8,8 +8,8 @@ class MonsterBase;
 class NatureMissleBase : public MovableActor
 {
 public:
-	static const float4								CollisionScale;
-	static const float4								RenderScale;
+	static const float4	CollisionScale;
+	static const float4	RenderScale;
 	static void AllMissleClear();
 
 	NatureMissleBase();

@@ -146,5 +146,6 @@ private:
 
 	void CreateSpanwerPool(int _StageCount);
 	void BgmLoad();
+	void StageClear();
 };
 
