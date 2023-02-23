@@ -61,11 +61,21 @@ void MonsterState_Dead::Update(float _DeltaTime)
 		return;
 	}
 
-	if ((ScreenSize.y - AreaOffset.y) < NextPos.y)
+
+	//Dead처리
+	if ((0.f < NowSpeed.y) && (ScreenSize.hy() < NextPos.y) && true == GetMonster()->IsGround({ 2.f, 2.f }))
 	{
 		GetFSM()->ChangeState(MonsterStateType::Falling);
 		return;
 	}
+
+	//화면 아래로 나갔을때 처리
+	if (ScreenSize.y < NextPos.y)
+	{
+		GetFSM()->ChangeState(MonsterStateType::Falling);
+		return;
+	}
+
 
 	GetMonster()->SetPos(NextPos);
 }

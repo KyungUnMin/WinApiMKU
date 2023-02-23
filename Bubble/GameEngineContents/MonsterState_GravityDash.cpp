@@ -61,10 +61,11 @@ void MonsterState_GravityDash::Update(float _DeltaTime)
 		if (ScreenSize.y + ScreenOutOffsetY < NowPos.y)
 		{
 			//y를 0으로 만들기
-			GetMonster()->SetPos(NowPos * float4::Right);
+			GetMonster()->SetPos({ NowPos.x, 10.f });
 
 			//Stage밖으로 나가는 버그가 생기면 Falling상태로 바꿔버리자
 			//아니면 아래의 RaiseOnGround에서 화면 위로 올라갔을때 아래로 내리는 코드를 넣자
+			GetFSM()->ChangeState(MonsterStateType::Falling);
 		}
 	}
 
