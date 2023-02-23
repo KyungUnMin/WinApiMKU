@@ -7,6 +7,7 @@
 #include "BubbleMissle.h"
 #include "MonsterBase.h"
 #include "PlayerBase.h"
+#include "PointPannel.h"
 
 #include "NatureMissle_Electronic.h"
 #include "NatureMissle_Water.h"
@@ -64,6 +65,7 @@ void BubbleStatePop::EnterState()
 
 	//버블 타입에 따라 무언가 생성
 	CreateNatureMissle();
+	PointPannel::AddPoint(PopPoint);
 }
 
 void BubbleStatePop::Update(float _DeltaTime)
@@ -71,10 +73,6 @@ void BubbleStatePop::Update(float _DeltaTime)
 	if (false == GetBubble()->GetRender()->IsAnimationEnd())
 		return;
 
-	
-	//일단 임시적으로 Death처리하자
-	// 나중에 풀링 처리할꺼면 그때 바꾸자
-	//GetBubble()->Off();
 	GetBubble()->Death();
 }
 

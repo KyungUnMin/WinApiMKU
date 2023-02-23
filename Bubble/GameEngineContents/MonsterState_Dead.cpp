@@ -8,6 +8,7 @@
 #include "MonsterFSM.h"
 #include "MonsterBase.h"
 #include "Item_Normal.h"
+#include "PointPannel.h"
 
 MonsterState_Dead::MonsterState_Dead()
 {
@@ -33,12 +34,13 @@ void MonsterState_Dead::EnterState()
 	GameEngineRender* RenderPtr = GetMonster()->GetRender();
 	RenderPtr->ChangeAnimation(GetNowAniName());
 
-	//NowSpeed = OriginSpeed;
 	SetSpeed();
 	if (nullptr != PlayerBase::MainPlayer)
 	{
 		NowSpeed.x *= PlayerBase::MainPlayer->GetDirVec().x;
 	}
+
+	PointPannel::AddPoint(KillPoint);
 }
 
 void MonsterState_Dead::SetSpeed()

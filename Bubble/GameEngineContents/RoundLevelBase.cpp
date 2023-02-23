@@ -49,7 +49,7 @@ void RoundLevelBase::Loading()
 {
 	DestHelperPtr = CreateActor<BubbleDestHelper>();
 	BgmLoad();
-	ScorePannel = CreateActor<PointPannel>();
+	CreateActor<PointPannel>();
 }
 
 

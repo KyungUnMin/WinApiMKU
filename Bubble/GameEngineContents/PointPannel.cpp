@@ -7,6 +7,25 @@
 #include "ContentsEnum.h"
 #include "TextLine.h"
 
+unsigned int	PointPannel::NowPoint			= 0;
+unsigned int	PointPannel::HighPoint			= 30000;
+std::string		PointPannel::NowScoreStr		= "0";
+std::string		PointPannel::HighScoreStr		= "30000";
+
+void PointPannel::AddPoint(int _Score)
+{
+	NowPoint += _Score;
+	if (HighPoint < NowPoint)
+	{
+		HighPoint = NowPoint;
+	}
+
+	char Buffer[10];
+
+	NowScoreStr = std::to_string(NowPoint);
+	HighScoreStr = std::to_string(HighPoint);
+}
+
 PointPannel::PointPannel()
 {
 
@@ -16,6 +35,8 @@ PointPannel::~PointPannel()
 {
 
 }
+
+
 
 void PointPannel::Start()
 {
@@ -45,6 +66,8 @@ void PointPannel::ResourceLoad()
 void PointPannel::CreatePannel()
 {
 	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+	const float OffsetY = 50.f;
+
 	SetPos({ ScreenSize.hx(), OffsetY * 0.5f });
 	GameEngineRender* RenderPtr = CreateRender("PointPannel.bmp", RenderOrder::UI);
 	RenderPtr->SetScale({ ScreenSize.x, OffsetY });
@@ -59,7 +82,7 @@ void PointPannel::CreateText()
 	const std::pair<std::string, TextLineColor> Values[2][3] =
 	{
 		std::pair{"1UP", TextLineColor::Green},	std::pair{"HIGH SCORE", TextLineColor::Red},		std::pair{"Insert", TextLineColor::White},
-		std::pair{"0", TextLineColor::White},			std::pair{"0", TextLineColor::White},					std::pair{"Coin", TextLineColor::White}
+		std::pair{"0", TextLineColor::White},			std::pair{HighScoreStr, TextLineColor::White},		std::pair{"Coin", TextLineColor::White}
 	};
 
 	const float HeightPos[2] = { 25.f, 50.f };
@@ -89,8 +112,30 @@ void PointPannel::CreateText()
 
 
 
+
+
 void PointPannel::Update(float _DeltaTime)
 {
+	Update_Score();
+	Update_2PText(_DeltaTime);
+}
+
+
+void PointPannel::Update_Score()
+{
+	TextLine* NowScoreText = Texts[1][0];
+	TextLine* HighScoreText = Texts[1][1];
+
+	NowScoreText->SetString(NowScoreStr);
+	HighScoreText->SetString(HighScoreStr);
+}
+
+void PointPannel::Update_2PText(float _DeltaTime)
+{
+	static float AccTime = 0.0f;
+	static bool IsFirstText = true;
+	const float ChangeTextTime = 1.f;
+
 	AccTime += _DeltaTime;
 	if (AccTime < ChangeTextTime)
 		return;

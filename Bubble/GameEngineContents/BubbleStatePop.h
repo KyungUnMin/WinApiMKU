@@ -20,6 +20,7 @@ protected:
 private:
 	BubbleMissleType	BubbleType				= BubbleMissleType::Normal;
 	const int					CreateWaterCount	= 5;
+	const int					PopPoint					= 10;
 
 	void ResourceLoad();
 	void CreateNatureMissle();

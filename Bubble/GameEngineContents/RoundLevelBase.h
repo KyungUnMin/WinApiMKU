@@ -144,7 +144,6 @@ private:
 	const std::string_view				RoundBgmName		= "RoundBGM.mp3";
 
 	std::vector<MonsterSpawner*>	MonsterSpawners;
-	PointPannel*								ScorePannel				= nullptr;
 
 	void CreateSpanwerPool(int _StageCount);
 	void BgmLoad();
