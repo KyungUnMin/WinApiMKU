@@ -27,6 +27,7 @@ enum class UpdateOrder
 	BubbleDest,
 	Nature_Missle,
 	Item,
+	PointEffect,
 
 	DEBUG_GRID
 };

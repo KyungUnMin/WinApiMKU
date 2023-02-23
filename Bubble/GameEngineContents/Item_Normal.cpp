@@ -3,6 +3,7 @@
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "RoundLevelBase.h"
+#include "PointEffect.h"
 
 Item_Normal::Item_Normal()
 {
@@ -57,5 +58,6 @@ void Item_Normal::Init(const float4& _Pos)
 
 void Item_Normal::Excute()
 {
-
+	PointEffect* Point = GetLevel()->CreateActor<PointEffect>(UpdateOrder::PointEffect);
+	Point->SetPos(GetPos());
 }

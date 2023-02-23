@@ -20,8 +20,6 @@ void PointPannel::AddPoint(int _Score)
 		HighPoint = NowPoint;
 	}
 
-	char Buffer[10];
-
 	NowScoreStr = std::to_string(NowPoint);
 	HighScoreStr = std::to_string(HighPoint);
 }

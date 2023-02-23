@@ -183,6 +183,13 @@ void RoundLevelBase::StageClear()
 	{
 		Item->Death();
 	}
+
+	//스테이지 상의 포인트 이펙트 삭제
+	std::vector<GameEngineActor*> Points = GetActors(UpdateOrder::PointEffect);
+	for (GameEngineActor* Point : Points)
+	{
+		Point->Death();
+	}
 }
 
 
