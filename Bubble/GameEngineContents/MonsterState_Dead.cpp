@@ -1,4 +1,5 @@
 #include "MonsterState_Dead.h"
+#include <GameEngineBase/GameEngineRandom.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineLevel.h>
@@ -21,21 +22,33 @@ void MonsterState_Dead::Start()
 {
 	SetNowAniName("Dead");
 	ScreenSize = GameEngineWindow::GetScreenSize();
+
+	SetSpeed();
 }
+
+
 
 void MonsterState_Dead::EnterState()
 {
 	GameEngineRender* RenderPtr = GetMonster()->GetRender();
 	RenderPtr->ChangeAnimation(GetNowAniName());
 
-	NowSpeed = OriginSpeed;
+	//NowSpeed = OriginSpeed;
+	SetSpeed();
 	if (nullptr != PlayerBase::MainPlayer)
 	{
 		NowSpeed.x *= PlayerBase::MainPlayer->GetDirVec().x;
 	}
 }
 
+void MonsterState_Dead::SetSpeed()
+{
+	const float4 HighSpeed = float4{ 1200.f, -1000.f };
+	const float4 LowSpeed = float4{ 200.f, -400.f };
 
+	NowSpeed.x = GameEngineRandom::MainRandom.RandomFloat(LowSpeed.x, HighSpeed.x);
+	NowSpeed.y = GameEngineRandom::MainRandom.RandomFloat(HighSpeed.y, LowSpeed.y);
+}
 
 
 
@@ -85,6 +98,8 @@ void MonsterState_Dead::ExitState()
 	CreateItem();
 	GetMonster()->Off();
 }
+
+
 
 void MonsterState_Dead::CreateItem()
 {
