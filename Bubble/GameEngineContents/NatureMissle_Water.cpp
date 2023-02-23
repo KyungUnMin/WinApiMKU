@@ -134,7 +134,7 @@ void NatureMissle_Water::Move(float _DeltaTime)
 		//아래로 이동
 		SetMove(float4::Down * MoveSpeed * _DeltaTime);
 
-		//캐릭터가 화면 아래로 내려갔다면 위로 올리기
+		//화면 아래로 내려갔다면 없애기
 		float4 ScreenSize = GameEngineWindow::GetScreenSize();
 		float4 NowPos = GetPos();
 		if (ScreenSize.y + ScreenOutOffsetY < NowPos.y)
@@ -204,7 +204,6 @@ void NatureMissle_Water::PlayerDrag()
 
 	if (PlayerState == PlayerStateType::Damaged)
 		return;
-
 
 	PlayerBase::MainPlayer->SetPos(GetPos());
 }

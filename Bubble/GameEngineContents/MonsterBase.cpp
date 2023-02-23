@@ -49,20 +49,10 @@ void MonsterBase::Start_FSM(MonsterStateType _StartType)
 	FsmPtr->ChangeState(_StartType);
 }
 
-#include <GameEnginePlatform/GameEngineWindow.h>
 
 void MonsterBase::Update(float _DeltaTime)
 {
 	FsmPtr->Update(_DeltaTime);
-
-	float4 ScreenSize = GameEngineWindow::GetScreenSize();
-	float4 ThisPos = GetPos();
-
-	if (ThisPos.x < 0.f || ScreenSize.x < ThisPos.x)
-	{
-		MonsterStateType T = GetFSM()->GetCurStateByEnum();
-		int a = 0;
-	}
 }
 
 void MonsterBase::Render(float _DeltaTime)

@@ -47,7 +47,6 @@ void MonsterStateBase::ChangeAniDir()
 	const std::string NowDir = Monster->GetDirStr();
 	GameEngineRender* RenderPtr = Monster->GetRender();
 	RenderPtr->ChangeAnimation(NowDir + NowAniName, true);
-	//RenderPtr->ChangeAnimation(NowDir + NowAniName);
 }
 
 

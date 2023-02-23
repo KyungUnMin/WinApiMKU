@@ -212,7 +212,9 @@ void PlayerState_Falling::Move(float _DeltaTime)
 	if (ScreenSize.y + ScreenOutOffsetY < NowPos.y)
 	{
 		//y를 0으로 만들기
-		GetPlayer()->SetPos(NowPos * float4::Right);
+		//GetPlayer()->SetPos(NowPos * float4::Right);
+		GetPlayer()->SetPos({NowPos.x, 5.f});
+		GetFSM()->ChangeState(PlayerStateType::Falling);
 	}
 }
 
