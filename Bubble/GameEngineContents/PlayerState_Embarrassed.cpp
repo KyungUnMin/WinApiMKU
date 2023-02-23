@@ -4,6 +4,9 @@
 #include <GameEngineCore/GameEngineRender.h>
 #include "PlayerFSM.h"
 
+const float PlayerState_Embarrassed::Duration = 1.f;
+
+
 PlayerState_Embarrassed::PlayerState_Embarrassed()
 {
 

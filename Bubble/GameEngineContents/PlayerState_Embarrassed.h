@@ -4,6 +4,8 @@
 class PlayerState_Embarrassed : public PlayerStateBase
 {
 public:
+	static const float Duration;
+
 	PlayerState_Embarrassed();
 	~PlayerState_Embarrassed() override;
 
@@ -21,7 +23,6 @@ protected:
 private:
 	const std::string_view		AniName		= "Embarrassed";
 	const std::string_view		ImagePath	= "Player_Embarrassed.bmp";
-	const float							Duration		= 1.f;
 	float									AccTime		= 0.f;
 
 	void ResourceLoad();

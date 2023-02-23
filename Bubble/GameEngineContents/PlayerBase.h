@@ -68,6 +68,11 @@ public:
 		AliveLiveTime = 0.f;
 	}
 
+	inline float GetAliveTime()
+	{
+		return AliveLiveTime;
+	}
+
 protected:
 	//플레이어가 사용할 컴포넌트를 만들고 초기화
 	void Start() override;

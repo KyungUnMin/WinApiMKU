@@ -11,6 +11,7 @@
 #include "NatureMissle_Electronic.h"
 #include "NatureMissle_Water.h"
 #include "NatureMissle_Rainbow.h"
+#include "NatureMissle_Fire.h"
 
 BubbleStatePop::BubbleStatePop()
 {
@@ -95,10 +96,7 @@ void BubbleStatePop::CreateNatureMissle()
 	if (BubbleMissleType::Normal == BubbleType)
 		return;
 
-	if (BubbleMissleType::Fire== BubbleType)
-		return;
-
-	/*if (BubbleMissleType::Rainbow == BubbleType)
+	/*if (BubbleMissleType::Fire== BubbleType)
 		return;*/
 
 	if (BubbleMissleType::Windy == BubbleType)
@@ -111,26 +109,25 @@ void BubbleStatePop::CreateNatureMissle()
 	switch (BubbleType)
 	{
 	case BubbleMissleType::Fire:
+		NatureMissle = Bubble->GetLevel()->CreateActor<NatureMissle_Fire>(UpdateOrder::Nature_Missle);
 		break;
 	case BubbleMissleType::Water:
 	{
 		float4 PlayerDir = PlayerBase::MainPlayer->GetDirVec();
-
 		NatureMissle_Water* WaterMissle = Bubble->GetLevel()->CreateActor<NatureMissle_Water>(UpdateOrder::Nature_Missle);
 		WaterMissle->SetCreateCount(CreateWaterCount);
 		WaterMissle->InitPos(Bubble->GetPos(), {-PlayerDir.x, PlayerDir.y});
 	}
-		break;
+		return;
 	case BubbleMissleType::Electronic:
 		NatureMissle = Bubble->GetLevel()->CreateActor<NatureMissle_Electronic>(UpdateOrder::Nature_Missle);
-		NatureMissle->SetPos(Bubble->GetPos());
 		break;
 	case BubbleMissleType::Rainbow:
 		NatureMissle = Bubble->GetLevel()->CreateActor<NatureMissle_Rainbow>(UpdateOrder::Nature_Missle);
-		NatureMissle->SetPos(Bubble->GetPos());
 		break;
 	case BubbleMissleType::Windy:
 		break;
 	}
 
+	NatureMissle->SetPos(Bubble->GetPos());
 }
