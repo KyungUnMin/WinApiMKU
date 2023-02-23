@@ -3,6 +3,8 @@
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineCollision.h>
+#include "PlayerBase.h"
 
 #include "MonsterFSM.h"
 #include "MonsterState_Falling.h"
@@ -101,7 +103,14 @@ bool Monster_Magician::MagicianMoveStep(float _DeltaTime)
 	//일정 시간 동안은 움직이지 않는다
 	AniTime += _DeltaTime;
 	if (AniTime < ResumeTime)
+	{
+		if (true == GetCollision()->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Player) }))
+		{
+			PlayerBase::MainPlayer->AttackPlayer();
+		}
+
 		return true;
+	}
 
 	//특정 확률로 로켓대쉬 발동
 	if (0 == (rand() % RocketDashProbability))

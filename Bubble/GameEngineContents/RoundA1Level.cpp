@@ -11,6 +11,7 @@
 #include "PlayerBase.h"
 #include "BubbleDestHelper.h"
 #include "BubbleSpawner.h"
+#include "Item_BubbleLiquid.h"
 
 #include "MonsterSpawner.h"
 #include "Monster_ZenChan.h"
@@ -397,10 +398,19 @@ void RoundA1Level::Update_StageBubbleSpawner(float _DeltaTime)
 
 
 
-void RoundA1Level::ChangeNextLevel()
+void RoundA1Level::ChangeLastLevel()
 {
 	//다음레벨로 전환
 	BubbleCore::GetInst().ChangeLevel("EndingLevel");
+}
+
+
+
+void RoundA1Level::StartLastStage()
+{
+	Item_BubbleLiquid* BubbleLiquid = CreateActor<Item_BubbleLiquid>(UpdateOrder::Item);
+	BubbleLiquid->SetPos(BubbleDestHelper::GetGridPos(326));
+	BubbleLiquid->InitType(BubbleLiquidType::Electronic);
 }
 
 

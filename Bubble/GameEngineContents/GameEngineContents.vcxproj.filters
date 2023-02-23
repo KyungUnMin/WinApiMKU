@@ -307,6 +307,9 @@
     <ClInclude Include="Item_Normal.h">
       <Filter>03.CommonActors\01.StaticObject\05.Item\02.Normal</Filter>
     </ClInclude>
+    <ClInclude Include="Item_BubbleLiquid.h">
+      <Filter>03.CommonActors\01.StaticObject\05.Item\03.BubbleLiquid</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -647,6 +650,9 @@
     </ClCompile>
     <ClCompile Include="Item_Normal.cpp">
       <Filter>03.CommonActors\01.StaticObject\05.Item\02.Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="Item_BubbleLiquid.cpp">
+      <Filter>03.CommonActors\01.StaticObject\05.Item\03.BubbleLiquid</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1048,6 +1054,9 @@
     </Filter>
     <Filter Include="03.CommonActors\01.StaticObject\05.Item\02.Normal">
       <UniqueIdentifier>{11cb3bbe-7613-4321-986b-93f6e1a123c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\01.StaticObject\05.Item\03.BubbleLiquid">
+      <UniqueIdentifier>{1db6ba7b-5433-4003-bd87-be5a01f94412}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

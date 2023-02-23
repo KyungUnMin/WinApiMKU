@@ -82,11 +82,13 @@ bool MonsterStateBase::PlayerCollisionCheck()
 	if (nullptr == PlayerBase::MainPlayer)
 		return false;
 
-	float4 PlayerPos = PlayerBase::MainPlayer->GetPos();
+	/*float4 PlayerPos = PlayerBase::MainPlayer->GetPos() + PlayerBase::CollisionOffset;
 	float4 PlayerCollisionScale = PlayerBase::CollisionScale;
-	float4 MonsterPos = GetMonster()->GetPos();
-	float4 BubbleCollisionScale = BubbleMissle::CollisionScale;
+	float4 MonsterPos = GetMonster()->GetPos() + MonsterBase::CollisionOffset;
+	float4 BubbleCollisionScale = BubbleMissle::CollisionScale;*/
 
-	return GameEngineCollision::CollisionCircleToCircle({ PlayerPos, PlayerCollisionScale }, { MonsterPos , BubbleCollisionScale });
+
+	return GetMonster()->GetCollision()->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Player) });
+	//return GameEngineCollision::CollisionCircleToCircle({ PlayerPos, PlayerCollisionScale }, { MonsterPos , BubbleCollisionScale });
 }
 

@@ -23,7 +23,8 @@ public:
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
-	void ChangeNextLevel() override;
+	void ChangeLastLevel() override;
+	void StartLastStage() override;
 
 private:
 	std::vector<std::vector<StageBubbleSpawnerInfo>> StageBubbleSpawnCtrl;

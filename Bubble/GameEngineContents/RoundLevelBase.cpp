@@ -201,10 +201,11 @@ void RoundLevelBase::Update(float _DeltaTime)
 
 		if (NowStageIndex + 1 == StageImage->GetRenderSize())
 		{
-			ChangeNextLevel();
+			ChangeLastLevel();
 			return;
 		}
 
+		//스테이지 이동이 시작
 		MoveToNextStage();
 	}
 
@@ -236,16 +237,20 @@ void RoundLevelBase::Update(float _DeltaTime)
 		StageRender->SetPosition(NowPos);
 	}
 
-	//StageMoveDurationt을 경과했다면
+	//StageMoveDurationt을 경과했다면(스테이지 이동 끝)
 	if (1.f < Ratio)
 	{
 		SetNowStage(NowStageIndex + 1);
 		DestHelperPtr->TurnOnBubbleDest(NowStageIndex);
 		IsMoveValue = false;
 		StageMoveTime = 0.f;
+
+		if (true == IsLastStage())
+		{
+			StartLastStage();
+		}
 	}
 }
-
 
 
 
@@ -301,6 +306,7 @@ void RoundLevelBase::CreatePlayer(PlayerCharacterType _Type)
 	}
 
 }
+
 
 
 

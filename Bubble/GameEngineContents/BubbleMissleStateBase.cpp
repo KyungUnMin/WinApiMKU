@@ -37,13 +37,16 @@ void BubbleMissleStateBase::PlayerCollisionCheck()
 		return;
 
 	//이 플레이어가 버블과 충돌했다면 충돌한 버블들을 가져오기
-	float4 PlayerPos = Player->GetPos() + PlayerBase::CollisionOffset;
+	/*float4 PlayerPos = Player->GetPos() + PlayerBase::CollisionOffset;
 	float4 PlayerCollisionScale = PlayerBase::CollisionScale;
 	
 	float4 BubblePos = Bubble->GetPos();
 	float4 BubbleCollisionScale = BubbleMissle::CollisionScale;
 
 	if (false == GameEngineCollision::CollisionCircleToCircle(CollisionData{ PlayerPos , PlayerCollisionScale }, CollisionData{ BubblePos, BubbleCollisionScale }))
+		return;*/
+
+	if (false == GetBubble()->GetCollisionPtr()->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Player) }))
 		return;
 	
 	BubbleChainPop();

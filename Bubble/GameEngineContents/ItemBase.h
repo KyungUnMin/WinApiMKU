@@ -8,6 +8,7 @@ class ItemBase : public GameEngineActor
 {
 public:
 	static const std::string_view NormalImgPath;
+	static const std::string_view BubbleLiquidImgPath;
 	static const float4 CollisionScale;
 	static const float4 CollisionOffset;
 	static const float4 RenderScale;
@@ -20,8 +21,6 @@ public:
 	ItemBase(ItemBase&& _Other) noexcept = delete;
 	ItemBase& operator=(const ItemBase& _Other) = delete;
 	ItemBase& operator=(const ItemBase&& _Other) noexcept = delete;
-
-	void Init(const float4& _Pos);
 
 protected:
 	void Start() override;

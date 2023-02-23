@@ -116,7 +116,9 @@ protected:
 		return MonsterSpawners[_StageNum];
 	}
 
-	virtual void ChangeNextLevel(){}
+	virtual void ChangeLastLevel(){}
+
+	virtual void StartLastStage() {};
 
 private:
 	//선택한 캐릭터 타입
