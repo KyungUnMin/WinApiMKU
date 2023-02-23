@@ -10,6 +10,7 @@
 
 #include "NatureMissle_Electronic.h"
 #include "NatureMissle_Water.h"
+#include "NatureMissle_Rainbow.h"
 
 BubbleStatePop::BubbleStatePop()
 {
@@ -97,14 +98,11 @@ void BubbleStatePop::CreateNatureMissle()
 	if (BubbleMissleType::Fire== BubbleType)
 		return;
 
-	if (BubbleMissleType::Rainbow == BubbleType)
-		return;
+	/*if (BubbleMissleType::Rainbow == BubbleType)
+		return;*/
 
 	if (BubbleMissleType::Windy == BubbleType)
 		return;
-
-	/*if (BubbleMissleType::Water == BubbleType)
-		return;*/
 
 
 	NatureMissleBase* NatureMissle = nullptr;
@@ -128,6 +126,8 @@ void BubbleStatePop::CreateNatureMissle()
 		NatureMissle->SetPos(Bubble->GetPos());
 		break;
 	case BubbleMissleType::Rainbow:
+		NatureMissle = Bubble->GetLevel()->CreateActor<NatureMissle_Rainbow>(UpdateOrder::Nature_Missle);
+		NatureMissle->SetPos(Bubble->GetPos());
 		break;
 	case BubbleMissleType::Windy:
 		break;

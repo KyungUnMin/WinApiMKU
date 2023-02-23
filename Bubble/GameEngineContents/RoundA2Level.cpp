@@ -355,7 +355,7 @@ void RoundA2Level::CreateStageBubbleSpawners()
 	{
 		const int StageNum = 4;
 		BubbleSpawner* Spawner = nullptr;
-		float4 Stage4Pos[2] = { BubbleDestHelper::GetGridPos(8), BubbleDestHelper::GetGridPos(19) };
+		float4 Stage4Pos[2] = { BubbleDestHelper::GetGridPos(10), BubbleDestHelper::GetGridPos(19) };
 
 		for (size_t i = 0; i < 2; ++i)
 		{
