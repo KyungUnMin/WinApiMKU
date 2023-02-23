@@ -43,6 +43,8 @@ RoundLevelBase::~RoundLevelBase()
 
 
 
+
+
 void RoundLevelBase::Loading()
 {
 	DestHelperPtr = CreateActor<BubbleDestHelper>();
@@ -375,3 +377,22 @@ void RoundLevelBase::SetNowStage(size_t _StageNum)
 	MonsterSpawners[NowStageIndex]->AllMonsterOn();
 }
 
+
+std::vector<GameEngineActor*> RoundLevelBase::GetAliveMonsters()
+{
+	const std::vector<std::pair<GameEngineActor*, float4>>& Monsters = MonsterSpawners[NowStageIndex]->GetMonsters();
+
+	std::vector<GameEngineActor*> StageMonsters;
+	StageMonsters.reserve(Monsters.size());
+	
+	for (std::pair<GameEngineActor*, float4> Pair : Monsters)
+	{
+		//죽은 몬스터 또는 비 활성화 몬스터의 경우엔 Continue
+		if (false == Pair.first->IsUpdate())
+			continue;
+
+		StageMonsters.push_back(Pair.first);
+	}
+
+	return StageMonsters;
+}

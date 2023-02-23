@@ -298,6 +298,9 @@
     <ClInclude Include="NatureMissle_Fire.h">
       <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\05.Fire</Filter>
     </ClInclude>
+    <ClInclude Include="NatureMissle_Windy.h">
+      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\06.Windy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -629,6 +632,9 @@
     </ClCompile>
     <ClCompile Include="NatureMissle_Fire.cpp">
       <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\05.Fire</Filter>
+    </ClCompile>
+    <ClCompile Include="NatureMissle_Windy.cpp">
+      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\06.Windy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1018,6 +1024,9 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\06.NatureMissle\05.Fire">
       <UniqueIdentifier>{9613485a-23ab-4d4a-ae04-73f77afb3157}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\06.NatureMissle\06.Windy">
+      <UniqueIdentifier>{95e3f048-5e8e-427d-9363-4a7d9db53f04}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

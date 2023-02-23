@@ -182,9 +182,10 @@ void NatureMissle_Water::MonsterDrag()
 	auto Iter = DragMonsters.begin();
 	while (Iter != DragMonsters.end())
 	{
-		if (true == (*Iter)->IsDeath())
+		if (false == (*Iter)->IsUpdate())
 		{
 			Iter = DragMonsters.erase(Iter);
+			continue;
 		}
 
 		(*Iter)->SetPos(GetPos() + MonsterBase::CollisionOffset);

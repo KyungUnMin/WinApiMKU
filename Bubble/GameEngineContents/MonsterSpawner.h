@@ -45,6 +45,11 @@ public:
 
 	void AllMonsterOff();
 
+	const std::vector<std::pair<GameEngineActor*, float4>>& GetMonsters()
+	{
+		return Monsters;
+	}
+
 protected:
 
 
