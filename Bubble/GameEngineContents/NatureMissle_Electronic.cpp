@@ -48,7 +48,7 @@ void NatureMissle_Electronic::ResourceLoad()
 	Dir.Move("Image");
 	Dir.Move("Common");
 	Dir.Move("NatureMissle");
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(ImagePath))->Cut(3, 2);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(ImagePath))->Cut(3, 3);
 	IsLoad = true;
 }
 
