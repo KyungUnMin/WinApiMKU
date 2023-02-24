@@ -4,6 +4,8 @@
 #include <GameEnginePlatform/GameEngineImage.h>
 #include "BubbleCore.h"
 #include "BossMonster.h"
+#include "PlayerBase.h"
+#include "BossMonsterFSM.h"
 
 BossState_CircleMove::BossState_CircleMove()
 {
@@ -17,7 +19,7 @@ BossState_CircleMove::~BossState_CircleMove()
 
 void BossState_CircleMove::Start()
 {
-	const float4 Offset = float4{ 0.f, -150.f };
+	const float4 Offset = float4{ 0.f, -50.f };
 	Pivot = GameEngineWindow::GetScreenSize().half() + Offset;
 	ChangeAniDir(BossMonster::IdleAniName);
 }
@@ -28,6 +30,22 @@ void BossState_CircleMove::EnterState()
 }
 
 void BossState_CircleMove::Update(float _DeltaTime)
+{
+	if (true == IsCollision(CollisionOrder::NatureMissle))
+	{
+		GetFSM()->ChangeState(BossStateType::Damaged);
+		return;
+	}
+
+	Update_Move(_DeltaTime);
+
+	if (true == IsCollision(CollisionOrder::Player))
+	{
+		PlayerBase::MainPlayer->AttackPlayer();
+	}
+}
+
+void BossState_CircleMove::Update_Move(float _DeltaTime)
 {
 	static float PrevDist = FLT_MAX;
 
@@ -49,6 +67,7 @@ void BossState_CircleMove::Update(float _DeltaTime)
 
 		//회전이동
 		Update_CircleMove(_DeltaTime, Distance);
+		Update_Direction();
 	}
 
 	//회전 반경 밖에 있을때
@@ -58,20 +77,17 @@ void BossState_CircleMove::Update(float _DeltaTime)
 		Update_MoveToPivot(_DeltaTime, DirToPivot);
 		PrevDist = Distance;
 	}
-
-
 }
 
 void BossState_CircleMove::Update_CircleMove(float _DeltaTime, float _Distance)
 {
-	const float RotateSpeed = 90.f;
+	const float RotateSpeed = 120.f;
+
 	RotateAngle += RotateSpeed * _DeltaTime;
 	if (360.f < RotateAngle)
 	{
 		RotateAngle -= 360.f;
 	}
-
-	float4 DEBUG = GetBoss()->GetPos();
 
 	float4 Dir = float4::AngleToDirection2DToDeg(RotateAngle);
 	Dir.y *= -1.f;
@@ -79,11 +95,29 @@ void BossState_CircleMove::Update_CircleMove(float _DeltaTime, float _Distance)
 	GetBoss()->SetPos(NextPos);
 }
 
+void BossState_CircleMove::Update_Direction()
+{
+	BossMonster* Boss = GetBoss();
 
+	float4 PrevDir = Boss->GetDirVec();
+	if ((90.f < RotateAngle) && (RotateAngle < 270.f))
+	{
+		Boss->SetDir(float4::Left);
+	}
+	else
+	{
+		Boss->SetDir(float4::Right);
+	}
+
+	if (PrevDir == Boss->GetDirVec())
+		return;
+	
+	ChangeAniDir(BossMonster::IdleAniName);
+}
 
 void BossState_CircleMove::Update_MoveToPivot(float _DeltaTime, float4 _Dir)
 {
-	const float MoveSpeed = 150.f;
+	const float MoveSpeed = 200.f;
 
 	_Dir.Normalize();
 	GetBoss()->SetMove(_Dir * MoveSpeed * _DeltaTime);

@@ -2,6 +2,7 @@
 #include <GameEngineBase/GameEngineDebug.h>
 
 #include "BossState_CircleMove.h"
+#include "BossState_Damaged.h"
 
 
 BossMonsterFSM::BossMonsterFSM(BossMonster* _Boss)
@@ -45,6 +46,9 @@ void BossMonsterFSM::CreateState(BossStateType _Type)
 	{
 	case BossStateType::CircleMove:
 		BossState = new BossState_CircleMove;
+		break;
+	case BossStateType::Damaged:
+		BossState = new BossState_Damaged;
 		break;
 	default:
 		MsgAssert("아직 지정된 BossState를 만들어 줄 수 없습니다");

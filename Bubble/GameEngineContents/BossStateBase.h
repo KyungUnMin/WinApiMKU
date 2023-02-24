@@ -1,6 +1,7 @@
 #pragma once
 #include <string_view>
 #include <GameEngineBase/GameEngineMath.h>
+#include "ContentsEnum.h"
 
 class BossMonsterFSM;
 class BossMonster;
@@ -33,6 +34,9 @@ protected:
 	BossMonster* GetBoss();
 
 	void ChangeAniDir(const std::string_view& _AniName);
+
+	bool IsCollision(CollisionOrder _TargetGroup);
+
 
 private:
 	BossMonsterFSM*	FsmPtr					= nullptr;

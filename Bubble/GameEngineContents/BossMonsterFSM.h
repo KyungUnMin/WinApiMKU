@@ -4,7 +4,7 @@
 enum class BossStateType
 {
 	CircleMove,
-
+	Damaged,
 
 	Count
 };

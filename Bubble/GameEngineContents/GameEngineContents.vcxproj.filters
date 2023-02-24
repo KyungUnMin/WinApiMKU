@@ -325,6 +325,9 @@
     <ClInclude Include="BossState_CircleMove.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\03.CircleMove</Filter>
     </ClInclude>
+    <ClInclude Include="BossState_Damaged.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\04.Damaged</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -686,6 +689,9 @@
     </ClCompile>
     <ClCompile Include="BossState_CircleMove.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\03.CircleMove</Filter>
+    </ClCompile>
+    <ClCompile Include="BossState_Damaged.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\04.Damaged</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1111,6 +1117,9 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\03.CircleMove">
       <UniqueIdentifier>{f89d7e85-8aa2-4ecf-8a57-41396baf5394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\04.Damaged">
+      <UniqueIdentifier>{3c17cae1-863c-4b03-b4a3-75a8fabd33c3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -4,8 +4,8 @@
 #include "ContentsEnum.h"
 #include "BossMonsterFSM.h"
 
-const float4					BossMonster::RenderScale				= float4{ 200.f, 200.f };
-const float4					BossMonster::CollisionScale			= float4{ 100.f, 100.f };
+const float4					BossMonster::RenderScale				= float4{ 300.f, 300.f };
+const float4					BossMonster::CollisionScale			= float4{ 150.f, 150.f };
 
 BossMonster::BossMonster()
 {
