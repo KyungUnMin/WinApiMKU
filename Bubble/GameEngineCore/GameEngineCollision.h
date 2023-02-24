@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <GameEngineBase/GameEngineMath.h>
+#include <GameEngineBase/GameEngineMath.h>
 #include "GameEngineComponent.h"
 
 //충돌 처리 타입
@@ -22,29 +23,6 @@ public:
 	CollisionType	ThisColType		= CollisionType::CT_Circle;
 };
 
-class CollisionData
-{
-public:
-	float4 Position;
-	float4 Scale;
-
-	float Left() const
-	{
-		return Position.x - Scale.hx();
-	}
-	float Right() const
-	{
-		return Position.x + Scale.hx();
-	}
-	float Top() const
-	{
-		return Position.y - Scale.hy();
-	}
-	float Bot() const
-	{
-		return Position.y + Scale.hy();
-	}
-};
 
 
 class GameEngineCollision : public GameEngineComponent

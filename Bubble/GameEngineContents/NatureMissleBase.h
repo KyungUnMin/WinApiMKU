@@ -20,6 +20,8 @@ public:
 	NatureMissleBase& operator=(const NatureMissleBase& _Other) = delete;
 	NatureMissleBase& operator=(const NatureMissleBase&& _Other) noexcept = delete;
 
+	virtual void DestroyByBoss(){}
+
 protected:
 	void Start() override;
 

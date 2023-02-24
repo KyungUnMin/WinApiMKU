@@ -22,6 +22,8 @@ public:
 	//불러올 이미지 이름
 	std::string_view		ImageName			= "";
 
+	//회전할때 사용하는 필터이미지
+	std::string_view		FilterName			= "";
 
 	//애니메이션 프레임이 순차적인 경우 
 	//시작 프레임인덱스와 끝 프레임 인덱스를 지정
@@ -109,10 +111,17 @@ public:
 		Alpha = _Alpha;
 	}
 
+	inline void SetAngle(float _Angle)
+	{
+		Angle = _Angle;
+	}
+
 	inline void SetTextBoxScale(const float4& _TextBoxScale)
 	{
 		TextBoxScale = _TextBoxScale;
 	}
+
+	//void SetRotFilter(const std::string_view& _ImageName);
 
 	//GameEngineResources에서 이미지 찾아오기
 	void SetImage(const std::string_view& _ImageName);
@@ -220,5 +229,7 @@ private:
 	TextAlign			Align				= TextAlign::Left;
 	COLORREF		TextColor		= RGB(0, 0, 0);
 	float4				TextBoxScale	= float4::Zero;
+
+	float				Angle				= 0.f;
 };
 

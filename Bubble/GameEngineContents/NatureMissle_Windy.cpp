@@ -66,7 +66,7 @@ void NatureMissle_Windy::CreateAnimation()
 		.AnimationName = AniName,
 		.ImageName = ImagePath,
 		.Start = 0,
-		.End = 5
+		.End = 2
 	});
 
 	RenderPtr->ChangeAnimation(AniName);

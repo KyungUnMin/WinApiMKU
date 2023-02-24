@@ -3,6 +3,7 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include <Windows.h>
 
 class GameEngineMath final
 {
@@ -120,6 +121,12 @@ public:
 		y = Copy.x * sinf(_Rad) + Copy.y * cosf(_Rad);
 	}
 
+	float4 RotationZDegReturn(float _Deg)
+	{
+		float4 Copy = *this;
+		Copy.RotationZDeg(_Deg);
+		return Copy;
+	}
 
 
 	//벡터의 각도 구하기(Degree)
@@ -154,6 +161,10 @@ public:
 		return Result;
 	}
 
+	POINT ToWindowPOINT()
+	{
+		return POINT{ ix(), iy() };
+	}
 
 	float4 half() const
 	{
@@ -176,6 +187,13 @@ public:
 		x /= SizeValue;
 		y /= SizeValue;
 		z /= SizeValue;
+	}
+
+	float4 NormalizeReturn()
+	{
+		float4 Result = *this;
+		Result.Normalize();
+		return Result;
 	}
 
 
@@ -284,5 +302,49 @@ public:
 		char ArrReturn[256];
 		sprintf_s(ArrReturn, "x: %f, y: %f, z: %f, w: %f", x, y, z, w);
 		return std::string(ArrReturn);
+	}
+};
+
+class CollisionData
+{
+public:
+	float4 Position;
+	float4 Scale;
+
+	float Left() const
+	{
+		return Position.x - Scale.hx();
+	}
+	float Right() const
+	{
+		return Position.x + Scale.hx();
+	}
+	float Top() const
+	{
+		return Position.y - Scale.hy();
+	}
+	float Bot() const
+	{
+		return Position.y + Scale.hy();
+	}
+
+	float4 LeftTop()
+	{
+		return float4{ Left(), Top() };
+	}
+
+	float4 RightTop()
+	{
+		return float4{ Right(), Top() };
+	}
+
+	float4 LeftBot()
+	{
+		return float4{ Left(), Bot() };
+	}
+
+	float4 RightBot()
+	{
+		return float4{ Right(), Bot() };
 	}
 };

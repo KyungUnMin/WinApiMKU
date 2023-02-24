@@ -281,7 +281,7 @@
       <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\13.PuruPuru</Filter>
     </ClInclude>
     <ClInclude Include="NatureMissleBase.h">
-      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\02.Electronic\01.Base</Filter>
+      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\01.Base</Filter>
     </ClInclude>
     <ClInclude Include="NatureMissle_Water.h">
       <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\03.Water</Filter>
@@ -643,7 +643,7 @@
       <Filter>03.CommonActors\02.MovableObject\04.Monster\04.MonsterActor\13.PuruPuru</Filter>
     </ClCompile>
     <ClCompile Include="NatureMissleBase.cpp">
-      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\02.Electronic\01.Base</Filter>
+      <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\01.Base</Filter>
     </ClCompile>
     <ClCompile Include="NatureMissle_Water.cpp">
       <Filter>03.CommonActors\02.MovableObject\06.NatureMissle\03.Water</Filter>
@@ -1085,9 +1085,6 @@
     <Filter Include="03.CommonActors\01.StaticObject\05.Item">
       <UniqueIdentifier>{38678799-317f-4c6c-b29e-3c2387166bfe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\06.NatureMissle\02.Electronic\01.Base">
-      <UniqueIdentifier>{cae3ce41-7077-48fa-9f5d-3421f9726bec}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.CommonActors\01.StaticObject\05.Item\01.Base">
       <UniqueIdentifier>{2ea6f0f0-5611-4aae-b71d-8f0b3dc54ff9}</UniqueIdentifier>
     </Filter>
@@ -1120,6 +1117,12 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\04.Damaged">
       <UniqueIdentifier>{3c17cae1-863c-4b03-b4a3-75a8fabd33c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\05.DashToPlayer">
+      <UniqueIdentifier>{b604556f-4a50-438b-98a6-9d6b667b3335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\06.NatureMissle\01.Base">
+      <UniqueIdentifier>{cae3ce41-7077-48fa-9f5d-3421f9726bec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
