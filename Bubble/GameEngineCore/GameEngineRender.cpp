@@ -17,6 +17,12 @@ GameEngineRender::~GameEngineRender()
 }
 
 
+void GameEngineRender::SetRotFilter(const std::string_view& _ImageName)
+{
+	RotationFilter = GameEngineResources::GetInst().ImageFind(_ImageName);
+}
+
+
 //GameEngineResources에서 이미지 찾아오기
 void GameEngineRender::SetImage(const std::string_view& _ImageName)
 {
@@ -220,6 +226,8 @@ void GameEngineRender::ImageRender(float _DeltaTime)
 		//(CreateAnimation으로 애니메이션을 생성했다면
 		//GameEngineRender::Image는 별도로 지정해주지 않았다)
 		Image = CurrentAnimation->Image;
+
+		RotationFilter = CurrentAnimation->FilterImage;
 	}
 
 	if (nullptr == Image)
@@ -241,7 +249,17 @@ void GameEngineRender::ImageRender(float _DeltaTime)
 	//이미지를 자른 경우
 	if (true == Image->IsImageCutting())
 	{
-		if (255 == Alpha)
+		if (0.0f != Angle)
+		{
+			if (nullptr == RotationFilter)
+			{
+				MsgAssert("회전시킬수 없는 이미지 입니다. 필터가 존재하지 않습니다.");
+				return;
+			}
+
+			GameEngineWindow::GetDoubleBufferImage()->PlgCopy(Image, Frame, RenderPos, GetScale(), Angle, RotationFilter);
+		}
+		else if (255 == Alpha)
 		{
 			GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, Frame, RenderPos, GetScale(), TransColor);
 		}
@@ -254,7 +272,16 @@ void GameEngineRender::ImageRender(float _DeltaTime)
 	//이미지를 자르지 않은 경우엔 리소스 전체크기를 출력
 	else
 	{
-		if (255 == Alpha)
+		if (0.0f != Angle)
+		{
+			if (nullptr == RotationFilter)
+			{
+				MsgAssert("회전시킬수 없는 이미지 입니다. 필터가 존재하지 않습니다.");
+			}
+
+			GameEngineWindow::GetDoubleBufferImage()->PlgCopy(Image, Frame, RenderPos, GetScale(), Angle, RotationFilter);
+		}
+		else if (255 == Alpha)
 		{
 			GameEngineWindow::GetDoubleBufferImage()->TransCopy(Image, RenderPos, GetScale(), { 0, 0 }, Image->GetImageScale(), TransColor);
 		}
@@ -298,6 +325,17 @@ void GameEngineRender::CreateAnimation(const FrameAnimationParameter& _Parameter
 	//map에서 애니메이션을 생성하고 받아옴
 	FrameAnimation& NewAnimation = Animation[UpperName];
 	NewAnimation.Image = Image;
+
+	//회전하는 이미지의 경우
+	if ("" != _Parameter.FilterName)
+	{
+		NewAnimation.FilterImage = GameEngineResources::GetInst().ImageFind(_Parameter.FilterName);
+
+		if (nullptr == NewAnimation.FilterImage)
+		{
+			MsgAssert("존재하지 않는 이미지로 로테이션 필터를 사용할수 없습니다.");
+		}
+	}
 
 
 //[출력할 애니메이션 프레임 인덱스  순서 저장]

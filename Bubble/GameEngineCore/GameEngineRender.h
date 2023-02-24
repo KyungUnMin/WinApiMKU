@@ -121,7 +121,7 @@ public:
 		TextBoxScale = _TextBoxScale;
 	}
 
-	//void SetRotFilter(const std::string_view& _ImageName);
+	void SetRotFilter(const std::string_view& _ImageName);
 
 	//GameEngineResources에서 이미지 찾아오기
 	void SetImage(const std::string_view& _ImageName);
@@ -162,6 +162,10 @@ private:
 	//이미지 리소스와 연결된 GameEngineImage
 	GameEngineImage*		Image					= nullptr;
 
+	//회전용 필터 이미지
+	GameEngineImage*		RotationFilter		= nullptr;
+
+
 	//이미지를 잘랐을때 그릴 이미지 인덱스
 	int								Frame					= 0;
 
@@ -193,6 +197,9 @@ private:
 		//이 애니메이션의 소유 렌더
 		GameEngineRender*	Parent					= nullptr;
 		GameEngineImage*		Image					= nullptr;
+
+		//회전용 필터 이미지
+		GameEngineImage*		FilterImage			= nullptr;
 
 		//애니메이션을 그릴 잘린 이미지 인덱스
 		std::vector<int>			FrameIndex;
@@ -230,6 +237,6 @@ private:
 	COLORREF		TextColor		= RGB(0, 0, 0);
 	float4				TextBoxScale	= float4::Zero;
 
-	float				Angle				= 0.f;
+	float				Angle				= 0.0f;
 };
 
