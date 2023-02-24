@@ -22,6 +22,7 @@
 #include "Monster_Titama.h"
 #include "Monster_PukaPuka.h"
 #include "Monster_Hidegons.h"
+#include "BossMonster.h"
 
 
 RoundA1Level::RoundA1Level()
@@ -411,6 +412,9 @@ void RoundA1Level::StartLastStage()
 	Item_BubbleLiquid* BubbleLiquid = CreateActor<Item_BubbleLiquid>(UpdateOrder::Item);
 	BubbleLiquid->SetPos(BubbleDestHelper::GetGridPos(326));
 	BubbleLiquid->InitType(BubbleLiquidType::Electronic);
+
+	BossMonster* Boss = CreateActor<BossMonster>(UpdateOrder::BossMonster);
+	//Boss->SetPos()
 }
 
 

@@ -163,6 +163,22 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BossMonster.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossMonsterFSM.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossStateBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossState_CircleMove.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BubbleCore.h">
       <SubType>
       </SubType>
@@ -566,6 +582,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossMonster.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossMonsterAnimation.cpp" />
+    <ClCompile Include="BossMonsterFSM.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossStateBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossState_CircleMove.cpp">
       <SubType>
       </SubType>
     </ClCompile>

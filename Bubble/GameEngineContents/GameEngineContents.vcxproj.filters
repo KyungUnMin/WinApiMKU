@@ -313,6 +313,18 @@
     <ClInclude Include="PointEffect.h">
       <Filter>03.CommonActors\01.StaticObject\06.PointEffect</Filter>
     </ClInclude>
+    <ClInclude Include="BossMonster.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\01.Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="BossMonsterFSM.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\01.FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="BossStateBase.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\02.StateBase</Filter>
+    </ClInclude>
+    <ClInclude Include="BossState_CircleMove.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\03.CircleMove</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -659,6 +671,21 @@
     </ClCompile>
     <ClCompile Include="PointEffect.cpp">
       <Filter>03.CommonActors\01.StaticObject\06.PointEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMonster.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\01.Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMonsterFSM.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\01.FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="BossStateBase.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\02.StateBase</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMonsterAnimation.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\01.Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="BossState_CircleMove.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\03.CircleMove</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1066,6 +1093,24 @@
     </Filter>
     <Filter Include="03.CommonActors\01.StaticObject\06.PointEffect">
       <UniqueIdentifier>{c6ebb150-dd23-41bb-affe-bf3a66acfeb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossMonster">
+      <UniqueIdentifier>{88853680-c56c-411b-bd0b-4e7043d4c00d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\01.Actor">
+      <UniqueIdentifier>{38a017a9-6920-458f-9734-e524c79a78a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM">
+      <UniqueIdentifier>{b001f385-4c56-403a-b156-2a672ec97846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\01.FSM">
+      <UniqueIdentifier>{9b8caa96-4aa3-40be-bd01-921325fb0107}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\02.StateBase">
+      <UniqueIdentifier>{3dae83a3-ec2a-4823-88d8-9b221f31b4c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossMonster\02.BossFSM\03.CircleMove">
+      <UniqueIdentifier>{f89d7e85-8aa2-4ecf-8a57-41396baf5394}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

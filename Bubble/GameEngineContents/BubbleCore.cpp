@@ -68,7 +68,7 @@ void BubbleCore::CreateLevels()
 	//엔딩화면
 	CreateLevel<EndingLevel>("EndingLevel");
 
-	ChangeLevel("RoundAEnterLevel");
+	ChangeLevel("RoundA1Level");
 }
 
 
@@ -78,7 +78,7 @@ void BubbleCore::CreateKeys()
 	GameEngineInput::CreateKey("PlayerUnbeatableSwitch", VK_F2);
 
 	GameEngineInput::CreateKey("GridSwitch", VK_F3);
-	GameEngineInput::CreateKey(CHEET_STAGE_CLEAR, VK_F5);
+	GameEngineInput::CreateKey(CHEET_STAGE_CLEAR, VK_F4);
 
 	GameEngineInput::CreateKey(PLAYER_LEFT, KEY_LEFT);
 	GameEngineInput::CreateKey(PLAYER_RIGHT, KEY_RIGHT);
