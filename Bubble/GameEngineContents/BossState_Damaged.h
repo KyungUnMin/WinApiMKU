@@ -32,5 +32,7 @@ private:
 	std::vector<std::pair<GameEngineRender*, float>> AngrySteams;
 	void StreamResourceLoad();
 	void CreateStreamAni();
+
+	bool SteamMove(float _DeltaTime);
 };
 

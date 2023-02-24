@@ -39,6 +39,7 @@ void BossState_CircleMove::Update(float _DeltaTime)
 
 	Update_Move(_DeltaTime);
 
+	//플레이어와 충돌처리
 	if (true == IsCollision(CollisionOrder::Player))
 	{
 		PlayerBase::MainPlayer->AttackPlayer();

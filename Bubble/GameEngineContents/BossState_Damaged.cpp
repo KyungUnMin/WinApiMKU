@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include "BossMonster.h"
+#include "PlayerBase.h"
 
 const std::string_view	BossState_Damaged::SteamImagePath		= "BossAngrySteam.bmp";
 const std::string_view	BossState_Damaged::SteamAniName			= "Steam";
@@ -70,6 +71,8 @@ void BossState_Damaged::CreateStreamAni()
 }
 
 
+
+
 void BossState_Damaged::EnterState()
 {
 	ChangeAniDir(BossMonster::AngryAniName);
@@ -84,6 +87,22 @@ void BossState_Damaged::EnterState()
 }
 
 void BossState_Damaged::Update(float _DeltaTime)
+{
+	if (false == SteamMove(_DeltaTime))
+	{
+		//TODO
+		return;
+	}
+
+	//플레이어와 충돌처리
+	if (true == IsCollision(CollisionOrder::Player))
+	{
+		PlayerBase::MainPlayer->AttackPlayer();
+	}
+}
+
+
+bool BossState_Damaged::SteamMove(float _DeltaTime)
 {
 	static size_t AngryCount = 0;
 	const size_t ChangeAngryCnt = 4;
@@ -108,9 +127,12 @@ void BossState_Damaged::Update(float _DeltaTime)
 		AngrySteam->ChangeAnimation(SteamAniName, true);
 	}
 
+	//총 ChangeAngryCnt만큼 애니메이션이 재생됐다면 다음 State로 넘어가기 위해 false 리턴
 	if ((ChangeAngryCnt * SteamCnt) <= AngryCount)
 	{
-		//FSM 변경
 		AngryCount = 0;
+		return false;
 	}
+
+	return true;
 }
