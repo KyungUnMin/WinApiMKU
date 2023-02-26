@@ -145,7 +145,15 @@ void BossState_DashToPlayer::Render(float _DeltaTime)
 		static_cast<int>(MoveArea.Right()),
 		static_cast<int>(MoveArea.Bot()));
 
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+	float4 NowPos = GetBoss()->GetPos();
+	float4 NextPos = NowPos;
+	while (false == IsScreenOutPos(NextPos))
+	{
+		NextPos += Dir;
+	}
 
+	DrawDebugArrow(NowPos, NextPos);
 
 	DebugPen = static_cast<HPEN>(SelectObject(DoubleBufferDC, DebugPen));
 }

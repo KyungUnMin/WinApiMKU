@@ -39,6 +39,7 @@ protected:
 
 	int CheckCollisionWithNatureMissle();
 
+	void DrawDebugArrow(const float4& _Start, const float4& _End);
 
 private:
 	BossMonsterFSM*	FsmPtr					= nullptr;
