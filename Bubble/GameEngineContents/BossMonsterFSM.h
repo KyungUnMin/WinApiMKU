@@ -8,9 +8,11 @@ enum class BossStateType
 	DashToPlayer,
 	Lock,
 	Dead,
+	InfiniteDash,
 
 	Count
 };
+
 
 class BossMonster;
 class BossStateBase;

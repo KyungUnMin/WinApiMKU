@@ -108,7 +108,16 @@ void BossState_Damaged::Update(float _DeltaTime)
 
 	if (false == SteamMove(_DeltaTime))
 	{
-		GetFSM()->ChangeState(BossStateType::DashToPlayer);
+		BossPhase NowPhase = BossHpBar::MainBossHP->GetPhase();
+		if (BossPhase::Rage == NowPhase)
+		{
+			GetFSM()->ChangeState(BossStateType::InfiniteDash);
+		}
+		else
+		{
+			GetFSM()->ChangeState(BossStateType::DashToPlayer);
+		}
+		
 		return;
 	}
 

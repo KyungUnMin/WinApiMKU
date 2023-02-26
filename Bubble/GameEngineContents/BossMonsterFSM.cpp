@@ -6,6 +6,7 @@
 #include "BossState_DashToPlayer.h"
 #include "BossState_Lock.h"
 #include "BossState_Dead.h"
+#include "BossState_InfiniteDash.h"
 
 
 BossMonsterFSM::BossMonsterFSM(BossMonster* _Boss)
@@ -61,6 +62,9 @@ void BossMonsterFSM::CreateState(BossStateType _Type)
 		break;
 	case BossStateType::Dead:
 		BossState = new BossState_Dead;
+		break;
+	case BossStateType::InfiniteDash:
+		BossState = new BossState_InfiniteDash;
 		break;
 	default:
 		MsgAssert("아직 지정된 BossState를 만들어 줄 수 없습니다");

@@ -37,6 +37,8 @@ void BossState_DashToPlayer::EnterState()
 
 void BossState_DashToPlayer::CalcDirection()
 {
+	const float MinDirSize = 100.f;
+	
 	BossMonster* Boss = GetBoss();
 	float4 StartPos = Boss->GetPos();
 	float4 DestPos = float4::Zero;
@@ -46,12 +48,15 @@ void BossState_DashToPlayer::CalcDirection()
 		DestPos = PlayerBase::MainPlayer->GetPos();
 	}
 
-	Dir = float4::Right;
-	if (DestPos != StartPos)
+	Dir = (DestPos - StartPos);
+	float DirSize = Dir.Size();
+	if (DirSize < MinDirSize)
 	{
-		Dir = (DestPos - StartPos);
-		Dir.Normalize();
+		float4 CenterPos = GameEngineWindow::GetScreenSize().half();
+		Dir = (CenterPos - StartPos);
 	}
+
+	Dir.Normalize();
 
 	if (0.f < Dir.x)
 	{

@@ -1,14 +1,14 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
+class GameEngineRender;
+
 enum class BossPhase
 {
 	Normal,
 	Upset,
 	Rage,
 };
-
-class GameEngineRender;
 
 class BossHpBar : public GameEngineActor
 {
@@ -44,8 +44,8 @@ protected:
 
 private:
 	std::vector<GameEngineRender*> HealthPoints;
-	BossPhase	Phase = BossPhase::Normal;
-	int				NowHP		= 5;
+	BossPhase	Phase		= BossPhase::Normal;
+	int				NowHP		= 30;
 
 	void ResourceLoad();
 	void CreateHP();

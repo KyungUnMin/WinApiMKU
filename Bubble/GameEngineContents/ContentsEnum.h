@@ -82,3 +82,4 @@ enum class BubbleMissleType
 	Windy,
 	Melody
 };
+

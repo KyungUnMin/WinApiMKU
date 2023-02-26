@@ -27,7 +27,9 @@ void BossDeadEffect::SettingPointEffect()
 	SetMaxScale(MaxScale);
 	SetMoveSpeed(MoveSpeed);
 
+	const float4 PointRenderOffset = float4{ 0.f, -100.f };
 	GameEngineRender* PointRender = CreateRender(BossMonster::KillPointImagePath , RenderOrder::UI);
+	PointRender->SetPosition(PointRenderOffset);
 	SetRender(PointRender);
 }
 

@@ -24,7 +24,7 @@ void BossState_Dead::EnterState()
 	BossMonster* Boss = GetBoss();
 	GameEngineRender* RenderPtr = Boss->GetRender();
 	RenderPtr->ChangeAnimation(BossMonster::DeadAniName);
-	RenderPtr->SetOrder(static_cast<int>(RenderOrder::UI));
+	//RenderPtr->SetOrder(static_cast<int>(RenderOrder::UI));
 
 	SelectDirection();
 

@@ -89,7 +89,7 @@ void BossHpBar::Update(float _DeltaTime)
 
 bool BossHpBar::ExcuteDamage(int _Damage)
 {
-	const int UpsetPhazeHp = 25;
+	const int UpsetPhazeHp = 20;
 	const int RagePhazeHp = 10;
 
 	//이미 죽은 몬스터는 데미지 처리 안함
