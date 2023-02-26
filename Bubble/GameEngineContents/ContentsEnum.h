@@ -54,6 +54,7 @@ enum class RenderOrder
 	Shield,
 	NatureMissle,
 	Items,
+	BossLockBubble,
 
 	UI
 };

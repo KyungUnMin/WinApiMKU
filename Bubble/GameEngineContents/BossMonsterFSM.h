@@ -5,6 +5,9 @@ enum class BossStateType
 {
 	CircleMove,
 	Damaged,
+	DashToPlayer,
+	Lock,
+	Dead,
 
 	Count
 };

@@ -21,6 +21,11 @@ NatureMissle_Rainbow::~NatureMissle_Rainbow()
 
 }
 
+void NatureMissle_Rainbow::DestroyByBoss()
+{
+	GetCollision()->Off();
+}
+
 void NatureMissle_Rainbow::Start()
 {
 	NatureMissleBase::Start();

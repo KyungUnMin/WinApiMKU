@@ -3,6 +3,9 @@
 
 #include "BossState_CircleMove.h"
 #include "BossState_Damaged.h"
+#include "BossState_DashToPlayer.h"
+#include "BossState_Lock.h"
+#include "BossState_Dead.h"
 
 
 BossMonsterFSM::BossMonsterFSM(BossMonster* _Boss)
@@ -49,6 +52,15 @@ void BossMonsterFSM::CreateState(BossStateType _Type)
 		break;
 	case BossStateType::Damaged:
 		BossState = new BossState_Damaged;
+		break;
+	case BossStateType::DashToPlayer:
+		BossState = new BossState_DashToPlayer;
+		break;
+	case BossStateType::Lock:
+		BossState = new BossState_Lock;
+		break;
+	case BossStateType::Dead:
+		BossState = new BossState_Dead;
 		break;
 	default:
 		MsgAssert("아직 지정된 BossState를 만들어 줄 수 없습니다");

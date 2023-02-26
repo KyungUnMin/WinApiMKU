@@ -163,6 +163,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BossDeadEffect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossHpBar.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BossMonster.h">
       <SubType>
       </SubType>
@@ -180,6 +188,18 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="BossState_Damaged.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossState_DashToPlayer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossState_Dead.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossState_Lock.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -589,6 +609,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BossDeadEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossHpBar.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BossMonster.cpp">
       <SubType>
       </SubType>
@@ -607,6 +635,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="BossState_Damaged.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossState_DashToPlayer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossState_Dead.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossState_Lock.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -7,6 +7,7 @@ public:
 	static const std::string_view ImagePath;
 	static const std::string_view MoveAniName;
 	static const std::string_view AttachAniName;
+	static const std::string_view DestroyAniName;
 
 	NatureMissle_Electronic();
 	~NatureMissle_Electronic() override;
@@ -15,6 +16,8 @@ public:
 	NatureMissle_Electronic(NatureMissle_Electronic&& _Other) noexcept = delete;
 	NatureMissle_Electronic& operator=(const NatureMissle_Electronic& _Other) = delete;
 	NatureMissle_Electronic& operator=(const NatureMissle_Electronic&& _Other) noexcept = delete;
+
+	void DestroyByBoss() override;
 
 protected:
 	void Start() override;
@@ -25,6 +28,7 @@ private:
 	{
 		Move,
 		PlayerAttach,
+		Destroy
 	};
 
 	bool					IsPlayerAttached	= false;

@@ -17,6 +17,8 @@ public:
 	NatureMissle_Rainbow& operator=(const NatureMissle_Rainbow& _Other) = delete;
 	NatureMissle_Rainbow& operator=(const NatureMissle_Rainbow&& _Other) noexcept = delete;
 
+	void DestroyByBoss() override;
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

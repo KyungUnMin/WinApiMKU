@@ -1,8 +1,10 @@
 #include "BossMonster.h"
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include <GameEngineCore/GameEngineLevel.h>
 #include "ContentsEnum.h"
 #include "BossMonsterFSM.h"
+#include "BossHpBar.h"
 
 const float4					BossMonster::RenderScale				= float4{ 300.f, 300.f };
 const float4					BossMonster::CollisionScale			= float4{ 150.f, 150.f };
@@ -21,6 +23,8 @@ BossMonster::~BossMonster()
 	}
 }
 
+
+
 void BossMonster::Start()
 {
 	ResourceLoad();
@@ -28,6 +32,7 @@ void BossMonster::Start()
 	CreateAnimation();
 
 	FsmPtr->Start();
+	GetLevel()->CreateActor<BossHpBar>();
 }
 
 

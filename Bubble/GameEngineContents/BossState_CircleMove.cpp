@@ -4,8 +4,8 @@
 #include <GameEnginePlatform/GameEngineImage.h>
 #include "BubbleCore.h"
 #include "BossMonster.h"
-#include "PlayerBase.h"
 #include "BossMonsterFSM.h"
+#include "BossHpBar.h"
 
 BossState_CircleMove::BossState_CircleMove()
 {
@@ -31,20 +31,41 @@ void BossState_CircleMove::EnterState()
 
 void BossState_CircleMove::Update(float _DeltaTime)
 {
-	if (true == IsCollision(CollisionOrder::NatureMissle))
-	{
-		GetFSM()->ChangeState(BossStateType::Damaged);
+	//NatureMissle에 대한 데미지 처리
+	if (true == Update_Damaged())
 		return;
-	}
 
 	Update_Move(_DeltaTime);
 
 	//플레이어와 충돌처리
-	if (true == IsCollision(CollisionOrder::Player))
-	{
-		PlayerBase::MainPlayer->AttackPlayer();
-	}
+	CheckCollisionWithPlayer();
 }
+
+
+
+
+bool BossState_CircleMove::Update_Damaged()
+{
+	int DamageCnt = CheckCollisionWithNatureMissle();
+	if (0 == DamageCnt)
+		return false;
+
+	//공격을 맞고 HP가 없을때
+	if (true == BossHpBar::MainBossHP->ExcuteDamage(DamageCnt))
+	{
+		GetFSM()->ChangeState(BossStateType::Lock);
+	}
+
+	//공격을 맞고도 HP가 남아있을때
+	else
+	{
+		GetFSM()->ChangeState(BossStateType::Damaged);
+	}
+
+	return true;
+}
+
+
 
 void BossState_CircleMove::Update_Move(float _DeltaTime)
 {
@@ -79,6 +100,7 @@ void BossState_CircleMove::Update_Move(float _DeltaTime)
 		PrevDist = Distance;
 	}
 }
+
 
 void BossState_CircleMove::Update_CircleMove(float _DeltaTime, float _Distance)
 {

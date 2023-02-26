@@ -208,7 +208,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 
 		if (NowStageIndex + 1 == StageImage->GetRenderSize())
 		{
-			ChangeLastLevel();
+			//ChangeLastLevel();
 			return;
 		}
 

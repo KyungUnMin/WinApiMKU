@@ -22,17 +22,18 @@ public:
 protected:
 	void Start() override;
 	void EnterState() override;
+	void ExitState() override;
 	void Update(float _DeltaTime) override;
 
 private:
-	const size_t		SteamCnt			= 4;
-	const float4	StartOffset		= float4{ 0.f, -100.f };
-	
+	const size_t				SteamCnt			= 4;
+	const float4			StartOffset		= float4{ 0.f, -100.f };
 
-	std::vector<std::pair<GameEngineRender*, float>> AngrySteams;
+	std::vector<std::pair<GameEngineRender*, const float>> AngrySteams;
 	void StreamResourceLoad();
 	void CreateStreamAni();
 
+	bool CheckDamaged();
 	bool SteamMove(float _DeltaTime);
 };
 

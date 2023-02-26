@@ -35,7 +35,9 @@ protected:
 
 	void ChangeAniDir(const std::string_view& _AniName);
 
-	bool IsCollision(CollisionOrder _TargetGroup);
+	void CheckCollisionWithPlayer();
+
+	int CheckCollisionWithNatureMissle();
 
 
 private:

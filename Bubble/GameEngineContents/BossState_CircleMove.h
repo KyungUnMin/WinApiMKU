@@ -27,6 +27,7 @@ private:
 	HPEN				DebugPen		= HPEN();
 
 
+	bool Update_Damaged();
 	void Update_Move(float _DeltaTime);
 	void Update_CircleMove(float _DeltaTime, float _Distance);
 	void Update_Direction();

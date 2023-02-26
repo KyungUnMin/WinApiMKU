@@ -4,15 +4,17 @@
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineResources.h>
 
-const std::string_view	BossMonster::RightImagePath		= "Right_Boss.bmp";
-const std::string_view	BossMonster::LeftImagePath			= "Left_Boss.bmp";
-const std::string_view	BossMonster::DeadImagePath		= "Boss_Dead.bmp";
+const std::string_view	BossMonster::RightImagePath				= "Right_Boss.bmp";
+const std::string_view	BossMonster::LeftImagePath					= "Left_Boss.bmp";
+const std::string_view	BossMonster::DeadImagePath				= "Boss_Dead.bmp";
+const std::string_view	BossMonster::LockBubbleImagePath	= "BossLockBubble.bmp";
+const std::string_view	BossMonster::KillPointImagePath			= "BossPoint.bmp";
 
-const std::string_view	BossMonster::IdleAniName			= "Idle";
-const std::string_view	BossMonster::AngryAniName			= "Angry";
-const std::string_view	BossMonster::RageAngryAniName	= "Angry_Rage";
-const std::string_view	BossMonster::LockAniName			= "Lock";
-const std::string_view	BossMonster::DeadAniName			= "Dead";
+const std::string_view	BossMonster::IdleAniName					= "Idle";
+const std::string_view	BossMonster::AngryAniName					= "Angry";
+const std::string_view	BossMonster::RageAngryAniName			= "Angry_Rage";
+const std::string_view	BossMonster::LockAniName					= "Lock";
+const std::string_view	BossMonster::DeadAniName					= "Dead";
 
 
 
@@ -32,6 +34,8 @@ void BossMonster::ResourceLoad()
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(RightImagePath))->Cut(4, 2);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LeftImagePath))->Cut(4, 2);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(DeadImagePath))->Cut(6, 1);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(LockBubbleImagePath))->Cut(6, 1);
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(KillPointImagePath));
 	IsLoad = true;
 }
 

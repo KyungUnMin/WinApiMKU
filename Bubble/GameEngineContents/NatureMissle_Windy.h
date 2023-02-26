@@ -6,6 +6,7 @@ class NatureMissle_Windy : public NatureMissleBase
 public:
 	static const std::string_view ImagePath;
 	static const std::string_view AniName;
+	static const std::string_view DestroyAniName;
 
 	NatureMissle_Windy();
 	~NatureMissle_Windy() override;
@@ -14,6 +15,8 @@ public:
 	NatureMissle_Windy(NatureMissle_Windy&& _Other) noexcept = delete;
 	NatureMissle_Windy& operator=(const NatureMissle_Windy& _Other) = delete;
 	NatureMissle_Windy& operator=(const NatureMissle_Windy&& _Other) noexcept = delete;
+
+	void DestroyByBoss() override;
 
 protected:
 	void Start() override;
@@ -29,6 +32,8 @@ private:
 	const float						MoveSpeed			= 400.f;
 
 	std::list<MonsterBase*>	DragMonsters;
+
+	bool									IsDestroy			= false;
 	
 
 	void ResourceLoad();

@@ -4,7 +4,8 @@
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include "BossMonster.h"
-#include "PlayerBase.h"
+#include "BossMonsterFSM.h"
+#include "BossHpBar.h"
 
 const std::string_view	BossState_Damaged::SteamImagePath		= "BossAngrySteam.bmp";
 const std::string_view	BossState_Damaged::SteamAniName			= "Steam";
@@ -75,9 +76,22 @@ void BossState_Damaged::CreateStreamAni()
 
 void BossState_Damaged::EnterState()
 {
-	ChangeAniDir(BossMonster::AngryAniName);
+	BossPhase NowPhase = BossHpBar::MainBossHP->GetPhase();
+	switch (NowPhase)
+	{
+	case BossPhase::Normal:
+		ChangeAniDir(BossMonster::AngryAniName);
+		break;
+	case BossPhase::Upset:
+		ChangeAniDir(BossMonster::AngryAniName);
+		//불눈 Render On
+		break;
+	case BossPhase::Rage:
+		ChangeAniDir(BossMonster::RageAngryAniName);
+		break;
+	}
 
-	for (std::pair<GameEngineRender*, float> Pair : AngrySteams)
+	for (std::pair<GameEngineRender*, const float>& Pair : AngrySteams)
 	{
 		GameEngineRender* AngrySteam = Pair.first;
 		AngrySteam->On();
@@ -86,21 +100,36 @@ void BossState_Damaged::EnterState()
 	}
 }
 
+
 void BossState_Damaged::Update(float _DeltaTime)
 {
+	if (true == CheckDamaged())
+		return;
+
 	if (false == SteamMove(_DeltaTime))
 	{
-		//TODO
+		GetFSM()->ChangeState(BossStateType::DashToPlayer);
 		return;
 	}
 
 	//플레이어와 충돌처리
-	if (true == IsCollision(CollisionOrder::Player))
-	{
-		PlayerBase::MainPlayer->AttackPlayer();
-	}
+	CheckCollisionWithPlayer();
 }
 
+
+bool BossState_Damaged::CheckDamaged()
+{
+	int DamageCnt = CheckCollisionWithNatureMissle();
+	if (DamageCnt == 0)
+		return false;
+
+	//공격을 맞고도 HP가 존재했을때
+	if (false == BossHpBar::MainBossHP->ExcuteDamage(DamageCnt))
+		return false;
+
+	GetFSM()->ChangeState(BossStateType::Lock);
+	return true;
+}
 
 bool BossState_Damaged::SteamMove(float _DeltaTime)
 {
@@ -108,10 +137,10 @@ bool BossState_Damaged::SteamMove(float _DeltaTime)
 	const size_t ChangeAngryCnt = 4;
 	const float MoveSpeed = 1000.f;
 
-	for (std::pair<GameEngineRender*, float> Pair : AngrySteams)
+	for (std::pair<GameEngineRender*, const float>& Pair : AngrySteams)
 	{
 		GameEngineRender* AngrySteam = Pair.first;
-		float MoveAngle = Pair.second;
+		const float MoveAngle = Pair.second;
 
 		float4 Dir = float4::AngleToDirection2DToDeg(MoveAngle);
 		Dir.y *= -1.f;
@@ -135,4 +164,14 @@ bool BossState_Damaged::SteamMove(float _DeltaTime)
 	}
 
 	return true;
+}
+
+
+
+void BossState_Damaged::ExitState()
+{
+	for (std::pair<GameEngineRender*, const float>& Pair: AngrySteams)
+	{
+		Pair.first->Off();
+	}
 }

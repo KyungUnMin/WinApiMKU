@@ -5,12 +5,14 @@
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "MonsterBase.h"
 #include "RoundLevelBase.h"
 
 
-const std::string_view NatureMissle_Windy::ImagePath	= "Windy.bmp";
-const std::string_view NatureMissle_Windy::AniName		= "Windy";
+const std::string_view NatureMissle_Windy::ImagePath				= "Windy.bmp";
+const std::string_view NatureMissle_Windy::AniName					= "Windy";
+const std::string_view NatureMissle_Windy::DestroyAniName	= "Destroy";
 
 
 NatureMissle_Windy::NatureMissle_Windy()
@@ -22,6 +24,8 @@ NatureMissle_Windy::~NatureMissle_Windy()
 {
 	DragMonsters.clear();
 }
+
+
 
 
 
@@ -69,6 +73,15 @@ void NatureMissle_Windy::CreateAnimation()
 		.End = 2
 	});
 
+	RenderPtr->CreateAnimation
+	({
+		.AnimationName = DestroyAniName,
+		.ImageName = ImagePath,
+		.Start = 3,
+		.End = 5,
+		.Loop = false
+	});
+
 	RenderPtr->ChangeAnimation(AniName);
 }
 
@@ -99,6 +112,17 @@ void NatureMissle_Windy::Update(float _DeltaTime)
 
 void NatureMissle_Windy::Move(float _DeltaTime)
 {
+	if (true == IsDestroy)
+	{
+		if (true == GetRender()->IsAnimationEnd())
+		{
+			Death();
+		}
+
+		return;
+	}
+
+
 	static const float FixedDirTime = 5.f;
 	if (FixedDirTime < GetLiveTime())
 	{
@@ -186,4 +210,12 @@ bool NatureMissle_Windy::ScreenOutCheck()
 		return true;
 
 	return false;
+}
+
+
+void NatureMissle_Windy::DestroyByBoss()
+{
+	GetRender()->ChangeAnimation(DestroyAniName, true);
+	IsDestroy = true;
+	GetCollision()->Off();
 }

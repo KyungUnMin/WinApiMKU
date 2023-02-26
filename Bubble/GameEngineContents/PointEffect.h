@@ -21,14 +21,30 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
+	void Update_Scale();
+
+	inline void SetMoveSpeed(const float4& _MoveSpeed)
+	{
+		MoveSpeed = _MoveSpeed;
+	}
+
+	inline void SetMaxScale(const float4& _Scale)
+	{
+		MaxSize = _Scale;
+	}
+
+	inline void SetRender(GameEngineRender* _Render)
+	{
+		RenderPtr = _Render;
+	}
+
 private:
 	GameEngineRender*	RenderPtr		= nullptr;
 	const float					AliveTime			= 2.f;
-	const float4				MoveSpeed		= float4{ 0.f, 100.f };
+	float4							MoveSpeed		= float4{ 0.f, 100.f };
+	float4							MaxSize			= float4{ 75.f, 75.f };
 
 	void ResourceLoad();
 	void SelectImageFrame();
-
-	void Update_Scale();
 };
 

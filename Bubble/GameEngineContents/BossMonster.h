@@ -11,6 +11,10 @@ public:
 	static const std::string_view RightImagePath;
 	static const std::string_view LeftImagePath;
 	static const std::string_view DeadImagePath;
+	static const std::string_view LockBubbleImagePath;
+	static const std::string_view KillPointImagePath;
+	
+
 
 	static const std::string_view IdleAniName;
 	static const std::string_view AngryAniName;
@@ -45,9 +49,9 @@ protected:
 	void Render(float _DeltaTime) final;
 
 private:
-	GameEngineRender*		RenderPtr		= nullptr;
-	GameEngineCollision*		CollisionPtr		= nullptr;
-	BossMonsterFSM*			FsmPtr				= nullptr;
+	GameEngineRender*		RenderPtr				= nullptr;
+	GameEngineCollision*		CollisionPtr				= nullptr;
+	BossMonsterFSM*			FsmPtr						= nullptr;
 
 	void ResourceLoad();
 	void CreateComponent();

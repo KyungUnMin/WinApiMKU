@@ -69,7 +69,7 @@ void PointEffect::Update(float _DeltaTime)
 		return;
 	}
 
-	SetMove(float4::Up * MoveSpeed * _DeltaTime);
+	RenderPtr->SetMove(float4::Up * MoveSpeed * _DeltaTime);
 	Update_Scale();
 }
 
@@ -77,7 +77,6 @@ void PointEffect::Update_Scale()
 {
 	const float UntilGrowTime = 0.2f;
 	const float UntilDiminishTime = 0.2f;
-	const float4 MaxSize = float4{ 75.f, 75.f };
 
 	float LiveTime = GetLiveTime();
 	if (LiveTime < UntilGrowTime)

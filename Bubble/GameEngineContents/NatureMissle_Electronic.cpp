@@ -3,6 +3,7 @@
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "MonsterBase.h"
 #include "PlayerBase.h"
 #include "PlayerFSM.h"
@@ -10,6 +11,7 @@
 const std::string_view NatureMissle_Electronic::ImagePath			= "Electronic.bmp";
 const std::string_view NatureMissle_Electronic::MoveAniName		= "Move";
 const std::string_view NatureMissle_Electronic::AttachAniName	= "Attach";
+const std::string_view NatureMissle_Electronic::DestroyAniName	= "Destroy";
 
 NatureMissle_Electronic::NatureMissle_Electronic()
 {
@@ -20,6 +22,7 @@ NatureMissle_Electronic::~NatureMissle_Electronic()
 {
 
 }
+
 
 
 
@@ -73,6 +76,16 @@ void NatureMissle_Electronic::CreateAnimation()
 		.Loop = false
 	});
 
+	RenderPtr->CreateAnimation
+	({
+		.AnimationName = DestroyAniName,
+		.ImageName = ImagePath,
+		.Start = 3,
+		.End = 8,
+		.InterTimer = 0.1f,
+		.Loop = false
+	});
+
 	RenderPtr->ChangeAnimation(MoveAniName);
 }
 
@@ -94,6 +107,12 @@ void NatureMissle_Electronic::Update(float _DeltaTime)
 	case NatureMissle_Electronic::State::PlayerAttach:
 		Update_Attach(_DeltaTime);
 		break;
+	case NatureMissle_Electronic::State::Destroy:
+		if (true == GetRender()->IsAnimationEnd())
+		{
+			Death();
+		}
+		return;
 	}
 
 	MonsterKill();
@@ -143,4 +162,12 @@ void NatureMissle_Electronic::MonsterKill()
 	{
 		Monster->DeathFromNature(this);
 	}
+}
+
+
+void NatureMissle_Electronic::DestroyByBoss()
+{
+	GetRender()->ChangeAnimation(DestroyAniName, true);
+	NowState = State::Destroy;
+	GetCollision()->Off();
 }
