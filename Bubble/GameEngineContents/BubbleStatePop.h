@@ -18,11 +18,14 @@ protected:
 	void EnterState() override;
 
 private:
+	static bool SfxOn;
+
 	BubbleMissleType	BubbleType				= BubbleMissleType::Normal;
 	const int					CreateWaterCount	= 5;
 	const int					PopPoint					= 10;
 
 	void ResourceLoad();
+	void LoadSFX();
 	void CreateNatureMissle();
 };
 

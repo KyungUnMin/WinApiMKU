@@ -7,6 +7,8 @@
 #include "PlayerBase.h"
 #include "MonsterFSM.h"
 #include "MonsterBase.h"
+#include <GameEngineBase/GameEngineDirectory.h>
+#include <GameEngineCore/GameEngineResources.h>
 #include "Item_Normal.h"
 #include "PointPannel.h"
 
@@ -21,6 +23,7 @@ MonsterState_Dead::~MonsterState_Dead()
 
 void MonsterState_Dead::Start()
 {
+	LoadSFX();
 	SetNowAniName("Dead");
 	ScreenSize = GameEngineWindow::GetScreenSize();
 
@@ -41,6 +44,7 @@ void MonsterState_Dead::EnterState()
 	}
 
 	PointPannel::AddPoint(KillPoint);
+	GameEngineResources::GetInst().SoundPlay("MonsterDead.wav");
 }
 
 void MonsterState_Dead::SetSpeed()
@@ -108,4 +112,21 @@ void MonsterState_Dead::CreateItem()
 	MonsterBase* Monster = GetMonster();
 	Item_Normal* Item = Monster->GetLevel()->CreateActor<Item_Normal>(UpdateOrder::Item);
 	Item->Init(Monster->GetPos());
+}
+
+void MonsterState_Dead::LoadSFX()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Monster");
+
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("MonsterDead.wav"));
+	IsLoad = true;
 }

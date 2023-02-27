@@ -15,6 +15,8 @@
 #include "NatureMissle_Fire.h"
 #include "NatureMissle_Windy.h"
 
+bool BubbleStatePop::SfxOn = false;
+
 BubbleStatePop::BubbleStatePop()
 {
 
@@ -22,7 +24,10 @@ BubbleStatePop::BubbleStatePop()
 
 BubbleStatePop::~BubbleStatePop()
 {
-
+	if (true == SfxOn)
+	{
+		SfxOn = false;
+	}
 }
 
 void BubbleStatePop::Init(PlayerCharacterType _CharType, BubbleMissleType _BubbleType)
@@ -31,6 +36,7 @@ void BubbleStatePop::Init(PlayerCharacterType _CharType, BubbleMissleType _Bubbl
 	if (false == IsLoad)
 	{
 		ResourceLoad();
+		LoadSFX();
 		IsLoad = true;
 	}
 
@@ -66,6 +72,12 @@ void BubbleStatePop::EnterState()
 	//버블 타입에 따라 무언가 생성
 	CreateNatureMissle();
 	PointPannel::AddPoint(PopPoint);
+
+	if (false == SfxOn)
+	{
+		GameEngineResources::GetInst().SoundPlay("BubblePop.mp3");
+		SfxOn = true;
+	}
 }
 
 void BubbleStatePop::Update(float _DeltaTime)
@@ -87,6 +99,17 @@ void BubbleStatePop::ResourceLoad()
 	Dir.Move("Common");
 	Dir.Move("Bubble");
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("BubblePop.bmp"))->Cut(4, 1);
+}
+
+void BubbleStatePop::LoadSFX()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Bubble");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("BubblePop.mp3"));
 }
 
 void BubbleStatePop::CreateNatureMissle()

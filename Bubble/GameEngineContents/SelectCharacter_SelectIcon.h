@@ -30,5 +30,7 @@ private:
 
 	int								CurIndex					= 0;
 	GameEngineRender*	Render						= nullptr;
+
+	void LoadSFX();
 };
 

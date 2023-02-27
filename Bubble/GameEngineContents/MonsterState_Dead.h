@@ -29,5 +29,6 @@ private:
 
 	void SetSpeed();
 	void CreateItem();
+	void LoadSFX();
 };
 

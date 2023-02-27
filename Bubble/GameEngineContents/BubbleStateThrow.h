@@ -21,6 +21,7 @@ protected:
 private:
 
 	void ResourceLoad();
+	void LoadSFX();
 	bool MonsterCollisionCheck();
 };
 

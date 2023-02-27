@@ -1,6 +1,9 @@
 #include "SelectCharacter_SelectIcon.h"
+#include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineResources.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 #include "ContentsDefine.h"
 #include "SelectCharacterLevel.h"
 
@@ -19,6 +22,8 @@ SelectCharacter_SelectIcon::~SelectCharacter_SelectIcon()
 
 void SelectCharacter_SelectIcon::Start()
 {
+	LoadSFX();
+
 	//이미지 생성
 	Render = CreateRender("SelectCharacte_SelectIcon.bmp", SelectCharacterRenderOrder::BackGround);
 	Render->SetScale({ 60.f, 40.f });
@@ -40,6 +45,7 @@ void SelectCharacter_SelectIcon::Update(float _DeltaTime)
 	{
 		CurIndex = (CurIndex + 1) % 4;
 		Render->SetPosition(SelectCharacterLevel::CharPos[CurIndex] + float4::Up * UpOffset);
+		GameEngineResources::GetInst().SoundPlay("MoveCursor.wav");
 		return;
 	}
 
@@ -48,6 +54,7 @@ void SelectCharacter_SelectIcon::Update(float _DeltaTime)
 	{
 		CurIndex = (CurIndex - 1) < 0 ? 3 : CurIndex - 1;
 		Render->SetPosition(SelectCharacterLevel::CharPos[CurIndex] + float4::Up * UpOffset);
+		GameEngineResources::GetInst().SoundPlay("MoveCursor.wav");
 		return;
 	}
 
@@ -60,6 +67,25 @@ void SelectCharacter_SelectIcon::Update(float _DeltaTime)
 		)
 	{
 		SelectCharacterLevel::Selected = true;
+		GameEngineResources::GetInst().SoundPlay("SelectCursor.wav");
 	}
 
+}
+
+void SelectCharacter_SelectIcon::LoadSFX()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Title");
+
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("MoveCursor.wav"));
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("SelectCursor.wav"));
+	IsLoad = true;
 }

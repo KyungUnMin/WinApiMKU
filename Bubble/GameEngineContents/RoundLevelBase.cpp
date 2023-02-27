@@ -200,8 +200,16 @@ void RoundLevelBase::StageClear()
 
 void RoundLevelBase::Update(float _DeltaTime)
 {
+	static float Timer = 0.f;
+	const float StageChangeTime = 5.f;
+
 	if (false ==IsMoveValue && true == MonsterSpawners[NowStageIndex]->IsAllMonsterOff())
 	{
+		Timer += _DeltaTime;
+		if (Timer < StageChangeTime)
+			return;
+
+
 		//스테이지가 넘어갈 때 대기시간도 필요해 보임
 		//if(false == );
 		//	TODO
@@ -213,6 +221,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 		}
 
 		//스테이지 이동이 시작
+		Timer = 0.f;
 		MoveToNextStage();
 	}
 

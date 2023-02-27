@@ -26,6 +26,7 @@ void BubbleStateThrow::Init(PlayerCharacterType _CharType, BubbleMissleType _Bub
 	if (false == IsLoad)
 	{
 		ResourceLoad();
+		LoadSFX();
 		IsLoad = true;
 	}
 
@@ -42,6 +43,8 @@ void BubbleStateThrow::Init(PlayerCharacterType _CharType, BubbleMissleType _Bub
 		.InterTimer = 0.1f,
 		.Loop = false
 	});
+
+	GameEngineResources::GetInst().SoundPlay("BubbleThrow.wav");
 }
 
 void BubbleStateThrow::ResourceLoad()
@@ -53,6 +56,18 @@ void BubbleStateThrow::ResourceLoad()
 	Dir.Move("Common");
 	Dir.Move("Bubble");
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("BubbleThrow.bmp"))->Cut(6, 4);
+}
+
+void BubbleStateThrow::LoadSFX()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Bubble");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("BubbleCatchMonster.wav"));
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("BubbleThrow.wav"));
 }
 
 
@@ -108,6 +123,7 @@ bool BubbleStateThrow::MonsterCollisionCheck()
 
 	GetBubble()->SetCatchTarget(Monster);
 	Monster->AttackedBubble(GetBubble());
+	GameEngineResources::GetInst().SoundPlay("BubbleCatchMonster.wav");
 	return true;
 }
 

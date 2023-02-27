@@ -51,6 +51,8 @@ void BubbleCore::CreateDebugPenBrush()
 	DebugBrush = static_cast<HBRUSH>(SelectObject(Hdc, DebugBrush));
 }
 
+
+
 void BubbleCore::CreateLevels()
 {
 	//≈∏¿Ã∆≤
@@ -85,6 +87,7 @@ void BubbleCore::CreateKeys()
 	GameEngineInput::CreateKey(PLAYER_JUMP, KEY_JUMP);
 	GameEngineInput::CreateKey(PLAYER_ATTACK, KEY_ATTACK);
 }
+
 
 
 
