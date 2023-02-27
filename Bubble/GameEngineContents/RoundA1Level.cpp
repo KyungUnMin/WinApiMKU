@@ -231,9 +231,9 @@ void RoundA1Level::CreateMonsters()
 	}
 
 	{
-		MonsterSpawner* MonSpawner = GetMonsterSpawner(5);
+		/*MonsterSpawner* MonSpawner = GetMonsterSpawner(5);
 
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(134));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(134));*/
 	}
 }
 

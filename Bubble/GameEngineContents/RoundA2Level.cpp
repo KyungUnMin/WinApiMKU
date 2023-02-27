@@ -20,6 +20,7 @@
 #include "Monster_Dorabo.h"
 #include "Monster_Magician.h"
 #include "Monster_Warurin.h"
+#include "BossMonster.h"
 
 RoundA2Level::RoundA2Level()
 {
@@ -270,9 +271,9 @@ void RoundA2Level::CreateMonsters()
 	}
 
 	{
-		MonsterSpawner* MonSpawner = GetMonsterSpawner(5);
+		/*MonsterSpawner* MonSpawner = GetMonsterSpawner(5);
 
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(134));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(134));*/
 	}
 }
 
@@ -433,6 +434,8 @@ void RoundA2Level::StartLastStage()
 	Item_BubbleLiquid* BubbleLiquid = CreateActor<Item_BubbleLiquid>(UpdateOrder::Item);
 	BubbleLiquid->SetPos(BubbleDestHelper::GetGridPos(326));
 	BubbleLiquid->InitType(BubbleLiquidType::RainBow);
+
+	BossMonster* Boss = CreateActor<BossMonster>(UpdateOrder::BossMonster);
 }
 
 

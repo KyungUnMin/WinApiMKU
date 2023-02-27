@@ -22,6 +22,7 @@
 #include "Monster_Monsta.h"
 #include "Monster_Warurin.h"
 #include "Monster_PuruPuru.h"
+#include "BossMonster.h"
 
 RoundA3Level::RoundA3Level()
 {
@@ -269,9 +270,9 @@ void RoundA3Level::CreateMonsters()
 	}
 
 	{
-		MonsterSpawner* MonSpawner = GetMonsterSpawner(5);
+		/*MonsterSpawner* MonSpawner = GetMonsterSpawner(5);
 
-		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(134));
+		MonSpawner->CreateMonsters<Monster_ZenChan>(BubbleDestHelper::GetGridPos(134));*/
 	}
 }
 
@@ -442,4 +443,6 @@ void RoundA3Level::StartLastStage()
 	Item_BubbleLiquid* BubbleLiquid = CreateActor<Item_BubbleLiquid>(UpdateOrder::Item);
 	BubbleLiquid->SetPos(BubbleDestHelper::GetGridPos(326));
 	BubbleLiquid->InitType(BubbleLiquidType::Windy);
+
+	BossMonster* Boss = CreateActor<BossMonster>(UpdateOrder::BossMonster);
 }
