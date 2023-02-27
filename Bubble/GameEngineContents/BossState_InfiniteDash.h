@@ -16,8 +16,12 @@ public:
 
 protected:
 	void EnterState() override;
+	void Update(float _DeltaTime) override;
 
 private:
+	const float	ChangeStateTime	= 5.f;
+	float			Timer						= 0.f;
 
+	void CalcCenterDir();
 };
 

@@ -29,6 +29,11 @@ protected:
 	bool IsScreenOutPos(const float4 _NextPos);
 	void CalcDirection();
 
+	inline const void SetDir(const float4& _Dir)
+	{
+		Dir = _Dir;
+	}
+
 private:
 	CollisionData	MoveArea	= CollisionData();
 	float4				Dir				= float4::Zero;

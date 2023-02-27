@@ -1,11 +1,16 @@
 #include "BossState_Damaged.h"
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineMath.h>
+#include <GameEngineBase/GameEngineMath.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineResources.h>
+#include <GameEngineCore/GameEngineLevel.h>
 #include "BossMonster.h"
 #include "BossMonsterFSM.h"
 #include "BossHpBar.h"
+#include "MonsterMissle_BossBeer.h"
+#include "PlayerBase.h"
+
 
 const std::string_view	BossState_Damaged::SteamImagePath		= "BossAngrySteam.bmp";
 const std::string_view	BossState_Damaged::SteamAniName			= "Steam";
@@ -23,12 +28,12 @@ BossState_Damaged::~BossState_Damaged()
 
 void BossState_Damaged::Start()
 {
-	StreamResourceLoad();
+	ParticleResourceLoad();
 	CreateStreamAni();
 }
 
 
-void BossState_Damaged::StreamResourceLoad()
+void BossState_Damaged::ParticleResourceLoad()
 {
 	static bool IsLoad = false;
 	if (true == IsLoad)
@@ -74,6 +79,9 @@ void BossState_Damaged::CreateStreamAni()
 
 
 
+
+
+
 void BossState_Damaged::EnterState()
 {
 	BossPhase NowPhase = BossHpBar::MainBossHP->GetPhase();
@@ -84,10 +92,11 @@ void BossState_Damaged::EnterState()
 		break;
 	case BossPhase::Upset:
 		ChangeAniDir(BossMonster::AngryAniName);
-		//불눈 Render On
+		CreateMissle();
 		break;
 	case BossPhase::Rage:
 		ChangeAniDir(BossMonster::RageAngryAniName);
+		CreateMissle();
 		break;
 	}
 
@@ -99,6 +108,9 @@ void BossState_Damaged::EnterState()
 		AngrySteam->ChangeAnimation(SteamAniName, true);
 	}
 }
+
+
+
 
 
 void BossState_Damaged::Update(float _DeltaTime)
@@ -124,6 +136,8 @@ void BossState_Damaged::Update(float _DeltaTime)
 	//플레이어와 충돌처리
 	CheckCollisionWithPlayer();
 }
+
+
 
 
 bool BossState_Damaged::CheckDamaged()
@@ -182,5 +196,38 @@ void BossState_Damaged::ExitState()
 	for (std::pair<GameEngineRender*, const float>& Pair: AngrySteams)
 	{
 		Pair.first->Off();
+	}
+
+	for (GameEngineRender* Eye : UpsetEyes)
+	{
+		Eye->Off();
+	}
+}
+
+
+void BossState_Damaged::CreateMissle()
+{
+	if (nullptr == PlayerBase::MainPlayer)
+		return;
+
+	BossMonster* Boss = GetBoss();
+	float4 PlayerPos = PlayerBase::MainPlayer->GetPos();
+	float4 BossPos = Boss->GetPos();
+
+	float4 Dir[3];
+	Dir[0] = (PlayerPos - BossPos);
+	if (0.f == Dir[0].Size())
+		return;
+
+	Dir[0].Normalize();
+	
+	Dir[1] = Dir[0].RotationZDegReturn(120.f);
+	Dir[2] = Dir[0].RotationZDegReturn(-120.f);
+
+	for (size_t i = 0; i < 3; ++i)
+	{
+		MonsterMissle_BossBeer* BossMissle = Boss->GetLevel()->CreateActor<MonsterMissle_BossBeer>(UpdateOrder::Monster_Missle);
+		BossMissle->SetPos(Boss->GetPos());
+		BossMissle->ThrowMissle(Dir[i]);
 	}
 }

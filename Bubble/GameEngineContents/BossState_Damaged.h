@@ -30,10 +30,14 @@ private:
 	const float4			StartOffset		= float4{ 0.f, -100.f };
 
 	std::vector<std::pair<GameEngineRender*, const float>> AngrySteams;
-	void StreamResourceLoad();
+	std::vector<GameEngineRender*>										UpsetEyes;
+
+
+	void ParticleResourceLoad();
 	void CreateStreamAni();
 
 	bool CheckDamaged();
 	bool SteamMove(float _DeltaTime);
+	void CreateMissle();
 };
 

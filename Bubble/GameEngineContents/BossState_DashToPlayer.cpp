@@ -37,7 +37,7 @@ void BossState_DashToPlayer::EnterState()
 
 void BossState_DashToPlayer::CalcDirection()
 {
-	const float MinDirSize = 100.f;
+	const float MinDirSize = 200.f;
 	
 	BossMonster* Boss = GetBoss();
 	float4 StartPos = Boss->GetPos();
@@ -105,13 +105,42 @@ bool BossState_DashToPlayer::CheckDamaged()
 void BossState_DashToPlayer::Move(float _DeltaTime)
 {
 	const float	MoveSpeed = 300.f;
+	const float ScreenOutOffsetY = 50.f;
+
+	BossPhase NowPhase = BossHpBar::MainBossHP->GetPhase();
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
+
 	float4 NowPos = GetBoss()->GetPos();
 	float4 NextPos = NowPos + (Dir * MoveSpeed * _DeltaTime);
+	float4 DownPos = NextPos + (float4::Down * BossMonster::CollisionScale.half());
+
+
+	if ((ScreenSize.y - ScreenOutOffsetY) < DownPos.y)
+	{
+		if (BossPhase::Normal == NowPhase)
+		{
+			GetFSM()->ChangeState(BossStateType::CircleMove);
+		}
+		else
+		{
+			GetFSM()->ChangeState(BossStateType::Damaged);
+		}
+		return;
+	}
+
 	float4 CheckPos = NextPos + (Dir * BossMonster::CollisionScale.half());
 
 	if (true == IsScreenOutPos(CheckPos))
 	{
-		GetFSM()->ChangeState(BossStateType::CircleMove);
+		if (BossPhase::Normal == NowPhase)
+		{
+			GetFSM()->ChangeState(BossStateType::CircleMove);
+		}
+		else
+		{
+			GetFSM()->ChangeState(BossStateType::Damaged);
+		}
+		
 		return;
 	}
 

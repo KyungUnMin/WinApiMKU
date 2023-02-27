@@ -346,6 +346,9 @@
     <ClInclude Include="BossState_InfiniteDash.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\02.BossFSM\08.InfiniteDash</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterMissle_BossBeer.h">
+      <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\05.BossBeer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -728,6 +731,9 @@
     </ClCompile>
     <ClCompile Include="BossState_InfiniteDash.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\02.BossFSM\08.InfiniteDash</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterMissle_BossBeer.cpp">
+      <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\05.BossBeer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1174,6 +1180,9 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossActor\02.BossFSM\08.InfiniteDash">
       <UniqueIdentifier>{92b91f9d-7c9b-47c6-bfec-857fc05ff1ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\05.MonsterMissle\05.BossBeer">
+      <UniqueIdentifier>{e5b24b9c-df29-4a56-b9bd-16a3daedf4f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
