@@ -9,6 +9,9 @@ class ItemBase : public GameEngineActor
 public:
 	static const std::string_view NormalImgPath;
 	static const std::string_view BubbleLiquidImgPath;
+
+	static const std::vector<std::string_view> ItemCreateSFX;
+
 	static const float4 CollisionScale;
 	static const float4 CollisionOffset;
 	static const float4 RenderScale;
@@ -37,5 +40,6 @@ private:
 	GameEngineRender*		RenderPtr		= nullptr;
 
 	void ResourceLoad();
+	void LoadSFX();
 };
 

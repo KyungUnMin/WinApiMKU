@@ -58,6 +58,8 @@ private:
 	PlayerBase*					Player				= nullptr;
 	BubbleMissleType		Type				= BubbleMissleType::Normal;
 	BubbleColor				Color				= BubbleColor::UNKNOWN;
+
+	void LoadSFX();
 };
 
 //--------------------------------------------------

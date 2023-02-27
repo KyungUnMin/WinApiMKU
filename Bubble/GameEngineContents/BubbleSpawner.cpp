@@ -1,8 +1,10 @@
 #include "BubbleSpawner.h"
+#include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineCore/GameEngineResources.h>
 #include "PlayerBase.h"
 #include "ContentsDefine.h"
 #include "ContentsEnum.h"
@@ -24,6 +26,7 @@ BubbleSpawner::~BubbleSpawner()
 
 void BubbleSpawner::Start()
 {
+	LoadSFX();
 	RoundLevel = dynamic_cast<RoundLevelBase*>(GetLevel());
 	if (nullptr == RoundLevel)
 	{
@@ -32,6 +35,31 @@ void BubbleSpawner::Start()
 	}
 }
 
+
+void BubbleSpawner::LoadSFX()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Bubble");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("BubbleThrow.wav"));
+	IsLoad = true;
+}
+
+
+
+
+
+
+
+
+
 void BubbleSpawner::Update(float _DeltaTime)
 {
 	if (nullptr == Player)
@@ -39,6 +67,7 @@ void BubbleSpawner::Update(float _DeltaTime)
 
 	SetPos(Player->GetPos());
 }
+
 
 
 void BubbleSpawner::CreateBubble()
@@ -68,6 +97,7 @@ void BubbleSpawner::CreateBubble()
 	{
 		Bubble->SetDir(Player->GetDirVec());
 		Bubble->Init(Player->GetCharacterType(), Type);
+		GameEngineResources::GetInst().SoundPlay("BubbleThrow.wav");
 		return;
 	}
 

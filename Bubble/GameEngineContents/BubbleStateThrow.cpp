@@ -43,8 +43,6 @@ void BubbleStateThrow::Init(PlayerCharacterType _CharType, BubbleMissleType _Bub
 		.InterTimer = 0.1f,
 		.Loop = false
 	});
-
-	GameEngineResources::GetInst().SoundPlay("BubbleThrow.wav");
 }
 
 void BubbleStateThrow::ResourceLoad()
@@ -67,7 +65,6 @@ void BubbleStateThrow::LoadSFX()
 	Dir.Move("SFX");
 	Dir.Move("Bubble");
 	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("BubbleCatchMonster.wav"));
-	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("BubbleThrow.wav"));
 }
 
 

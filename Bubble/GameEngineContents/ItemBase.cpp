@@ -1,4 +1,5 @@
 #include "ItemBase.h"
+#include <GameEngineBase/GameEngineRandom.h>
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineCore/GameEngineResources.h>
@@ -8,6 +9,17 @@
 
 const std::string_view	ItemBase::NormalImgPath				= "NormalItems.bmp";
 const std::string_view	ItemBase::BubbleLiquidImgPath	= "BubbleLiquid.bmp";
+const std::vector<std::string_view> ItemBase::ItemCreateSFX = 
+{
+	"ItemCreate0.wav",
+	"ItemCreate1.wav",
+	"ItemCreate2.wav",
+	"ItemCreate3.wav",
+	"ItemCreate4.wav",
+	"ItemCreate5.wav",
+	"ItemCreate6.wav"
+};
+
 
 const float4					ItemBase::CollisionScale					= float4{50.f, 50.f};
 const float4					ItemBase::CollisionOffset				= float4{ 0.f, -25.f };
@@ -28,6 +40,7 @@ ItemBase::~ItemBase()
 void ItemBase::Start()
 {
 	ResourceLoad();
+	LoadSFX();
 
 	CollisionPtr = CreateCollision(CollisionOrder::Items);
 	CollisionPtr->SetScale(CollisionScale);
@@ -35,6 +48,9 @@ void ItemBase::Start()
 
 	RenderPtr = CreateRender(RenderOrder::Items);
 	RenderPtr->SetScale(RenderScale);
+
+	int SFXIndex = GameEngineRandom::MainRandom.RandomInt(0, static_cast<int>(ItemCreateSFX.size() - 1));
+	GameEngineResources::GetInst().SoundPlay(ItemCreateSFX[SFXIndex]);
 }
 
 
@@ -57,6 +73,28 @@ void ItemBase::ResourceLoad()
 	IsLoad = true;
 }
 
+void ItemBase::LoadSFX()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Item");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("ItemEat.mp3"));
+
+	for (size_t i = 0; i < ItemCreateSFX.size(); ++i)
+	{
+		GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName(ItemCreateSFX[i]));
+	}
+
+	IsLoad = true;
+}
+
 
 void ItemBase::Update(float _DeltaTime)
 {
@@ -64,6 +102,7 @@ void ItemBase::Update(float _DeltaTime)
 	if (false == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Player) }))
 		return;
 	
+	GameEngineResources::GetInst().SoundPlay("ItemEat.mp3");
 	Excute();
 	Death();
 }
