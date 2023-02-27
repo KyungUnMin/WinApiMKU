@@ -72,6 +72,9 @@ private:
 
 	const float						MoveDuration = 1.f;
 
+
+	void LoadSFX();
+
 	//문 열기 애니메이션 실행
 	void DoorOpen();
 

@@ -26,6 +26,7 @@ void PlayerState_Jump::Start(PlayerCharacterType _CharacterType)
 	if (false == IsLoad)
 	{
 		ResourceLoad();
+		LoadSFX();
 		IsLoad = true;
 	}
 
@@ -49,6 +50,17 @@ void PlayerState_Jump::ResourceLoad()
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerJump.bmp"))->Cut(4, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerJump_Attack.bmp"))->Cut(4, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerJump_Attack.bmp"))->Cut(4, 4);
+}
+
+void PlayerState_Jump::LoadSFX()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Player");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("PlayerJump.wav"));
 }
 
 
@@ -130,6 +142,7 @@ void PlayerState_Jump::CreateAnimation(PlayerCharacterType _CharacterType)
 void PlayerState_Jump::EnterState()
 {
 	PlayerStateBase::EnterState();
+	GameEngineResources::GetInst().SoundPlay("PlayerJump.wav");
 	AccTime = 0.0f;
 }
 

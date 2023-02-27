@@ -33,12 +33,14 @@ BubbleCore::~BubbleCore()
 void BubbleCore::Start()
 {
 	bool* FOR_DEBUG = new bool;
-
 	srand(static_cast<unsigned int>(time(nullptr)));
+
 	CreateDebugPenBrush();
 	CreateLevels();
 	CreateKeys();
 }
+
+
 
 void BubbleCore::CreateDebugPenBrush()
 {
@@ -70,7 +72,7 @@ void BubbleCore::CreateLevels()
 	//엔딩화면
 	CreateLevel<EndingLevel>("EndingLevel");
 
-	ChangeLevel("RoundAEnterLevel");
+	ChangeLevel("RoundA1Level");
 }
 
 

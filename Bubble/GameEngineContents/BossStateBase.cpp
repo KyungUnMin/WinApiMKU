@@ -1,15 +1,19 @@
 #include "BossStateBase.h"
 #include <string>
 #include <GameEngineBase/GameEngineMath.h>
+#include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEnginePlatform/GameEngineImage.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include <GameEngineCore/GameEngineResources.h>
 #include "BossMonsterFSM.h"
 #include "BossMonster.h"
 #include "PlayerBase.h"
 #include "NatureMissleBase.h"
 #include "BossHpBar.h"
+
+bool BossStateBase::IsSFXLoad = false;
 
 BossStateBase::BossStateBase()
 {
@@ -68,6 +72,12 @@ int BossStateBase::CheckCollisionWithNatureMissle()
 		Nature->DestroyByBoss();
 	}
 
+	if (false == IsSFXLoad)
+	{
+		LoadSFX();
+	}
+	GameEngineResources::GetInst().SoundPlay("BossDamaged.mp3");
+
 	return static_cast<int>(NatureMissles.size());
 }
 
@@ -94,5 +104,17 @@ void BossStateBase::DrawDebugArrow(const float4& _Start, const float4& _End)
 	MoveToEx(Hdc, _End.ix(), _End.iy(), nullptr);
 	LineTo(Hdc, LeftArrowPos.ix(), LeftArrowPos.iy());
 
+}
+
+void BossStateBase::LoadSFX()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Monster");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("BossDamaged.mp3"));
+	IsSFXLoad = true;
 }
 

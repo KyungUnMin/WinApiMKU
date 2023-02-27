@@ -22,6 +22,7 @@ protected:
 private:
 
 	void ResourceLoad();
+	void LoadSFX();
 	void CreateAnimation(PlayerCharacterType _CharacterType);
 };
 

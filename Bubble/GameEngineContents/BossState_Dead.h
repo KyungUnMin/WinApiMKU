@@ -1,6 +1,8 @@
 #pragma once
 #include "BossStateBase.h"
 
+class RoundLevelBase;
+
 class BossState_Dead : public BossStateBase
 {
 public:
@@ -13,6 +15,7 @@ public:
 	BossState_Dead& operator=(const BossState_Dead&& _Other) noexcept = delete;
 
 protected:
+	void Start() override;
 	void EnterState() override;
 	void Update(float _DeltaTime) override;
 
@@ -23,7 +26,9 @@ private:
 
 	float4 NowSpeed						= float4::Zero;
 	float4 ScreenSize						= float4::Zero;
+	RoundLevelBase* RoundLevel	= nullptr;
 
+	void LoadSFX();
 	void SelectDirection();
 };
 

@@ -1,7 +1,9 @@
 #include "BossState_Lock.h"
+#include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include <GameEngineCore/GameEngineResources.h>
 #include "BossMonster.h"
 #include "BossMonsterFSM.h"
 #include "BossHpBar.h"
@@ -22,6 +24,7 @@ BossState_Lock::~BossState_Lock()
 
 void BossState_Lock::Start()
 {
+	LoadSFX();
 	const float4 LockBubbleScale = float4{ 150.f, 150.f };
 	LockBubble = GetBoss()->CreateRender(BossMonster::LockBubbleImagePath, RenderOrder::BossLockBubble);
 	LockBubble->SetScale(LockBubbleScale);
@@ -40,6 +43,7 @@ void BossState_Lock::Start()
 void BossState_Lock::EnterState()
 {
 	GetBoss()->GetRender()->ChangeAnimation(BossMonster::LockAniName);
+	GameEngineResources::GetInst().SoundPlay("BossLock.wav");
 
 	LockBubble->On();
 	StartPos = GetBoss()->GetPos();
@@ -69,6 +73,26 @@ void BossState_Lock::Update(float _DeltaTime)
 
 	Move();
 }
+
+
+
+void BossState_Lock::LoadSFX()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Monster");
+
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("BossLock.wav"));
+	IsLoad = true;
+}
+
 
 
 

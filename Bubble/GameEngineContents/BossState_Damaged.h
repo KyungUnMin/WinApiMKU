@@ -33,6 +33,7 @@ private:
 	std::vector<GameEngineRender*>										UpsetEyes;
 
 
+	void LoadSFX();
 	void ParticleResourceLoad();
 	void CreateStreamAni();
 

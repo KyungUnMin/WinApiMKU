@@ -28,10 +28,28 @@ BossState_Damaged::~BossState_Damaged()
 
 void BossState_Damaged::Start()
 {
+	LoadSFX();
 	ParticleResourceLoad();
 	CreateStreamAni();
 }
 
+
+void BossState_Damaged::LoadSFX()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Monster");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("BossAngry.wav"));
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("BossUpset.mp3"));
+	IsLoad = true;
+}
 
 void BossState_Damaged::ParticleResourceLoad()
 {
@@ -89,14 +107,17 @@ void BossState_Damaged::EnterState()
 	{
 	case BossPhase::Normal:
 		ChangeAniDir(BossMonster::AngryAniName);
+		GameEngineResources::GetInst().SoundPlay("BossAngry.wav");
 		break;
 	case BossPhase::Upset:
 		ChangeAniDir(BossMonster::AngryAniName);
 		CreateMissle();
+		GameEngineResources::GetInst().SoundPlay("BossUpset.mp3");
 		break;
 	case BossPhase::Rage:
 		ChangeAniDir(BossMonster::RageAngryAniName);
 		CreateMissle();
+		GameEngineResources::GetInst().SoundPlay("BossAngry.wav");
 		break;
 	}
 
@@ -107,6 +128,7 @@ void BossState_Damaged::EnterState()
 		AngrySteam->SetPosition(StartOffset);
 		AngrySteam->ChangeAnimation(SteamAniName, true);
 	}
+
 }
 
 

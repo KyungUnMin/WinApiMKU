@@ -190,6 +190,13 @@ void RoundLevelBase::StageClear()
 	{
 		Point->Death();
 	}
+
+	//치트키를 이용시, 게임 다시 시작시 생기는 버그를 위한 작업
+	std::vector<GameEngineActor*> BossArr = GetActors(UpdateOrder::BossMonster);
+	for (GameEngineActor* Boss : BossArr)
+	{
+		Boss->Death();
+	}
 }
 
 
@@ -217,6 +224,7 @@ void RoundLevelBase::Update(float _DeltaTime)
 		if (NowStageIndex + 1 == StageImage->GetRenderSize())
 		{
 			//ChangeLastLevel();
+
 			return;
 		}
 
@@ -264,6 +272,9 @@ void RoundLevelBase::Update(float _DeltaTime)
 		if (true == IsLastStage())
 		{
 			StartLastStage();
+			BGMPlayer.PauseOn();
+			BossBGMPlayer = GameEngineResources::GetInst().SoundPlayerToControl(BossBgmName);
+			//얘 나중에 어디선가 꺼줘야해
 		}
 	}
 }
@@ -338,6 +349,8 @@ void RoundLevelBase::BgmLoad()
 	Dir.Move("Sound");
 	Dir.Move("BGM");
 	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName(RoundBgmName));
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName(BossBgmName));
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName(ClearBgmName));
 	IsLoad = true;
 }
 
@@ -366,6 +379,7 @@ void RoundLevelBase::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	DestHelperPtr->TurnOnBubbleDest(NowStageIndex);
 
 	BGMPlayer = GameEngineResources::GetInst().SoundPlayerToControl(RoundBgmName);
+	BGMPlayer.PauseOff();
 
 	SetNowStage(0);
 }
@@ -433,5 +447,11 @@ std::vector<GameEngineActor*> RoundLevelBase::GetAliveMonsters()
 	}
 
 	return StageMonsters;
+}
+
+void RoundLevelBase::StageBossClear()
+{
+	BossBGMPlayer.Stop();
+	GameEngineResources::GetInst().SoundPlay(ClearBgmName);
 }
 

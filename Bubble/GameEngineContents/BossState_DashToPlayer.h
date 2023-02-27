@@ -40,7 +40,6 @@ private:
 
 	HPEN				DebugPen	= HPEN();
 
-	
 	bool CheckDamaged();
 };
 

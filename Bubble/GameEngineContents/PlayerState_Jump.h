@@ -35,6 +35,7 @@ private:
 	
 
 	void ResourceLoad();
+	void LoadSFX();
 	void CreateAnimation(PlayerCharacterType _CharacterType);
 
 	bool CheckStateChange(float _DeltaTime);

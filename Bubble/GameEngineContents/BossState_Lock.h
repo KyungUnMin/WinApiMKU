@@ -33,6 +33,7 @@ private:
 	const float					LockTime			= 10.f;
 	float							AccTime			= 0.f;
 
+	void LoadSFX();
 	void Move();
 };
 

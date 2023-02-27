@@ -24,6 +24,7 @@ void PlayerState_Damaged::Start(PlayerCharacterType _CharacterType)
 	if (false == IsLoad)
 	{
 		ResourceLoad();
+		LoadSFX();
 		IsLoad = true;
 	}
 
@@ -44,6 +45,17 @@ void PlayerState_Damaged::ResourceLoad()
 	Dir.Move("Damaged");
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Left_PlayerDamaged.bmp"))->Cut(17, 4);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Right_PlayerDamaged.bmp"))->Cut(17, 4);
+}
+
+void PlayerState_Damaged::LoadSFX()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Player");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("PlayerDead.wav"));
 }
 
 
@@ -96,6 +108,7 @@ void PlayerState_Damaged::Update(float _DeltaTime)
 void PlayerState_Damaged::EnterState()
 {
 	PlayerStateBase::EnterState();
+	GameEngineResources::GetInst().SoundPlay("PlayerDead.wav");
 	GetPlayer()->GetCollision()->Off();
 }
 

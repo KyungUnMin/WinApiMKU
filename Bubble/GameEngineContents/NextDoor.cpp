@@ -27,6 +27,7 @@ void NextDoor::Start()
 	static bool IsLoad = false;
 	if (false == IsLoad)
 	{
+		LoadSFX();
 		ResourceLoad();
 		IsLoad = true;
 	}
@@ -43,6 +44,18 @@ void NextDoor::ResourceLoad()
 	Dir.Move("Common");
 
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("NextDoor.bmp"))->Cut(5, 9);
+}
+
+
+
+void NextDoor::LoadSFX()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("DoorOpen.wav"));
 }
 
 
@@ -186,6 +199,7 @@ void NextDoor::DoorOpen()
 	* 그래서 Open애니메이션 일때 이 함수가 여러번 호출되도 상관없음
 	*/
 	DoorRender->ChangeAnimation("Open");
+	GameEngineResources::GetInst().SoundPlay("DoorOpen.wav");
 }
 
 

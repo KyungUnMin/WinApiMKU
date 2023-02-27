@@ -10,6 +10,7 @@ class BossStateBase
 {
 public:
 	friend BossMonsterFSM;
+	static bool IsSFXLoad;
 
 	BossStateBase();
 	virtual ~BossStateBase() = 0;
@@ -48,5 +49,7 @@ private:
 	{
 		FsmPtr = _FSM;
 	}
+
+	void LoadSFX();
 };
 

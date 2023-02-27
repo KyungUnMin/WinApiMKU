@@ -79,6 +79,8 @@ public:
 
 	std::vector<GameEngineActor*> GetAliveMonsters();
 
+	void StageBossClear();
+
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
@@ -141,7 +143,11 @@ private:
 	BubbleDestHelper*						DestHelperPtr			= nullptr;
 
 	GameEngineSoundPlayer			BGMPlayer;
+	GameEngineSoundPlayer			BossBGMPlayer;
+	GameEngineSoundPlayer			RoundClearBGM;
 	const std::string_view				RoundBgmName		= "RoundBGM.mp3";
+	const std::string_view				BossBgmName			= "NormalBoss.mp3";
+	const std::string_view				ClearBgmName		= "RoundClear.mp3";
 
 	std::vector<MonsterSpawner*>	MonsterSpawners;
 
