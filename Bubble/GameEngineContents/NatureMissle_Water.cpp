@@ -9,8 +9,12 @@
 #include "PlayerBase.h"
 #include "PlayerFSM.h"
 
-const std::string_view	NatureMissle_Water::ImagePath			= "Water.bmp";
-const float4					NatureMissle_Water::MoveColScale		= float4{ 5.f, 5.f };
+const std::string_view		NatureMissle_Water::ImagePath			= "Water.bmp";
+const float4						NatureMissle_Water::MoveColScale		= float4{ 5.f, 5.f };
+
+size_t									NatureMissle_Water::AllCount = 0;
+GameEngineSoundPlayer	NatureMissle_Water::WaterWave;
+
 
 NatureMissle_Water::NatureMissle_Water()
 {
@@ -19,6 +23,12 @@ NatureMissle_Water::NatureMissle_Water()
 NatureMissle_Water::~NatureMissle_Water()
 {
 	DragMonsters.clear();
+	--AllCount;
+
+	if (0 == AllCount)
+	{
+		WaterWave.Stop();
+	}
 }
 
 
@@ -26,15 +36,38 @@ NatureMissle_Water::~NatureMissle_Water()
 void NatureMissle_Water::Start()
 {
 	NatureMissleBase::Start();
+	LoadSFX();
 	ResourceLoad();
 	GetCollision()->SetScale(CollisionScale);
 
 
 	GetRender()->SetImage(ImagePath);
 	GetRender()->SetFrame(0);
+
+	if (0 == AllCount)
+	{
+		WaterWave = GameEngineResources::GetInst().SoundPlayerToControl("WaterWave.wav");
+	}
+	++AllCount;
 }
 
 
+
+void NatureMissle_Water::LoadSFX()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Nature");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("WaterWave.wav"));
+	IsLoad = true;
+}
 
 void NatureMissle_Water::ResourceLoad()
 {
@@ -139,8 +172,8 @@ void NatureMissle_Water::Move(float _DeltaTime)
 		float4 NowPos = GetPos();
 		if (ScreenSize.y + ScreenOutOffsetY < NowPos.y)
 		{
-			if(10.f <  GetLiveTime())
-				Death();
+			//if(10.f <  GetLiveTime())
+			Death();
 
 			//y를 0으로 만들기
 			//SetPos(NowPos * float4::Right);

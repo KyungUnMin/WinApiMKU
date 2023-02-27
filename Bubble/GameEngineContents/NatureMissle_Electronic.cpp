@@ -33,11 +33,28 @@ NatureMissle_Electronic::~NatureMissle_Electronic()
 void NatureMissle_Electronic::Start()
 {
 	NatureMissleBase::Start();
+	LoadSFX();
 	ResourceLoad();
 	CreateAnimation();
 	ScreenSize = GameEngineWindow::GetScreenSize();
 }
 
+
+void NatureMissle_Electronic::LoadSFX()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Nature");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("ElectronicShock.wav"));
+	IsLoad = true;
+}
 
 void NatureMissle_Electronic::ResourceLoad()
 {
@@ -128,6 +145,7 @@ void NatureMissle_Electronic::Update_Move(float _DeltaTime)
 		NowState = State::PlayerAttach;
 		IsPlayerAttached = true;
 		PlayerBase::MainPlayer->GetFSM()->ChangeState(PlayerStateType::Embarrassed);
+		GameEngineResources::GetInst().SoundPlay("ElectronicShock.wav");
 		return;
 	}
 

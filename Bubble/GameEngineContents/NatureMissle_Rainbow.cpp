@@ -24,11 +24,13 @@ NatureMissle_Rainbow::~NatureMissle_Rainbow()
 void NatureMissle_Rainbow::DestroyByBoss()
 {
 	GetCollision()->Off();
+	GameEngineResources::GetInst().SoundPlay("RainBowMade.wav");
 }
 
 void NatureMissle_Rainbow::Start()
 {
 	NatureMissleBase::Start();
+	LoadSFX();
 	ResourceLoad();
 
 	GetRender()->SetScale(RenderScale);
@@ -39,6 +41,22 @@ void NatureMissle_Rainbow::Start()
 }
 
 
+
+void NatureMissle_Rainbow::LoadSFX()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Nature");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("RainBowMade.wav"));
+	IsLoad = true;
+}
 
 void NatureMissle_Rainbow::ResourceLoad()
 {
@@ -93,6 +111,7 @@ void NatureMissle_Rainbow::Update(float _DeltaTime)
 	if (false == CollisionCheckWithMonster(Monsters))
 		return;
 
+	GameEngineResources::GetInst().SoundPlay("RainBowMade.wav");
 	for (MonsterBase* Monster : Monsters)
 	{
 		Monster->DeathFromNature(this);

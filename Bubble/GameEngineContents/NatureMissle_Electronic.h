@@ -37,6 +37,7 @@ private:
 	const float		ScreenOutOffset	= 50.f;
 	const float4	MoveSpeed				= float4{ 400.f, 0.f };
 
+	void LoadSFX();
 	void ResourceLoad();
 	void CreateAnimation();
 

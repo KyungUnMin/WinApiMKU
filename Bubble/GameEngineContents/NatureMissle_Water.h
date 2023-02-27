@@ -1,4 +1,5 @@
 #pragma once
+#include <GameEngineCore/GameEngineResources.h>
 #include "NatureMissleBase.h"
 
 class MonsterBase;
@@ -6,8 +7,11 @@ class MonsterBase;
 class NatureMissle_Water : public NatureMissleBase
 {
 public:
-	static const std::string_view	ImagePath;
-	static const float4					MoveColScale;
+	static const std::string_view		ImagePath;
+	static const float4						MoveColScale;
+
+	static size_t AllCount;
+	static GameEngineSoundPlayer WaterWave;
 
 	NatureMissle_Water();
 	~NatureMissle_Water() override;
@@ -37,7 +41,7 @@ protected:
 	void Update(float _DeltaTime)  override;
 
 private:
-	const float						ScreenOutOffsetY	= 200.f;
+	const float						ScreenOutOffsetY	= 50.f;
 	const float4					MoveSpeed				= { 500.f, 500.f };
 
 	const float						CreateChildTime		= 0.03f;
@@ -47,7 +51,7 @@ private:
 	bool									IsFirst						= false;
 	std::list<MonsterBase*>	DragMonsters;
 
-
+	void LoadSFX();
 	void ResourceLoad();
 	void CreateChild();
 

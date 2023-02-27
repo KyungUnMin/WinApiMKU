@@ -24,9 +24,10 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	const float4 MoveSpeed				= float4{ 0.f, 500.f };
-	const float4 ScreenOutOffset	= float4{ 0.f, 50.f };
+	const float4	MoveSpeed				= float4{ 0.f, 500.f };
+	const float4	ScreenOutOffset	= float4{ 0.f, 50.f };
 
+	void LoadSFX();
 	void ResourceLoad();
 	void CreateAnimation();
 };
