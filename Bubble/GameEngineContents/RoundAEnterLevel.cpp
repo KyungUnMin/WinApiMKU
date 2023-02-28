@@ -2,6 +2,7 @@
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEnginePlatform/GameEngineImage.h>
+#include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include "BubbleCore.h"
 #include "ContentsEnum.h"
@@ -12,6 +13,7 @@
 #include "BubbleDestHelper.h"
 #include "Monster_ZenChan.h"
 #include "MonsterSpawner.h"
+#include "ContentsDefine.h"
 
 RoundAEnterLevel::RoundAEnterLevel()
 {
@@ -109,11 +111,24 @@ void RoundAEnterLevel::CreateMonsters()
 
 
 
+void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	RoundLevelBase::LevelChangeStart(_PrevLevel);
+	MonSpawner->AllMonsterOn();
+
+	for (size_t i = 0; i < 3; ++i)
+	{
+		Door[i]->Off();
+	}
+}
+
 
 
 
 void RoundAEnterLevel::Update(float _DeltaTime)
 {
+	Update_Cheet();
+
 	if (false == MonSpawner->IsAllMonsterOff())
 		return;
 
@@ -156,16 +171,23 @@ void RoundAEnterLevel::Update(float _DeltaTime)
 	}
 }
 
-void RoundAEnterLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
-{
-	RoundLevelBase::LevelChangeStart(_PrevLevel);
-	MonSpawner->AllMonsterOn();
 
-	for (size_t i = 0; i < 3; ++i)
-	{
-		Door[i]->Off();
-	}
+void RoundAEnterLevel::Update_Cheet()
+{
+	if (false == GameEngineInput::IsDown(CHEET_STAGE_CLEAR))
+		return;
+
+	MonSpawner->AllMonsterOff();
 }
+
+
+
+
+
+
+
+
+
 
 
 void RoundAEnterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)

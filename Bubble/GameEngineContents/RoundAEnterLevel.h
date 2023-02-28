@@ -34,5 +34,6 @@ private:
 	void CreateDoor();
 	void CreateBubbleDest();
 	void CreateMonsters();
+	void Update_Cheet();
 };
 
