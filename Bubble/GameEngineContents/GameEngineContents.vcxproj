@@ -175,7 +175,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="BossDeadUI.h">
+    <ClInclude Include="NavigationUI.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -649,7 +649,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="BossDeadUI.cpp">
+    <ClCompile Include="NavigationUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -85,7 +85,6 @@ void BossDeadBox::Update_Close()
 void BossDeadBox::Update_Open(float _DeltaTime)
 {
 	const size_t MaxCreateCnt = 15;
-	static size_t CreatedCnt = 0;
 
 	const float ItemSpawnTime = 0.2f;
 	static float Timer = 0.f;
@@ -97,14 +96,14 @@ void BossDeadBox::Update_Open(float _DeltaTime)
 	//아이템 생성
 	Item_GravityNormal* Item = GetLevel()->CreateActor<Item_GravityNormal>(UpdateOrder::Item);
 	Item->SetPos(GetPos() + ItemOffset);
-	++CreatedCnt;
+	++CreatedItemCnt;
 	Timer -= ItemSpawnTime;
 
-	if (CreatedCnt < MaxCreateCnt)
+	if (CreatedItemCnt < MaxCreateCnt)
 		return;
 
 	Item_BossJewellery* Jewellry = GetLevel()->CreateActor<Item_BossJewellery>(UpdateOrder::Item);
 	Jewellry->SetPos(GetPos() + ItemOffset);
-	CreatedCnt = 0;
+	CreatedItemCnt = 0;
 	Death();
 }

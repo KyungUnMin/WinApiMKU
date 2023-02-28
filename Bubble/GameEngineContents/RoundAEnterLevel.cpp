@@ -14,6 +14,7 @@
 #include "Monster_ZenChan.h"
 #include "MonsterSpawner.h"
 #include "ContentsDefine.h"
+#include "NavigationUI.h"
 
 RoundAEnterLevel::RoundAEnterLevel()
 {
@@ -132,10 +133,21 @@ void RoundAEnterLevel::Update(float _DeltaTime)
 	if (false == MonSpawner->IsAllMonsterOff())
 		return;
 
-	for (size_t i = 0; i < 3; ++i)
+	//모든 몬스터가 처리된 첫 프레임
+	if (false == IsAllMonKill)
 	{
-		Door[i]->On();
+		IsAllMonKill = true;
+
+		for (size_t i = 0; i < 3; ++i)
+		{
+			Door[i]->On();
+		}
+
+		NaviUI = CreateActor<NavigationUI>();
+		NaviUI->CreateImage(NavigationType::CourseSelect);
 	}
+
+	
 
 	//문이 선택되었을때를 확인
 	if (SelectedDoor < 0)
@@ -203,4 +215,8 @@ void RoundAEnterLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	//문의 선택 초기화
 	SelectedDoor = -1;
 	NextLevelTime = 3.f;
+
+	NaviUI->Clear();
+	NaviUI->Death();
+	IsAllMonKill = false;
 }

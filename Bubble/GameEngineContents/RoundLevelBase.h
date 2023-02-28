@@ -14,7 +14,7 @@ class BubbleDestHelper;
 class MonsterSpawner;
 class PointPannel;
 class MonsterBase;
-class BossDeadUI;
+class NavigationUI;
 class NextDoor;
 
 
@@ -152,7 +152,7 @@ private:
 
 	std::vector<MonsterSpawner*>	MonsterSpawners;
 
-	BossDeadUI*								BossClearUI				= nullptr;
+	NavigationUI*								BossClearUI				= nullptr;
 	NextDoor*									NextLevelDoor		= nullptr;
 
 	void CreateSpanwerPool(int _StageCount);

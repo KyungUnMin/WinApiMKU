@@ -34,6 +34,10 @@ public:
 
 protected:
 	void Start() override;
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override
+	{
+		IsAlreadyFall = false;
+	}
 
 private:
 	bool IsAlreadyFall = false;

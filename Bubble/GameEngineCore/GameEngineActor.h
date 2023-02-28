@@ -80,8 +80,8 @@ protected:
 	virtual void Start() {}
 	virtual void Update(float _DeltaTime) {}
 	virtual void Render(float _DeltaTime) {}
-	virtual void LevelChangeEnd(GameEngineLevel* _PrevLevel){}
-	virtual void LevelChangeStart(GameEngineLevel* _NextLevel){}
+	virtual void LevelChangeEnd(GameEngineLevel* _NextLevel){}
+	virtual void LevelChangeStart(GameEngineLevel* _PrevLevel){}
 
 	//현재 Level이 시작되고 경과된 시간
 	inline float GetLiveTime()

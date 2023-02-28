@@ -19,7 +19,7 @@
 #include "PointPannel.h"
 #include "NatureMissleBase.h"
 #include "BossDeadBox.h"
-#include "BossDeadUI.h"
+#include "NavigationUI.h"
 #include "NextDoor.h"
 #include "BubbleCore.h"
 
@@ -478,7 +478,8 @@ void RoundLevelBase::StageBossClear()
 	//나중에 어느 그룹에 넣을지 생각해보자, 아니면 씬이 전환될때 삭제하는 것도 방법이다
 	CreateActor<BossDeadBox>(UpdateOrder::BossMonster);
 
-	BossClearUI = CreateActor<BossDeadUI>();
+	BossClearUI = CreateActor<NavigationUI>();
+	BossClearUI->CreateImage(NavigationType::WorldClear);
 
 	const float4 DoorPos = BubbleDestHelper::GetGridPos(635) + (float4::Left * 15.f);
 	NextLevelDoor = CreateActor<NextDoor>();

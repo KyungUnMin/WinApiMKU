@@ -4,6 +4,7 @@
 class NextDoor;
 class MonsterBase;
 class MonsterSpawner;
+class NavigationUI;
 
 class RoundAEnterLevel : public RoundLevelBase
 {
@@ -23,11 +24,13 @@ protected:
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
-	MonsterSpawner*	MonSpawner = nullptr;
+	MonsterSpawner*	MonSpawner		= nullptr;
 	NextDoor*				Door[3]				= { nullptr, nullptr, nullptr };
 	int							SelectedDoor		= -1;
 	float						NextLevelTime		= 3.f;
 
+	bool							IsAllMonKill			= false;
+	NavigationUI*			NaviUI					= nullptr;
 
 	void ResourceLoad();
 	void CreateBackGround();

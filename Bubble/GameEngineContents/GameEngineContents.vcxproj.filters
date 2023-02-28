@@ -358,8 +358,8 @@
     <ClInclude Include="Item_GravityNormal.h">
       <Filter>03.CommonActors\01.StaticObject\05.Item\04.GravityNormal</Filter>
     </ClInclude>
-    <ClInclude Include="BossDeadUI.h">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\04.BossDeadUI</Filter>
+    <ClInclude Include="NavigationUI.h">
+      <Filter>03.CommonActors\01.StaticObject\07.NavigationUI</Filter>
     </ClInclude>
     <ClInclude Include="Item_BossJewellery.h">
       <Filter>03.CommonActors\01.StaticObject\05.Item\05.BossJewellery</Filter>
@@ -759,8 +759,8 @@
     <ClCompile Include="Item_GravityNormal.cpp">
       <Filter>03.CommonActors\01.StaticObject\05.Item\04.GravityNormal</Filter>
     </ClCompile>
-    <ClCompile Include="BossDeadUI.cpp">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\04.BossDeadUI</Filter>
+    <ClCompile Include="NavigationUI.cpp">
+      <Filter>03.CommonActors\01.StaticObject\07.NavigationUI</Filter>
     </ClCompile>
     <ClCompile Include="Item_BossJewellery.cpp">
       <Filter>03.CommonActors\01.StaticObject\05.Item\05.BossJewellery</Filter>
@@ -1220,9 +1220,6 @@
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\03.BossDeadBox">
       <UniqueIdentifier>{facd3aff-8e68-4911-a6ab-cd8a8c0ce622}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\04.BossDeadUI">
-      <UniqueIdentifier>{a9ae86f6-f649-4227-9849-523c093e4f05}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\02.BossDeadPoint">
       <UniqueIdentifier>{2a9147b7-2140-4e4a-b97f-b050dc4b8c87}</UniqueIdentifier>
     </Filter>
@@ -1234,6 +1231,9 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\02.Tired">
       <UniqueIdentifier>{d350dc9a-8136-4ab1-9c7c-63e4ad1198aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\01.StaticObject\07.NavigationUI">
+      <UniqueIdentifier>{a9ae86f6-f649-4227-9849-523c093e4f05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
