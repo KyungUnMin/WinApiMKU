@@ -32,6 +32,7 @@ private:
 	void ResourceLoad();
 	void CreateAnimation(PlayerCharacterType _CharacterType);
 
+	bool CheckBubbleJump();
 	bool CheckStateChange(float _DeltaTime);
 	void Move(float _DeltaTime);
 	void CheckAttack();

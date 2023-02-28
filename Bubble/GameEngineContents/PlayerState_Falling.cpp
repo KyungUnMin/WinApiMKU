@@ -4,6 +4,7 @@
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "PlayerBase.h"
 #include "RoundLevelBase.h"
 #include "PlayerFSM.h"
@@ -149,12 +150,28 @@ void PlayerState_Falling::Update(float _DeltaTime)
 	if (true == CheckStateChange(_DeltaTime))
 		return;
 
+	if (true == CheckBubbleJump())
+		return;
+
 	//움직임 처리
 	Move(_DeltaTime);
 
 	CheckAttack();
 }
 
+
+bool PlayerState_Falling::CheckBubbleJump()
+{
+	if (false == GameEngineInput::IsPress(PLAYER_JUMP))
+		return false;
+
+	GameEngineCollision* CollisionPtr = GetPlayer()->GetCollision();
+	if (false == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Player_Missle) }))
+		return false;
+
+	GetFSM()->ChangeState(PlayerStateType::Jump);
+	return true;
+}
 
 bool PlayerState_Falling::CheckStateChange(float _DeltaTime)
 {

@@ -61,5 +61,7 @@ private:
 	GameEngineCollision*		CollisionPtr			= nullptr;
 	MonsterFSM*					FsmPtr					= nullptr;
 	BubbleMissle*					LockedBubble		= nullptr;
+
+	void CheckStandOnStage();
 };
 

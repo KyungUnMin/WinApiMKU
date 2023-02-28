@@ -50,9 +50,25 @@ void MonsterBase::Start_FSM(MonsterStateType _StartType)
 }
 
 
+
+
 void MonsterBase::Update(float _DeltaTime)
 {
+	CheckStandOnStage();
 	FsmPtr->Update(_DeltaTime);
+}
+
+void MonsterBase::CheckStandOnStage()
+{
+	if (nullptr != LockedBubble)
+		return;
+	
+	float4 NowPos = GetPos();
+	if (0.f < NowPos.y)
+		return;
+
+	FsmPtr->ChangeState(MonsterStateType::Falling);
+	SetPos(NowPos * float4::Right);
 }
 
 void MonsterBase::Render(float _DeltaTime)

@@ -107,5 +107,6 @@ private:
 	//何劝茄 第 公利 楷免
 	void ProtectionRender();
 	void CreateCheetShield();
+	void CheckStandOnStage();
 };
 

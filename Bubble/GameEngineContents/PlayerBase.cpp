@@ -133,6 +133,8 @@ void PlayerBase::CreateCheetShield()
 }
 
 
+
+
 void PlayerBase::Update(float _DeltaTime)
 {
 	AliveLiveTime += _DeltaTime;
@@ -140,11 +142,23 @@ void PlayerBase::Update(float _DeltaTime)
 	//이 객체의 방향을 체크
 	MovableActor::Update(_DeltaTime);
 
+	CheckStandOnStage();
 	FSMPtr->Update(_DeltaTime);
 
 	//부활한 뒤 무적 연출
 	ProtectionRender();
 }
+
+void PlayerBase::CheckStandOnStage()
+{
+	float4 NowPos = GetPos();
+	if (0.f < NowPos.y)
+		return;
+
+	FSMPtr->ChangeState(PlayerStateType::Falling);
+	SetPos(NowPos * float4::Right);
+}
+
 
 void PlayerBase::Render(float _DeltaTime)
 {

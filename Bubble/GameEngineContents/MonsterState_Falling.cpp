@@ -84,8 +84,8 @@ void MonsterState_Falling::Move(float _DeltaTime)
 	float4 NowPos = GetMonster()->GetPos();
 	if (ScreenSize.y + ScreenOutOffsetY < NowPos.y)
 	{
-		//y를 0으로 만들기
-		GetMonster()->SetPos(NowPos * float4::Right);
+		//y를 1으로 만들기
+		GetMonster()->SetPos({ NowPos.x, 1.f});
 	}
 }
 

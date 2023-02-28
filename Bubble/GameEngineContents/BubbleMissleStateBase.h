@@ -57,6 +57,9 @@ private:
 
 	std::string					AniName				= "";
 
+	float							PrevColTime		= 0.f;
+	const float					ColTerm				= 0.5f;
+
 	void BubbleChainPop();
 };
 

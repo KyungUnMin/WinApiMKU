@@ -55,6 +55,11 @@ public:
 		CatchMonster = _Target;
 	}
 
+	float GetALiveTime()
+	{
+		return GetLiveTime();
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) final;

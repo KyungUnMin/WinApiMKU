@@ -3,6 +3,7 @@
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "PlayerFSM.h"
+#include "RoundLevelBase.h"
 
 const float PlayerState_Embarrassed::Duration = 1.f;
 
@@ -20,6 +21,7 @@ PlayerState_Embarrassed::~PlayerState_Embarrassed()
 void PlayerState_Embarrassed::Start(PlayerCharacterType _CharacterType)
 {
 	ResourceLoad();
+	ConnectRoundLevel();
 	CreateAnimation(_CharacterType);
 }
 
@@ -70,6 +72,13 @@ void PlayerState_Embarrassed::EnterState()
 
 void PlayerState_Embarrassed::Update(float _DeltaTime)
 {
+	//스테이지가 이동할 때
+	if (true == GetRoundLevel()->IsMoving())
+	{
+		GetFSM()->ChangeState(PlayerStateType::StageMove);
+		return;
+	}
+	
 	AccTime += _DeltaTime;
 	if (AccTime < Duration)
 		return;
