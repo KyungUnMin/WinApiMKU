@@ -162,6 +162,14 @@ void NatureMissle_Fire::CollisionCheck()
 	}
 
 
+
+	if (nullptr == PlayerBase::MainPlayer)
+	{
+		PrevPlayerColTime = 0.f;
+		return;
+	}
+
+
 	//플레이어와 충돌하고 난 후 경과된 시간이 
 	//InvalidPlayerColTime만큼 지나지 않았다면 플레이어와 충돌처리를 하지않음
 	float PlayerAliveTime = PlayerBase::MainPlayer->GetAliveTime();
@@ -178,7 +186,7 @@ void NatureMissle_Fire::CollisionCheck()
 		if (
 			(PlayerStateType::Embarrassed != PlayerState)
 			&& (PlayerStateType::Damaged != PlayerState)
-			&& (PlayerStateType::Jump != PlayerState)
+			//&& (PlayerStateType::Jump != PlayerState)
 			)
 		{
 			PrevPlayerColTime = PlayerAliveTime;

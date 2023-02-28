@@ -46,10 +46,17 @@ public:
 
 	void DestroyHpBar();
 
+	float GetAliveTime()
+	{
+		return GetLiveTime();
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) final;
 	void Render(float _DeltaTime) final;
+
+	
 
 private:
 	GameEngineRender*		RenderPtr		= nullptr;

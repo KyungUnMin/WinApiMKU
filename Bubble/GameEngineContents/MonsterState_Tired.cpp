@@ -1,5 +1,6 @@
 #include "MonsterState_Tired.h"
 #include "MonsterFSM.h"
+#include "PlayerBase.h"
 
 const std::string_view MonsterState_Tired::AniName = "Tired";
 
@@ -35,6 +36,12 @@ void MonsterState_Tired::Update(float _DeltaTime)
 	{
 		GetFSM()->ChangeState(MonsterStateType::Falling);
 		return;
+	}
+
+	//플레이어와 충돌했을때
+	if (true == PlayerCollisionCheck())
+	{
+		PlayerBase::MainPlayer->AttackPlayer();
 	}
 }
 

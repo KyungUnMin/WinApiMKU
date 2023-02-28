@@ -1,5 +1,6 @@
 #include "MonsterState_Dizzy.h"
 #include "MonsterFSM.h"
+#include "PlayerBase.h"
 
 const std::string_view MonsterState_Dizzy::AniName = "Dizzy";
 
@@ -44,5 +45,10 @@ void MonsterState_Dizzy::Update(float _DeltaTime)
 		++NowDirChangeCnt;
 	}
 	
+	//플레이어와 충돌했을때
+	if (true == PlayerCollisionCheck())
+	{
+		PlayerBase::MainPlayer->AttackPlayer();
+	}
 }
 

@@ -1,5 +1,6 @@
 #include "MonsterState_RaiseFly.h"
 #include "MonsterFSM.h"
+#include "PlayerBase.h"
 
 const std::string_view MonsterState_RaiseFly::AniName = "RaiseFly";
 
@@ -35,6 +36,12 @@ void MonsterState_RaiseFly::Update(float _DeltaTime)
 		return;
 	}
 
+	if (GetMonster()->GetPos().y < MaxHeight)
+	{
+		GetFSM()->ChangeState(MonsterStateType::HorizonFly);
+		return;
+	}
+
 	MoveTimer += _DeltaTime;
 	float Ratio = MoveTimer / BoostTime;
 	float4 NowSpeed = float4::LerpClamp(OriginSpeed, float4::Zero, Ratio);
@@ -46,5 +53,10 @@ void MonsterState_RaiseFly::Update(float _DeltaTime)
 		MoveTimer -= BoostTime;
 	}
 
+	//플레이어와 충돌했을때
+	if (true == PlayerCollisionCheck())
+	{
+		PlayerBase::MainPlayer->AttackPlayer();
+	}
 }
 

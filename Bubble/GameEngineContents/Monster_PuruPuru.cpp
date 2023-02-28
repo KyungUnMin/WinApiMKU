@@ -68,6 +68,15 @@ void Monster_PuruPuru::ResourceLoad()
 
 bool Monster_PuruPuru::FallingToFly(float _DeltaTime)
 {
-	GetFSM()->ChangeState(MonsterStateType::PuruFly);
+	if (false == IsAlreadyFall)
+	{
+		GetFSM()->ChangeState(MonsterStateType::PuruFly);
+		IsAlreadyFall = true;
+	}
+	else
+	{
+		GetFSM()->ChangeState(MonsterStateType::Dead);
+	}
+	
 	return true;
 }

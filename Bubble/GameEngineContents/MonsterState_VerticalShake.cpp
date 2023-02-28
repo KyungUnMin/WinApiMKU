@@ -1,6 +1,7 @@
 #include "MonsterState_VerticalShake.h"
 #include "PlayerBase.h"
 #include "MonsterFSM.h"
+#include "PlayerBase.h"
 
 const std::string_view MonsterState_VerticalShake::AniName = "VerticalShake";
 
@@ -68,5 +69,11 @@ void MonsterState_VerticalShake::Move(float _DeltaTime)
 	{
 		AccTime -= MoveDuration;
 		++MoveCnt;
+	}
+
+	//플레이어와 충돌했을때
+	if (true == PlayerCollisionCheck())
+	{
+		PlayerBase::MainPlayer->AttackPlayer();
 	}
 }

@@ -80,6 +80,13 @@ void MonsterState_Dead::Update(float _DeltaTime)
 		return;
 	}
 
+	//만약에 특이한 경우로 땅에 닿지 않는 경우를 대비해 시간에 따라 처리
+	Timer += _DeltaTime;
+	if (DeathTime < Timer)
+	{
+		GetFSM()->ChangeState(MonsterStateType::Falling);
+		return;
+	}
 
 	//Dead처리
 	if ((0.f < NowSpeed.y) && (ScreenSize.hy() < NextPos.y) && true == GetMonster()->IsGround({ 2.f, 2.f }))

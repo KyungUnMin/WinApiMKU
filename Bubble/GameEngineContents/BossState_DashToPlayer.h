@@ -39,6 +39,10 @@ private:
 	float4				Dir				= float4::Zero;
 
 	HPEN				DebugPen	= HPEN();
+	
+	float				PrevTime		= 0.f;
+	const float		CalcTerm		= 3.f;
+
 
 	bool CheckDamaged();
 };

@@ -26,6 +26,10 @@ private:
 	float4				GravityAcc		= float4{ 0.f, 400.f };
 	float4				ScreenSize		= float4::Zero;
 	float4				NowSpeed		= float4::Zero;
+	
+	const float		DeathTime		= 5.f;
+	float				Timer				= 0.f;
+
 
 	void SetSpeed();
 	void CreateItem();

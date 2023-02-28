@@ -38,8 +38,16 @@ void BossState_DashToPlayer::EnterState()
 void BossState_DashToPlayer::CalcDirection()
 {
 	const float MinDirSize = 200.f;
-	
+
 	BossMonster* Boss = GetBoss();
+	float BossLiveTime = Boss->GetAliveTime();
+
+	if (BossLiveTime < (PrevTime + CalcTerm))
+	{
+		Dir = float4::Up;
+		return;
+	}
+	
 	float4 StartPos = Boss->GetPos();
 	float4 DestPos = float4::Zero;
 
@@ -66,6 +74,8 @@ void BossState_DashToPlayer::CalcDirection()
 	{
 		Boss->SetDir(float4::Left);
 	}
+
+	PrevTime = BossLiveTime;
 }
 
 
@@ -105,7 +115,7 @@ bool BossState_DashToPlayer::CheckDamaged()
 void BossState_DashToPlayer::Move(float _DeltaTime)
 {
 	const float	MoveSpeed = 300.f;
-	const float ScreenOutOffsetY = 50.f;
+	const float ScreenOutOffsetY = 25.f;
 
 	BossPhase NowPhase = BossHpBar::MainBossHP->GetPhase();
 	float4 ScreenSize = GameEngineWindow::GetScreenSize();

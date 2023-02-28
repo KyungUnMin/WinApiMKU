@@ -21,6 +21,7 @@ protected:
 
 private:
 	const float4	OriginSpeed	= float4{ 0.f, 200.f };
+	const float		MaxHeight		= 150.f;
 	
 	const int			BoostCnt			= 4;
 	int					NowBoost		= 0;

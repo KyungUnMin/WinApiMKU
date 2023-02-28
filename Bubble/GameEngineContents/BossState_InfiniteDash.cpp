@@ -28,7 +28,7 @@ void BossState_InfiniteDash::EnterState()
 void BossState_InfiniteDash::Move(float _DeltaTime)
 {
 	const float	MoveSpeed = 400.f;
-	const float ScreenOutOffsetY = 50.f;
+	const float ScreenOutOffsetY = 25.f;
 	float4 ScreenSize = GameEngineWindow::GetScreenSize();
 
 	float4 NowPos = GetBoss()->GetPos();

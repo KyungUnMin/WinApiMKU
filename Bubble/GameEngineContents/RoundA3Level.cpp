@@ -287,17 +287,21 @@ void RoundA3Level::CreateStageBubbleSpawners()
 	{
 		const int StageNum = 1;
 		BubbleSpawner* Spawner = nullptr;
-		const float FireFixedTime = 3.f;
+		const float FireLowTime = 10.f;
+		const float FireHighTime = 30.f;
+
+		const float LowTime = 3.f;
+		const float HighTime = 5.f;
 
 		for (size_t i = 0; i < 2; ++i)
 		{
 			Spawner = CreateActor<BubbleSpawner>();
 			Spawner->SetPos(TopPos[i]);
-			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i)));
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i), LowTime, HighTime));
 
 			Spawner = CreateActor<BubbleSpawner>();
 			Spawner->SetPos(TopPos[i]);
-			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i), FireFixedTime, FireFixedTime));
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i), FireLowTime, FireHighTime));
 			Spawner->SetBubbleType(BubbleMissleType::Fire);
 		}
 
@@ -305,11 +309,11 @@ void RoundA3Level::CreateStageBubbleSpawners()
 		{
 			Spawner = CreateActor<BubbleSpawner>();
 			Spawner->SetPos(BottomPos[i]);
-			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i + 2)));
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i + 2), LowTime, HighTime));
 
 			Spawner = CreateActor<BubbleSpawner>();
 			Spawner->SetPos(BottomPos[i]);
-			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i + 2), FireFixedTime, FireFixedTime));
+			StageBubbleSpawnCtrl[StageNum].push_back(StageBubbleSpawnerInfo(Spawner, static_cast<BubbleColor>(i + 2), FireLowTime, FireHighTime));
 			Spawner->SetBubbleType(BubbleMissleType::Fire);
 		}
 	}
@@ -365,7 +369,7 @@ void RoundA3Level::CreateStageBubbleSpawners()
 	{
 		const int StageNum = 4;
 		BubbleSpawner* Spawner = nullptr;
-		const float WindyFixedTime = 3.f;
+		const float WindyFixedTime = 1.5f;
 
 		Spawner = CreateActor<BubbleSpawner>();
 		Spawner->SetPos(TopPos[1]);

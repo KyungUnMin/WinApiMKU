@@ -76,6 +76,15 @@ void Monster_PukaPuka::ResourceLoad()
 
 bool Monster_PukaPuka::FallingToFly(float _DeltaTime)
 {
-	GetFSM()->ChangeState(MonsterStateType::ReflectionFly);
+	if (false == IsAlreadyFall)
+	{
+		GetFSM()->ChangeState(MonsterStateType::ReflectionFly);
+		IsAlreadyFall = true;
+	}
+	else
+	{
+		GetFSM()->ChangeState(MonsterStateType::Dead);
+	}
+
 	return true;
 }

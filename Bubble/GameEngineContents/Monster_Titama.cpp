@@ -81,6 +81,15 @@ void Monster_Titama::ResourceLoad()
 
 bool Monster_Titama::FallingToFly(float _DeltaTime)
 {
-	GetFSM()->ChangeState(MonsterStateType::ReflectionFly);
+	if (false == IsAlreadyFall)
+	{
+		GetFSM()->ChangeState(MonsterStateType::ReflectionFly);
+		IsAlreadyFall = true;
+	}
+	else
+	{
+		GetFSM()->ChangeState(MonsterStateType::Dead);
+	}
+	
 	return true;
 }

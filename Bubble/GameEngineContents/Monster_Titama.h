@@ -42,6 +42,7 @@ protected:
 	void Start() override;
 
 private:
+	bool IsAlreadyFall = false;
 
 	void ResourceLoad();
 	bool FallingToFly(float _DeltaTime);

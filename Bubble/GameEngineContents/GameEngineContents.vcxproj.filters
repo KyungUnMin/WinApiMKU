@@ -257,7 +257,7 @@
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\01.HorizonFly</Filter>
     </ClInclude>
     <ClInclude Include="MonsterState_Tired.h">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\02..Tired</Filter>
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\02.Tired</Filter>
     </ClInclude>
     <ClInclude Include="MonsterState_VerticalShake.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\03.VerticalShake</Filter>
@@ -643,7 +643,7 @@
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\01.HorizonFly</Filter>
     </ClCompile>
     <ClCompile Include="MonsterState_Tired.cpp">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\02..Tired</Filter>
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\02.Tired</Filter>
     </ClCompile>
     <ClCompile Include="MonsterState_VerticalShake.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\03.VerticalShake</Filter>
@@ -1106,9 +1106,6 @@
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo">
       <UniqueIdentifier>{212af33f-7681-4e27-94fb-e3bdc96bac56}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\02..Tired">
-      <UniqueIdentifier>{d350dc9a-8136-4ab1-9c7c-63e4ad1198aa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\03.VerticalShake">
       <UniqueIdentifier>{a88bb8c5-4e9e-4b75-9d18-33ccb279f897}</UniqueIdentifier>
     </Filter>
@@ -1234,6 +1231,9 @@
     </Filter>
     <Filter Include="03.CommonActors\01.StaticObject\05.Item\05.BossJewellery">
       <UniqueIdentifier>{fc6c522d-9c0e-4d03-b628-88dbb0b911c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\02.MosterFSM\13.OnlyDorabo\02.Tired">
+      <UniqueIdentifier>{d350dc9a-8136-4ab1-9c7c-63e4ad1198aa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
