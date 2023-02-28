@@ -340,14 +340,29 @@
     <ClInclude Include="BossState_Dead.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\02.BossFSM\07.Dead</Filter>
     </ClInclude>
-    <ClInclude Include="BossDeadEffect.h">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\02.BossFSM\07.Dead</Filter>
-    </ClInclude>
     <ClInclude Include="BossState_InfiniteDash.h">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\02.BossFSM\08.InfiniteDash</Filter>
     </ClInclude>
     <ClInclude Include="MonsterMissle_BossBeer.h">
       <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\05.BossBeer</Filter>
+    </ClInclude>
+    <ClInclude Include="BossDeadEffect.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\01.BossDeadEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="BossDeadPoint.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\02.BossDeadPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="BossDeadBox.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\03.BossDeadBox</Filter>
+    </ClInclude>
+    <ClInclude Include="Item_GravityNormal.h">
+      <Filter>03.CommonActors\01.StaticObject\05.Item\04.GravityNormal</Filter>
+    </ClInclude>
+    <ClInclude Include="BossDeadUI.h">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\04.BossDeadUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Item_BossJewellery.h">
+      <Filter>03.CommonActors\01.StaticObject\05.Item\05.BossJewellery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -726,14 +741,29 @@
     <ClCompile Include="BossState_Dead.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\02.BossFSM\07.Dead</Filter>
     </ClCompile>
-    <ClCompile Include="BossDeadEffect.cpp">
-      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\02.BossFSM\07.Dead</Filter>
-    </ClCompile>
     <ClCompile Include="BossState_InfiniteDash.cpp">
       <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\02.BossFSM\08.InfiniteDash</Filter>
     </ClCompile>
     <ClCompile Include="MonsterMissle_BossBeer.cpp">
       <Filter>03.CommonActors\02.MovableObject\05.MonsterMissle\05.BossBeer</Filter>
+    </ClCompile>
+    <ClCompile Include="BossDeadEffect.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\01.BossDeadEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="BossDeadPoint.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\02.BossDeadPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="BossDeadBox.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\03.BossDeadBox</Filter>
+    </ClCompile>
+    <ClCompile Include="Item_GravityNormal.cpp">
+      <Filter>03.CommonActors\01.StaticObject\05.Item\04.GravityNormal</Filter>
+    </ClCompile>
+    <ClCompile Include="BossDeadUI.cpp">
+      <Filter>03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\04.BossDeadUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Item_BossJewellery.cpp">
+      <Filter>03.CommonActors\01.StaticObject\05.Item\05.BossJewellery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1183,6 +1213,27 @@
     </Filter>
     <Filter Include="03.CommonActors\02.MovableObject\05.MonsterMissle\05.BossBeer">
       <UniqueIdentifier>{e5b24b9c-df29-4a56-b9bd-16a3daedf4f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards">
+      <UniqueIdentifier>{0cfc370c-8bba-4bc0-ad1e-5cca89452781}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\01.BossDeadEffect">
+      <UniqueIdentifier>{7d6ec9ed-d57e-4f75-a507-30a05aaedee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\03.BossDeadBox">
+      <UniqueIdentifier>{facd3aff-8e68-4911-a6ab-cd8a8c0ce622}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\04.BossDeadUI">
+      <UniqueIdentifier>{a9ae86f6-f649-4227-9849-523c093e4f05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\04.Monster\05.BossActor\03.BossDeadRewards\02.BossDeadPoint">
+      <UniqueIdentifier>{2a9147b7-2140-4e4a-b97f-b050dc4b8c87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\01.StaticObject\05.Item\04.GravityNormal">
+      <UniqueIdentifier>{e6688a17-c5ba-4ecb-bba5-476e612c8394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\01.StaticObject\05.Item\05.BossJewellery">
+      <UniqueIdentifier>{fc6c522d-9c0e-4d03-b628-88dbb0b911c1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

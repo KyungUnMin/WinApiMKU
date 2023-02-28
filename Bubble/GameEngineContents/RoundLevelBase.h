@@ -14,6 +14,9 @@ class BubbleDestHelper;
 class MonsterSpawner;
 class PointPannel;
 class MonsterBase;
+class BossDeadUI;
+class NextDoor;
+
 
 //실제 게임이 동작하는 레벨은 이 클래스를 상속받는다
 //RoundLevel은 일렬로 정렬된 Render를 갖고 있는다.(이 Render는 Stage를 의미, ex : RoundA_Stage01)
@@ -118,8 +121,6 @@ protected:
 		return MonsterSpawners[_StageNum];
 	}
 
-	virtual void ChangeLastLevel(){}
-
 	virtual void StartLastStage() {};
 
 private:
@@ -150,6 +151,9 @@ private:
 	const std::string_view				ClearBgmName		= "RoundClear.mp3";
 
 	std::vector<MonsterSpawner*>	MonsterSpawners;
+
+	BossDeadUI*								BossClearUI				= nullptr;
+	NextDoor*									NextLevelDoor		= nullptr;
 
 	void CreateSpanwerPool(int _StageCount);
 	void BgmLoad();

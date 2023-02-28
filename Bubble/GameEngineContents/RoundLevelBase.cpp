@@ -18,6 +18,10 @@
 #include "MonsterSpawner.h"
 #include "PointPannel.h"
 #include "NatureMissleBase.h"
+#include "BossDeadBox.h"
+#include "BossDeadUI.h"
+#include "NextDoor.h"
+#include "BubbleCore.h"
 
 const float4	RoundLevelBase::PlayerSpawnPos			= { 100.f, 620.f };
 const float		RoundLevelBase::StageMoveDuration	= 1.5f;
@@ -127,15 +131,13 @@ bool RoundLevelBase::MoveToNextStage()
 	if (true == IsMoveValue)
 		return false;
 
-	MonsterSpawners[NowStageIndex]->AllMonsterOff();
-
-
-	//이번 스테이지가 마지막이였다면 false를 리턴
+	//이번 스테이지가 마지막이였다면 처리하지 않음
 	if (NowStageIndex + 1 == StageImage->GetRenderSize())
 	{
-		return false;
+		return true;
 	}
 
+	MonsterSpawners[NowStageIndex]->AllMonsterOff();
 
 	//IsMoveValue이 true일때 Update에서 Stage가 이동함
 	IsMoveValue = true;
@@ -209,6 +211,12 @@ void RoundLevelBase::Update(float _DeltaTime)
 {
 	static float Timer = 0.f;
 	const float StageChangeTime = 5.f;
+
+	if ((nullptr != NextLevelDoor) && (true == NextLevelDoor->IsOpened()))
+	{
+		BubbleCore::GetInst().ChangeLevel("EndingLevel");
+		return;
+	}
 
 	if (false ==IsMoveValue && true == MonsterSpawners[NowStageIndex]->IsAllMonsterOff())
 	{
@@ -404,6 +412,19 @@ void RoundLevelBase::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 
 	Bubbles.clear();
+
+	if (nullptr != BossClearUI)
+	{
+		BossClearUI->Clear();
+		BossClearUI->Death();
+		BossClearUI = nullptr;
+	}
+
+	if (nullptr != NextLevelDoor)
+	{
+		NextLevelDoor->Death();
+		NextLevelDoor = nullptr;
+	}
 }
 
 
@@ -453,5 +474,15 @@ void RoundLevelBase::StageBossClear()
 {
 	BossBGMPlayer.Stop();
 	GameEngineResources::GetInst().SoundPlay(ClearBgmName);
+
+	//나중에 어느 그룹에 넣을지 생각해보자, 아니면 씬이 전환될때 삭제하는 것도 방법이다
+	CreateActor<BossDeadBox>(UpdateOrder::BossMonster);
+
+	BossClearUI = CreateActor<BossDeadUI>();
+
+	const float4 DoorPos = BubbleDestHelper::GetGridPos(635);
+	NextLevelDoor = CreateActor<NextDoor>();
+	NextLevelDoor->SetPos(DoorPos);
+	NextLevelDoor->SelectDoor(DoorType::Gold, { 400.f, 400.f }, RenderOrder::Door);
 }
 

@@ -30,5 +30,8 @@ private:
 
 	void LoadSFX();
 	void SelectDirection();
+
+	void Move(float _DeltaTime);
+	void CreateEffect(float _DeltaTime);
 };
 

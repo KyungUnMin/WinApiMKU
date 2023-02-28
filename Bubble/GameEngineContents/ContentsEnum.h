@@ -53,6 +53,7 @@ enum class RenderOrder
 	Player1,
 	Shield,
 	NatureMissle,
+	RewardBox,
 	Items,
 	BossLockBubble,
 

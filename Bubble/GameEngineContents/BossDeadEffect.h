@@ -1,7 +1,9 @@
 #pragma once
-#include "PointEffect.h"
+#include <GameEngineCore/GameEngineActor.h>
 
-class BossDeadEffect : public PointEffect
+class GameEngineRender;
+
+class BossDeadEffect : public GameEngineActor
 {
 public:
 	BossDeadEffect();
@@ -17,11 +19,10 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	const int			KillPoint		= 100000;
-	const float4	MoveSpeed	= float4{ 0.f, 150.f };
-	const float4	MaxScale		= float4{ 400.f, 100.f };
+	GameEngineRender*	RenderPtr	= nullptr;
+	const float					PosRadius	= 200.f;
 
-	void SettingPointEffect();
-	void CreatePopEffect();
+	void SettingRender();
+	void SettingPosition();
 };
 

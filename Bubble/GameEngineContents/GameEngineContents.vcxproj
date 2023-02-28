@@ -163,7 +163,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BossDeadBox.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BossDeadEffect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossDeadPoint.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossDeadUI.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -278,7 +290,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Item_BossJewellery.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Item_BubbleLiquid.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Item_GravityNormal.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -617,7 +637,19 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BossDeadBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BossDeadEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossDeadPoint.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossDeadUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -731,7 +763,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Item_BossJewellery.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Item_BubbleLiquid.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Item_GravityNormal.cpp">
       <SubType>
       </SubType>
     </ClCompile>

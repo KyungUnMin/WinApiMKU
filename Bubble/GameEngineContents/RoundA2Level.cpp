@@ -423,11 +423,6 @@ void RoundA2Level::Update_StageBubbleSpawner(float _DeltaTime)
 }
 
 
-void RoundA2Level::ChangeLastLevel()
-{
-	//다음레벨로 전환
-	BubbleCore::GetInst().ChangeLevel("EndingLevel");
-}
 
 void RoundA2Level::StartLastStage()
 {

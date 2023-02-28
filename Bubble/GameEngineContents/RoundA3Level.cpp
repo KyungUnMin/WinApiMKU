@@ -432,12 +432,6 @@ void RoundA3Level::Update_StageBubbleSpawner(float _DeltaTime)
 }
 
 
-void RoundA3Level::ChangeLastLevel()
-{
-	//다음레벨로 전환
-	BubbleCore::GetInst().ChangeLevel("EndingLevel");
-}
-
 void RoundA3Level::StartLastStage()
 {
 	Item_BubbleLiquid* BubbleLiquid = CreateActor<Item_BubbleLiquid>(UpdateOrder::Item);

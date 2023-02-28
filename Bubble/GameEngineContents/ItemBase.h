@@ -27,7 +27,7 @@ public:
 
 protected:
 	void Start() override;
-	void Update(float _DeltaTime) final;
+	void Update(float _DeltaTime) override;
 	virtual void Excute() = 0;
 
 	inline GameEngineRender* GetRender()

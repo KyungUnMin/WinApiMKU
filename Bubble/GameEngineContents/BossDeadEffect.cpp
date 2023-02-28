@@ -1,62 +1,64 @@
 #include "BossDeadEffect.h"
+#include <GameEngineBase/GameEngineRandom.h>
+#include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "BossMonster.h"
-#include "PointPannel.h"
+#include "ContentsEnum.h"
+
 
 BossDeadEffect::BossDeadEffect()
 {
-
 }
 
 BossDeadEffect::~BossDeadEffect()
 {
-
 }
 
 void BossDeadEffect::Start()
 {
-	PointPannel::AddPoint(KillPoint);
-
-	SettingPointEffect();
-	CreatePopEffect();
+	SettingRender();
+	SettingPosition();
 }
 
-
-void BossDeadEffect::SettingPointEffect()
+void BossDeadEffect::SettingRender()
 {
-	SetMaxScale(MaxScale);
-	SetMoveSpeed(MoveSpeed);
-
-	const float4 PointRenderOffset = float4{ 0.f, -100.f };
-	GameEngineRender* PointRender = CreateRender(BossMonster::KillPointImagePath , RenderOrder::UI);
-	PointRender->SetPosition(PointRenderOffset);
-	SetRender(PointRender);
-}
-
-void BossDeadEffect::CreatePopEffect()
-{
-	GameEngineRender* PopRender = CreateRender(RenderOrder::UI);
+	RenderPtr = CreateRender(RenderOrder::UI);
 	const float4 RenderScale = float4{ 150.f, 150.f };
 	const std::string_view AniName = "PopEffect";
 
-	PopRender->CreateAnimation
+	RenderPtr->CreateAnimation
 	({
 		.AnimationName = AniName,
 		.ImageName = BossMonster::LockBubbleImagePath,
 		.Start = 1,
 		.End = 5,
-		.InterTimer = 0.2f,
+		.InterTimer = 0.1f,
 		.Loop = false
-	});
+		});
 
-	PopRender->SetScale(RenderScale);
-	PopRender->ChangeAnimation(AniName);
+	RenderPtr->SetScale(RenderScale);
+	RenderPtr->ChangeAnimation(AniName);
 }
 
+void BossDeadEffect::SettingPosition()
+{
+	float4 CenterPos = GameEngineWindow::GetScreenSize().half();
+	float4 Offset = float4::Zero;
+	Offset.x = GameEngineRandom::MainRandom.RandomFloat(-PosRadius, PosRadius);
+	Offset.y = GameEngineRandom::MainRandom.RandomFloat(-PosRadius, PosRadius);
 
+	SetPos(CenterPos + Offset);
+}
 
 void BossDeadEffect::Update(float _DeltaTime)
 {
-	PointEffect::Update(_DeltaTime);
+	if (false == RenderPtr->IsAnimationEnd())
+		return;
 
+	Death();
 }
+
+
+
+
+

@@ -1,8 +1,10 @@
 #include "BossHpBar.h"
 #include <GameEngineBase/GameEngineDirectory.h>
+#include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include "ContentsEnum.h"
+#include "ContentsDefine.h"
 
 BossHpBar* BossHpBar::MainBossHP = nullptr;
 const std::string_view BossHpBar::ImageName = "BossHp.bmp";
@@ -51,6 +53,7 @@ void BossHpBar::ResourceLoad()
 	IsLoad = true;
 }
 
+
 void BossHpBar::CreateHP()
 {
 	const float4 BarPivot = float4{ 80.f, 110.f };
@@ -68,9 +71,23 @@ void BossHpBar::CreateHP()
 }
 
 
+void BossHpBar::Update_Cheet()
+{
+	if (false == GameEngineInput::IsDown(CHEET_STAGE_CLEAR))
+		return;
+
+	const int CheetDamage = 6;
+	if (NowHP <= CheetDamage)
+		return;
+
+	ExcuteDamage(CheetDamage);
+}
+
 
 void BossHpBar::Update(float _DeltaTime)
 {
+	Update_Cheet();
+
 	static float Timer = 0.f;
 	static int VisualHp = 1;
 	const float HpIncTime = 0.1f;

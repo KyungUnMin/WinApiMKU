@@ -17,7 +17,6 @@ public:
 protected:
 	void Loading() override;
 	void Update(float _DeltaTime) override;
-	void ChangeLastLevel() override;
 	void StartLastStage() override;
 
 private:

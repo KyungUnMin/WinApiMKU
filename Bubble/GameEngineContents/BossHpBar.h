@@ -47,7 +47,8 @@ private:
 	BossPhase	Phase		= BossPhase::Normal;
 	int				NowHP		= 30;
 
-	void ResourceLoad();
 	void CreateHP();
+	void ResourceLoad();
+	void Update_Cheet();
 };
 

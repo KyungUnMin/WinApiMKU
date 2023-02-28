@@ -7,6 +7,7 @@
 #include "BossMonster.h"
 #include "BossMonsterFSM.h"
 #include "BossDeadEffect.h"
+#include "BossDeadPoint.h"
 #include "RoundLevelBase.h"
 
 BossState_Dead::BossState_Dead()
@@ -26,8 +27,6 @@ void BossState_Dead::Start()
 	RoundLevel = dynamic_cast<RoundLevelBase*>(GetBoss()->GetLevel());
 }
 
-//PopEffect = GetBoss()->CreateRender(RenderOrder::)
-	//Pop 이펙트는 별도의 오브젝트로 만들자 거기엔 Point & 버블Pop이펙트도 있을예정
 void BossState_Dead::EnterState()
 {
 	BossMonster* Boss = GetBoss();
@@ -35,10 +34,10 @@ void BossState_Dead::EnterState()
 	RenderPtr->ChangeAnimation(BossMonster::DeadAniName);
 
 	SelectDirection();
-
-	BossDeadEffect* DeadEffect = Boss->GetLevel()->CreateActor<BossDeadEffect>(UpdateOrder::PointEffect);
-	DeadEffect->SetPos(Boss->GetPos());
 	GameEngineResources::GetInst().SoundPlay("BossDead.mp3");
+
+	BossDeadPoint* RewardPoint = Boss->GetLevel()->CreateActor<BossDeadPoint>(UpdateOrder::PointEffect);
+	RewardPoint->SetPos(Boss->GetPos());
 
 	RoundLevel->StageBossClear();
 }
@@ -73,7 +72,15 @@ void BossState_Dead::SelectDirection()
 }
 
 
+
+
 void BossState_Dead::Update(float _DeltaTime)
+{
+	CreateEffect(_DeltaTime);
+	Move(_DeltaTime);
+}
+
+void BossState_Dead::Move(float _DeltaTime)
 {
 	NowSpeed.y += (Gravity * _DeltaTime);
 	GetBoss()->SetMove(NowSpeed * _DeltaTime);
@@ -85,3 +92,16 @@ void BossState_Dead::Update(float _DeltaTime)
 	}
 }
 
+void BossState_Dead::CreateEffect(float _DeltaTime)
+{
+	static float Timer = 0.f;
+	const float CreateTime = 0.25f;
+	const float MaxRadius = 200.f;
+
+	Timer += _DeltaTime;
+	if (Timer < CreateTime)
+		return;
+
+	GetBoss()->GetLevel()->CreateActor<BossDeadEffect>(UpdateOrder::PointEffect);
+	Timer -= CreateTime;
+}

@@ -40,14 +40,20 @@ void Item_Normal::Init(const float4& _Pos)
 	float4 Pos = _Pos;
 	float4 ScreenSize = GameEngineWindow::GetScreenSize();
 
-
 	while (false == RoundLevel->IsBlockPos(Pos))
 	{
 		Pos += float4::Down;
 
 		if (ScreenSize.y < Pos.y)
 		{
+			if (true == IsRaisedPos)
+			{
+				Pos = ScreenSize.half();
+				break;
+			}
+
 			Pos.y = 50.f;
+			IsRaisedPos = true;
 		}
 	}
 
