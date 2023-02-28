@@ -38,6 +38,11 @@ void NatureMissle_Windy::Start()
 
 	std::vector<GameEngineActor*> Monsters = GetRoundLevel()->GetAliveMonsters();
 	if (true == Monsters.empty())
+	{
+		Monsters = GetLevel()->GetActors(UpdateOrder::BossMonster);
+	}
+
+	if (true == Monsters.empty())
 		return;
 
 	int RandNum = GameEngineRandom::MainRandom.RandomInt(0, static_cast<int>(Monsters.size() - 1));

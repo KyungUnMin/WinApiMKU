@@ -25,6 +25,8 @@ BossMonster::~BossMonster()
 
 
 
+
+
 void BossMonster::Start()
 {
 	ResourceLoad();
@@ -32,7 +34,7 @@ void BossMonster::Start()
 	CreateAnimation();
 
 	FsmPtr->Start();
-	GetLevel()->CreateActor<BossHpBar>();
+	HpBar = GetLevel()->CreateActor<BossHpBar>();
 }
 
 
@@ -53,4 +55,10 @@ void BossMonster::Update(float _DeltaTime)
 void BossMonster::Render(float _DeltaTime)
 {
 	FsmPtr->Render(_DeltaTime);
+}
+
+
+void BossMonster::DestroyHpBar()
+{
+	HpBar->Death();
 }

@@ -46,6 +46,7 @@ private:
 	std::vector<GameEngineRender*> HealthPoints;
 	BossPhase	Phase		= BossPhase::Normal;
 	int				NowHP		= 30;
+	int				VisualHp	= 1;
 
 	void CreateHP();
 	void ResourceLoad();

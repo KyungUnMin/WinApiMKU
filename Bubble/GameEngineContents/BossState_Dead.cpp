@@ -39,6 +39,8 @@ void BossState_Dead::EnterState()
 	BossDeadPoint* RewardPoint = Boss->GetLevel()->CreateActor<BossDeadPoint>(UpdateOrder::PointEffect);
 	RewardPoint->SetPos(Boss->GetPos());
 
+	Boss->DestroyHpBar();
+
 	RoundLevel->StageBossClear();
 }
 

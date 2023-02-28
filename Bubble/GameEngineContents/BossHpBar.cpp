@@ -89,7 +89,6 @@ void BossHpBar::Update(float _DeltaTime)
 	Update_Cheet();
 
 	static float Timer = 0.f;
-	static int VisualHp = 1;
 	const float HpIncTime = 0.1f;
 
 	if (NowHP < VisualHp)

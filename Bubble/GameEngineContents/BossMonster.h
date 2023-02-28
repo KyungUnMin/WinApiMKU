@@ -4,6 +4,7 @@
 class GameEngineRender;
 class GameEngineCollision;
 class BossMonsterFSM;
+class GameEngineActor;
 
 class BossMonster : public MovableActor
 {
@@ -43,15 +44,18 @@ public:
 		return CollisionPtr;
 	}
 
+	void DestroyHpBar();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) final;
 	void Render(float _DeltaTime) final;
 
 private:
-	GameEngineRender*		RenderPtr				= nullptr;
-	GameEngineCollision*		CollisionPtr				= nullptr;
-	BossMonsterFSM*			FsmPtr						= nullptr;
+	GameEngineRender*		RenderPtr		= nullptr;
+	GameEngineCollision*		CollisionPtr		= nullptr;
+	BossMonsterFSM*			FsmPtr				= nullptr;
+	GameEngineActor*			HpBar				= nullptr;
 
 	void ResourceLoad();
 	void CreateComponent();

@@ -480,7 +480,7 @@ void RoundLevelBase::StageBossClear()
 
 	BossClearUI = CreateActor<BossDeadUI>();
 
-	const float4 DoorPos = BubbleDestHelper::GetGridPos(635);
+	const float4 DoorPos = BubbleDestHelper::GetGridPos(635) + (float4::Left * 15.f);
 	NextLevelDoor = CreateActor<NextDoor>();
 	NextLevelDoor->SetPos(DoorPos);
 	NextLevelDoor->SelectDoor(DoorType::Gold, { 400.f, 400.f }, RenderOrder::Door);
