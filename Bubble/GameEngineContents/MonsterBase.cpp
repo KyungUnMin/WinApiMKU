@@ -132,3 +132,15 @@ void MonsterBase::FSMReset()
 
 	FsmPtr->ChangeState(MonsterStateType::Falling);
 }
+
+void MonsterBase::UnLock()
+{
+	if (false == IsLocked())
+	{
+		MsgAssert("이 함수는 몬스터가 Bubble에 갇혀있을때만 사용할 수 있습니다");
+		return;
+	}
+
+	LockedBubble = nullptr;
+	FsmPtr->ChangeState(MonsterStateType::Falling);
+}

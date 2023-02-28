@@ -28,6 +28,8 @@ void BubbleStateIdle::Init(PlayerCharacterType _CharType, BubbleMissleType _Bubb
 
 	//RigidBody와 버블을 연결
 	RigidPtr->SetOwner(GetBubble());
+
+	CheckNormalBubble(_BubbleType, true);
 }
 
 
@@ -39,6 +41,10 @@ void BubbleStateIdle::EnterState()
 
 void BubbleStateIdle::Update(float _DeltaTime)
 {
+	//버블 경과시간이 지났을때 Pop으로 변경
+	if (true == DryPopCheck())
+		return;
+
 	//플레이어와 충돌 여부 확인
 	PlayerCollisionCheck();
 

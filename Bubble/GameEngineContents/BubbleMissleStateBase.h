@@ -12,6 +12,10 @@ class BubbleMissleStateBase
 	friend class BubbleMissleFSM;
 
 public:
+	static const float DryTime;
+	static const std::string_view DryImgPath;
+	static const std::string_view DryAniName;
+
 	BubbleMissleStateBase();
 	virtual ~BubbleMissleStateBase() = 0;
 
@@ -50,6 +54,10 @@ protected:
 
 	void DragMonster();
 
+	void CheckNormalBubble(BubbleMissleType _Type, bool IsIdle = false);
+
+	bool DryPopCheck();
+
 
 private:
 	BubbleMissleFSM*		Fsm						= nullptr;
@@ -60,6 +68,14 @@ private:
 	float							PrevColTime		= 0.f;
 	const float					ColTerm				= 0.5f;
 
+	bool								IsNormal				= false;
+	bool								IsDrying				= false;
+
 	void BubbleChainPop();
+
+	void DryPop();
+	void DryResourceLoad();
+	void CreateDryAni();
+
 };
 

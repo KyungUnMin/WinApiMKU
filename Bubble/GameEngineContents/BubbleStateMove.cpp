@@ -31,6 +31,8 @@ void BubbleStateMove::Init(PlayerCharacterType _CharType, BubbleMissleType _Bubb
 		IsLoad = true;
 	}
 
+	BubbleMissleStateBase::CheckNormalBubble(_BubbleType);
+
 	CreateAnimation(_CharType, _BubbleType);
 	ScreenSize = GameEngineWindow::GetScreenSize();
 }
@@ -112,8 +114,14 @@ void BubbleStateMove::FindCloseDest()
 }
 
 
+
+
 void BubbleStateMove::Update(float _DeltaTime)
 {
+	//버블 경과시간이 지났을때 Pop으로 변경
+	if (true == DryPopCheck())
+		return;
+
 	//플레이어와 충돌 여부 확인
 	PlayerCollisionCheck();
 
@@ -129,9 +137,6 @@ void BubbleStateMove::Update(float _DeltaTime)
 	//목적지에 도착했는지 확인
 	CheckDest();
 }
-
-
-
 
 
 void BubbleStateMove::MoveBubble(float _DeltaTime)

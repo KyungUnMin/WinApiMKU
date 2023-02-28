@@ -43,6 +43,8 @@ public:
 
 	void FSMReset();
 
+	void UnLock();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) final;

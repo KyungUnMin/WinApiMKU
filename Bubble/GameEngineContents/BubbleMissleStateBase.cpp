@@ -1,15 +1,21 @@
 #include "BubbleMissleStateBase.h"
 #include <queue>
+#include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineCore/GameEngineResources.h>
 #include "BubbleMissle.h"
 #include "PlayerBase.h"
 #include "BubbleMissleFSM.h"
 #include "MonsterBase.h"
 #include "PlayerFSM.h"
 #include "ContentsDefine.h"
+
+const float						BubbleMissleStateBase::DryTime			= 10.f;
+const std::string_view	BubbleMissleStateBase::DryImgPath		= "BubbleDry.bmp";
+const std::string_view	BubbleMissleStateBase::DryAniName		= "Dry";
 
 BubbleMissleStateBase::BubbleMissleStateBase()
 {
@@ -62,6 +68,8 @@ void BubbleMissleStateBase::DragMonster()
 	Monster->SetPos(GetBubble()->GetPos());
 }
 
+
+
 void BubbleMissleStateBase::BubbleChainPop()
 {
 	//플레이어와 충돌한 버블을 큐에 담는다
@@ -108,3 +116,107 @@ void BubbleMissleStateBase::BubbleChainPop()
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+void BubbleMissleStateBase::CheckNormalBubble(BubbleMissleType _Type, bool IsIdle)
+{
+	IsNormal = (BubbleMissleType::Normal == _Type);
+	if (false == IsNormal)
+		return;
+
+	if (true == IsIdle)
+		return;
+
+	DryResourceLoad();
+	CreateDryAni();
+}
+
+
+
+
+void BubbleMissleStateBase::DryResourceLoad()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Image");
+	Dir.Move("Common");
+	Dir.Move("Bubble");
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(DryImgPath))->Cut(5, 1);
+	IsLoad = true;
+}
+
+void BubbleMissleStateBase::CreateDryAni()
+{
+	GameEngineRender* RenderPtr = Bubble->GetRender();
+	RenderPtr->CreateAnimation
+	({
+		.AnimationName = DryAniName,
+		.ImageName = DryImgPath,
+		.Start = 0,
+		.End = 4,
+		.Loop = false,
+		.FrameTime = std::vector<float>{ 1.f, 1.f, 0.8f, 0.1f, 0.1f }
+	});
+}
+
+
+bool BubbleMissleStateBase::DryPopCheck()
+{
+	//Normal버블만
+	if (false == IsNormal)
+		return false;
+
+	//아직 마르지 않은 상태라면
+	if (false == IsDrying)
+	{
+		float AliveTime = Bubble->GetALiveTime();
+		if (AliveTime < DryTime)
+			return false;
+
+		//시간이 경과했다면 Dry상태로 변경
+		GameEngineRender* RenderPtr = Bubble->GetRender();
+		RenderPtr->ChangeAnimation(DryAniName);
+		IsDrying = true;
+		return false;
+	}
+
+	GameEngineRender* RenderPtr = Bubble->GetRender();
+	if (false == RenderPtr->IsAnimationEnd())
+		return false;
+
+	DryPop();
+	return true;
+}
+
+
+
+void BubbleMissleStateBase::DryPop()
+{
+	MonsterBase* CatchMon = Bubble->GetCatchTarget();
+	Bubble->SetCatchTarget(nullptr);
+
+	Fsm->ChangeState(BubbleStateType::Pop);
+
+	if (nullptr == CatchMon)
+		return;
+
+	CatchMon->UnLock();
+}
+
+
