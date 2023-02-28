@@ -14,6 +14,7 @@
 #include "BubbleDestHelper.h"
 #include "BubbleSpawner.h"
 #include "Item_BubbleLiquid.h"
+#include "StageInfoUI.h"
 
 #include "MonsterSpawner.h"
 #include "Monster_ZenChan.h"
@@ -51,6 +52,7 @@ void RoundA3Level::Loading()
 	CreateBubbleDest();
 	CreateMonsters();
 	CreateStageBubbleSpawners();
+	CreateStageUI(StageInfoType::A3);
 }
 
 

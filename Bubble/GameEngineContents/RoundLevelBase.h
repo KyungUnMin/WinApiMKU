@@ -16,6 +16,8 @@ class PointPannel;
 class MonsterBase;
 class NavigationUI;
 class NextDoor;
+class StageInfoUI;
+enum class StageInfoType;
 
 
 //실제 게임이 동작하는 레벨은 이 클래스를 상속받는다
@@ -123,6 +125,8 @@ protected:
 
 	virtual void StartLastStage() {};
 
+	void CreateStageUI(StageInfoType _RoundType);
+
 private:
 	//선택한 캐릭터 타입
 	PlayerCharacterType					SelectedCharacter	= PlayerCharacterType::BUBBLUN;
@@ -154,6 +158,7 @@ private:
 
 	NavigationUI*								BossClearUI				= nullptr;
 	NextDoor*									NextLevelDoor		= nullptr;
+	StageInfoUI*								StageUI					= nullptr;
 
 	void CreateSpanwerPool(int _StageCount);
 	void BgmLoad();

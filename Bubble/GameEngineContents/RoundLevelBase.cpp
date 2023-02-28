@@ -22,6 +22,7 @@
 #include "NavigationUI.h"
 #include "NextDoor.h"
 #include "BubbleCore.h"
+#include "StageInfoUI.h"
 
 const float4	RoundLevelBase::PlayerSpawnPos			= { 100.f, 620.f };
 const float		RoundLevelBase::StageMoveDuration	= 1.5f;
@@ -54,6 +55,13 @@ void RoundLevelBase::Loading()
 	DestHelperPtr = CreateActor<BubbleDestHelper>();
 	BgmLoad();
 	CreateActor<PointPannel>();
+}
+
+void RoundLevelBase::CreateStageUI(StageInfoType _RoundType)
+{
+	StageUI = CreateActor<StageInfoUI>();
+	StageUI->SetInfo(this, _RoundType);
+	StageUI->On();
 }
 
 
@@ -199,6 +207,8 @@ void RoundLevelBase::StageClear()
 	{
 		Boss->Death();
 	}
+
+	StageUI->Off();
 }
 
 
@@ -224,10 +234,6 @@ void RoundLevelBase::Update(float _DeltaTime)
 		if (Timer < StageChangeTime)
 			return;
 
-
-		//스테이지가 넘어갈 때 대기시간도 필요해 보임
-		//if(false == );
-		//	TODO
 
 		if (NowStageIndex + 1 == StageImage->GetRenderSize())
 		{
@@ -276,13 +282,13 @@ void RoundLevelBase::Update(float _DeltaTime)
 		DestHelperPtr->TurnOnBubbleDest(NowStageIndex);
 		IsMoveValue = false;
 		StageMoveTime = 0.f;
+		StageUI->On();
 
 		if (true == IsLastStage())
 		{
 			StartLastStage();
 			BGMPlayer.PauseOn();
 			BossBGMPlayer = GameEngineResources::GetInst().SoundPlayerToControl(BossBgmName);
-			//얘 나중에 어디선가 꺼줘야해
 		}
 	}
 }
@@ -345,6 +351,8 @@ void RoundLevelBase::CreatePlayer(PlayerCharacterType _Type)
 
 
 
+
+
 void RoundLevelBase::BgmLoad()
 {
 	static bool IsLoad = false;
@@ -390,6 +398,11 @@ void RoundLevelBase::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	BGMPlayer.PauseOff();
 
 	SetNowStage(0);
+
+	if (nullptr != StageUI)
+	{
+		StageUI->On();
+	}
 }
 
 //레벨이 전환될때 레벨 정리하고 가기

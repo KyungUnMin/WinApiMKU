@@ -364,6 +364,9 @@
     <ClInclude Include="Item_BossJewellery.h">
       <Filter>03.CommonActors\01.StaticObject\05.Item\05.BossJewellery</Filter>
     </ClInclude>
+    <ClInclude Include="StageInfoUI.h">
+      <Filter>03.CommonActors\01.StaticObject\08.StageUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -764,6 +767,12 @@
     </ClCompile>
     <ClCompile Include="Item_BossJewellery.cpp">
       <Filter>03.CommonActors\01.StaticObject\05.Item\05.BossJewellery</Filter>
+    </ClCompile>
+    <ClCompile Include="StageInfoUI.cpp">
+      <Filter>03.CommonActors\01.StaticObject\08.StageUI</Filter>
+    </ClCompile>
+    <ClCompile Include="StageInfoDatas.cpp">
+      <Filter>03.CommonActors\01.StaticObject\08.StageUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1234,6 +1243,9 @@
     </Filter>
     <Filter Include="03.CommonActors\01.StaticObject\07.NavigationUI">
       <UniqueIdentifier>{a9ae86f6-f649-4227-9849-523c093e4f05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\01.StaticObject\08.StageUI">
+      <UniqueIdentifier>{960c47d8-ea9f-416f-a42e-0f33b5e71021}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

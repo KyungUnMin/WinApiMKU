@@ -623,6 +623,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="StageInfoUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TextLine.h">
       <SubType>
       </SubType>
@@ -1106,6 +1110,11 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="SelectPlayerLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StageInfoDatas.cpp" />
+    <ClCompile Include="StageInfoUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>

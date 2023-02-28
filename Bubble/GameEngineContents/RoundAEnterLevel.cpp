@@ -15,6 +15,7 @@
 #include "MonsterSpawner.h"
 #include "ContentsDefine.h"
 #include "NavigationUI.h"
+#include "StageInfoUI.h"
 
 RoundAEnterLevel::RoundAEnterLevel()
 {
@@ -47,6 +48,8 @@ void RoundAEnterLevel::Loading()
 	CreateBubbleDest();
 
 	CreateMonsters();
+
+	CreateStageUI(StageInfoType::AEnter);
 }
 
 void RoundAEnterLevel::ResourceLoad()
