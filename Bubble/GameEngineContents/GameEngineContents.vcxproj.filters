@@ -367,6 +367,9 @@
     <ClInclude Include="StageInfoUI.h">
       <Filter>03.CommonActors\01.StaticObject\08.StageUI</Filter>
     </ClInclude>
+    <ClInclude Include="GhostTracer.h">
+      <Filter>03.CommonActors\02.MovableObject\07.GhostTracer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpeningLevel.cpp">
@@ -773,6 +776,9 @@
     </ClCompile>
     <ClCompile Include="StageInfoDatas.cpp">
       <Filter>03.CommonActors\01.StaticObject\08.StageUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostTracer.cpp">
+      <Filter>03.CommonActors\02.MovableObject\07.GhostTracer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1246,6 +1252,9 @@
     </Filter>
     <Filter Include="03.CommonActors\01.StaticObject\08.StageUI">
       <UniqueIdentifier>{960c47d8-ea9f-416f-a42e-0f33b5e71021}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.CommonActors\02.MovableObject\07.GhostTracer">
+      <UniqueIdentifier>{147e1d6c-31ec-405a-9876-81d629f82364}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

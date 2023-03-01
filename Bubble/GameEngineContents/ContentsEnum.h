@@ -65,6 +65,7 @@ enum class CollisionOrder
 	Player,
 	Door,
 	Monster,
+	GhostTracer,
 	BossMonster,
 	Player_Missle,
 	Monster_Missle,

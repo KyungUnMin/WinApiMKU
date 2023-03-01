@@ -16,6 +16,11 @@ public:
 	NatureMissle_Fire& operator=(const NatureMissle_Fire& _Other) = delete;
 	NatureMissle_Fire& operator=(const NatureMissle_Fire&& _Other) noexcept = delete;
 
+	static void BurnTimeReset()
+	{
+		PrevPlayerColTime = 0.f;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

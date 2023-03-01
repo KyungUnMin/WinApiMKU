@@ -173,8 +173,18 @@ void NatureMissle_Fire::CollisionCheck()
 	//플레이어와 충돌하고 난 후 경과된 시간이 
 	//InvalidPlayerColTime만큼 지나지 않았다면 플레이어와 충돌처리를 하지않음
 	float PlayerAliveTime = PlayerBase::MainPlayer->GetAliveTime();
+
+	//플레이어가 죽은 경우 시간이 초기화 되는 문제점이 있음, 이를 방지하는 코드
+	/*if (PrevPlayerColTime < PlayerAliveTime)
+	{
+		PrevPlayerColTime = PlayerAliveTime;
+		return;
+	}*/
+
 	if (PlayerAliveTime < (PrevPlayerColTime + InvalidPlayerColTime))
 		return;
+
+	
 
 
 	//플레이어와의 충돌체크

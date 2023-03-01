@@ -13,6 +13,7 @@
 #include "BubbleSpawner.h"
 #include "BubbleMissle.h"
 #include "BubbleMissleFSM.h"
+#include "NatureMissle_Fire.h"
 
 const float4	PlayerBase::CollisionOffset = float4{0.f, -30.f};
 const float4	PlayerBase::CollisionScale = float4{ 50.f, 50.f };
@@ -184,6 +185,9 @@ void PlayerBase::AttackPlayer()
 
 	if (PlayerStateType::EnterDoor	== FSMPtr->GetCurStateByEnum())
 		return;
+
+	//좋은 방법은 아니여도 간단하게 이렇게만 하자
+	NatureMissle_Fire::BurnTimeReset();
 
 	--lifeCnt;
 	FSMPtr->ChangeState(PlayerStateType::Damaged);
