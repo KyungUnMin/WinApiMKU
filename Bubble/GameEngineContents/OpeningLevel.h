@@ -20,6 +20,9 @@ class GameEngineActor;
 class OpeningLevel : public GameEngineLevel
 {
 public:
+	static const std::string_view BackCurtainImgPath;
+	static const std::string_view FrontCurtainImgPath;
+
 	OpeningLevel();
 	~OpeningLevel();
 

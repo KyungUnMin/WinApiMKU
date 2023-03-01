@@ -10,6 +10,9 @@
 #include "OpeningPlayer.h"
 #include "TextLine.h"
 
+const std::string_view OpeningLevel::BackCurtainImgPath		= "Opening_BackCurtain.bmp";
+const std::string_view OpeningLevel::FrontCurtainImgPath		= "Opening_FrontCurtain.bmp";
+
 
 //처음 회사 로고 Off되는 시간
 const float	OpeningLevel::CompanyLogoOffTime		= 3.f;
@@ -74,8 +77,8 @@ void OpeningLevel::ResourceLoad()
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_CompanyLogo.bmp"));
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_SpotLight.bmp"));
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_BackGround.bmp"));
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_BackCurtain.bmp"));
-	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_FrontCurtain.bmp"));
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(BackCurtainImgPath));
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(FrontCurtainImgPath));
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_Monster.bmp"))->Cut(5, 47);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_Player.bmp"))->Cut(7, 1);
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Opening_GameLogo.bmp"));
@@ -91,8 +94,8 @@ void OpeningLevel::CreateBackGround()
 	CompanyLogo = BackImage->CreateRender("Opening_CompanyLogo.bmp", OpeningRenderOrder::Logo);
 
 	BackImage->CreateRender("Opening_BackGround.bmp", OpeningRenderOrder::BackGround);
-	BackCurtain = BackImage->CreateRender("Opening_BackCurtain.bmp", OpeningRenderOrder::Curtain);
-	BackImage->CreateRender("Opening_FrontCurtain.bmp", OpeningRenderOrder::Curtain);
+	BackCurtain = BackImage->CreateRender(BackCurtainImgPath, OpeningRenderOrder::Curtain);
+	BackImage->CreateRender(FrontCurtainImgPath, OpeningRenderOrder::Curtain);
 
 	GameLogo = BackImage->CreateRender("Opening_GameLogo.bmp", OpeningRenderOrder::Logo);
 	GameLogo->Off();

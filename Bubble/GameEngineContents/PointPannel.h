@@ -3,11 +3,13 @@
 
 class BubbleDestHelper;
 class TextLine;
-
+class EndingLevel;
 
 class PointPannel : public GameEngineActor
 {
 public:
+	friend EndingLevel;
+
 	PointPannel();
 	~PointPannel();
 
@@ -17,6 +19,8 @@ public:
 	PointPannel& operator=(const PointPannel&& _Other) noexcept = delete;
 
 	static void AddPoint(int _Score);
+
+	
 
 protected:
 	void Start() override;
@@ -36,5 +40,16 @@ private:
 
 	void Update_Score();
 	void Update_2PText(float _DeltaTime);
+
+
+	static unsigned int GetNowPoint()
+	{
+		return NowPoint;
+	}
+
+	static void PointClear()
+	{
+		NowPoint = 0;
+	}
 };
 

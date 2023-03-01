@@ -1,13 +1,18 @@
 #include "EndingLevel.h"
+#include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEnginePlatform/GameEngineInput.h>
-#include <GameEnginePlatform/GameEngineImage.h>
+#include <GameEngineCore/GameEngineResources.h>
+#include <GameEngineCore/GameEngineRender.h>
 #include "TextLine.h"
-#include "BubbleCore.h"
+#include "PointPannel.h"
+#include "BackGround.h"
+#include "OpeningLevel.h"
+
+const std::string_view EndingLevel::BGIPath = "EndingBGI.bmp";
 
 EndingLevel::EndingLevel()
 {
-	BackColor = static_cast<HBRUSH>(GetStockObject(BLACK_BRUSH));
 }
 
 EndingLevel::~EndingLevel()
@@ -16,6 +21,86 @@ EndingLevel::~EndingLevel()
 
 void EndingLevel::Loading()
 {
+	LoadBGI();
+	LoadBGM();
+
+	BgmCtrl = GameEngineResources::GetInst().SoundPlayerToControl("Ending.mp3");
+	BgmCtrl.PauseOn();
+	ImageCreate();
+}
+
+
+
+void EndingLevel::LoadBGI()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Image");
+	Dir.Move("EndingLevel");
+	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(BGIPath));
+	IsLoad = true;
+}
+
+void EndingLevel::LoadBGM()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("BGM");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("Ending.mp3"));
+	IsLoad = true;
+}
+
+
+void EndingLevel::ImageCreate()
+{
+	BackImg = CreateActor<BackGround>();
+	BackImg->RenderReserve(3);
+
+	BackImg->CreateRender(BGIPath, EndingRenderOrder::BackGround);
+	BackImg->CreateRender(OpeningLevel::BackCurtainImgPath, EndingRenderOrder::BackCurtain)->Off();
+	BackImg->CreateRender(OpeningLevel::FrontCurtainImgPath, EndingRenderOrder::FrontCurtain)->Off();
+}
+
+
+
+
+
+void EndingLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	BgmCtrl.PauseOff();
+	PlayerScore = PointPannel::GetNowPoint();
+	PointPannel::PointClear();
+}
+
+
+void EndingLevel::Update(float _DeltaTime)
+{
+
+}
+
+void EndingLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	BgmCtrl.PauseOn();
+}
+
+
+
+
+
+
+
+/*
 	ScreenSize = GameEngineWindow::GetScreenSize();
 
 	TextLine* Text = CreateActor<TextLine>();
@@ -29,16 +114,7 @@ void EndingLevel::Loading()
 	Text->SetString("Press \'R\' To Restart", TextLineColor::Red);
 
 	GameEngineInput::CreateKey("ReStart", 'R');
-}
-
-void EndingLevel::Update(float _DeltaTime)
-{
-	HDC Hdc = GameEngineWindow::GetDoubleBufferImage()->GetImageDC();
-
-	BackColor = static_cast<HBRUSH>(SelectObject(Hdc, BackColor));
-	Rectangle(Hdc, -1, -1, ScreenSize.ix() + 1, ScreenSize.iy() + 1);
-	BackColor = static_cast<HBRUSH>(SelectObject(Hdc, BackColor));
 
 	if (true == GameEngineInput::IsDown("ReStart"))
 		BubbleCore::GetInst().ChangeLevel("SelectCharacterLevel");
-}
+*/
