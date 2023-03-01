@@ -50,6 +50,7 @@ private:
 	static void PointClear()
 	{
 		NowPoint = 0;
+		NowScoreStr = std::to_string(NowPoint);
 	}
 };
 
