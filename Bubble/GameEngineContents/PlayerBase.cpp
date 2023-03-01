@@ -14,6 +14,7 @@
 #include "BubbleMissle.h"
 #include "BubbleMissleFSM.h"
 #include "NatureMissle_Fire.h"
+#include "GhostTracer.h"
 
 const float4	PlayerBase::CollisionOffset = float4{0.f, -30.f};
 const float4	PlayerBase::CollisionScale = float4{ 50.f, 50.f };
@@ -148,6 +149,11 @@ void PlayerBase::Update(float _DeltaTime)
 
 	//부활한 뒤 무적 연출
 	ProtectionRender();
+
+	if ((GhostSpawnTime < AliveLiveTime) && (nullptr == GhostTracer::MainGhost))
+	{
+		GetLevel()->CreateActor<GhostTracer>(UpdateOrder::BossMonster);
+	}
 }
 
 void PlayerBase::CheckStandOnStage()
@@ -186,10 +192,20 @@ void PlayerBase::AttackPlayer()
 	if (PlayerStateType::EnterDoor	== FSMPtr->GetCurStateByEnum())
 		return;
 
+	if (nullptr != GhostTracer::MainGhost)
+	{
+		GhostTracer::MainGhost->KillPlayer();
+	}
+
 	//좋은 방법은 아니여도 간단하게 이렇게만 하자
 	NatureMissle_Fire::BurnTimeReset();
 
 	--lifeCnt;
+
+	//여기서도 호출되고
+	ResetAliveTime();
+
+	//Damaged가 끝날때도 호출된다(의도하진 않은 거지만 일단 두자)
 	FSMPtr->ChangeState(PlayerStateType::Damaged);
 }
 
@@ -203,6 +219,20 @@ void PlayerBase::ProtectionRender()
 		RenderPtr->On();
 		return;
 	}
+
+	PlayerStateType PlayerCurState = FSMPtr->GetCurStateByEnum();
+
+	if (PlayerStateType::Damaged == PlayerCurState)
+		return;
+
+	if (PlayerStateType::StageMove == PlayerCurState)
+		return;
+
+	if (PlayerStateType::Embarrassed == PlayerCurState)
+		return;
+
+	if (PlayerStateType::EnterDoor == PlayerCurState)
+		return;
 
 	RenderPtr->OnOffSwtich();
 }

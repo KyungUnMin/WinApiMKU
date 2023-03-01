@@ -88,6 +88,8 @@ void BubbleCore::CreateKeys()
 	GameEngineInput::CreateKey(PLAYER_RIGHT, KEY_RIGHT);
 	GameEngineInput::CreateKey(PLAYER_JUMP, KEY_JUMP);
 	GameEngineInput::CreateKey(PLAYER_ATTACK, KEY_ATTACK);
+
+	GameEngineInput::CreateKey("BossPath", VK_F6);
 }
 
 
@@ -104,6 +106,11 @@ void BubbleCore::Update()
 	if (true == GameEngineInput::IsDown("GridSwitch"))
 	{
 		BubbleDestHelper::RenderOnOffSwitch();
+	}
+
+	if (true == GameEngineInput::IsDown("BossPath"))
+	{
+		BossCheekOn = !BossCheekOn;
 	}
 
 	//플레이어 무적모드 스위치

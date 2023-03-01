@@ -177,7 +177,7 @@ bool BossState_DashToPlayer::IsScreenOutPos(const float4 _NextPos)
 
 void BossState_DashToPlayer::Render(float _DeltaTime)
 {
-	if (false == BubbleCore::GetInst().IsDebug())
+	if (false == BubbleCore::GetInst().IsBossCheetOn())
 		return;
 
 	HDC DoubleBufferDC = GameEngineWindow::GetDoubleBufferImage()->GetImageDC();

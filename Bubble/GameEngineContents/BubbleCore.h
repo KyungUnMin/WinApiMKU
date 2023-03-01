@@ -16,6 +16,11 @@ public:
 	BubbleCore& operator=(const BubbleCore& _Other) = delete;
 	BubbleCore& operator=(const BubbleCore&& _Other) noexcept = delete;
 
+	inline bool IsBossCheetOn()
+	{
+		return BossCheekOn;
+	}
+
 protected:
 	virtual void Start() override;
 	virtual void Update() override;
@@ -23,8 +28,10 @@ protected:
 
 private:
 	static BubbleCore	Core;
-	HPEN						DebugPen		= HPEN();
-	HBRUSH					DebugBrush		= HBRUSH();
+	HPEN						DebugPen			= HPEN();
+	HBRUSH					DebugBrush			= HBRUSH();
+
+	bool							BossCheekOn		= false;
 
 
 	BubbleCore();

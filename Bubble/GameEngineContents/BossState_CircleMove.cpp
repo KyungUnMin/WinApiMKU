@@ -157,7 +157,7 @@ void BossState_CircleMove::Update_MoveToPivot(float _DeltaTime, float4 _Dir)
 
 void BossState_CircleMove::Render(float _DeltaTime)
 {
-	if (false == BubbleCore::GetInst().IsDebug())
+	if (false == BubbleCore::GetInst().IsBossCheetOn())
 		return;
 
 	HDC DoubleBufferDC = GameEngineWindow::GetDoubleBufferImage()->GetImageDC();

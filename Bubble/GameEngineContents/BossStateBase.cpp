@@ -103,7 +103,6 @@ void BossStateBase::DrawDebugArrow(const float4& _Start, const float4& _End)
 	float4 LeftArrowPos = _End + (ReverseDir.RotationZDegReturn(-30.f) * ArrowLength);
 	MoveToEx(Hdc, _End.ix(), _End.iy(), nullptr);
 	LineTo(Hdc, LeftArrowPos.ix(), LeftArrowPos.iy());
-
 }
 
 void BossStateBase::LoadSFX()

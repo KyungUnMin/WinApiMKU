@@ -23,6 +23,7 @@
 #include "NextDoor.h"
 #include "BubbleCore.h"
 #include "StageInfoUI.h"
+#include "GhostTracer.h"
 
 const float4	RoundLevelBase::PlayerSpawnPos			= { 100.f, 620.f };
 const float		RoundLevelBase::StageMoveDuration	= 1.5f;
@@ -201,7 +202,7 @@ void RoundLevelBase::StageClear()
 		Point->Death();
 	}
 
-	//치트키를 이용시, 게임 다시 시작시 생기는 버그를 위한 작업
+	//치트키를 이용시, 게임 다시 시작시 생기는 버그를 위한 작업 + 고스트 몬스터 삭제
 	std::vector<GameEngineActor*> BossArr = GetActors(UpdateOrder::BossMonster);
 	for (GameEngineActor* Boss : BossArr)
 	{
@@ -209,6 +210,11 @@ void RoundLevelBase::StageClear()
 	}
 
 	StageUI->Off();
+
+	if (nullptr != PlayerBase::MainPlayer)
+	{
+		PlayerBase::MainPlayer->ResetAliveTime();
+	}
 }
 
 
@@ -498,5 +504,15 @@ void RoundLevelBase::StageBossClear()
 	NextLevelDoor = CreateActor<NextDoor>();
 	NextLevelDoor->SetPos(DoorPos);
 	NextLevelDoor->SelectDoor(DoorType::Gold, { 400.f, 400.f }, RenderOrder::Door);
+
+	if (nullptr != GhostTracer::MainGhost)
+	{
+		GhostTracer::MainGhost->KillPlayer();
+	}
+
+	if (nullptr != PlayerBase::MainPlayer)
+	{
+		PlayerBase::MainPlayer->ResetAliveTime();
+	}
 }
 
