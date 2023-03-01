@@ -2,14 +2,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineResources.h>
 
-class BackGround;
-
-enum class EndingRenderOrder
-{
-	BackGround,
-	BackCurtain,
-	FrontCurtain,
-};
+class TextLine;
 
 class EndingLevel : public GameEngineLevel
 {
@@ -32,12 +25,11 @@ protected:
 
 private:
 	GameEngineSoundPlayer	BgmCtrl;
-	int										PlayerScore		= 0;
-	BackGround*						BackImg			= nullptr;
+	TextLine*								ScoreText = nullptr;
 
 	void LoadBGI();
 	void LoadBGM();
 
-	void ImageCreate();
+	void CreateText();
 };
 

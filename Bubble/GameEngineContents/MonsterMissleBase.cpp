@@ -33,12 +33,15 @@ bool MonsterMissleBase::PlayerCollisionCheck()
 	if (nullptr == PlayerBase::MainPlayer)
 		return false;
 	
-	float4 PlayerPos = PlayerBase::MainPlayer->GetPos();
+	/*float4 PlayerPos = PlayerBase::MainPlayer->GetPos();
 	float4 PlayerColScale = PlayerBase::CollisionScale;
 	float4 ThisPos = GetPos();
 	float4 ThisColScale = CollisionScale;
 
 	if (false == GameEngineCollision::CollisionCircleToCircle({ PlayerPos, PlayerColScale }, { ThisPos, ThisColScale }))
+		return false;*/
+
+	if (false == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Player) }))
 		return false;
 
 	PlayerBase::MainPlayer->AttackPlayer();

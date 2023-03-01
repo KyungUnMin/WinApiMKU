@@ -50,7 +50,7 @@ void BubbleMissleStateBase::PlayerCollisionCheck()
 		return;
 	}
 
-	if (Bubble->GetALiveTime() < (PrevColTime + ColTerm))
+	if ((PlayerStateType::Jump == PlayerState) && Bubble->GetALiveTime() < (PrevColTime + ColTerm))
 		return;
 
 	if (false == GetBubble()->GetCollisionPtr()->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Player) }))

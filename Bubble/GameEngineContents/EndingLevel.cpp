@@ -7,7 +7,7 @@
 #include "TextLine.h"
 #include "PointPannel.h"
 #include "BackGround.h"
-#include "OpeningLevel.h"
+#include "BubbleCore.h"
 
 const std::string_view EndingLevel::BGIPath = "EndingBGI.bmp";
 
@@ -24,9 +24,10 @@ void EndingLevel::Loading()
 	LoadBGI();
 	LoadBGM();
 
-	BgmCtrl = GameEngineResources::GetInst().SoundPlayerToControl("Ending.mp3");
-	BgmCtrl.PauseOn();
-	ImageCreate();
+	CreateActor<BackGround>()->CreateRender(BGIPath);
+	CreateText();
+
+	GameEngineInput::CreateKey("ReStart", 'R');
 }
 
 
@@ -57,55 +58,18 @@ void EndingLevel::LoadBGM()
 	Dir.Move("ContentsResources");
 	Dir.Move("Sound");
 	Dir.Move("BGM");
-	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("Ending.mp3"));
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName("OriginThema.mp3"));
 	IsLoad = true;
 }
 
 
-void EndingLevel::ImageCreate()
+
+void EndingLevel::CreateText()
 {
-	BackImg = CreateActor<BackGround>();
-	BackImg->RenderReserve(3);
-
-	BackImg->CreateRender(BGIPath, EndingRenderOrder::BackGround);
-	BackImg->CreateRender(OpeningLevel::BackCurtainImgPath, EndingRenderOrder::BackCurtain)->Off();
-	BackImg->CreateRender(OpeningLevel::FrontCurtainImgPath, EndingRenderOrder::FrontCurtain)->Off();
-}
-
-
-
-
-
-void EndingLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
-{
-	BgmCtrl.PauseOff();
-	PlayerScore = PointPannel::GetNowPoint();
-	PointPannel::PointClear();
-}
-
-
-void EndingLevel::Update(float _DeltaTime)
-{
-
-}
-
-void EndingLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
-{
-	BgmCtrl.PauseOn();
-}
-
-
-
-
-
-
-
-/*
-	ScreenSize = GameEngineWindow::GetScreenSize();
-
+	float4 ScreenSize = GameEngineWindow::GetScreenSize();
 	TextLine* Text = CreateActor<TextLine>();
 	Text->SetPos(ScreenSize.half());
-	Text->SetScale({30.f, 50.f});
+	Text->SetScale({ 30.f, 50.f });
 	Text->SetString("Thank You For Playing", TextLineColor::Gold);
 
 	Text = CreateActor<TextLine>();
@@ -113,8 +77,37 @@ void EndingLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	Text->SetScale({ 20.f, 30.f });
 	Text->SetString("Press \'R\' To Restart", TextLineColor::Red);
 
-	GameEngineInput::CreateKey("ReStart", 'R');
+	ScoreText = CreateActor<TextLine>();
+	ScoreText->SetPos(ScreenSize.half() + float4::Down * 250.f);
+	ScoreText->SetScale({ 20.f, 30.f });
+}
 
-	if (true == GameEngineInput::IsDown("ReStart"))
-		BubbleCore::GetInst().ChangeLevel("SelectCharacterLevel");
-*/
+
+
+
+
+
+
+void EndingLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
+{
+	std::string TextValue = "your score : " + std::to_string(PointPannel::GetNowPoint());
+	ScoreText->SetString(TextValue, TextLineColor::Sky);
+	PointPannel::PointClear();
+
+	BgmCtrl = GameEngineResources::GetInst().SoundPlayerToControl("OriginThema.mp3");
+}
+
+
+void EndingLevel::Update(float _DeltaTime)
+{
+	if (false == GameEngineInput::IsDown("ReStart"))
+		return;
+
+	BubbleCore::GetInst().ChangeLevel("SelectCharacterLevel");
+}
+
+void EndingLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	BgmCtrl.Stop();
+}
+
