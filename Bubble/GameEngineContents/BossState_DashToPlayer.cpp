@@ -7,6 +7,7 @@
 #include "BubbleCore.h"
 #include "BossHpBar.h"
 
+
 BossState_DashToPlayer::BossState_DashToPlayer()
 {
 	DebugPen = static_cast<HPEN>(CreatePen(PS_SOLID, 5, RGB(0, 0, 255)));

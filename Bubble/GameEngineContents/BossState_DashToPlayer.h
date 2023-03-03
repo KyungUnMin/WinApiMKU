@@ -43,7 +43,6 @@ private:
 	float				PrevTime		= 0.f;
 	const float		CalcTerm		= 3.f;
 
-
 	bool CheckDamaged();
 };
 

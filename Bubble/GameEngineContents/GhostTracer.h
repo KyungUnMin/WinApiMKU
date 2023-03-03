@@ -14,6 +14,8 @@ public:
 	static const std::string_view	IdleAniName;
 	static const std::string_view	TraceAniName;
 
+	static const std::string_view	SFXName;
+
 	static GhostTracer* MainGhost;
 
 	GhostTracer();
@@ -58,6 +60,7 @@ private:
 	HPEN								DebugPen		= HPEN();
 
 	void ResourceLoad();
+	void LoadSFX();
 	void CreateComponent();
 	void CreateAnimations();
 

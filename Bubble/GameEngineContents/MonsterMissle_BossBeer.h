@@ -10,6 +10,8 @@ public:
 	static const std::string_view ThrowAniName;
 	static const std::string_view CrushAniName;
 
+	static const std::string_view SFXName;
+
 	MonsterMissle_BossBeer();
 	~MonsterMissle_BossBeer() override;
 
@@ -40,6 +42,7 @@ private:
 	float						MoveSpeed	= 400.f;
 
 	void ResourceLoad();
+	void LoadSFX();
 	void CreateAnimation();
 
 	void ThrowMove(float _DeltaTime);

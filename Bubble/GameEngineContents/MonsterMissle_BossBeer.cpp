@@ -9,6 +9,9 @@ const std::string_view MonsterMissle_BossBeer::ImagePath			= "BossMissle.bmp";
 const std::string_view MonsterMissle_BossBeer::ThrowAniName	= "Throw";
 const std::string_view MonsterMissle_BossBeer::CrushAniName		= "Crush";
 
+const std::string_view MonsterMissle_BossBeer::SFXName				= "BossDash.wav";
+
+
 MonsterMissle_BossBeer::MonsterMissle_BossBeer()
 {
 }
@@ -22,6 +25,7 @@ void MonsterMissle_BossBeer::Start()
 {
 	MonsterMissleBase::Start();
 	ResourceLoad();
+	LoadSFX();
 	CreateAnimation();
 
 	RoundLevel = dynamic_cast<RoundLevelBase*>(GetLevel());
@@ -31,6 +35,7 @@ void MonsterMissle_BossBeer::Start()
 		return;
 	}
 
+	GameEngineResources::GetInst().SoundPlay(SFXName);
 }
 
 
@@ -48,6 +53,22 @@ void MonsterMissle_BossBeer::ResourceLoad()
 	Dir.Move("Common");
 	Dir.Move("MonsterMissle");
 	GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName(ImagePath))->Cut(4, 3);
+	IsLoad = true;
+}
+
+void MonsterMissle_BossBeer::LoadSFX()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Monster");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName(SFXName));
 	IsLoad = true;
 }
 

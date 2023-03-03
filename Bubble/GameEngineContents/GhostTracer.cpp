@@ -18,6 +18,8 @@ const std::string_view	GhostTracer::SmokeImgPath		= "GhostSmoke.bmp";
 const std::string_view	GhostTracer::IdleAniName			= "Idle";
 const std::string_view	GhostTracer::TraceAniName		= "Trace";
 
+const std::string_view	GhostTracer::SFXName				= "GhostFade.wav";
+
 GhostTracer* GhostTracer::MainGhost = nullptr;
 
 GhostTracer::GhostTracer()
@@ -40,11 +42,14 @@ GhostTracer::~GhostTracer()
 void GhostTracer::Start()
 {
 	ResourceLoad();
+	LoadSFX();
 	CreateComponent();
 	CreateAnimations();
 
 	SetPos(BubbleDestHelper::GetGridPos(156));
 	SetDir(float4::Left);
+
+	GameEngineResources::GetInst().SoundPlay(SFXName);
 }
 
 
@@ -67,7 +72,21 @@ void GhostTracer::ResourceLoad()
 }
 
 
+void GhostTracer::LoadSFX()
+{
+	static bool IsLoad = false;
+	if (true == IsLoad)
+		return;
 
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	Dir.Move("SFX");
+	Dir.Move("Monster");
+	GameEngineResources::GetInst().SoundLoad(Dir.GetPlusFileName(SFXName));
+	IsLoad = true;
+}
 
 
 
@@ -316,6 +335,8 @@ const float4  GhostTracer::CalcLerpDir()
 	return float4::LerpClamp(StartPos, DestPos, Ratio);
 }
 
+
+
 void GhostTracer::PlayerCollisionCheck()
 {
 	if (false == CollisionPtr->Collision({ .TargetGroup = static_cast<int>(CollisionOrder::Player) }))
@@ -331,6 +352,7 @@ void GhostTracer::KillPlayer()
 	CurState = State::PlayerKill;
 	SmokeRender->ChangeAnimation("Smoke", true);
 	GhostRender->Off();
+	GameEngineResources::GetInst().SoundPlay(SFXName);
 }
 
 
