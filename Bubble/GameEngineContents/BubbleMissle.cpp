@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include "BubbleMissleFSM.h"
 #include "RoundLevelBase.h"
+#include "BubbleStateMove.h"
 
 const float4 BubbleMissle::RenderScale = float4{ 150.f,150.f };
 const float4 BubbleMissle::CollisionScale = float4{ 50.f,50.f };
@@ -21,6 +22,7 @@ BubbleMissle::~BubbleMissle()
 		FSM = nullptr;
 	}
 }
+
 
 void BubbleMissle::Start()
 {
@@ -45,3 +47,16 @@ void BubbleMissle::Update(float _DeltaTime)
 }
 
 
+void BubbleMissle::SetMoveSpeed(PlayerCharacterType _CharType)
+{
+	if (PlayerCharacterType::CORORON != _CharType)
+		return;
+
+	BubbleStateMove* MoveState = dynamic_cast<BubbleStateMove*>(FSM->GetState(BubbleStateType::Move));
+	if (nullptr == MoveState)
+	{
+		MsgAssert("이 버블엔 Move상태가 없습니다");
+	}
+	
+	MoveState->SetCororonSpeed();
+}

@@ -34,10 +34,10 @@ void BubbleStateMove::Init(PlayerCharacterType _CharType, BubbleMissleType _Bubb
 	CreateAnimation(_CharType, _BubbleType);
 	ScreenSize = GameEngineWindow::GetScreenSize();
 
-	if (PlayerCharacterType::CORORON == _CharType)
+	/*if (PlayerCharacterType::CORORON == _CharType)
 	{
 		MoveSpeed = 150.f;
-	}
+	}*/
 }
 
 void BubbleStateMove::ResourceLoad()

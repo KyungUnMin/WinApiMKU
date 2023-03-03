@@ -97,6 +97,7 @@ void BubbleSpawner::CreateBubble()
 	{
 		Bubble->SetDir(Player->GetDirVec());
 		Bubble->Init(Player->GetCharacterType(), Type);
+		Bubble->SetMoveSpeed(Player->GetCharacterType());
 		GameEngineResources::GetInst().SoundPlay("BubbleThrow.wav");
 		return;
 	}

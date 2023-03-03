@@ -21,6 +21,11 @@ public:
 		return NowDest;
 	}
 
+	inline void SetCororonSpeed()
+	{
+		MoveSpeed = CororonSpeed;
+	}
+
 protected:
 	void Init(PlayerCharacterType _CharType, BubbleMissleType _BubbleType) override;
 	void Update(float _DeltaTime) override;
@@ -28,9 +33,10 @@ protected:
 	void EnterState() override;
 
 private:
-	BubbleDestination*			NowDest			= nullptr;
-	float4								ScreenSize		= float4::Zero;
-	float								MoveSpeed		= 100.f;
+	BubbleDestination*			NowDest				= nullptr;
+	float4								ScreenSize			= float4::Zero;
+	float								MoveSpeed			= 100.f;
+	const float						CororonSpeed		= 150.f;
 
 	void ResourceLoad();
 	void CreateAnimation(PlayerCharacterType _CharType, BubbleMissleType _BubbleType);

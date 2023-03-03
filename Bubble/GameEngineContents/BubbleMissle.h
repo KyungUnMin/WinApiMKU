@@ -60,6 +60,8 @@ public:
 		return GetLiveTime();
 	}
 
+	void SetMoveSpeed(PlayerCharacterType _CharType);
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) final;
