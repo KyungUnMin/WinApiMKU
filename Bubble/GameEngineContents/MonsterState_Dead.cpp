@@ -45,6 +45,7 @@ void MonsterState_Dead::EnterState()
 
 	PointPannel::AddPoint(KillPoint);
 	GameEngineResources::GetInst().SoundPlay("MonsterDead.wav");
+	Timer = 0.f;
 }
 
 void MonsterState_Dead::SetSpeed()
