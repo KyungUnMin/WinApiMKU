@@ -35,7 +35,7 @@ void StageInfoUI::Start()
 
 	Texts[0]->SetColor(TextLineColor::White);
 	Texts[1]->SetColor(TextLineColor::Green);
-	Texts[2]->SetString("Ready !", TextLineColor::White);
+	Texts[2]->SetString("Start !", TextLineColor::White);
 }
 
 
