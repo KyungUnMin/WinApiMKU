@@ -214,9 +214,10 @@ void PlayerBase::AttackPlayer()
 void PlayerBase::ProtectionRender()
 {
 	//레벨이 시작하면서도 동작하기 때문에 초반엔 ProtectionTime 시간만큼 무적
+	RenderPtr->SetAlpha(RenderAlpha);
 	if (ProtectionTime < AliveLiveTime)
 	{
-		RenderPtr->On();
+		RenderAlpha = 255;
 		return;
 	}
 
@@ -234,7 +235,8 @@ void PlayerBase::ProtectionRender()
 	if (PlayerStateType::EnterDoor == PlayerCurState)
 		return;
 
-	RenderPtr->OnOffSwtich();
+	//RenderPtr->OnOffSwtich();
+	RenderAlpha = (255 == RenderAlpha) ? 100 : 255;
 }
 
 

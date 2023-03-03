@@ -106,6 +106,8 @@ private:
 
 	const float						GhostSpawnTime	= 30.f;
 
+	int									RenderAlpha			= 255;
+
 	//何劝茄 第 公利 楷免
 	void ProtectionRender();
 	void CreateCheetShield();
