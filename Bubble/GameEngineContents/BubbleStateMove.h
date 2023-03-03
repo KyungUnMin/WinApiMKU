@@ -7,7 +7,6 @@ class BubbleDestination;
 class BubbleStateMove : public BubbleMissleStateBase
 {
 public:
-	static const float	MoveSpeed;
 
 	BubbleStateMove();
 	~BubbleStateMove();
@@ -31,6 +30,7 @@ protected:
 private:
 	BubbleDestination*			NowDest			= nullptr;
 	float4								ScreenSize		= float4::Zero;
+	float								MoveSpeed		= 100.f;
 
 	void ResourceLoad();
 	void CreateAnimation(PlayerCharacterType _CharType, BubbleMissleType _BubbleType);

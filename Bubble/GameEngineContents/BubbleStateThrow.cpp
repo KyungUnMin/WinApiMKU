@@ -8,7 +8,7 @@
 #include "RoundLevelBase.h"
 #include "MonsterBase.h"
 
-const float BubbleStateThrow::MoveSpeed = 500.f;
+//const float BubbleStateThrow::MoveSpeed = 500.f;
 
 BubbleStateThrow::BubbleStateThrow()
 {
@@ -43,6 +43,11 @@ void BubbleStateThrow::Init(PlayerCharacterType _CharType, BubbleMissleType _Bub
 		.InterTimer = 0.1f,
 		.Loop = false
 	});
+
+	if (PlayerCharacterType::KULULUN == _CharType)
+	{
+		MoveSpeed = 600.f;
+	}
 }
 
 void BubbleStateThrow::ResourceLoad()

@@ -24,7 +24,7 @@ private:
 	const std::string_view	MoveAniName		= "Move";
 	const std::string_view	AttackAniName	= "Move_Attack";
 
-	const float4					MoveSpeed			= float4{ 300.f, 0.f };
+	float4								MoveSpeed			= float4{ 300.f, 0.f };
 	
 	void ResourceLoad();
 	void CreateAnimation(PlayerCharacterType _CharacterType);

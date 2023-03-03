@@ -4,7 +4,6 @@
 class BubbleStateThrow : public BubbleMissleStateBase
 {
 public:
-	static const float MoveSpeed;
 
 	BubbleStateThrow();
 	~BubbleStateThrow();
@@ -19,6 +18,7 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
+	float MoveSpeed = 500.f;
 
 	void ResourceLoad();
 	void LoadSFX();

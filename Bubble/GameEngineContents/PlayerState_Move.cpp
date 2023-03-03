@@ -31,6 +31,11 @@ void PlayerState_Move::Start(PlayerCharacterType _CharacterType)
 
 	ConnectRoundLevel();
 	CreateAnimation(_CharacterType);
+
+	if (PlayerCharacterType::BOBBLUN == _CharacterType)
+	{
+		MoveSpeed = float4{ 350.f, 0.f };
+	}
 }
 
 
