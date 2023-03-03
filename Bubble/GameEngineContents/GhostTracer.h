@@ -18,6 +18,15 @@ public:
 
 	static GhostTracer* MainGhost;
 
+
+	enum class State
+	{
+		Idle,
+		TraceY,
+		TraceX,
+		PlayerKill
+	};
+
 	GhostTracer();
 	~GhostTracer() override;
 
@@ -30,20 +39,17 @@ public:
 
 	void KillPlayer();
 
+	inline State GetState()
+	{
+		return CurState;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void Render(float _DeltaTime) override;
 
 private:
-	enum class State
-	{
-		Idle,
-		TraceY,
-		TraceX,
-		PlayerKill
-	};
-
 	State								CurState			= State::Idle;
 	State								PrevState			= State::TraceX;
 	GameEngineRender*		GhostRender	= nullptr;

@@ -16,6 +16,7 @@
 #include "ContentsDefine.h"
 #include "NavigationUI.h"
 #include "StageInfoUI.h"
+#include "GhostTracer.h"
 
 RoundAEnterLevel::RoundAEnterLevel()
 {
@@ -148,7 +149,16 @@ void RoundAEnterLevel::Update(float _DeltaTime)
 
 		NaviUI = CreateActor<NavigationUI>();
 		NaviUI->CreateImage(NavigationType::CourseSelect);
-		//MonSpawner->IsAllMonsterOff()
+
+		if (nullptr != PlayerBase::MainPlayer)
+		{
+			PlayerBase::MainPlayer->ResetAliveTime();
+		}
+
+		if (nullptr != GhostTracer::MainGhost)
+		{
+			GhostTracer::MainGhost->KillPlayer();
+		}
 	}
 
 	
