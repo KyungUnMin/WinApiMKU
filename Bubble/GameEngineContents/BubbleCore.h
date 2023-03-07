@@ -21,6 +21,11 @@ public:
 		return BossCheekOn;
 	}
 
+	inline bool IsGhostOn()
+	{
+		return GhostWork;
+	}
+
 protected:
 	virtual void Start() override;
 	virtual void Update() override;
@@ -32,7 +37,7 @@ private:
 	HBRUSH					DebugBrush			= HBRUSH();
 
 	bool							BossCheekOn		= false;
-
+	bool							GhostWork			= true;
 
 	BubbleCore();
 	~BubbleCore();

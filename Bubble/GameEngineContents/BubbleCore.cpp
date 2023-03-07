@@ -90,6 +90,7 @@ void BubbleCore::CreateKeys()
 	GameEngineInput::CreateKey(PLAYER_ATTACK, KEY_ATTACK);
 
 	GameEngineInput::CreateKey("BossPath", VK_F6);
+	GameEngineInput::CreateKey("GhostOnOff", VK_F7);
 }
 
 
@@ -117,6 +118,16 @@ void BubbleCore::Update()
 	if (true == GameEngineInput::IsDown("PlayerUnbeatableSwitch"))
 	{
 		PlayerBase::UnbeatableSwitch();
+	}
+
+	if (true == GameEngineInput::IsDown("GhostOnOff"))
+	{
+		GhostWork = !GhostWork;
+	}
+
+	if (false == GhostWork)
+	{
+		GameEngineLevel::DebugTextPush("유령 비활성화");
 	}
 }
 

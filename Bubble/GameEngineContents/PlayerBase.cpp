@@ -15,6 +15,7 @@
 #include "BubbleMissleFSM.h"
 #include "NatureMissle_Fire.h"
 #include "GhostTracer.h"
+#include "BubbleCore.h"
 
 const float4	PlayerBase::CollisionOffset = float4{0.f, -30.f};
 const float4	PlayerBase::CollisionScale = float4{ 50.f, 50.f };
@@ -152,7 +153,10 @@ void PlayerBase::Update(float _DeltaTime)
 
 	if ((GhostSpawnTime < AliveLiveTime) && (nullptr == GhostTracer::MainGhost))
 	{
-		GetLevel()->CreateActor<GhostTracer>(UpdateOrder::BossMonster);
+		if (true == BubbleCore::GetInst().IsGhostOn())
+		{
+			GetLevel()->CreateActor<GhostTracer>(UpdateOrder::BossMonster);
+		}
 	}
 }
 
