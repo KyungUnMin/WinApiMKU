@@ -44,8 +44,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_포트폴리오", "_포트폴리오", "{B137A83B-B302-4704-9BE7-67874BCC0DD8}"
 	ProjectSection(SolutionItems) = preProject
 		기록.txt = 기록.txt
-		발표대본.txt = 발표대본.txt
+		시연회용 대본.txt = 시연회용 대본.txt
 		예외처리사항 및 문제점.txt = 예외처리사항 및 문제점.txt
+		유튜브용 대본.txt = 유튜브용 대본.txt
 	EndProjectSection
 EndProject
 Global

@@ -84,7 +84,4 @@
       <UniqueIdentifier>{d3f039d4-7ab2-48e1-a5a8-35a69f810bdf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\발표대본.txt" />
-  </ItemGroup>
 </Project>
